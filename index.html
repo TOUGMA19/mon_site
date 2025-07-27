@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --gray: #7f8c8d;
+            --primary: #1a3a6c;
+            --secondary: #2a5ca7;
+            --accent: #e63946;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
         }
         
         * {
@@ -23,31 +24,30 @@
         }
         
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
-            padding-top: 70px;
         }
         
         .container {
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
-        /* Header Styles */
+        /* Header & Navigation */
         header {
             background-color: var(--primary);
             color: white;
             padding: 1rem 0;
-            position: fixed;
+            position: sticky;
             top: 0;
-            width: 100%;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
-        .header-content {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -56,10 +56,13 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
         }
         
-        .logo span {
-            color: var(--secondary);
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
         }
         
         nav ul {
@@ -68,7 +71,7 @@
         }
         
         nav ul li {
-            margin-left: 15px;
+            margin-left: 1.5rem;
         }
         
         nav ul li a {
@@ -76,21 +79,27 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
-            padding: 5px 10px;
+            padding: 0.5rem 0.8rem;
             border-radius: 4px;
         }
         
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--secondary);
-            background: rgba(255,255,255,0.1);
+        nav ul li a:hover {
+            color: var(--accent);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            background: linear-gradient(rgba(26, 58, 108, 0.9), rgba(26, 58, 108, 0.8)), url('https://images.unsplash.com/photo-1581093458799-4b0b3c99f9e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: white;
-            padding: 80px 0;
             text-align: center;
+            padding: 5rem 0;
         }
         
         .hero-content {
@@ -99,106 +108,67 @@
         }
         
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero h2 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 30px;
-            color: var(--secondary);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
             opacity: 0.9;
         }
         
-        .hero-buttons {
+        .hero-tags {
             display: flex;
             justify-content: center;
-            gap: 15px;
             flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1.5rem;
         }
         
-        .btn {
-            padding: 12px 30px;
+        .tag {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
             border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            text-align: center;
-        }
-        
-        .btn-primary {
-            background-color: var(--secondary);
-            color: white;
-            border: 2px solid var(--secondary);
-        }
-        
-        .btn-primary:hover {
-            background-color: transparent;
-            transform: translateY(-3px);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-        
-        .btn-outline:hover {
-            background-color: white;
-            color: var(--primary);
-            transform: translateY(-3px);
+            font-size: 0.9rem;
+            font-weight: 500;
         }
         
         /* Section Styles */
         section {
-            padding: 80px 0;
+            padding: 4rem 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 3rem;
+            position: relative;
         }
         
         .section-title h2 {
             font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 15px;
-            position: relative;
             display: inline-block;
+            padding-bottom: 10px;
         }
         
         .section-title h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-        
-        .section-title p {
-            color: var(--gray);
-            max-width: 700px;
-            margin: 20px auto 0;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         /* About Section */
         .about-content {
             display: flex;
-            gap: 50px;
-            align-items: center;
+            gap: 2rem;
             flex-wrap: wrap;
         }
         
@@ -208,75 +178,77 @@
         }
         
         .about-text h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
             font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--primary);
         }
         
-        .about-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+        .about-info {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
-        .detail-item {
+        .info-item {
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: flex-start;
-            margin-bottom: 15px;
         }
         
-        .detail-item i {
-            color: var(--secondary);
-            font-size: 1.5rem;
+        .info-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
             margin-right: 15px;
-            min-width: 30px;
+            min-width: 25px;
         }
         
-        .detail-content h4 {
-            margin-bottom: 5px;
-            color: var(--dark);
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
         
-        .about-image {
-            flex: 1;
-            text-align: center;
-            min-width: 300px;
+        .expertise-item {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
         
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--secondary), var(--primary));
+        .expertise-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .expertise-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 6rem;
-            margin: 0 auto;
-            border: 5px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .expertise-item h4 i {
+            color: var(--accent);
+            margin-right: 10px;
         }
         
         /* Education & Experience */
-        .timeline-container {
-            background-color: #f0f5ff;
-            padding: 40px 0;
-            border-radius: 10px;
-        }
-        
         .timeline {
             position: relative;
             max-width: 800px;
             margin: 0 auto;
         }
         
-        .timeline::after {
+        .timeline::before {
             content: '';
             position: absolute;
             width: 4px;
-            background-color: var(--secondary);
+            background-color: var(--light-gray);
             top: 0;
             bottom: 0;
             left: 50%;
@@ -286,11 +258,8 @@
         .timeline-item {
             padding: 20px 40px;
             position: relative;
-            background-color: white;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            width: calc(50% - 40px);
+            width: 50%;
+            box-sizing: border-box;
         }
         
         .timeline-item:nth-child(odd) {
@@ -298,210 +267,268 @@
         }
         
         .timeline-item:nth-child(even) {
-            left: calc(50% + 40px);
+            left: 50%;
         }
         
-        .timeline-item::after {
+        .timeline-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -15px;
+            border: 8px solid transparent;
+            border-left-color: white;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -15px;
+            right: auto;
+            border-left-color: transparent;
+            border-right-color: white;
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .timeline-content .date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item:nth-child(odd)::before,
+        .timeline-item:nth-child(even)::before {
             content: '';
             position: absolute;
             width: 20px;
             height: 20px;
-            background-color: white;
-            border: 4px solid var(--secondary);
-            top: 30px;
+            background-color: var(--accent);
+            border: 4px solid var(--light-gray);
             border-radius: 50%;
+            top: 30px;
+            right: -10px;
             z-index: 1;
         }
         
-        .timeline-item:nth-child(odd)::after {
-            right: -52px;
-        }
-        
-        .timeline-item:nth-child(even)::after {
-            left: -52px;
-        }
-        
-        .timeline-date {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .timeline-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        .timeline-desc {
-            color: var(--gray);
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+            right: auto;
         }
         
         /* Publications */
         .publications-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+            gap: 2rem;
         }
         
         .publication-card {
-            background: white;
+            background-color: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
         
         .publication-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
         
         .pub-header {
-            background: var(--primary);
+            background-color: var(--primary);
             color: white;
-            padding: 20px;
+            padding: 15px 20px;
         }
         
-        .pub-title {
+        .pub-header h3 {
             font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-        
-        .pub-authors {
-            font-style: italic;
-            opacity: 0.9;
-            margin-bottom: 10px;
-        }
-        
-        .pub-journal {
-            font-size: 0.9rem;
-            opacity: 0.8;
         }
         
         .pub-body {
             padding: 20px;
         }
         
-        .pub-details {
-            margin-bottom: 20px;
+        .pub-authors {
+            color: var(--gray);
+            margin-bottom: 10px;
+            font-style: italic;
         }
         
-        .pub-detail {
-            display: flex;
-            margin-bottom: 8px;
+        .pub-journal {
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
         
-        .pub-detail i {
-            color: var(--secondary);
-            min-width: 25px;
-        }
-        
-        .pub-actions {
+        .pub-links {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
+            margin-top: 15px;
         }
         
-        .btn-sm {
-            padding: 8px 15px;
-            font-size: 0.9rem;
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
+            font-weight: 500;
             transition: all 0.3s;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary {
+            background-color: var(--light-gray);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #dcdcdc;
         }
         
         .btn-accent {
             background-color: var(--accent);
             color: white;
-            border: 2px solid var(--accent);
         }
         
         .btn-accent:hover {
-            background-color: transparent;
-            color: var(--accent);
+            background-color: #c1121f;
         }
         
         /* Skills */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
         .skill-category {
-            background: white;
-            padding: 30px;
+            background-color: white;
+            padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
         .skill-category h3 {
             color: var(--primary);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--light);
+            border-bottom: 2px solid var(--light-gray);
         }
         
         .skill-item {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
-        .skill-header {
+        .skill-name {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
         
         .skill-bar {
             height: 10px;
-            background-color: #e0e0e0;
+            background-color: var(--light-gray);
             border-radius: 5px;
             overflow: hidden;
         }
         
         .skill-progress {
             height: 100%;
-            background: var(--secondary);
+            background-color: var(--accent);
             border-radius: 5px;
         }
         
         /* Contact */
         .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
         }
         
         .contact-info {
-            background: var(--primary);
-            color: white;
-            padding: 40px;
-            border-radius: 10px;
+            flex: 1;
+            min-width: 300px;
         }
         
-        .contact-info h3 {
-            margin-bottom: 30px;
-            font-size: 1.8rem;
+        .contact-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         .contact-item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 25px;
         }
         
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            min-width: 40px;
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
         }
         
         .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 300px;
         }
         
         .form-group {
@@ -512,6 +539,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            color: var(--dark);
         }
         
         .form-control {
@@ -520,12 +548,13 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
-            transition: border 0.3s;
+            transition: border-color 0.3s;
         }
         
         .form-control:focus {
-            border-color: var(--secondary);
             outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 58, 108, 0.1);
         }
         
         textarea.form-control {
@@ -535,27 +564,27 @@
         
         /* Footer */
         footer {
-            background: var(--dark);
+            background-color: var(--primary);
             color: white;
-            padding: 40px 0 20px;
+            padding: 3rem 0 1.5rem;
         }
         
         .footer-content {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 40px;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
         
         .footer-section {
             flex: 1;
-            padding: 0 20px;
             min-width: 250px;
         }
         
         .footer-section h3 {
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
             position: relative;
             padding-bottom: 10px;
         }
@@ -563,11 +592,11 @@
         .footer-section h3::after {
             content: '';
             position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
             bottom: 0;
             left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--secondary);
         }
         
         .footer-links {
@@ -582,150 +611,144 @@
             color: #ddd;
             text-decoration: none;
             transition: color 0.3s;
+            display: block;
         }
         
         .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-            transform: translateY(-5px);
+            color: var(--accent);
+            padding-left: 5px;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #aaa;
             font-size: 0.9rem;
         }
         
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 992px) {
-            .about-content,
-            .contact-container {
-                flex-direction: column;
+            .hero h1 {
+                font-size: 2.5rem;
             }
             
-            .timeline::after {
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .timeline::before {
                 left: 31px;
             }
             
             .timeline-item {
                 width: 100%;
-                padding-left: 80px;
+                padding-left: 70px;
                 padding-right: 25px;
-                left: 0 !important;
             }
             
-            .timeline-item:nth-child(odd)::after,
-            .timeline-item:nth-child(even)::after {
-                left: 21px;
+            .timeline-item:nth-child(even) {
+                left: 0;
             }
             
-            .publications-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: 22px;
+                right: auto;
+            }
+            
+            .timeline-content::before {
+                left: -15px !important;
+                right: auto !important;
+                border-right-color: white !important;
+                border-left-color: transparent !important;
             }
         }
         
         @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
             nav ul {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 3rem 0;
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
-            .hero h2 {
-                font-size: 1.5rem;
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .section-title h2 {
                 font-size: 2rem;
             }
             
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
             .publications-grid {
                 grid-template-columns: 1fr;
             }
             
-            .skills-container {
-                grid-template-columns: 1fr;
+            .hero h1 {
+                font-size: 1.8rem;
             }
             
-            .contact-container {
-                grid-template-columns: 1fr;
+            .tag {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
             }
-            
-            .footer-section {
-                min-width: 100%;
-            }
-        }
-        
-        /* Download Section */
-        .download-section {
-            background-color: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 40px;
-            text-align: center;
-        }
-        
-        .download-section h3 {
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background-color: var(--secondary);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-        }
-        
-        .download-btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="container header-content">
-            <div class="logo">Dr. <span>TOUGMA</span></div>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-square-root-variable"></i>
+                <span>Dr. Tougma</span>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav>
-                <ul>
-                    <li><a href="#home" class="active">Accueil</a></li>
+                <ul id="navMenu">
                     <li><a href="#about">À propos</a></li>
-                    <li><a href="#education">Parcours</a></li>
+                    <li><a href="#education">Formation</a></li>
+                    <li><a href="#experience">Expérience</a></li>
                     <li><a href="#publications">Publications</a></li>
                     <li><a href="#skills">Compétences</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -735,14 +758,15 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero">
         <div class="container hero-content">
-            <h1>Dr. Appolinaire TOUGMA</h1>
-            <h2>Chercheur en Mathématiques Appliquées</h2>
-            <p>Spécialisé en optimisation linéaire et non linéaire, modélisation mathématique et recherche opérationnelle. Docteur en Mathématiques Appliquées de l'Université Norbert Zongo.</p>
-            <div class="hero-buttons">
-                <a href="#publications" class="btn btn-primary">Voir mes publications</a>
-                <a href="#contact" class="btn btn-outline">Me contacter</a>
+            <h1>Dr. Appolinaire Tougma</h1>
+            <p>Chercheur en Mathématiques Appliquées & Optimisation</p>
+            <div class="hero-tags">
+                <div class="tag">Optimisation</div>
+                <div class="tag">Recherche Opérationnelle</div>
+                <div class="tag">Modélisation Mathématique</div>
+                <div class="tag">Intelligence Artificielle</div>
             </div>
         </div>
     </section>
@@ -751,139 +775,184 @@
     <section id="about">
         <div class="container">
             <div class="section-title">
-                <h2>À propos</h2>
-                <p>Informations personnelles et coordonnées</p>
+                <h2>À Propos</h2>
             </div>
-            
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Dr. Appolinaire TOUGMA</h3>
-                    <p>Chercheur et enseignant en mathématiques appliquées, spécialisé en optimisation et modélisation. Titulaire d'un doctorat en Mathématiques Appliquées obtenu avec la mention Très Honorable à l'Université Norbert Zongo de Koudougou, Burkina Faso.</p>
+                    <h3>Chercheur en Mathématiques Appliquées</h3>
+                    <p>Docteur en Mathématiques Appliquées spécialisé en optimisation linéaire et non linéaire, mono-objectif et multi-objectif, ainsi qu'en modélisation et recherche opérationnelle. Mes recherches se concentrent sur le développement de méthodes numériques innovantes pour résoudre des problèmes complexes sous contraintes dynamiques.</p>
+                    <p>Actuellement chargé de cours à l'Université Lédéa Bernard Ouédraogo de Ouahigouya (ULBO), j'ai également contribué en tant que réviseur pour plusieurs revues scientifiques prestigieuses telles que Engineering Applications of Artificial Intelligence et Applied Mathematical Modelling.</p>
                     
-                    <div class="about-details">
-                        <div class="detail-item">
-                            <i class="fas fa-envelope"></i>
-                            <div class="detail-content">
-                                <h4>Email</h4>
-                                <p>appolinaire.tougma19@gmail.com</p>
-                                <p>appolinaire.tougma94@gmail.com</p>
-                            </div>
+                    <h3 style="margin-top: 2rem;">Expertises</h3>
+                    <div class="expertise-grid">
+                        <div class="expertise-item">
+                            <h4><i class="fas fa-chart-line"></i> Optimisation</h4>
+                            <p>Linéaire, non linéaire, convexe, mono-objectif et multi-objectif</p>
                         </div>
-                        <div class="detail-item">
-                            <i class="fas fa-phone"></i>
-                            <div class="detail-content">
-                                <h4>Téléphone</h4>
-                                <p>75200793 / 73957776 (WhatsApp)</p>
-                            </div>
+                        <div class="expertise-item">
+                            <h4><i class="fas fa-cogs"></i> Modélisation</h4>
+                            <p>Création de modèles mathématiques pour des problèmes complexes</p>
                         </div>
-                        <div class="detail-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="detail-content">
-                                <h4>Localisation</h4>
-                                <p>Ouahigouya, Burkina Faso</p>
-                            </div>
+                        <div class="expertise-item">
+                            <h4><i class="fas fa-calculator"></i> Méthodes Numériques</h4>
+                            <p>Techniques avancées pour la résolution numérique</p>
                         </div>
-                        <div class="detail-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div class="detail-content">
-                                <h4>Diplôme</h4>
-                                <p>Doctorat en Mathématiques Appliquées</p>
-                            </div>
+                        <div class="expertise-item">
+                            <h4><i class="fas fa-project-diagram"></i> Recherche Opérationnelle</h4>
+                            <p>Applications pratiques pour l'aide à la décision</p>
                         </div>
                     </div>
                 </div>
-                
-                <div class="about-image">
-                    <div class="profile-img">
-                        <span>AT</span>
+                <div class="about-info">
+                    <h3>Informations Personnelles</h3>
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <strong>Nom complet</strong>
+                            <p>Appolinaire Tougma</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <strong>Titre</strong>
+                            <p>Docteur en Mathématiques Appliquées</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p>appolinaire.tougma19@gmail.com<br>appolinaire.tougma94@gmail.com<br>appolinaire.tougma@uohg.gov.bf</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Téléphone</strong>
+                            <p>75200793 / 73957776 (WhatsApp)</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Localisation</strong>
+                            <p>Ouahigouya, Burkina Faso</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <strong>Liens académiques</strong>
+                            <p>
+                                ResearchGate: Appolinaire Tougma<br>
+                                ORCID: 0000-0001-9007-9944<br>
+                                Google Scholar: Appolinaire TOUGMA
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education & Experience -->
-    <section id="education">
+    <!-- Education Section -->
+    <section id="education" style="background-color: var(--light-gray);">
         <div class="container">
             <div class="section-title">
-                <h2>Parcours Académique & Professionnel</h2>
-                <p>Formation et expériences significatives</p>
+                <h2>Formation Académique</h2>
             </div>
-            
-            <div class="timeline-container">
-                <div class="timeline">
-                    <!-- Education -->
-                    <div class="timeline-item">
-                        <div class="timeline-date">2020 - 2024</div>
-                        <h3 class="timeline-title">Doctorat en Mathématiques Appliquées</h3>
-                        <p class="timeline-desc">Université Norbert Zongo de Koudougou, Burkina Faso<br>Mention: Très honorable</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2020 - 2024</span>
+                        <h3>Doctorat en Mathématiques</h3>
+                        <p><strong>Université Norbert Zongo, Koudougou</strong></p>
+                        <p>Domaine: Sciences appliquées<br>
+                        Spécialité: Mathématiques Appliquées</p>
                     </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2017 - 2019</div>
-                        <h3 class="timeline-title">Master en Mathématiques</h3>
-                        <p class="timeline-desc">Option: Modélisation et aide à la décision<br>Université Norbert Zongo de Koudougou<br>Mention: Très bien</p>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2015 - 2017</div>
-                        <h3 class="timeline-title">Licence en Mathématiques</h3>
-                        <p class="timeline-desc">Université Norbert Zongo de Koudougou<br>Mention: Assez bien</p>
-                    </div>
-                    
-                    <!-- Experience -->
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024 - 2025</div>
-                        <h3 class="timeline-title">Chargé de cours</h3>
-                        <p class="timeline-desc">Mathématiques Appliquées<br>Université Lédéa Bernard Ouédraogo de Ouahigouya (ULBO)</p>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2023 - 2024</div>
-                        <h3 class="timeline-title">Chargé de cours</h3>
-                        <p class="timeline-desc">Initiation aux calculs MATLAB et à LaTeX<br>Institut Supérieur Polytechnique Saint Augustin de Dédougou (ISPSAD)</p>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2023 - 2024</div>
-                        <h3 class="timeline-title">Tuteur</h3>
-                        <p class="timeline-desc">Département de Mathématiques<br>Unité de Formation et de Recherche en Sciences et Technologies (UFR/ST)</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2017 - 2019</span>
+                        <h3>Master en Mathématiques</h3>
+                        <p><strong>Université Norbert Zongo, Koudougou</strong></p>
+                        <p>Domaine: Mathématiques et Applications<br>
+                        Option: Modélisation et aide à la décision</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Publications -->
-    <section id="publications">
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Expérience Professionnelle</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2024 - 2025</span>
+                        <h3>Chargé de cours</h3>
+                        <p><strong>Université Lédéa Bernard Ouédraogo, Ouahigouya</strong></p>
+                        <p>Mathématiques Appliquées</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2023 - 2024</span>
+                        <h3>Chargé de cours</h3>
+                        <p><strong>Institut Supérieur Polytechnique Saint Augustin, Dédougou</strong></p>
+                        <p>Initiation aux calculs MATLAB et initiation à Latex en licence mathématiques</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2023 - 2024</span>
+                        <h3>Tuteur</h3>
+                        <p><strong>Département de Mathématiques, UFR/ST, Université Norbert ZONGO</strong></p>
+                        <p>Dans le cadre du contrat de performance de l'université</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">Réviseur</span>
+                        <h3>Elsevier</h3>
+                        <p><strong>Revues scientifiques</strong></p>
+                        <p>
+                            - Engineering Applications of Artificial Intelligence<br>
+                            - Applied Mathematical Modelling<br>
+                            - ABCD index
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" style="background-color: var(--light-gray);">
         <div class="container">
             <div class="section-title">
                 <h2>Publications Scientifiques</h2>
-                <p>Articles de recherche publiés dans des revues internationales</p>
             </div>
-            
             <div class="publications-grid">
                 <!-- Publication 1 -->
                 <div class="publication-card">
                     <div class="pub-header">
-                        <h3 class="pub-title">Solving Multiobjective Optimization Problems with Inequality Constraint Using An Augmented Lagrangian Function</h3>
-                        <div class="pub-authors">Tougma, A., & Somé, K.</div>
-                        <div class="pub-journal">Statistics, Optimization & Information Computing, 12(5), 1364-1381</div>
+                        <h3>Solving Multiobjective Optimization Problems with Inequality Constraint Using An Augmented Lagrangian Function</h3>
                     </div>
                     <div class="pub-body">
-                        <div class="pub-details">
-                            <div class="pub-detail">
-                                <i class="fas fa-calendar"></i>
-                                <span>2024</span>
-                            </div>
-                            <div class="pub-detail">
-                                <i class="fas fa-link"></i>
-                                <span>DOI: 10.19139/soic-2310-5070-1875</span>
-                            </div>
+                        <div class="pub-authors">Tougma, A., & Somé, K. (2024)</div>
+                        <div class="pub-journal">
+                            <strong>Statistics, Optimization & Information Computing</strong><br>
+                            Volume 12(5), Pages 1364-1381
                         </div>
-                        <div class="pub-actions">
-                            <a href="https://doi.org/10.19139/soic-2310-5070-1875" class="btn btn-primary btn-sm" target="_blank">Lire l'article</a>
-                            <a href="#downloads" class="btn btn-accent btn-sm">Télécharger PDF</a>
+                        <div class="pub-links">
+                            <a href="https://doi.org/10.19139/soic-2310-5070-1875" target="_blank" class="btn btn-primary">DOI</a>
+                            <a href="#" class="btn btn-accent">Télécharger PDF</a>
                         </div>
                     </div>
                 </div>
@@ -891,24 +960,17 @@
                 <!-- Publication 2 -->
                 <div class="publication-card">
                     <div class="pub-header">
-                        <h3 class="pub-title">Hyperbolic Augmented Lagrangian algorithm for multiobjective optimization problems</h3>
-                        <div class="pub-authors">Tougma, A., Kaboré, A., & Somé, K.</div>
-                        <div class="pub-journal">Gulf Journal of Mathematics, 16(2), 151-170</div>
+                        <h3>Hyperbolic Augmented Lagrangian algorithm for multiobjective optimization problems</h3>
                     </div>
                     <div class="pub-body">
-                        <div class="pub-details">
-                            <div class="pub-detail">
-                                <i class="fas fa-calendar"></i>
-                                <span>2024</span>
-                            </div>
-                            <div class="pub-detail">
-                                <i class="fas fa-link"></i>
-                                <span>DOI: 10.56947/gjom.v16i2.1876</span>
-                            </div>
+                        <div class="pub-authors">Tougma, A., Kaboré, A., & Somé, K. (2024)</div>
+                        <div class="pub-journal">
+                            <strong>Gulf Journal of Mathematics</strong><br>
+                            Volume 16(2), Pages 151-170
                         </div>
-                        <div class="pub-actions">
-                            <a href="https://doi.org/10.56947/gjom.v16i2.1876" class="btn btn-primary btn-sm" target="_blank">Lire l'article</a>
-                            <a href="#downloads" class="btn btn-accent btn-sm">Télécharger PDF</a>
+                        <div class="pub-links">
+                            <a href="https://doi.org/10.56947/gjom.v16i2.1876" target="_blank" class="btn btn-primary">DOI</a>
+                            <a href="#" class="btn btn-accent">Télécharger PDF</a>
                         </div>
                     </div>
                 </div>
@@ -916,24 +978,17 @@
                 <!-- Publication 3 -->
                 <div class="publication-card">
                     <div class="pub-header">
-                        <h3 class="pub-title">Inexact Exponential Penalty Function with the Augmented Lagrangian for Multiobjective Optimization Algorithms</h3>
-                        <div class="pub-authors">Tougma, A., Somé, K.</div>
-                        <div class="pub-journal">Journal of Applied Mathematics, vol. 2024, Article ID 9615743, 19 pages</div>
+                        <h3>Inexact Exponential Penalty Function with the Augmented Lagrangian for Multiobjective Optimization Algorithms</h3>
                     </div>
                     <div class="pub-body">
-                        <div class="pub-details">
-                            <div class="pub-detail">
-                                <i class="fas fa-calendar"></i>
-                                <span>2024</span>
-                            </div>
-                            <div class="pub-detail">
-                                <i class="fas fa-link"></i>
-                                <span>DOI: 10.1155/2024/9615743</span>
-                            </div>
+                        <div class="pub-authors">Tougma, A., Somé, K. (2024)</div>
+                        <div class="pub-journal">
+                            <strong>Journal of Applied Mathematics</strong><br>
+                            Volume 2024, Article ID 9615743, 19 pages
                         </div>
-                        <div class="pub-actions">
-                            <a href="https://doi.org/10.1155/2024/9615743" class="btn btn-primary btn-sm" target="_blank">Lire l'article</a>
-                            <a href="#downloads" class="btn btn-accent btn-sm">Télécharger PDF</a>
+                        <div class="pub-links">
+                            <a href="https://doi.org/10.1155/2024/9615743" target="_blank" class="btn btn-primary">DOI</a>
+                            <a href="#" class="btn btn-accent">Télécharger PDF</a>
                         </div>
                     </div>
                 </div>
@@ -941,24 +996,17 @@
                 <!-- Publication 4 -->
                 <div class="publication-card">
                     <div class="pub-header">
-                        <h3 class="pub-title">Extension of the Projected Gradient and Armijo's Rule Concepts for Solving Convex Nonlinear Multiobjective Optimization Problems</h3>
-                        <div class="pub-authors">Tougma, A., Somé, K., Compaoré, A.</div>
-                        <div class="pub-journal">Applied Analysis and Optimization, Vol. 7, No. 3, pp. 263-278</div>
+                        <h3>Extension of the Projected Gradient and Armijo's Rule Concepts for Solving Convex Nonlinear Multiobjective Optimization Problems</h3>
                     </div>
                     <div class="pub-body">
-                        <div class="pub-details">
-                            <div class="pub-detail">
-                                <i class="fas fa-calendar"></i>
-                                <span>2023</span>
-                            </div>
-                            <div class="pub-detail">
-                                <i class="fas fa-link"></i>
-                                <span>Zbl 07778592, MR4674283</span>
-                            </div>
+                        <div class="pub-authors">Tougma, A., Somé, K., Compaoré, A. (2023)</div>
+                        <div class="pub-journal">
+                            <strong>Applied Analysis and Optimization</strong><br>
+                            Volume 7(3), Pages 263-278
                         </div>
-                        <div class="pub-actions">
-                            <a href="#" class="btn btn-primary btn-sm disabled">Lien bientôt disponible</a>
-                            <a href="#downloads" class="btn btn-accent btn-sm">Télécharger PDF</a>
+                        <div class="pub-links">
+                            <a href="#" class="btn btn-primary">DOI</a>
+                            <a href="#" class="btn btn-accent">Télécharger PDF</a>
                         </div>
                     </div>
                 </div>
@@ -966,163 +1014,155 @@
                 <!-- Publication 5 -->
                 <div class="publication-card">
                     <div class="pub-header">
-                        <h3 class="pub-title">Performance Analysis of Higher Education Institutions Using AHP and PROMETHEE</h3>
-                        <div class="pub-authors">Tougma, A., Yougharé, W. J., & Zongo, M.</div>
-                        <div class="pub-journal">Advances and Applications in Discrete Mathematics, 27(2), 265–284</div>
+                        <h3>Performance Analysis of Higher Education Institutions Using AHP and PROMETHEE</h3>
                     </div>
                     <div class="pub-body">
-                        <div class="pub-details">
-                            <div class="pub-detail">
-                                <i class="fas fa-calendar"></i>
-                                <span>2021</span>
-                            </div>
-                            <div class="pub-detail">
-                                <i class="fas fa-link"></i>
-                                <span>DOI: 10.17654/DM027020265</span>
-                            </div>
+                        <div class="pub-authors">Tougma, A., Yougharé, W. J., & Zongo, M. (2021)</div>
+                        <div class="pub-journal">
+                            <strong>Advances and Applications in Discrete Mathematics</strong><br>
+                            Volume 27(2), Pages 265-284
                         </div>
-                        <div class="pub-actions">
-                            <a href="http://dx.doi.org/10.17654/DM027020265" class="btn btn-primary btn-sm" target="_blank">Lire l'article</a>
-                            <a href="#downloads" class="btn btn-accent btn-sm">Télécharger PDF</a>
+                        <div class="pub-links">
+                            <a href="http://dx.doi.org/10.17654/DM027020265" target="_blank" class="btn btn-primary">DOI</a>
+                            <a href="#" class="btn btn-accent">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 6 -->
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <h3>Global optimization algorithm based on Augmented Lagrangian for multiobjective optimization problems</h3>
+                    </div>
+                    <div class="pub-body">
+                        <div class="pub-authors">Tougma, A., Somé, K. (Accepté)</div>
+                        <div class="pub-journal">
+                            <strong>Romanian Journal of Mathematics and Computer Science</strong><br>
+                            À paraître
+                        </div>
+                        <div class="pub-links">
+                            <a href="#" class="btn btn-primary">À venir</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Download Section -->
-            <div class="download-section" id="downloads">
-                <h3>Télécharger tous les articles au format PDF</h3>
-                <a href="#" class="download-btn" id="downloadAllBtn">
-                    <i class="fas fa-download"></i>
-                    Télécharger tous les PDF
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Skills -->
-    <section id="skills" style="background-color: #f8f9fa;">
+    <!-- Skills Section -->
+    <section id="skills">
         <div class="container">
             <div class="section-title">
                 <h2>Compétences</h2>
-                <p>Expertises techniques et linguistiques</p>
             </div>
-            
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3>Expertises Mathématiques</h3>
+                    <h3>Informatique</h3>
                     <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Optimisation linéaire et non linéaire</span>
-                            <span>95%</span>
+                        <div class="skill-name">
+                            <span>MATLAB</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
+                            <div class="skill-progress" style="width: 95%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Optimisation Convexe</span>
-                            <span>90%</span>
+                        <div class="skill-name">
+                            <span>Python</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
+                            <div class="skill-progress" style="width: 85%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Optimisation mono-objectif et multi-objectif</span>
-                            <span>92%</span>
+                        <div class="skill-name">
+                            <span>R Studio</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 92%"></div>
+                            <div class="skill-progress" style="width: 80%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Modélisation mathématique</span>
-                            <span>88%</span>
+                        <div class="skill-name">
+                            <span>LaTeX</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 88%"></div>
+                            <div class="skill-progress" style="width: 90%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Recherche Opérationnelle</span>
-                            <span>85%</span>
+                        <div class="skill-name">
+                            <span>Scilab</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
+                            <div class="skill-progress" style="width: 75%;"></div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="skill-category">
-                    <h3>Compétences Techniques</h3>
+                    <h3>Langues</h3>
                     <div class="skill-item">
-                        <div class="skill-header">
-                            <span>MATLAB</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Python</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>LaTeX</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>R Studio</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Scilab</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <h3 style="margin-top: 30px;">Langues</h3>
-                    <div class="skill-item">
-                        <div class="skill-header">
+                        <div class="skill-name">
                             <span>Français</span>
-                            <span>100%</span>
+                            <span>Natif</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 100%"></div>
+                            <div class="skill-progress" style="width: 100%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-header">
+                        <div class="skill-name">
                             <span>Anglais</span>
-                            <span>85%</span>
+                            <span>Avancé</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Moore</span>
+                            <span>Courant</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Expertise Scientifique</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Optimisation mathématique</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Modélisation</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Méthodes numériques</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Recherche opérationnelle</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%;"></div>
                         </div>
                     </div>
                 </div>
@@ -1130,61 +1170,70 @@
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact">
+    <!-- Contact Section -->
+    <section id="contact" style="background-color: var(--light-gray);">
         <div class="container">
             <div class="section-title">
                 <h2>Contact</h2>
-                <p>Restons en contact pour des collaborations ou des questions</p>
             </div>
-            
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Coordonnées</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>appolinaire.tougma19@gmail.com</p>
-                            <p>appolinaire.tougma94@gmail.com</p>
-                            <p>appolinaire.tougma@uohg.gov.bf</p>
+                    <div class="contact-card">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>appolinaire.tougma19@gmail.com<br>
+                                appolinaire.tougma94@gmail.com<br>
+                                appolinaire.tougma@uohg.gov.bf</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Téléphone</h4>
-                            <p>75200793 / 73957776 (WhatsApp)</p>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3>Téléphone</h3>
+                                <p>75200793 / 73957776 (WhatsApp)</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Adresse</h4>
-                            <p>Université Lédéa Bernard Ouédraogo</p>
-                            <p>Ouahigouya, Burkina Faso</p>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Adresse</h3>
+                                <p>Université Lédéa Bernard Ouédraogo<br>
+                                Ouahigouya, Burkina Faso</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-globe"></i>
-                        <div>
-                            <h4>Profils académiques</h4>
-                            <p>ResearchGate: Appolinaire Tougma</p>
-                            <p>ORCID: 0000-0001-9007-9944</p>
-                            <p>Google Scholar: Appolinaire TOUGMA</p>
+                        <div class="social-links">
+                            <a href="https://www.researchgate.net/profile/Appolinaire-Tougma" target="_blank" class="social-link">
+                                <i class="fab fa-researchgate"></i>
+                            </a>
+                            <a href="https://orcid.org/0000-0001-9007-9944" target="_blank" class="social-link">
+                                <i class="fab fa-orcid"></i>
+                            </a>
+                            <a href="https://scholar.google.com/citations?user=YOUR_PROFILE_ID" target="_blank" class="social-link">
+                                <i class="fab fa-google"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-                
                 <div class="contact-form">
-                    <h3 style="margin-bottom: 20px;">Envoyer un message</h3>
-                    <form>
+                    <h3>Envoyez un message</h3>
+                    <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Nom</label>
+                            <label for="name">Nom complet</label>
                             <input type="text" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email">Adresse email</label>
                             <input type="email" id="email" class="form-control" required>
                         </div>
                         <div class="form-group">
@@ -1195,7 +1244,7 @@
                             <label for="message">Message</label>
                             <textarea id="message" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Envoyer le message</button>
                     </form>
                 </div>
             </div>
@@ -1207,111 +1256,85 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Dr. Appolinaire TOUGMA</h3>
-                    <p>Chercheur et enseignant en mathématiques appliquées, spécialisé en optimisation et modélisation.</p>
-                    <div class="social-links">
-                        <a href="https://www.researchgate.net/profile/Appolinaire-Tougma" target="_blank"><i class="fab fa-researchgate"></i></a>
-                        <a href="https://orcid.org/0000-0001-9007-9944" target="_blank"><i class="fab fa-orcid"></i></a>
-                        <a href="https://scholar.google.com/citations?user=[GOOGLE_SCHOLAR_ID]" target="_blank"><i class="fab fa-google"></i></a>
-                        <a href="mailto:appolinaire.tougma19@gmail.com"><i class="fas fa-envelope"></i></a>
-                    </div>
+                    <h3>Dr. Appolinaire Tougma</h3>
+                    <p>Chercheur en Mathématiques Appliquées spécialisé en optimisation, modélisation et recherche opérationnelle. Chargé de cours à l'Université Lédéa Bernard Ouédraogo.</p>
                 </div>
-                
                 <div class="footer-section">
-                    <h3>Liens Rapides</h3>
+                    <h3>Liens rapides</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Accueil</a></li>
                         <li><a href="#about">À propos</a></li>
-                        <li><a href="#education">Parcours</a></li>
+                        <li><a href="#education">Formation</a></li>
+                        <li><a href="#experience">Expérience</a></li>
                         <li><a href="#publications">Publications</a></li>
-                        <li><a href="#skills">Compétences</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-section">
-                    <h3>Expertises</h3>
+                    <h3>Contact</h3>
                     <ul class="footer-links">
-                        <li>Optimisation mathématique</li>
-                        <li>Modélisation</li>
-                        <li>Recherche opérationnelle</li>
-                        <li>Méthodes numériques</li>
-                        <li>Analyse de performance</li>
+                        <li><i class="fas fa-envelope"></i> appolinaire.tougma19@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> 75200793 / 73957776</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Ouahigouya, Burkina Faso</li>
                     </ul>
                 </div>
             </div>
-            
             <div class="copyright">
-                <p>&copy; 2025 Dr. Appolinaire TOUGMA. Tous droits réservés.</p>
+                &copy; 2025 Dr. Appolinaire Tougma. Tous droits réservés.
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenu');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Update active nav link
-                document.querySelectorAll('nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('show');
+                }
             });
         });
         
-        // Update active nav link on scroll
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a');
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
         // Form submission handling
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Merci pour votre message ! Je vous répondrai dès que possible.');
-            this.reset();
-        });
-        
-        // Download button functionality
-        document.getElementById('downloadAllBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Tous les articles seront téléchargés. Cette fonctionnalité est active sur le serveur final.');
-            // En production, cette fonction déclencherait le téléchargement des PDF
-        });
-        
-        // Publication download buttons
-        document.querySelectorAll('.btn-accent').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                if(this.getAttribute('href') === '#downloads') {
-                    e.preventDefault();
-                    const pubTitle = this.closest('.publication-card').querySelector('.pub-title').textContent;
-                    alert(`Le PDF de "${pubTitle}" sera téléchargé. Cette fonctionnalité est active sur le serveur final.`);
-                }
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Form data collection
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // Here you would normally send the data to a server
+                console.log('Form submitted:', formData);
+                
+                // Show success message
+                alert('Merci pour votre message ! Je vous répondrai dès que possible.');
+                
+                // Reset form
+                contactForm.reset();
             });
-        });
+        }
     </script>
 </body>
 </html>

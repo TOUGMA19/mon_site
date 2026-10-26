@@ -1,0 +1,84 @@
+%% titre: Introduction à la programmation linéaire
+%% niveau: Licence 3
+%% matiere: Recherche opérationnelle
+%% annee: 2025-2026
+%% ordre: 1
+%% description: Exemple de cours (à remplacer) : modélisation, forme standard et méthode graphique.
+
+\section{Modélisation}
+
+Un \emph{programme linéaire} consiste à optimiser une fonction linéaire sous des contraintes linéaires. Soit $c\in\R^n$, $A\in\mathcal{M}_{m,n}(\R)$ et $b\in\R^m$ ; on considère
+\[
+  (P)\quad \min_{x\in\R^n}\ c^\top x \quad\text{sous}\quad Ax\le b,\ x\ge 0 .
+\]
+
+\begin{definition}[Domaine admissible]
+On appelle \textbf{domaine admissible} l'ensemble
+$$\mathcal{D}=\{x\in\R^n \mid Ax\le b,\ x\ge 0\}.$$
+\end{definition}
+
+\begin{theoreme}[Théorème fondamental]
+Si $(P)$ admet une solution optimale, alors il en existe une qui est un sommet de $\mathcal{D}$.
+\end{theoreme}
+
+\begin{proof}
+Le domaine $\mathcal{D}$ est un polyèdre convexe. Une fonction linéaire atteint son minimum sur un polyèdre en au moins un point extrémal, c'est-à-dire en un sommet.
+\end{proof}
+
+\begin{remarque}
+Les contraintes d'égalité $Ax=b$ se ramènent à deux inégalités $Ax\le b$ et $-Ax\le -b$.
+\end{remarque}
+
+\section{Forme standard}
+
+\subsection{Variables d'écart}
+
+Pour passer à la forme standard, on introduit des variables d'écart $s_i\ge 0$ :
+\begin{align*}
+  a_{i1}x_1+\dots+a_{in}x_n \le b_i
+  &\iff a_{i1}x_1+\dots+a_{in}x_n + s_i = b_i,
+\end{align*}
+et l'on obtient $\min\ c^\top x$ sous $Ax+s=b$, $x,s\ge 0$.
+
+\subsection{Un exemple}
+
+\begin{exemple}
+Un atelier fabrique deux produits $P_1$ et $P_2$ :
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+ & $P_1$ & $P_2$ & Disponible \\
+\hline
+Heures de machine & 2 & 1 & 100 \\
+Heures de main-d'\oe uvre & 1 & 1 & 80 \\
+\hline
+Profit unitaire (\texteuro) & 30 & 20 & \\
+\hline
+\end{tabular}
+\end{center}
+Le programme s'écrit
+\[
+  \max\ 30x_1+20x_2 \quad\text{sous}\quad
+  \begin{cases}
+    2x_1+x_2\le 100\\
+    x_1+x_2\le 80\\
+    x_1,x_2\ge 0.
+  \end{cases}
+\]
+\end{exemple}
+
+\section{Méthode graphique}
+
+Les étapes sont les suivantes :
+\begin{enumerate}[label=\arabic*)]
+  \item tracer le domaine admissible ;
+  \item tracer une droite de niveau $c^\top x = \lambda$ ;
+  \item la déplacer dans la direction d'amélioration jusqu'à la dernière intersection avec $\mathcal{D}$.
+\end{enumerate}
+
+\begin{exercice}[Application]
+Résoudre graphiquement l'exemple ci-dessus.
+\begin{correction}
+Les sommets du domaine sont $(0,0)$, $(50,0)$, $(20,60)$ et $(0,80)$. La fonction objectif vaut respectivement $0$, $1500$, $1800$ et $1600$ : l'optimum est atteint en $(20,60)$, pour un profit de $1800$.
+\end{correction}
+\end{exercice}

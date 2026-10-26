@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { scrollToSelector } from "@/lib/scroll";
 import SiteHeader from "@/components/SiteHeader";
 import HeroSection from "@/components/HeroSection";
 import StatsSection from "@/components/StatsSection";
@@ -53,6 +56,15 @@ const experienceItems = [
 ];
 
 const Index = () => {
+  const location = useLocation();
+  useEffect(() => {
+    const target = (location.state as { scrollTo?: string } | null)?.scrollTo;
+    if (target) {
+      const t = setTimeout(() => scrollToSelector(target), 150);
+      return () => clearTimeout(t);
+    }
+  }, [location]);
+
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />

@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Menu, X, Sigma } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
+import { useSectionNav } from "@/lib/scroll";
 
-const navItems = [
+const navItems: { label: string; href?: string; to?: string }[] = [
   { label: "À propos", href: "#about" },
   { label: "Formation", href: "#education" },
   { label: "Expérience", href: "#experience" },
+  { label: "Enseignement", to: "/enseignement" },
   { label: "Publications", href: "#publications" },
   { label: "Compétences", href: "#skills" },
   { label: "Contact", href: "#contact" },
@@ -14,35 +17,45 @@ const navItems = [
 const SiteHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const goSection = useSectionNav();
+  const { pathname } = useLocation();
+
   const scrollTo = (href: string) => {
     setIsOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
+    goSection(href);
+  };
+
+  const isActive = (item: { to?: string }) => !!item.to && pathname.startsWith(item.to);
+
+  const renderItem = (item: (typeof navItems)[number], mobile: boolean) => {
+    const cls = mobile
+      ? "block w-full py-3 text-left text-sm font-medium text-primary-foreground/80 transition-colors hover:text-primary-foreground"
+      : "block rounded-md px-3 py-2 text-sm font-medium text-primary-foreground/80 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground";
+    const active = isActive(item) ? " !text-primary-foreground bg-primary-foreground/10" : "";
+    return item.to ? (
+      <Link to={item.to} onClick={() => setIsOpen(false)} className={cls + active}>
+        {item.label}
+      </Link>
+    ) : (
+      <button onClick={() => scrollTo(item.href!)} className={cls}>
+        {item.label}
+      </button>
+    );
   };
 
   return (
     <header className="sticky top-0 z-50 bg-primary text-primary-foreground shadow-lg">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-3 font-serif text-xl font-bold tracking-wide">
+        <Link to="/" onClick={() => window.scrollTo({ top: 0 })} className="flex items-center gap-3 font-serif text-xl font-bold tracking-wide">
           <Sigma className="h-6 w-6 text-accent" />
           Dr. Tougma
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden md:block">
           <ul className="flex gap-1">
             {navItems.map((item) => (
-              <li key={item.href}>
-                <button
-                  onClick={() => scrollTo(item.href)}
-                  className="rounded-md px-3 py-2 text-sm font-medium text-primary-foreground/80 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground"
-                >
-                  {item.label}
-                </button>
-              </li>
+              <li key={item.label}>{renderItem(item, false)}</li>
             ))}
           </ul>
         </nav>
@@ -68,14 +81,7 @@ const SiteHeader = () => {
           >
             <ul className="flex flex-col px-6 py-4">
               {navItems.map((item) => (
-                <li key={item.href}>
-                  <button
-                    onClick={() => scrollTo(item.href)}
-                    className="w-full py-3 text-left text-sm font-medium text-primary-foreground/80 transition-colors hover:text-primary-foreground"
-                  >
-                    {item.label}
-                  </button>
-                </li>
+                <li key={item.label}>{renderItem(item, true)}</li>
               ))}
             </ul>
           </motion.nav>

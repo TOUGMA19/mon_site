@@ -1,0 +1,45 @@
+%% titre: TD 1 — Espaces vectoriels
+%% niveau: Licence 1
+%% matiere: Algèbre linéaire
+%% annee: 2025-2026
+%% ordre: 1
+%% description: Exemple de feuille de TD (à remplacer) avec exercices et corrections.
+
+\begin{exercice}
+Dans $\R^3$, les ensembles suivants sont-ils des sous-espaces vectoriels ?
+\begin{enumerate}
+  \item $E_1=\{(x,y,z)\in\R^3 \mid x+y+z=0\}$ ;
+  \item $E_2=\{(x,y,z)\in\R^3 \mid x+y+z=1\}$ ;
+  \item $E_3=\{(x,y,z)\in\R^3 \mid xy=0\}$.
+\end{enumerate}
+\begin{correction}
+\begin{enumerate}
+  \item Oui : c'est le noyau de la forme linéaire $(x,y,z)\mapsto x+y+z$.
+  \item Non : le vecteur nul n'appartient pas à $E_2$.
+  \item Non : $(1,0,0)$ et $(0,1,0)$ sont dans $E_3$ mais leur somme $(1,1,0)$ n'y est pas.
+\end{enumerate}
+\end{correction}
+\end{exercice}
+
+\begin{exercice}[$\bigstar$]
+Soit $f:\R^2\to\R^2$ définie par $f(x,y)=(x+2y,\,2x+4y)$.
+\begin{enumerate}[label=\alph*)]
+  \item Montrer que $f$ est linéaire.
+  \item Déterminer $\Ker f$ et $\Im f$.
+  \item $f$ est-elle injective ? surjective ?
+\end{enumerate}
+\begin{correction}
+La matrice de $f$ dans la base canonique est $A=\begin{pmatrix}1&2\\2&4\end{pmatrix}$, de rang $1$.
+Donc $\Ker f=\Vect\{(-2,1)\}$ et $\Im f=\Vect\{(1,2)\}$. Comme $\Ker f\neq\{0\}$, $f$ n'est pas injective ; comme $\rg f=1<2$, elle n'est pas surjective.
+\end{correction}
+\end{exercice}
+
+\begin{exercice}
+Soit $A\in\mathcal{M}_n(\R)$ telle que $A^2=A$. Montrer que
+\[
+  \R^n=\Ker A\oplus\Im A .
+\]
+\begin{correction}
+Pour $x\in\R^n$, on écrit $x=(x-Ax)+Ax$ avec $x-Ax\in\Ker A$ car $A(x-Ax)=Ax-A^2x=0$. Si $y\in\Ker A\cap\Im A$, alors $y=Az$ et $0=Ay=A^2z=Az=y$. La somme est donc directe.
+\end{correction}
+\end{exercice}

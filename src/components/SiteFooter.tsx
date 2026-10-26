@@ -1,13 +1,9 @@
 import { Sigma } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useSectionNav } from "@/lib/scroll";
 
 const SiteFooter = () => {
-  const scrollTo = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
+  const scrollTo = useSectionNav();
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -37,6 +33,11 @@ const SiteFooter = () => {
                   </button>
                 </li>
               ))}
+              <li>
+                <Link to="/enseignement" className="text-sm text-primary-foreground/70 transition-colors hover:text-accent">
+                  Enseignement
+                </Link>
+              </li>
             </ul>
           </div>
 

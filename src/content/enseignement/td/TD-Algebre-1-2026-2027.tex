@@ -1,0 +1,497 @@
+%%  Compiler avec pdflatex (2 passes).
+%%  Version étudiants : énoncés seuls, sur deux colonnes.
+%% =====================================================================
+\documentclass[08pt,a4paper]{extarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[a4paper,margin=1.0cm]{geometry}
+\usepackage[inline]{enumitem}   % indispensable pour enumerate*
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs,array}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0.3pt}
+
+\definecolor{bleu}{RGB}{0,51,102}
+\definecolor{vert}{RGB}{0,100,60}
+
+
+% --- Raccourcis mathématiques ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\ps}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\e}{\mathrm{e}}
+\DeclareMathOperator{\Vect}{Vect}
+
+% --- Mise en page ---
+\setlist[enumerate,1]{label=\arabic*),leftmargin=*,itemsep=2pt}
+\setlist[enumerate,2]{label=\alph*),leftmargin=1.5em,itemsep=1pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=1pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small Algèbre 1 -- L1 MPCI S1}
+\rhead{\small ULBO -- 2026/2027}
+\cfoot{\small\thepage}
+
+% --- Exercices ---
+\newcounter{exo}
+\newenvironment{exercice}[1][]{%
+	\refstepcounter{exo}\par\bigskip\noindent
+	{\large\bfseries Exercice~\theexo\ifx\relax#1\relax\else\ --\ #1\fi}\par\smallskip}{\par\smallskip}
+
+% --- Rappels ---
+\newtcolorbox{rappel}{enhanced,breakable,colback=blue!4!white,colframe=bleu,
+	title={\textbf{Rappel}},fonttitle=\small,boxrule=0.6pt,arc=2pt,
+	left=5pt,right=5pt,top=3pt,bottom=3pt}
+
+\begin{document}
+	
+	% ---------------------------------------------------------------------
+	\begin{center}
+		{\large UNIVERSITÉ LÉDÉA BERNARD OUÉDRAOGO}\\[2pt]
+		{Licence 1 MPCI -- Semestre 1 -- 2026/2027}\\[8pt]
+		{\Huge\bfseries Algèbre 1}\\[6pt]
+		{\Large Fiche d'exercices}\\[6pt]
+		{\normalsize Enseignant : Dr A. TOUGMA}
+	\end{center}
+	\vspace{2pt}
+	\hrule
+	\vspace{6pt}
+	\begin{multicols}{2}
+		%============================================================
+%		\section*{I. Rudiments de logique (Quantificateurs \& Raisonnements)}
+%		% ============================================================
+%		
+%		\subsection*{Quantificateurs}
+		
+%		\paragraph{Exercice 1}
+		\begin{exercice}
+			Déterminer lesquelles des propositions suivantes sont vraies :\\
+			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
+				\item $\exists x\in\mathbb{R},\ (x+1=0\ \text{et}\ x+2=0)$.\\
+				\item $(\exists x\in\mathbb{R},\ x+1=0)$ et $(\exists x\in\mathbb{R},\ x+2=0)$.\\
+				\item $\forall x\in\mathbb{R},\ (x+1\neq 0\ \text{ou}\ x+2\neq 0)$.\\
+				\item $\exists x\in\mathbb{R}^*,\ \forall y\in\mathbb{R}^*,\ \forall z\in\mathbb{R}^*,\ z-xy=0$.\\
+				\item $\forall y\in\mathbb{R}^*,\ \exists x\in\mathbb{R}^*,\ \forall z\in\mathbb{R}^*,\ z-xy=0$.\\
+				\item $\forall y\in\mathbb{R}^*,\ \forall z\in\mathbb{R}^*,\ \exists x\in\mathbb{R}^*,\ z-xy=0$.\\
+				\item $\exists a\in\mathbb{R},\ \forall\varepsilon>0,\ |a|<\varepsilon$.
+				\item $\forall\varepsilon>0,\ \exists a\in\mathbb{R},\ |a|<\varepsilon$.
+			\end{enumerate*}
+		\end{exercice}
+		
+%		\paragraph{Exercice 2}
+		\begin{exercice}
+			Soit $f:\mathbb{R}\to\mathbb{R}$. Nier les assertions :\\
+			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
+				\item $\forall x\in\mathbb{R},\ f(x)\neq 0$.\\
+				\item $\forall M>0,\ \exists A>0,\ \forall x\geq A,\ f(x)>M$.\\
+				\item $\forall x\in\mathbb{R},\ (f(x)>0\implies x\leq 0)$.\\
+				\item{\small  $\forall\varepsilon>0,\ \exists\eta>0,\ \forall(x,y)\in I^2,\ (|x-y|\leq\eta\implies |f(x)-f(y)|\leq\varepsilon)$.}\\
+			\end{enumerate*}
+		\end{exercice}
+		
+%		\paragraph{Exercice 3}
+		\begin{exercice}
+			Soit $f:\mathbb{R}\to\mathbb{R}$. Exprimer avec des quantificateurs :\\
+			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
+				\item $f$ est constante ;
+				\item $f$ n’est pas constante ;
+				\item $f$ s’annule ;
+				\item $f$ est périodique.
+			\end{enumerate*}
+		\end{exercice}
+		
+%		\paragraph{Exercice 4}
+		\begin{exercice}
+			Énoncer en langage courant les assertions suivantes et donner un exemple / contre-exemple :
+			\begin{enumerate}
+				\item $\forall x\in\mathbb{R},\ \exists y\in\mathbb{R},\ f(x)<f(y)$ ;
+				\item $\forall x\in\mathbb{R},\ \exists T\in\mathbb{R},\ f(x)=f(x+T)$ ;
+				\item $\forall x\in\mathbb{R},\ \exists T\in\mathbb{R}^*,\ f(x)=f(x+T)$ ;
+				\item $\exists x\in\mathbb{R},\ \forall y\in\mathbb{R},\ y=f(x)$.
+			\end{enumerate}
+		\end{exercice}
+		
+%		\paragraph{Exercice 20}
+		\begin{exercice}
+			Écrire en extension les ensembles suivants :
+			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
+				\item $\{x\in\mathbb{Z}:x^2=4\}$ ;
+				\item $\{x\in\mathbb{N}:x^2\leq 10\}$ ;
+				\item $\{x\in\mathbb{R}:x^2+1=0\}$.
+			\end{enumerate*}
+		\end{exercice}
+		
+%		\paragraph{Exercice 22}
+		\begin{exercice}
+			On définit sur $\mathbb{R}^2$ :
+			\[
+			(x,y)\prec(x',y')\iff\bigl((x<x')\ \text{ou}\ (x=x'\ \text{et}\ y\leq y')\bigr).
+			\]
+			Montrer que $\prec$ est une relation d’ordre total.
+		\end{exercice}
+		
+%		\paragraph{Exercice 23}
+		\begin{exercice}
+			On munit $\mathbb{R}^2$ de
+			\[
+			(x,y)\preccurlyeq(x',y')\iff x\leq x'\ \text{et}\ y\leq y'.
+			\]
+			\begin{enumerate}
+				\item Montrer que c’est une relation d’ordre. Est-elle totale ?
+				\item Le disque fermé unité a-t-il des majorants ? un plus grand élément ? une borne supérieure ?
+			\end{enumerate}
+		\end{exercice}
+		
+%		\paragraph{Exercice 27}
+		\begin{exercice}
+			Soit $f:E\to F$ une application. Montrer :\\
+			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
+				\item $f$ injective $\iff$ pour toute famille $(A_i)_{i\in I}$ de parties de $E$,
+				$f\bigl(\bigcap A_i\bigr)=\bigcap f(A_i)$ ;\\
+				\item $f$ surjective $\iff$ pour toute partie $B$ de $F$, $f(f^{-1}(B))=B$.
+			\end{enumerate*}
+		\end{exercice}
+		
+%			\paragraph{Exercice 28}
+		\begin{exercice}
+			Montrer que pour tout $n\in\mathbb{N}$, $4^{4n+2}-3^{n+3}$ est divisible par $11$.
+		\end{exercice}
+		
+%		\paragraph{Exercice 29}
+		\begin{exercice}
+			Déterminer tous les couples $(m,n)\in\mathbb{N}^2$ tels que $2^m-3^n=1$.
+		\end{exercice}
+		
+%		\paragraph{Exercice 30}
+		\begin{exercice}
+			Soit $a,b\in\mathbb{Z}$ tels que $7$ divise $a^2+b^2$. Montrer que $7$ divise $a$ et $b$.
+		\end{exercice}
+		
+%		\paragraph{Exercice 31}
+		\begin{exercice}
+			\begin{enumerate}
+				\item Montrer que $(n+1)$ divise $\dbinom{2n}{n}$.
+				\item Si $p$ est premier, montrer que $p$ divise $\dbinom{p}{k}$ pour $1\leq k\leq p-1$.
+				\item En déduire le petit théorème de Fermat : $n^p\equiv n\pmod{p}$.
+			\end{enumerate}
+		\end{exercice}
+		
+%		\paragraph{Exercice 32}
+		\begin{exercice}
+			\begin{enumerate}
+				\item Calculer le reste de $2024^{2025}$ modulo $7$.
+				\item Calculer le reste de $2025^{2025^{2025}}$ modulo $17$.
+				\item Résoudre $442x\equiv 314\pmod{495}$.
+			\end{enumerate}
+		\end{exercice}
+		
+%		\paragraph{Exercice 33}
+		\begin{exercice}
+			Résoudre dans $\mathbb{Z}/97\mathbb{Z}$ l’équation $x^2+2x=3$.
+		\end{exercice}
+		
+%		\paragraph{Exercice 34}
+		\begin{exercice}
+			Résoudre dans $\mathbb{Z}^2$ l’équation $2520x+3960y=6480$.
+		\end{exercice}
+		
+
+		\begin{exercice}
+			Soient $f:E\to F$ une application, $(A_i)_{i\in I}$ et
+			$(B_i)_{i\in I}$ des familles de parties de $E$ et $F$
+			respectivement. Montrer que :
+			
+			\begin{enumerate*}%[label=\arabic*), itemjoin=\hspace{1.5em}]
+				\item
+				{\small $
+				f^{-1}\left(\bigcup_{i\in I}B_i\right)
+				=\bigcup_{i\in I}f^{-1}(B_i).
+			    $}
+				
+				\item
+				{\small $
+				f^{-1}\left(\bigcap_{i\in I}B_i\right)
+				=\bigcap_{i\in I}f^{-1}(B_i).
+				$}\\
+				
+				\item
+				{\small $
+				f\left(\bigcup_{i\in I}A_i\right)
+				=\bigcup_{i\in I}f(A_i).
+				$}
+				
+				\item
+				{\small $
+				f\left(\bigcap_{i\in I}A_i\right)
+				\subseteq\bigcap_{i\in I}f(A_i).
+				$}
+			\end{enumerate*}
+		\end{exercice}
+		
+
+		\begin{exercice}
+			Soit $f$ une application de $E$ dans $F$.
+			Pour $A\subseteq E$ et $B\subseteq F$, montrer que :
+			
+			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
+				\item
+				$
+				f\bigl(f^{-1}(B)\bigr)\subseteq B.
+				$
+				
+				\item
+				$
+				f^{-1}\bigl(f(A)\bigr)\supseteq A.
+				$
+				
+				\item Montrer que :
+				
+				$f\text{ est injective}
+				\iff
+				\forall A\in\mathcal{P}(E),\quad
+				A=f^{-1}\bigl(f(A)\bigr).
+				$\\
+				
+				\item Montrer que :
+				{\small $
+				f\text{ est surjective}
+				\iff
+				\forall B\in\mathcal{P}(F),\,
+				B=f\bigl(f^{-1}(B)\bigr).
+				$}\\
+			\end{enumerate*}
+		\end{exercice}
+		
+
+		\begin{exercice}
+			Soit $(A_{ij})_{(i,j)\in I\times J}$ une famille de parties
+			d'un ensemble $E$.
+			
+			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
+				\item Montrer que
+				$
+				\bigcup_{j\in J}\bigcap_{i\in I} A_{ij}
+				\subset
+				\bigcap_{i\in I}\bigcup_{j\in J} A_{ij}.
+				$\\
+				Montrer que l'inclusion peut être stricte.\\
+				
+				\item Montrer que
+				
+			$	\bigcap_{i\in I}\bigcup_{j\in J} A_{ij}
+				=
+				\bigcup_{f\in\mathcal{F}(I,J)}
+				\bigcap_{i\in I} A_{i,f(i)},$\\
+				
+				où $\mathcal{F}(I,J)$ désigne l'ensemble des applications
+				de $I$ dans $J$.
+			\end{enumerate*}
+		\end{exercice}
+		\begin{exercice}
+			Soit $f:E\to F$, $A\subset E$ et $B\subset F$. Montrer que :
+			\[
+			f\!\left(A\cap f^{-1}(B)\right)=f(A)\cap B.
+			\]
+		\end{exercice}
+		
+		\begin{exercice}[Polynômes de Tchebychev]
+			Soit $n$ un entier naturel et $\theta$ un réel.
+			\begin{enumerate}
+				\item Montrer que $\cos(n+1)\theta+\cos(n-1)\theta=2\cos\theta\cos(n\theta)$.
+				
+				\item En déduire que, pour tout entier naturel $n$, il existe un polynôme $T_n$ tel que :
+				\[
+				\forall\,\theta\in\mathbb{R},\qquad T_n(\cos\theta)=\cos(n\theta).
+				\]
+				On admet que le polynôme $T_n$ est l'unique polynôme vérifiant cette égalité. $T_n$ est appelé $n$-ième polynôme de Tchebychev (de première espèce). Exprimer $T_{n+1}(x)$ en fonction de $T_n(x)$ et $T_{n-1}(x)$.
+				
+				\item En prenant la partie réelle de $e^{in\theta}$, montrer que :
+				\[
+				T_n(X)=\sum_{0\le 2k\le n}\binom{n}{2k}\left(X^2-1\right)^k X^{n-2k}.
+				\]
+			\end{enumerate}
+		\end{exercice}
+		
+		\begin{exercice}
+			Montrer que les racines communes des équations
+			\[
+			z^m - 1 = 0 \qquad \text{et} \qquad z^n - 1 = 0
+			\]
+			sont les racines de $z^d - 1 = 0$ avec $d = \text{pgcd}(m,n)$.
+			
+			\textit{Application : deux polygones réguliers, respectivement à 1445 et 2024 côtés, sont inscrits dans un même cercle. Combien les deux polygones ont-ils de sommets communs ?}
+		\end{exercice}
+		
+		\begin{exercice}
+			Quel est le reste de la division euclidienne de $1789^n$ par 7 en fonction de $n \in \mathbb{N}$ ?
+		\end{exercice}
+		
+		\begin{exercice}
+			\begin{enumerate}
+				\item Soient $a, b, c$ trois entiers naturels non nuls. Montrer que
+				\[
+				\begin{cases}
+					a^b \equiv 1 \pmod n, \\
+					a^c \equiv 1 \pmod n,
+				\end{cases}
+				\quad \implies \quad
+				a^{b \wedge c} \equiv 1 \pmod n.
+				\]
+				
+				\item Soit $p$ un nombre premier tel que $p \equiv 3 \pmod 4$.
+				\begin{enumerate}
+					\item[(a)] Montrer que l'équation $x^2 \equiv -1 \pmod p$ n'a pas de solutions.
+					\item[(b)] Montrer que : $x^2 + y^2 \equiv 0 \pmod p \quad \implies \quad x \equiv y \equiv 0 \pmod p$.
+				\end{enumerate}
+			\end{enumerate}
+		\end{exercice}
+		
+		\begin{exercice}[(*) (relations)]
+			On considère la relation $\mathcal{R}$ définie sur $\mathbb{R}$ par : pour tous réels $x$ et $y$, $x\mathcal{R}y$ ssi $x+y \le 10$. Cette relation est-elle réflexive ? transitive ? symétrique ? antisymétrique ? totale ? Est-ce une relation d'équivalence ? Est-ce une relation d'ordre ?
+		\end{exercice}
+		
+		\begin{exercice}[(cours) (équivalence)]
+			Soient $E$ et $F$ des ensembles. Soit $f : E \to F$ une application. Soit $\mathcal{R}$ la relation sur $E$ définie par : pour tous $x$ et $y$ dans $E$, $x\mathcal{R}y$ ssi $f(x)=f(y)$. Montrer que $\mathcal{R}$ est une relation d'équivalence.
+		\end{exercice}
+		
+		\begin{exercice}[(Tous TD) (équivalence)]
+			Montrer que les relations suivantes sont des relations d'équivalence (on pourra utiliser l'exercice précédent). Préciser les classes d'équivalence.
+			\begin{enumerate}
+				\item[a)] sur $\mathbb{R}$, $x\mathcal{R}y \iff \cos x = \cos y$ ;
+				\item[b)] sur $\mathbb{R}$, $x\mathcal{R}y \iff (\cos x = \cos y \text{ et } \sin x = \sin y)$ ;
+				\item[c)] sur $\mathbb{R}$, $x\mathcal{R}y \iff E(x) = E(y)$, où $E(x)$ dénote la partie entière de $x$ ;
+				\item[d)] sur $\mathbf{Z} \times \mathbf{Z}^*$, $(p,q)\mathcal{R}(p',q') \iff pq' = p'q$.
+			\end{enumerate}
+		\end{exercice}
+		
+		\begin{exercice}[(*) (relations)]
+			On considère la relation $\mathcal{R}$ définie sur $\mathbb{R}$ par : pour tous réels $x$ et $y$, $x\mathcal{R}y$ ssi $x+y \le 10$. Cette relation est-elle réflexive ? transitive ? symétrique ? antisymétrique ? totale ? Est-ce une relation d'équivalence ? Est-ce une relation d'ordre ?
+		\end{exercice}
+		
+		\begin{exercice}[(cours) (équivalence)]
+			Soient $E$ et $F$ des ensembles. Soit $f : E \to F$ une application. Soit $\mathcal{R}$ la relation sur $E$ définie par : pour tous $x$ et $y$ dans $E$, $x\mathcal{R}y$ ssi $f(x)=f(y)$. Montrer que $\mathcal{R}$ est une relation d'équivalence.
+		\end{exercice}
+		
+		\begin{exercice}[(Tous TD) (équivalence)]
+			Montrer que les relations suivantes sont des relations d'équivalence (on pourra utiliser l'exercice précédent). Préciser les classes d'équivalence.
+			\begin{enumerate}
+				\item[a)] sur $\mathbb{R}$, $x\mathcal{R}y \iff \cos x = \cos y$ ;
+				\item[b)] sur $\mathbb{R}$, $x\mathcal{R}y \iff (\cos x = \cos y \text{ et } \sin x = \sin y)$ ;
+				\item[c)] sur $\mathbb{R}$, $x\mathcal{R}y \iff E(x) = E(y)$, où $E(x)$ dénote la partie entière de $x$ ;
+				\item[d)] sur $\mathbf{Z} \times \mathbf{Z}^*$, $(p,q)\mathcal{R}(p',q') \iff pq' = p'q$.
+			\end{enumerate}
+		\end{exercice}
+		
+		\begin{exercice}
+			Soient $p$ et $q$ deux propositions données. En utilisant la table de vérité, montrer que
+			\[
+			\overline{(p \Rightarrow q)} \Leftrightarrow (p \wedge \overline{q}) \quad \text{et} \quad (p \Rightarrow q) \Leftrightarrow (\overline{q} \Rightarrow \overline{p}).
+			\]
+		\end{exercice}
+		
+		\begin{exercice}
+			On définit dans l'ensemble $\mathbb{Q} \setminus \{-\frac{1}{2}\}$, la loi $\star$ comme suit :
+			\[
+			\forall a,b \in \mathbb{Q} \setminus \{-\frac{1}{2}\} : a \star b = a + b + 2ab.
+			\]
+			Montrer que $(\mathbb{Q} \setminus \{-\frac{1}{2}\}, \star)$ est un groupe abélien.
+		\end{exercice}
+		
+		\begin{exercice}
+			Soit $(G, .)$ un groupe. On appelle le centre de $G$ l'ensemble
+			\[
+			C = \{c \in G / x.c = c.x, \forall x \in G\}.
+			\]
+			Montrer que $C$ est un sous-groupe de $G$.
+		\end{exercice}
+		
+		\begin{exercice}
+			Dans $\mathbb{N}^*$, on définit la relation $\mathfrak{R}$ par : $x \mathfrak{R} y \Leftrightarrow \exists k \in \mathbb{N}^*$ tel que $y=kx$.
+			\begin{enumerate}
+				\item Montrer que $\mathfrak{R}$ est une relation d'ordre partiel sur $\mathbb{N}^*$.
+				\item On considère que l'ensemble $\mathbb{N}^*$ est ordonné par la relation $\mathfrak{R}$.
+				\begin{itemize}
+					\item L'ensemble $\mathbb{N}^*$ possède-t-il un plus grand élément ? un plus petit élément ?.
+				\end{itemize}
+				\item Soit $A = \{4, 5, 6, 7, 8, 9, 10\}$.
+				\begin{itemize}
+					\item L'ensemble $A$ possède-t-il un plus grand élément ? un plus petit élément ?.
+				\end{itemize}
+			\end{enumerate}
+		\end{exercice}
+		
+		\begin{exercice}
+			Soit $E$ un ensemble et soit $A$ une partie de $E$.
+			On définit dans $P(E)$ la relation d'équivalence $\mathfrak{R}$ par :
+			\[
+			\text{pour tout couple } (X,Y) \text{ de partie de } E, \quad X \mathfrak{R} Y \Longleftrightarrow A \cap X = A \cap Y
+			\]
+			\begin{enumerate}
+				\item[1)] Expliciter les classes $\dot{\varnothing}$, $\dot{E}$, $\dot{A}$ et $\dot{\complement}_E A$.
+				\item[2)] Montrer que si $B = A \cap X$, alors $B$ est l'unique représentant de $\dot{X}$ contenu dans $A$.
+			\end{enumerate}
+		\end{exercice}
+		
+		\begin{exercice}
+			Sur $\mathbb{R}^2$, on considère la relation $\mathfrak{R}$ définie par
+			\[
+			(x,y)\mathfrak{R}(x',y') \Longleftrightarrow x^2 + y^2 = (x')^2 + (y')^2
+			\]
+			\begin{enumerate}
+				\item Montrer que $\mathfrak{R}$ est une relation d'équivalence.
+				\item Déterminer la classe d'équivalence d'un élément de $\mathbb{R}^2$.
+				\item En déduire l'ensemble quotient de $\mathbb{R}^2$ par $\mathfrak{R}$.
+			\end{enumerate}
+		\end{exercice}
+		
+		\begin{exercice}
+			Soit $f : \mathbb{R} \longrightarrow \mathbb{R}$ une application. On définit la relation $\mathfrak{R}$ sur $\mathbb{R}$ par
+			\[
+			x \mathfrak{R} y \Leftrightarrow f(x) = f(y)
+			\]
+			\begin{enumerate}
+				\item Montrer que $\mathfrak{R}$ est une relation d'équivalence.
+				\item Décrire la classe $C_x, \quad x \in \mathbb{R}$.
+				\item Discuter suivant la valeur de $x$ le nombre d'éléments contenus dans la classe de $x$ dans le cas où $f(x) = x^3 - 3x + 2$ et $f(x) = \frac{x}{e^x}$.
+			\end{enumerate}
+		\end{exercice}
+		
+		\begin{exercice}
+			\begin{enumerate}
+				\item Soit $\mathfrak{R}$ une relation définie sur $\mathbb{Z}$ par
+				\[
+				x \mathfrak{R} y \Longleftrightarrow (\exists m \in \mathbb{Z} \text{ telque } x - y = 3m).
+				\]
+				\begin{enumerate}
+					\item[a)] Etablir que $\mathfrak{R}$ est une relation d'équivalence.
+					\item[b)] Quelles sont les classes d'équivalence ?
+					\item[c)] Déterminer l'ensemble quotient.
+				\end{enumerate}
+				
+				\item Soit $\mathfrak{R}$ une relation définie sur $\mathbb{C}^*$ par : $z \mathfrak{R} z' \Longleftrightarrow \frac{z}{z'} \in \mathbb{R}_+^*$.
+				\begin{enumerate}
+					\item[a)] Montrer que $\mathfrak{R}$ est une relation d'équivalence.
+					\item[b)] Quelles sont les classes d'équivalence ?
+					\item[c)] Déterminer l'ensemble quotient.
+				\end{enumerate}
+			\end{enumerate}
+		\end{exercice}
+	\end{multicols}
+		\hrule
+		\vspace{4pt}
+		{\footnotesize\centering Fiche d'exercices -- Calcul Numérique, Licence 3 Physique, ULBO, 2026/2027. \par}
+		
+	\end{document}

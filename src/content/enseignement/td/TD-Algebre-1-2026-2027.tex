@@ -3,497 +3,852 @@
 %% matiere: Algèbre
 %% annee: 2026-2027
 %% description: TD d'Algèbre 1.
-\documentclass[08pt,a4paper]{extarticle}
-
+\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb,mathtools}
-\usepackage[a4paper,margin=1.0cm]{geometry}
-\usepackage[inline]{enumitem}   % indispensable pour enumerate*
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[a4paper,margin=2cm]{geometry}
 \usepackage{enumitem}
 \usepackage{xcolor}
-\usepackage[most]{tcolorbox}
 \usepackage{booktabs,array}
 \usepackage{fancyhdr}
-\usepackage{multicol}
-\setlength{\columnsep}{0.8cm}
-\setlength{\columnseprule}{0.3pt}
+\usepackage[most]{tcolorbox}
+
+\newcommand{\R}{\mathbb{R}}\newcommand{\N}{\mathbb{N}}\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}\newcommand{\C}{\mathbb{C}}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\pgcd}{\operatorname{pgcd}}
+\newcommand{\U}{\mathbb{U}}
+\newcommand{\eqv}{\mathfrak{R}}
+
+\setlist[enumerate,1]{label=\arabic*),leftmargin=*,itemsep=3pt,topsep=3pt}
+\setlist[enumerate,2]{label=\alph*),leftmargin=1.8em,itemsep=2pt,topsep=2pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=2pt,topsep=2pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\footnotesize Algèbre 1 --- L1 MPCI S1 --- Énoncés et corrigés détaillés}
+\rhead{\footnotesize ULBO --- 2026/2027}\cfoot{\footnotesize\thepage}
 
 \definecolor{bleu}{RGB}{0,51,102}
-\definecolor{vert}{RGB}{0,100,60}
+\newtcolorbox{enonce}{enhanced,breakable,colback=blue!5!white,colframe=bleu,boxrule=0.5pt,arc=2pt,
+	left=6pt,right=6pt,top=4pt,bottom=4pt,title={Énoncé},fonttitle=\bfseries\small}
+\newtcolorbox{corrige}{enhanced,breakable,colback=green!3!white,colframe=green!45!black,boxrule=0.5pt,arc=2pt,
+	left=6pt,right=6pt,top=4pt,bottom=4pt,title={Corrigé},fonttitle=\bfseries\small}
+\newcommand{\meme}[1]{\emph{Cet exercice est identique à l'exercice~#1 de la feuille (énoncé répété) : le corrigé est celui de l'exercice~#1.}}
+\newcommand{\rem}[1]{\par\smallskip\noindent\textbf{Remarque.} #1}
 
-
-% --- Raccourcis mathématiques ---
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\dd}{\,\mathrm{d}}
-\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
-\newcommand{\ps}[2]{\left\langle #1,#2\right\rangle}
-\newcommand{\e}{\mathrm{e}}
-\DeclareMathOperator{\Vect}{Vect}
-
-% --- Mise en page ---
-\setlist[enumerate,1]{label=\arabic*),leftmargin=*,itemsep=2pt}
-\setlist[enumerate,2]{label=\alph*),leftmargin=1.5em,itemsep=1pt}
-\setlist[itemize]{leftmargin=1.5em,itemsep=1pt}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{4pt}
-\pagestyle{fancy}
-\fancyhf{}
-\lhead{\small Algèbre 1 -- L1 MPCI S1}
-\rhead{\small ULBO -- 2026/2027}
-\cfoot{\small\thepage}
-
-% --- Exercices ---
-\newcounter{exo}
-\newenvironment{exercice}[1][]{%
-	\refstepcounter{exo}\par\bigskip\noindent
-	{\large\bfseries Exercice~\theexo\ifx\relax#1\relax\else\ --\ #1\fi}\par\smallskip}{\par\smallskip}
-
-% --- Rappels ---
-\newtcolorbox{rappel}{enhanced,breakable,colback=blue!4!white,colframe=bleu,
-	title={\textbf{Rappel}},fonttitle=\small,boxrule=0.6pt,arc=2pt,
-	left=5pt,right=5pt,top=3pt,bottom=3pt}
+\title{\textbf{Travaux dirigés d'Algèbre 1 --- Énoncés et corrigés détaillés}\\[2pt]\large Licence 1, Semestre 1, MPCI --- Université Lédéa Bernard OUEDRAOGO}
+\author{}\date{Année universitaire 2026--2027}
 
 \begin{document}
+	\maketitle
+	\vspace{-0.8cm}
+	\noindent\textit{Conventions : $\N=\{0,1,2,\dots\}$ ; $\N^*=\N\setminus\{0\}$ ; ``ssi signifie ``si et seulement si. Le symbole $\bigstar$ reprend celui de la feuille. Les exercices~11, 12 et 18 répètent les exercices~9, 10 et 17.}
 	
-	% ---------------------------------------------------------------------
-	\begin{center}
-		{\large UNIVERSITÉ LÉDÉA BERNARD OUÉDRAOGO}\\[2pt]
-		{Licence 1 MPCI -- Semestre 1 -- 2026/2027}\\[8pt]
-		{\Huge\bfseries Algèbre 1}\\[6pt]
-		{\Large Fiche d'exercices}\\[6pt]
-		{\normalsize Enseignant : Dr A. TOUGMA}
-	\end{center}
-	\vspace{2pt}
-	\hrule
-	\vspace{6pt}
-	\begin{multicols}{2}
-		%============================================================
-%		\section*{I. Rudiments de logique (Quantificateurs \& Raisonnements)}
-%		% ============================================================
-%		
-%		\subsection*{Quantificateurs}
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~1} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Déterminer lesquelles des propositions suivantes sont vraies  :
+		\begin{enumerate}
+			\item $\exists x\in\mathbb{R},\ (x+1=0\ \text{et}\ x+2=0)$.
+			\item $(\exists x\in\mathbb{R},\ x+1=0)$ et $(\exists x\in\mathbb{R},\ x+2=0)$.
+			\item $\forall x\in\mathbb{R},\ (x+1\neq 0\ \text{ou}\ x+2\neq 0)$.
+			\item $\exists x\in\mathbb{R}^*,\ \forall y\in\mathbb{R}^*,\ \forall z\in\mathbb{R}^*,\ z-xy=0$.
+			\item $\forall y\in\mathbb{R}^*,\ \exists x\in\mathbb{R}^*,\ \forall z\in\mathbb{R}^*,\ z-xy=0$.
+			\item $\forall y\in\mathbb{R}^*,\ \forall z\in\mathbb{R}^*,\ \exists x\in\mathbb{R}^*,\ z-xy=0$.
+			\item $\exists a\in\mathbb{R},\ \forall\varepsilon>0,\ |a|<\varepsilon$.
+			\item $\forall\varepsilon>0,\ \exists a\in\mathbb{R},\ |a|<\varepsilon$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\textbf{Principe.} Pour montrer qu'une proposition $\exists x,\,P(x)$ est vraie, il suffit d'exhiber un $x$ ; pour montrer qu'elle est fausse, il faut montrer sa négation $\forall x,\,\neg P(x)$. Pour $\forall x,\,P(x)$, c'est l'inverse : un contre-exemple suffit à la réfuter.
+		\begin{enumerate}
+			\item \textbf{Fausse.} Si $x+1=0$ alors $x=-1$ et $x+2=1\neq0$. Il n'existe donc aucun réel vérifiant simultanément $x+1=0$ et $x+2=0$ (sinon on aurait $1=(x+2)-(x+1)=0$, absurde).
+			\item \textbf{Vraie.} $x=-1$ convient pour $\exists x,\ x+1=0$ et $x=-2$ convient pour $\exists x,\ x+2=0$. Les deux $x$ sont \emph{différents}, ce qui est permis car ce sont deux quantificateurs distincts, dans deux propositions distinctes reliées par ``et''. (Comparer avec 1) : la place du ``et'' change tout.)
+			\item \textbf{Vraie.} C'est la négation de 1) : $\neg(\exists x,\ (x+1=0 \text{ et } x+2=0))=\forall x,\ (x+1\neq0 \text{ ou } x+2\neq0)$. Comme 1) est fausse, 3) est vraie.
+			\item \textbf{Fausse.} Négation : $\forall x\in\R^*,\ \exists y\in\R^*,\ \exists z\in\R^*,\ z-xy\neq0$. Soit $x\in\R^*$. Prenons $y=1$ et $z=2x$ ($z\neq0$ car $x\neq0$). Alors $z-xy=2x-x=x\neq0$. Donc aucun $x$ ne convient.
+			\item \textbf{Fausse.} Négation : $\exists y\in\R^*,\ \forall x\in\R^*,\ \exists z\in\R^*,\ z-xy\neq0$. Prenons $y=1$. Pour tout $x\in\R^*$, posons $z=2x\neq0$ : $z-xy=2x-x=x\neq0$. La négation est vraie, donc 5) est fausse.
+			\item \textbf{Vraie.} Soient $y,z\in\R^*$. Posons $x=z/y$. Alors $x\in\R^*$ ($z\neq0$, $y\neq0$) et $z-xy=z-\frac zy\,y=0$.
+			\item \textbf{Vraie.} Prenons $a=0$ : pour tout $\veps>0$, $|0|=0<\veps$.
+			\item \textbf{Vraie.} Soit $\veps>0$. Prenons $a=0$ (ou $a=\veps/2$) : $|a|<\veps$.
+		\end{enumerate}
+		\rem{Dans 4), 5), 6), seul l'ordre des quantificateurs change, et les valeurs de vérité sont respectivement fausse, fausse, vraie : dans 6) $x$ est choisi \emph{après} $y$ et $z$, donc peut dépendre des deux ; dans 5) il ne peut dépendre que de $y$ ; dans 4) il est choisi avant tout.}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~2} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Soit $f:\mathbb{R}\to\mathbb{R}$. Nier les assertions  :
+		\begin{enumerate}
+			\item $\forall x\in\mathbb{R},\ f(x)\neq 0$.
+			\item $\forall M>0,\ \exists A>0,\ \forall x\geq A,\ f(x)>M$.
+			\item $\forall x\in\mathbb{R},\ (f(x)>0\implies x\leq 0)$.
+			\item$\forall\varepsilon>0,\ \exists\eta>0,\ \forall(x,y)\in I^2,\ (|x-y|\leq\eta\implies |f(x)-f(y)|\leq\varepsilon)$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		Règles : $\neg(\forall x,\,P)=\exists x,\,\neg P$ ; $\neg(\exists x,\,P)=\forall x,\,\neg P$ ; $\neg(P\Rightarrow Q)=P\text{ et }\neg Q$ ; $\neg(P\text{ et }Q)=\neg P\text{ ou }\neg Q$.
+		\begin{enumerate}
+			\item $\exists x\in\R,\ f(x)=0$.
+			\item $\exists M>0,\ \forall A>0,\ \exists x\geq A,\ f(x)\leq M$.
+			\item $\neg(f(x)>0\Rightarrow x\leq0)$ s'écrit $f(x)>0$ et $x>0$. Donc la négation est : $\exists x\in\R,\ (f(x)>0 \text{ et } x>0)$.
+			\item (Ici $I$ est l'intervalle de définition.) $\exists\veps>0,\ \forall\eta>0,\ \exists(x,y)\in I^2,\ \bigl(|x-y|\leq\eta \text{ et } |f(x)-f(y)|>\veps\bigr)$.
+		\end{enumerate}
+		Pas à pas pour 4) : l'ordre des quantificateurs est conservé, chaque $\forall$ devient $\exists$ (et inversement), et la conclusion finale ``$|x-y|\leq\eta\Rightarrow|f(x)-f(y)|\leq\veps$'' devient ``$|x-y|\leq\eta$ et $|f(x)-f(y)|>\veps$''. C'est la négation de l'uniforme continuité de $f$ sur $I$.
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~3}\nopagebreak
+	\begin{enonce}
+		Soit $f:\mathbb{R}\to\mathbb{R}$. Exprimer avec des quantificateurs  :
+		\begin{enumerate}
+			\item $f$ est constante ;
+			\item $f$ n’est pas constante ;
+			\item $f$ s’annule ;
+			\item $f$ est périodique.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item $f$ est constante : $\exists c\in\R,\ \forall x\in\R,\ f(x)=c$ (de façon équivalente $\forall x,y\in\R,\ f(x)=f(y)$).
+			\item $f$ n'est pas constante : c'est la négation, soit $\forall c\in\R,\ \exists x\in\R,\ f(x)\neq c$, ou encore $\exists x,y\in\R,\ f(x)\neq f(y)$.
+			\item $f$ s'annule : $\exists x\in\R,\ f(x)=0$.
+			\item $f$ est périodique : $\exists T>0,\ \forall x\in\R,\ f(x+T)=f(x)$.
+		\end{enumerate}
+		\rem{Dans 4) $T$ est choisi \emph{avant} $x$ : la période est la même pour tous les $x$. Avec cette définition, une fonction constante est périodique (toute valeur $T>0$ convient).}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~4}\nopagebreak
+	\begin{enonce}
+		Énoncer en langage courant les assertions suivantes et donner un exemple / contre-exemple :
+		\begin{enumerate}
+			\item $\forall x\in\mathbb{R},\ \exists y\in\mathbb{R},\ f(x)<f(y)$ ;
+			\item $\forall x\in\mathbb{R},\ \exists T\in\mathbb{R},\ f(x)=f(x+T)$ ;
+			\item $\forall x\in\mathbb{R},\ \exists T\in\mathbb{R}^*,\ f(x)=f(x+T)$ ;
+			\item $\exists x\in\mathbb{R},\ \forall y\in\mathbb{R},\ y=f(x)$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item $\forall x,\ \exists y,\ f(x)<f(y)$ : ``\emph{$f$ n'atteint jamais de maximum}'' (pour toute valeur $f(x)$, il y a une valeur strictement plus grande). \emph{Exemple} : $f(x)=x$ (prendre $y=x+1$) ou $f=\exp$. \emph{Contre-exemple} : $f(x)=-x^2$ car $f(0)=0\geq f(y)$ pour tout $y$ ; ou $f=\sin$, ou $f$ constante.
+			\item $\forall x,\ \exists T,\ f(x)=f(x+T)$ : cette assertion est \emph{toujours vraie} (aucun contre-exemple) : on prend $T=0$. Elle est vide de contenu parce que $T=0$ est autorisé et que $T$ peut dépendre de $x$.
+			\item $\forall x,\ \exists T\neq0,\ f(x)=f(x+T)$ : ``\emph{toute valeur prise par $f$ est prise en au moins un autre point}'' (en $x+T\neq x$). \emph{Exemple} : $f=\cos$ (prendre $T=2\pi$) ; plus finement, $f(x)=\sin(x^2)$ vérifie la propriété sans être périodique : pour $x\neq0$ on prend $T=-2x\neq0$ car $f(-x)=f(x)$, et pour $x=0$ on prend $T=\sqrt\pi$ car $\sin(\pi)=0=f(0)$. \emph{Contre-exemple} : $f(x)=x$ (injective, donc $f(x)=f(x+T)\Rightarrow T=0$), ou $f(x)=x^2$ (la valeur $f(0)=0$ n'est atteinte qu'en $0$ : $T^2=0\Rightarrow T=0$).
+			\item $\exists x,\ \forall y,\ y=f(x)$ : ``\emph{il existe un réel $x$ tel que tout réel $y$ soit égal à $f(x)$}'', c'est-à-dire $\R=\{f(x)\}$ est un singleton. C'est \emph{faux pour toute fonction $f$} : pour tout $x$, le choix $y=f(x)+1$ donne $y\neq f(x)$. Aucun exemple n'existe ; sa négation $\forall x,\ \exists y,\ y\neq f(x)$ est toujours vraie.
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~5} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Soient $p$ et $q$ deux propositions données. En utilisant la table de vérité, montrer que
+		\[
+		\overline{(p \Rightarrow q)} \Leftrightarrow (p \wedge \overline{q}) \quad \text{et} \quad (p \Rightarrow q) \Leftrightarrow (\overline{q} \Rightarrow \overline{p}).
+		\]
+	\end{enonce}
+	\begin{corrige}
+		Il y a $4$ cas selon les valeurs de vérité de $p$ et de $q$ ($V$ = vrai, $F$ = faux). On rappelle que $p\Rightarrow q$ est fausse uniquement quand $p$ est vraie et $q$ fausse.
+		\begin{center}
+			\begin{tabular}{cc|c|c|c|c|c|c}
+				\toprule
+				$p$ & $q$ & $p\Rightarrow q$ & $\overline{(p\Rightarrow q)}$ & $\overline q$ & $p\wedge\overline q$ & $\overline p$ & $\overline q\Rightarrow\overline p$\\
+				\midrule
+				$V$&$V$&$V$&$F$&$F$&$F$&$F$&$V$\\
+				$V$&$F$&$F$&$V$&$V$&$V$&$F$&$F$\\
+				$F$&$V$&$V$&$F$&$F$&$F$&$V$&$V$\\
+				$F$&$F$&$V$&$F$&$V$&$F$&$V$&$V$\\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		Les colonnes $\overline{(p\Rightarrow q)}$ et $p\wedge\overline q$ sont identiques ($F,V,F,F$) : les deux propositions ont la même valeur de vérité dans tous les cas, donc $\overline{(p\Rightarrow q)}\Leftrightarrow(p\wedge\overline q)$ est une tautologie. De même les colonnes $p\Rightarrow q$ et $\overline q\Rightarrow\overline p$ sont identiques ($V,F,V,V$) : $(p\Rightarrow q)\Leftrightarrow(\overline q\Rightarrow\overline p)$ est une tautologie (principe de contraposition).
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~6} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		On définit sur $\mathbb{R}^2$ :
+		\[
+		(x,y)\prec(x',y')\iff\bigl((x<x')\ \text{ou}\ (x=x'\ \text{et}\ y\leq y')\bigr).
+		\]
+		Montrer que $\prec$ est une relation d’ordre total.
+	\end{enonce}
+	\begin{corrige}
+		\textbf{Réflexivité.} Soit $(x,y)\in\R^2$. On a $x=x$ et $y\leq y$, donc $(x,y)\prec(x,y)$.
 		
-%		\paragraph{Exercice 1}
-		\begin{exercice}
-			Déterminer lesquelles des propositions suivantes sont vraies :\\
-			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
-				\item $\exists x\in\mathbb{R},\ (x+1=0\ \text{et}\ x+2=0)$.\\
-				\item $(\exists x\in\mathbb{R},\ x+1=0)$ et $(\exists x\in\mathbb{R},\ x+2=0)$.\\
-				\item $\forall x\in\mathbb{R},\ (x+1\neq 0\ \text{ou}\ x+2\neq 0)$.\\
-				\item $\exists x\in\mathbb{R}^*,\ \forall y\in\mathbb{R}^*,\ \forall z\in\mathbb{R}^*,\ z-xy=0$.\\
-				\item $\forall y\in\mathbb{R}^*,\ \exists x\in\mathbb{R}^*,\ \forall z\in\mathbb{R}^*,\ z-xy=0$.\\
-				\item $\forall y\in\mathbb{R}^*,\ \forall z\in\mathbb{R}^*,\ \exists x\in\mathbb{R}^*,\ z-xy=0$.\\
-				\item $\exists a\in\mathbb{R},\ \forall\varepsilon>0,\ |a|<\varepsilon$.
-				\item $\forall\varepsilon>0,\ \exists a\in\mathbb{R},\ |a|<\varepsilon$.
-			\end{enumerate*}
-		\end{exercice}
+		\textbf{Antisymétrie.} Supposons $(x,y)\prec(x',y')$ et $(x',y')\prec(x,y)$. Si l'on avait $x<x'$, la seconde relation donnerait $x'<x$ (impossible avec $x<x'$) ou $x'=x$ (impossible aussi). Donc $x<x'$ est faux ; symétriquement $x'<x$ est faux. Ainsi $x=x'$. Alors la première relation donne $y\leq y'$ et la seconde $y'\leq y$ (car on est dans le cas $x=x'$), d'où $y=y'$.
 		
-%		\paragraph{Exercice 2}
-		\begin{exercice}
-			Soit $f:\mathbb{R}\to\mathbb{R}$. Nier les assertions :\\
-			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
-				\item $\forall x\in\mathbb{R},\ f(x)\neq 0$.\\
-				\item $\forall M>0,\ \exists A>0,\ \forall x\geq A,\ f(x)>M$.\\
-				\item $\forall x\in\mathbb{R},\ (f(x)>0\implies x\leq 0)$.\\
-				\item{\small  $\forall\varepsilon>0,\ \exists\eta>0,\ \forall(x,y)\in I^2,\ (|x-y|\leq\eta\implies |f(x)-f(y)|\leq\varepsilon)$.}\\
-			\end{enumerate*}
-		\end{exercice}
+		\textbf{Transitivité.} Supposons $(x,y)\prec(x',y')$ et $(x',y')\prec(x'',y'')$.
+		\begin{itemize}
+			\item Si $x<x'$ : la seconde relation donne $x'<x''$ ou $x'=x''$, donc $x'\leq x''$ et $x<x'\leq x''$ ; ainsi $x<x''$ et $(x,y)\prec(x'',y'')$.
+			\item Si $x=x'$ et $y\leq y'$ : si $x'<x''$ alors $x<x''$, conclusion obtenue ; si $x'=x''$ et $y'\leq y''$ alors $x=x''$ et $y\leq y'\leq y''$, donc $(x,y)\prec(x'',y'')$.
+		\end{itemize}
 		
-%		\paragraph{Exercice 3}
-		\begin{exercice}
-			Soit $f:\mathbb{R}\to\mathbb{R}$. Exprimer avec des quantificateurs :\\
-			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
-				\item $f$ est constante ;
-				\item $f$ n’est pas constante ;
-				\item $f$ s’annule ;
-				\item $f$ est périodique.
-			\end{enumerate*}
-		\end{exercice}
+		\textbf{Totalité.} Soient $(x,y),(x',y')\in\R^2$. Comme $\leq$ est total sur $\R$ : si $x<x'$, alors $(x,y)\prec(x',y')$ ; si $x'<x$ alors $(x',y')\prec(x,y)$ ; si $x=x'$, alors $y\leq y'$ (donc $(x,y)\prec(x',y')$) ou $y'\leq y$ (donc $(x',y')\prec(x,y)$). Deux éléments sont donc toujours comparables.
 		
-%		\paragraph{Exercice 4}
-		\begin{exercice}
-			Énoncer en langage courant les assertions suivantes et donner un exemple / contre-exemple :
-			\begin{enumerate}
-				\item $\forall x\in\mathbb{R},\ \exists y\in\mathbb{R},\ f(x)<f(y)$ ;
-				\item $\forall x\in\mathbb{R},\ \exists T\in\mathbb{R},\ f(x)=f(x+T)$ ;
-				\item $\forall x\in\mathbb{R},\ \exists T\in\mathbb{R}^*,\ f(x)=f(x+T)$ ;
-				\item $\exists x\in\mathbb{R},\ \forall y\in\mathbb{R},\ y=f(x)$.
-			\end{enumerate}
-		\end{exercice}
-		
-%		\paragraph{Exercice 20}
-		\begin{exercice}
-			Écrire en extension les ensembles suivants :
-			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
-				\item $\{x\in\mathbb{Z}:x^2=4\}$ ;
-				\item $\{x\in\mathbb{N}:x^2\leq 10\}$ ;
-				\item $\{x\in\mathbb{R}:x^2+1=0\}$.
-			\end{enumerate*}
-		\end{exercice}
-		
-%		\paragraph{Exercice 22}
-		\begin{exercice}
-			On définit sur $\mathbb{R}^2$ :
+		Ainsi $\prec$ est un ordre total (l'ordre lexicographique, comme dans un dictionnaire).
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~7}\nopagebreak
+	\begin{enonce}
+		On munit $\mathbb{R}^2$ de
+		\[
+		(x,y)\preccurlyeq(x',y')\iff x\leq x'\ \text{et}\ y\leq y'.
+		\]
+		\begin{enumerate}
+			\item Montrer que c’est une relation d’ordre. Est-elle totale ?
+			\item Le disque fermé unité a-t-il des majorants ? un plus grand élément ? une borne supérieure ?
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item \textbf{Ordre.} Réflexivité : $x\leq x$ et $y\leq y$. Antisymétrie : si $x\leq x'$, $x'\leq x$, $y\leq y'$, $y'\leq y$ alors $x=x'$ et $y=y'$. Transitivité : $x\leq x'\leq x''$ et $y\leq y'\leq y''$ donnent $x\leq x''$ et $y\leq y''$. \textbf{Non total} : $(1,0)$ et $(0,1)$ ne sont pas comparables : $(1,0)\preccurlyeq(0,1)$ exigerait $1\leq0$ et $(0,1)\preccurlyeq(1,0)$ exigerait $1\leq0$.
+			\item Soit $D=\{(x,y)\in\R^2:\ x^2+y^2\leq1\}$ le disque fermé unité.
+			
+			\emph{Majorants.} $(a,b)$ majore $D$ ssi $\forall(x,y)\in D,\ x\leq a$ et $y\leq b$. Comme $(1,0)\in D$ et $(0,1)\in D$, un majorant vérifie $a\geq1$ et $b\geq1$. Réciproquement, si $a\geq1$ et $b\geq1$, alors pour $(x,y)\in D$ on a $x\leq|x|\leq\sqrt{x^2+y^2}\leq1\leq a$, et de même $y\leq b$. L'ensemble des majorants est $[1,+\infty[\times[1,+\infty[$ : $D$ a donc des majorants.
+			
+			\emph{Plus grand élément.} Ce serait un majorant appartenant à $D$ : $(a,b)\in[1,+\infty[^2$ avec $a^2+b^2\leq1$. Mais $a^2+b^2\geq2>1$ : impossible. Pas de plus grand élément.
+			
+			\emph{Borne supérieure.} C'est le plus petit majorant. Le couple $(1,1)$ est un majorant et il est inférieur (pour $\preccurlyeq$) à tout majorant $(a,b)$ puisque $1\leq a$ et $1\leq b$. Donc $\sup D=(1,1)$ existe, et $(1,1)\notin D$.
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~8}\nopagebreak
+	\begin{enonce}
+		Dans $\mathbb{N}^*$, on définit la relation $\mathfrak{R}$ par : $x \mathfrak{R} y \Leftrightarrow \exists k \in \mathbb{N}^*$ tel que $y=kx$.
+		\begin{enumerate}
+			\item Montrer que $\mathfrak{R}$ est une relation d'ordre partiel sur $\mathbb{N}^*$.
+			\item On considère que l'ensemble $\mathbb{N}^*$ est ordonné par la relation $\mathfrak{R}$.
+			\begin{itemize}
+				\item L'ensemble $\mathbb{N}^*$ possède-t-il un plus grand élément ? un plus petit élément ?.
+			\end{itemize}
+			\item Soit $A = \{4, 5, 6, 7, 8, 9, 10\}$.
+			\begin{itemize}
+				\item L'ensemble $A$ possède-t-il un plus grand élément ? un plus petit élément ?.
+			\end{itemize}
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item \textbf{Réflexivité} : $x=1\cdot x$. \textbf{Antisymétrie} : si $y=kx$ et $x=k'y$ avec $k,k'\in\N^*$, alors $x=k'kx$ ; comme $x\neq0$, $kk'=1$, donc $k=k'=1$ (entiers $\geq1$) et $x=y$. \textbf{Transitivité} : si $y=kx$ et $z=k'y$ alors $z=(k'k)x$ avec $k'k\in\N^*$. C'est donc une relation d'ordre. Elle est \emph{partielle} : $2$ et $3$ ne sont pas comparables ($2\nmid3$ et $3\nmid2$).
+			\item \emph{Plus petit élément} : $1$ convient car pour tout $n\in\N^*$, $n=n\cdot1$, i.e.\ $1\eqv n$ ; il est unique (antisymétrie). \emph{Plus grand élément} : il n'y en a pas. Si $M$ en était un, on aurait $n\eqv M$ pour tout $n$ ; avec $n=M+1$ : $M+1$ diviserait $M\geq1$, donc $M+1\leq M$, absurde.
+			\item $A=\{4,5,6,7,8,9,10\}$. \emph{Plus petit élément} : ce serait $m\in A$ divisant tous les éléments de $A$ ; or $m$ divise $4$ et $5$, donc divise $\pgcd(4,5)=1$, donc $m=1\notin A$. Il n'y en a pas. \emph{Plus grand élément} : ce serait $M\in A$ multiple de tous les éléments de $A$ ; il serait multiple de $4$ et de $5$, donc de $20$, donc $M\geq20>10$ : impossible. Il n'y en a pas.
+			
+			(Complément : les éléments \emph{minimaux} de $A$ sont $4,5,6,7,9$ ($8$ est multiple de $4$, $10$ multiple de $5$) ; les éléments \emph{maximaux} sont $6,7,8,9,10$ ($4$ divise $8$, $5$ divise $10$).)
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~9}\nopagebreak
+	\begin{enonce}
+		Soient $E$ et $F$ des ensembles. Soit $f : E \to F$ une application. Soit $\mathcal{R}$ la relation sur $E$ définie par : pour tous $x$ et $y$ dans $E$, $x\mathcal{R}y$ ssi $f(x)=f(y)$. Montrer que $\mathcal{R}$ est une relation d'équivalence.
+	\end{enonce}
+	\begin{corrige}
+		\textbf{Réflexive} : $f(x)=f(x)$. \textbf{Symétrique} : $f(x)=f(y)\Rightarrow f(y)=f(x)$. \textbf{Transitive} : $f(x)=f(y)$ et $f(y)=f(z)$ donnent $f(x)=f(z)$ (transitivité de l'égalité dans $F$). Donc $\mathcal R$ est une relation d'équivalence. Sa classe d'un élément $x$ est $\dot x=\{y\in E:\ f(y)=f(x)\}=f^{-1}(\{f(x)\})$.
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~10}\nopagebreak
+	\begin{enonce}
+		Montrer que les relations suivantes sont des relations d'équivalence (on pourra utiliser l'exercice précédent). Préciser les classes d'équivalence.
+		\begin{enumerate}
+			\item[a)] sur $\mathbb{R}$, $x\mathcal{R}y \iff \cos x = \cos y$ ;
+			\item[b)] sur $\mathbb{R}$, $x\mathcal{R}y \iff (\cos x = \cos y \text{ et } \sin x = \sin y)$ ;
+			\item[c)] sur $\mathbb{R}$, $x\mathcal{R}y \iff E(x) = E(y)$, où $E(x)$ dénote la partie entière de $x$ ;
+			\item[d)] sur $\mathbf{Z} \times \mathbf{Z}^*$, $(p,q)\mathcal{R}(p',q') \iff pq' = p'q$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item[a)] \textbf{$x\mathcal Ry\iff\cos x=\cos y$ sur $\R$.} C'est la relation de l'exercice~9 avec $f=\cos$, donc une relation d'équivalence. \emph{Classes} : $\cos x-\cos y=-2\sin\frac{x+y}2\sin\frac{x-y}2$. Donc $\cos x=\cos y$ ssi $\sin\frac{x+y}2=0$ ou $\sin\frac{x-y}2=0$, ssi $\frac{x+y}2\in\pi\Z$ ou $\frac{x-y}2\in\pi\Z$, ssi $y\in-x+2\pi\Z$ ou $y\in x+2\pi\Z$. Donc
+			$$\dot x=\{x+2k\pi,\ k\in\Z\}\cup\{-x+2k\pi,\ k\in\Z\}.$$
+			(Si $x\in\pi\Z$ les deux ensembles coïncident ; sinon la classe est la réunion de deux progressions arithmétiques disjointes.)
+			\item[b)] \textbf{$x\mathcal Ry\iff(\cos x=\cos y\text{ et }\sin x=\sin y)$.} C'est l'exercice~9 avec $f:\R\to\R^2,\ x\mapsto(\cos x,\sin x)$ : relation d'équivalence. \emph{Classes} : si $\cos x=\cos y$ et $\sin x=\sin y$ alors
+			$$\cos(x-y)=\cos x\cos y+\sin x\sin y=\cos^2y+\sin^2y=1\quad\text{et}\quad\sin(x-y)=\sin x\cos y-\cos x\sin y=0,$$
+			donc $x-y\in2\pi\Z$. Réciproquement si $y=x+2k\pi$ alors $\cos y=\cos x$ et $\sin y=\sin x$. Ainsi $\dot x=x+2\pi\Z$ ; il y a une classe par point du cercle trigonométrique, i.e.\ $\R/\!\eqv\ \simeq\ [0,2\pi[$.
+			\item[c)] \textbf{$x\mathcal Ry\iff E(x)=E(y)$.} Exercice~9 avec $f=E$ (partie entière) : relation d'équivalence. \emph{Classes} : si $n=E(x)$, alors $E(y)=n\iff n\leq y<n+1$. Donc $\dot x=[E(x),E(x)+1[$. Il y a une classe par entier relatif $n$ : $[n,n+1[$.
+			\item[d)] \textbf{Sur $\Z\times\Z^*$ : $(p,q)\mathcal R(p',q')\iff pq'=p'q$.} Posons $f:\Z\times\Z^*\to\Q,\ (p,q)\mapsto\frac pq$. Comme $q,q'\neq0$ : $\frac pq=\frac{p'}{q'}\iff pq'=p'q$. Donc $\mathcal R$ est la relation de l'exercice~9 pour $f$ : c'est une relation d'équivalence. \emph{Classes} : soit $(p,q)$ et $d=\pgcd(p,q)$, $p=dp_0$, $q=dq_0$ avec $p_0\wedge q_0=1$ (on choisit $q_0>0$ ; si $p=0$ alors $(p_0,q_0)=(0,1)$). Montrons $\dot{(p,q)}=\{(kp_0,kq_0):k\in\Z^*\}$.
+			\begin{itemize}
+				\item $\supset$ : $(kp_0)q=kp_0dq_0$ et $p(kq_0)=dp_0kq_0$ sont égaux.
+				\item $\subset$ : si $p'q=pq'$ alors $p'q_0=p_0q'$ (division par $d\neq0$). Donc $q_0\mid p_0q'$, et comme $q_0\wedge p_0=1$, le lemme de Gauss donne $q_0\mid q'$ : $q'=kq_0$ avec $k\in\Z^*$ ($q'\neq0$). Alors $p'q_0=p_0kq_0$, d'où $p'=kp_0$.
+			\end{itemize}
+			L'ensemble quotient est en bijection avec $\Q$ : $\dot{(p,q)}\mapsto p/q$. C'est la construction de $\Q$ à partir de $\Z$.
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~11}\nopagebreak
+	\begin{enonce}
+		Soient $E$ et $F$ des ensembles. Soit $f : E \to F$ une application. Soit $\mathcal{R}$ la relation sur $E$ définie par : pour tous $x$ et $y$ dans $E$, $x\mathcal{R}y$ ssi $f(x)=f(y)$. Montrer que $\mathcal{R}$ est une relation d'équivalence.
+	\end{enonce}
+	\begin{corrige}
+		\meme{9}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~12}\nopagebreak
+	\begin{enonce}
+		Montrer que les relations suivantes sont des relations d'équivalence (on pourra utiliser l'exercice précédent). Préciser les classes d'équivalence.
+		\begin{enumerate}
+			\item[a)] sur $\mathbb{R}$, $x\mathcal{R}y \iff \cos x = \cos y$ ;
+			\item[b)] sur $\mathbb{R}$, $x\mathcal{R}y \iff (\cos x = \cos y \text{ et } \sin x = \sin y)$ ;
+			\item[c)] sur $\mathbb{R}$, $x\mathcal{R}y \iff E(x) = E(y)$, où $E(x)$ dénote la partie entière de $x$ ;
+			\item[d)] sur $\mathbf{Z} \times \mathbf{Z}^*$, $(p,q)\mathcal{R}(p',q') \iff pq' = p'q$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\meme{10}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~13}\nopagebreak
+	\begin{enonce}
+		Soit $E$ un ensemble et soit $A$ une partie de $E$.
+		On définit dans $P(E)$ la relation d'équivalence $\mathfrak{R}$ par :
+		\[
+		\text{pour tout couple } (X,Y) \text{ de partie de } E, \quad X \mathfrak{R} Y \Longleftrightarrow A \cap X = A \cap Y
+		\]
+		\begin{enumerate}
+			\item[1)] Expliciter les classes $\dot{\varnothing}$, $\dot{E}$, $\dot{A}$ et $\dot{\complement}_E A$.
+			\item[2)] Montrer que si $B = A \cap X$, alors $B$ est l'unique représentant de $\dot{X}$ contenu dans $A$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		($\eqv$ est une relation d'équivalence : c'est la relation de l'exercice~9 pour $f:\mathcal P(E)\to\mathcal P(E),\ X\mapsto A\cap X$.)
+		\begin{enumerate}
+			\item[1)] \textbf{Classe de $\varnothing$} : $X\eqv\varnothing\iff A\cap X=A\cap\varnothing=\varnothing\iff X\subset E\setminus A$. Donc $\dot\varnothing=\mathcal P(E\setminus A)$ (les parties de $\complement_EA$).
+			
+			\textbf{Classe de $E$} : $X\eqv E\iff A\cap X=A\cap E=A\iff A\subset X$. Donc $\dot E=\{X\subset E:\ A\subset X\}$.
+			
+			\textbf{Classe de $A$} : $X\eqv A\iff A\cap X=A\cap A=A\iff A\subset X$. Donc $\dot A=\dot E=\{X:\ A\subset X\}$.
+			
+			\textbf{Classe de $\complement_EA$} : $X\eqv\complement_EA\iff A\cap X=A\cap\complement_EA=\varnothing\iff X\subset\complement_EA$. Donc $\dot{\complement_EA}=\dot\varnothing=\mathcal P(\complement_EA)$.
+			\item[2)] Soit $X\subset E$ et $B=A\cap X$. \emph{$B$ est un représentant de $\dot X$} : $A\cap B=A\cap(A\cap X)=A\cap X$, donc $B\eqv X$. \emph{$B\subset A$} : évident. \emph{Unicité} : soit $Y\in\dot X$ avec $Y\subset A$. Alors $A\cap Y=Y$ (car $Y\subset A$), et $A\cap Y=A\cap X=B$ (car $Y\eqv X$). Donc $Y=B$.
+		\end{enumerate}
+		Ainsi chaque classe contient exactement une partie de $A$, et le quotient $\mathcal P(E)/\eqv$ s'identifie à $\mathcal P(A)$.
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~14} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Sur $\mathbb{R}^2$, on considère la relation $\mathfrak{R}$ définie par
+		\[
+		(x,y)\mathfrak{R}(x',y') \Longleftrightarrow x^2 + y^2 = (x')^2 + (y')^2
+		\]
+		\begin{enumerate}
+			\item Montrer que $\mathfrak{R}$ est une relation d'équivalence.
+			\item Déterminer la classe d'équivalence d'un élément de $\mathbb{R}^2$.
+			\item En déduire l'ensemble quotient de $\mathbb{R}^2$ par $\mathfrak{R}$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item C'est la relation de l'exercice~9 avec $f:\R^2\to\R,\ (x,y)\mapsto x^2+y^2$ ; réflexivité, symétrie et transitivité viennent de celles de l'égalité dans $\R$.
+			\item Soit $(a,b)\in\R^2$ et $r=\sqrt{a^2+b^2}\geq0$. Alors $(x,y)\eqv(a,b)\iff x^2+y^2=r^2$. Donc la classe est le cercle $\mathcal C(O,r)=\{(x,y):x^2+y^2=r^2\}$ de centre l'origine et de rayon $r$ ; si $r=0$ c'est le singleton $\{(0,0)\}$.
+			\item L'application $\varphi:\R^2/\!\eqv\ \to[0,+\infty[,\ \dot{(a,b)}\mapsto\sqrt{a^2+b^2}$ est bien définie (la valeur ne dépend pas du représentant d'après la définition de $\eqv$), \emph{injective} (deux classes de même rayon sont égales d'après 2) et \emph{surjective} ($r=\varphi(\dot{(r,0)})$). Donc $\R^2/\!\eqv\ \simeq[0,+\infty[$ : l'ensemble quotient est l'ensemble des cercles centrés à l'origine (le cercle de rayon $0$ étant le point $O$).
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~15} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Soit $f : \mathbb{R} \longrightarrow \mathbb{R}$ une application. On définit la relation $\mathfrak{R}$ sur $\mathbb{R}$ par
+		\[
+		x \mathfrak{R} y \Leftrightarrow f(x) = f(y)
+		\]
+		\begin{enumerate}
+			\item Montrer que $\mathfrak{R}$ est une relation d'équivalence.
+			\item Décrire la classe $C_x, \quad x \in \mathbb{R}$.
+			\item Discuter suivant la valeur de $x$ le nombre d'éléments contenus dans la classe de $x$ dans le cas où $f(x) = x^3 - 3x + 2$ et $f(x) = \frac{x}{e^x}$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item Voir l'exercice~9 : c'est une relation d'équivalence.
+			\item $C_x=\{y\in\R:\ f(y)=f(x)\}=f^{-1}(\{f(x)\})$ : l'ensemble des solutions de l'équation $f(y)=f(x)$ d'inconnue $y$ ; elle contient toujours $x$.
+			\item \textbf{Cas $f(x)=x^3-3x+2$.} Pour $y\in\R$ : $f(y)=f(x)\iff y^3-3y=x^3-3x\iff (y^3-x^3)-3(y-x)=0\iff(y-x)(y^2+xy+x^2-3)=0$. Donc $C_x=\{x\}\cup\{y:\ y^2+xy+x^2-3=0\}$. Le trinôme en $y$ a pour discriminant $\Delta=x^2-4(x^2-3)=12-3x^2=3(4-x^2)$ et pour racines éventuelles $y_\pm=\dfrac{-x\pm\sqrt{12-3x^2}}2$. De plus $y=x$ est racine du trinôme ssi $3x^2-3=0$ ssi $x=\pm1$.
+			\begin{itemize}
+				\item $|x|>2$ : $\Delta<0$, pas de racine, $C_x=\{x\}$ : \textbf{1 élément}.
+				\item $|x|<2$ et $x\neq\pm1$ : $\Delta>0$, deux racines distinctes $y_\pm$, toutes deux différentes de $x$ ; donc $C_x=\{x,y_-,y_+\}$ : \textbf{3 éléments}. (Ex. $x=0$ : $C_0=\{0,\sqrt3,-\sqrt3\}$.)
+				\item $x=1$ : le trinôme est $y^2+y-2=(y-1)(y+2)$, racines $1,-2$ ; $C_1=\{1,-2\}$ : \textbf{2 éléments}. $x=-1$ : $y^2-y-2=(y+1)(y-2)$ ; $C_{-1}=\{-1,2\}$ : \textbf{2 éléments}.
+				\item $x=\pm2$ : $\Delta=0$, racine double $y=-x/2\neq x$ ; $C_2=\{2,-1\}$, $C_{-2}=\{-2,1\}$ : \textbf{2 éléments}.
+			\end{itemize}
+			\textbf{Cas $f(x)=xe^{-x}$.} $f$ est dérivable, $f'(x)=(1-x)e^{-x}$ : $f$ est strictement croissante sur $]-\infty,1]$, strictement décroissante sur $[1,+\infty[$, de maximum $f(1)=e^{-1}$. De plus $\lim_{-\infty}f=-\infty$, $\lim_{+\infty}f=0$ (croissances comparées), $f(0)=0$, $f>0$ sur $]0,+\infty[$ et $f<0$ sur $]-\infty,0[$. Soit $c=f(x)$ et comptons les solutions de $f(y)=c$ (théorème des valeurs intermédiaires + stricte monotonie sur chaque intervalle).
+			\begin{itemize}
+				\item $x<0$ ($c<0$) : sur $]-\infty,1]$, $f$ est bijective de $]-\infty,1]$ sur $]-\infty,e^{-1}]$, donc une seule solution (c'est $x$) ; sur $[1,+\infty[$, $f>0>c$ : aucune. $C_x=\{x\}$ : \textbf{1 élément}.
+				\item $x=0$ ($c=0$) : sur $]-\infty,1]$ une seule solution, $y=0$ ; sur $[1,+\infty[$, $f>0$ : aucune. \textbf{1 élément}.
+				\item $x=1$ ($c=e^{-1}$) : la valeur maximale n'est atteinte qu'en $1$ (stricte monotonie de chaque côté). \textbf{1 élément}.
+				\item $x\in]0,1[\cup]1,+\infty[$ ($0<c<e^{-1}$) : sur $]-\infty,1]$, $f$ prend toutes les valeurs de $]-\infty,e^{-1}]$ une seule fois, donc il y a exactement une solution, qui est dans $]0,1[$ car $f(0)=0<c<f(1)$ ; sur $[1,+\infty[$, $f$ décroît strictement de $e^{-1}$ vers $0$ (non atteint) et prend donc chaque valeur de $]0,e^{-1}]$ exactement une fois, d'où exactement une solution dans $[1,+\infty[$, et en fait dans $]1,+\infty[$ car $c<e^{-1}$. Donc \textbf{2 éléments} : un dans $]0,1[$, un dans $]1,+\infty[$ ; $x$ est l'un des deux.
+			\end{itemize}
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~16}\nopagebreak
+	\begin{enonce}
+		\begin{enumerate}
+			\item Soit $\mathfrak{R}$ une relation définie sur $\mathbb{Z}$ par
 			\[
-			(x,y)\prec(x',y')\iff\bigl((x<x')\ \text{ou}\ (x=x'\ \text{et}\ y\leq y')\bigr).
-			\]
-			Montrer que $\prec$ est une relation d’ordre total.
-		\end{exercice}
-		
-%		\paragraph{Exercice 23}
-		\begin{exercice}
-			On munit $\mathbb{R}^2$ de
-			\[
-			(x,y)\preccurlyeq(x',y')\iff x\leq x'\ \text{et}\ y\leq y'.
+			x \mathfrak{R} y \Longleftrightarrow (\exists m \in \mathbb{Z} \text{ telque } x - y = 3m).
 			\]
 			\begin{enumerate}
-				\item Montrer que c’est une relation d’ordre. Est-elle totale ?
-				\item Le disque fermé unité a-t-il des majorants ? un plus grand élément ? une borne supérieure ?
+				\item[a)] Etablir que $\mathfrak{R}$ est une relation d'équivalence.
+				\item[b)] Quelles sont les classes d'équivalence ?
+				\item[c)] Déterminer l'ensemble quotient.
 			\end{enumerate}
-		\end{exercice}
-		
-%		\paragraph{Exercice 27}
-		\begin{exercice}
-			Soit $f:E\to F$ une application. Montrer :\\
-			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
-				\item $f$ injective $\iff$ pour toute famille $(A_i)_{i\in I}$ de parties de $E$,
-				$f\bigl(\bigcap A_i\bigr)=\bigcap f(A_i)$ ;\\
-				\item $f$ surjective $\iff$ pour toute partie $B$ de $F$, $f(f^{-1}(B))=B$.
-			\end{enumerate*}
-		\end{exercice}
-		
-%			\paragraph{Exercice 28}
-		\begin{exercice}
-			Montrer que pour tout $n\in\mathbb{N}$, $4^{4n+2}-3^{n+3}$ est divisible par $11$.
-		\end{exercice}
-		
-%		\paragraph{Exercice 29}
-		\begin{exercice}
-			Déterminer tous les couples $(m,n)\in\mathbb{N}^2$ tels que $2^m-3^n=1$.
-		\end{exercice}
-		
-%		\paragraph{Exercice 30}
-		\begin{exercice}
-			Soit $a,b\in\mathbb{Z}$ tels que $7$ divise $a^2+b^2$. Montrer que $7$ divise $a$ et $b$.
-		\end{exercice}
-		
-%		\paragraph{Exercice 31}
-		\begin{exercice}
+			
+			\item Soit $\mathfrak{R}$ une relation définie sur $\mathbb{C}^*$ par : $z \mathfrak{R} z' \Longleftrightarrow \frac{z}{z'} \in \mathbb{R}_+^*$.
 			\begin{enumerate}
-				\item Montrer que $(n+1)$ divise $\dbinom{2n}{n}$.
-				\item Si $p$ est premier, montrer que $p$ divise $\dbinom{p}{k}$ pour $1\leq k\leq p-1$.
-				\item En déduire le petit théorème de Fermat : $n^p\equiv n\pmod{p}$.
+				\item[a)] Montrer que $\mathfrak{R}$ est une relation d'équivalence.
+				\item[b)] Quelles sont les classes d'équivalence ?
+				\item[c)] Déterminer l'ensemble quotient.
 			\end{enumerate}
-		\end{exercice}
-		
-%		\paragraph{Exercice 32}
-		\begin{exercice}
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item \emph{$x\eqv y\iff\exists m\in\Z,\ x-y=3m$ sur $\Z$.}
 			\begin{enumerate}
-				\item Calculer le reste de $2024^{2025}$ modulo $7$.
-				\item Calculer le reste de $2025^{2025^{2025}}$ modulo $17$.
-				\item Résoudre $442x\equiv 314\pmod{495}$.
+				\item \textbf{Équivalence.} Réflexive : $x-x=0=3\cdot0$. Symétrique : si $x-y=3m$ alors $y-x=3(-m)$. Transitive : si $x-y=3m$ et $y-z=3m'$ alors $x-z=3(m+m')$.
+				\item \textbf{Classes.} La classe de $x$ est $\dot x=\{y\in\Z:\ y-x\in3\Z\}=x+3\Z$. Par division euclidienne par $3$, tout entier $x$ s'écrit $x=3q+r$ avec $r\in\{0,1,2\}$, donc $x\eqv r$ : toute classe est celle de $0$, $1$ ou $2$. Ces trois classes sont distinctes : $0-1=-1$, $0-2=-2$, $1-2=-1$ ne sont pas des multiples de $3$. Donc $\dot0=3\Z$, $\dot1=3\Z+1$, $\dot2=3\Z+2$.
+				\item \textbf{Quotient.} $\Z/\!\eqv\ =\{\dot0,\dot1,\dot2\}$, noté $\Z/3\Z$ ; il a $3$ éléments.
 			\end{enumerate}
-		\end{exercice}
+			\item \emph{$z\eqv z'\iff z/z'\in\R_+^*$ sur $\C^*$.}
+			\begin{enumerate}
+				\item \textbf{Équivalence.} Réflexive : $z/z=1>0$. Symétrique : si $z/z'=r>0$ alors $z'/z=1/r>0$. Transitive : si $z/z'=r>0$ et $z'/z''=s>0$ alors $z/z''=rs>0$.
+				\item \textbf{Classes.} $z\eqv z'\iff\exists\lambda>0,\ z=\lambda z'$. La classe de $z$ est $\dot z=\{\lambda z:\ \lambda>0\}$ : la demi-droite ouverte issue de l'origine passant par $z$ (origine exclue). Avec $z=\rho e^{i\theta}$, $\rho>0$ : $\dot z=\{\rho'e^{i\theta}:\ \rho'>0\}$, i.e.\ les complexes de même argument (modulo $2\pi$).
+				\item \textbf{Quotient.} Posons $\psi:\C^*\to\U,\ z\mapsto z/|z|$ (avec $\U$ le cercle unité). Alors $z\eqv z'\iff\psi(z)=\psi(z')$ : en effet $\dfrac z{z'}=\dfrac{|z|}{|z'|}\cdot\dfrac{\psi(z)}{\psi(z')}$, qui est dans $\R_+^*$ ssi $\psi(z)/\psi(z')\in\R_+^*$, et ce quotient est de module $1$, donc dans $\R_+^*$ ssi il vaut $1$. Ainsi $\psi$ induit une bijection $\C^*/\!\eqv\ \to\U$ (surjective car $\psi(u)=u$ si $|u|=1$). Le quotient est donc en bijection avec le cercle unité $\U$, ou avec $[0,2\pi[$ via l'argument.
+			\end{enumerate}
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~17}\nopagebreak
+	\begin{enonce}
+		On considère la relation $\mathcal{R}$ définie sur $\mathbb{R}$ par : pour tous réels $x$ et $y$, $x\mathcal{R}y$ ssi $x+y \le 10$. Cette relation est-elle réflexive ? transitive ? symétrique ? antisymétrique ? totale ? Est-ce une relation d'équivalence ? Est-ce une relation d'ordre ?
+	\end{enonce}
+	\begin{corrige}
+		\begin{itemize}
+			\item \textbf{Réflexive ?} Non : $x\mathcal Rx\iff2x\leq10\iff x\leq5$ ; pour $x=6$, $6+6=12>10$, donc $6\,\mathrel{\not\mathcal{R}}\,6$.
+			\item \textbf{Symétrique ?} Oui : $x+y=y+x$, donc $x\mathcal Ry\Rightarrow y\mathcal Rx$.
+			\item \textbf{Antisymétrique ?} Non : $1\mathcal R2$ ($3\leq10$) et $2\mathcal R1$, mais $1\neq2$.
+			\item \textbf{Transitive ?} Non : $x=10$, $y=0$, $z=10$ : $x\mathcal Ry$ ($10\leq10$), $y\mathcal Rz$ ($10\leq10$), mais $x+z=20>10$ donc $x\,\mathrel{\not\mathcal{R}}\,z$.
+			\item \textbf{Totale ?} (pour tous $x,y$ : $x\mathcal Ry$ ou $y\mathcal Rx$) Non : pour $x=y=6$, ni $x\mathcal Ry$ ni $y\mathcal Rx$ (car $12>10$) ; ou $x=y=100$.
+			\item \textbf{Relation d'équivalence ?} Non (elle n'est ni réflexive ni transitive). \textbf{Relation d'ordre ?} Non (ni réflexive, ni antisymétrique, ni transitive).
+		\end{itemize}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~18}\nopagebreak
+	\begin{enonce}
+		On considère la relation $\mathcal{R}$ définie sur $\mathbb{R}$ par : pour tous réels $x$ et $y$, $x\mathcal{R}y$ ssi $x+y \le 10$. Cette relation est-elle réflexive ? transitive ? symétrique ? antisymétrique ? totale ? Est-ce une relation d'équivalence ? Est-ce une relation d'ordre ?
+	\end{enonce}
+	\begin{corrige}
+		\meme{17}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~19} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		On définit dans l'ensemble $\mathbb{Q} \setminus \{-\frac{1}{2}\}$, la loi $\star$ comme suit :
+		\[
+		\forall a,b \in \mathbb{Q} \setminus \{-\frac{1}{2}\} : a \star b = a + b + 2ab.
+		\]
+		Montrer que $(\mathbb{Q} \setminus \{-\frac{1}{2}\}, \star)$ est un groupe abélien.
+	\end{enonce}
+	\begin{corrige}
+		\textbf{Une identité clef.} Pour tous $a,b$ : $1+2(a\star b)=1+2a+2b+4ab=(1+2a)(1+2b)$. $(\ast)$
 		
-%		\paragraph{Exercice 33}
-		\begin{exercice}
-			Résoudre dans $\mathbb{Z}/97\mathbb{Z}$ l’équation $x^2+2x=3$.
-		\end{exercice}
+		\textbf{1. Loi interne.} Soient $a,b\in G$. Alors $a\star b\in\Q$. Par $(\ast)$, $1+2(a\star b)=(1+2a)(1+2b)\neq0$ car $a\neq-\frac12$ et $b\neq-\frac12$ ; donc $a\star b\neq-\frac12$ et $a\star b\in G$.
 		
-%		\paragraph{Exercice 34}
-		\begin{exercice}
-			Résoudre dans $\mathbb{Z}^2$ l’équation $2520x+3960y=6480$.
-		\end{exercice}
+		\textbf{2. Commutativité.} $a\star b=a+b+2ab=b+a+2ba=b\star a$.
 		
-
-		\begin{exercice}
-			Soient $f:E\to F$ une application, $(A_i)_{i\in I}$ et
-			$(B_i)_{i\in I}$ des familles de parties de $E$ et $F$
-			respectivement. Montrer que :
+		\textbf{3. Associativité.} Pour $a,b,c\in G$ :
+		$(a\star b)\star c=(a+b+2ab)+c+2(a+b+2ab)c=a+b+c+2ab+2ac+2bc+4abc$.
+		$a\star(b\star c)=a+(b+c+2bc)+2a(b+c+2bc)=a+b+c+2bc+2ab+2ac+4abc$.
+		Les deux expressions sont égales. (Autre preuve : par $(\ast)$, $1+2\bigl((a\star b)\star c\bigr)=(1+2a)(1+2b)(1+2c)=1+2\bigl(a\star(b\star c)\bigr)$.)
+		
+		\textbf{4. Élément neutre.} $0\in G$ et $a\star0=a+0+0=a$ ; par commutativité $0\star a=a$.
+		
+		\textbf{5. Symétrique.} Soit $a\in G$. On cherche $b$ avec $a\star b=0$ : $a+b+2ab=0\iff b(1+2a)=-a\iff b=-\dfrac a{1+2a}$ (division licite car $1+2a\neq0$). Cet $b$ est rationnel, et $1+2b=1-\dfrac{2a}{1+2a}=\dfrac1{1+2a}\neq0$, donc $b\neq-\frac12$ et $b\in G$. Ainsi tout élément de $G$ possède un symétrique dans $G$.
+		
+		Conclusion : $(G,\star)$ est un groupe abélien (commutatif).
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~20}\nopagebreak
+	\begin{enonce}
+		Soit $(G, .)$ un groupe. On appelle le centre de $G$ l'ensemble
+		\[
+		C = \{c \in G / x.c = c.x, \forall x \in G\}.
+		\]
+		Montrer que $C$ est un sous-groupe de $G$.
+	\end{enonce}
+	\begin{corrige}
+		\textbf{$C\neq\varnothing$} : $e\in C$ car $xe=x=ex$ pour tout $x$.
+		
+		\textbf{Stabilité par produit.} Soient $c,d\in C$ et $x\in G$ : $(cd)x=c(dx)=c(xd)=(cx)d=(xc)d=x(cd)$. Donc $cd\in C$.
+		
+		\textbf{Stabilité par inverse.} Soit $c\in C$ et $x\in G$. De $xc=cx$ on multiplie à gauche et à droite par $c^{-1}$ : $c^{-1}(xc)c^{-1}=c^{-1}(cx)c^{-1}$, soit $(c^{-1}x)(cc^{-1})=(c^{-1}c)(xc^{-1})$, c'est-à-dire $c^{-1}x=xc^{-1}$. Donc $c^{-1}\in C$.
+		
+		Ainsi $C$ est un sous-groupe de $G$ (et même un sous-groupe commutatif ; $C=G$ ssi $G$ est abélien).
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~21}\nopagebreak
+	\begin{enonce}
+		Écrire en extension les ensembles suivants :
+		\begin{enumerate}
+			\item $\{x\in\mathbb{Z}:x^2=4\}$ ;
+			\item $\{x\in\mathbb{N}:x^2\leq 10\}$ ;
+			\item $\{x\in\mathbb{R}:x^2+1=0\}$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item $x^2=4\iff x=2$ ou $x=-2$ : $\{x\in\Z:x^2=4\}=\{-2,2\}$.
+			\item $x\in\N$, $x^2\leq10$ : $0,1,4,9$ conviennent ($0^2,1^2,2^2,3^2$) et $4^2=16>10$ (la suite des carrés est croissante sur $\N$), donc $\{0,1,2,3\}$. (Si l'on convient que $\N$ commence à $1$ : $\{1,2,3\}$.)
+			\item $x^2+1\geq1>0$ pour tout réel $x$, donc l'équation n'a pas de solution réelle : l'ensemble est $\varnothing$.
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~22}\nopagebreak
+	\begin{enonce}
+		Soit $f:E\to F$ une application. Montrer  :
+		\begin{enumerate}
+			\item $f$ injective $\iff$ pour toute famille $(A_i)_{i\in I}$ de parties de $E$,
+			$f\bigl(\bigcap A_i\bigr)=\bigcap f(A_i)$ ;
+			\item $f$ surjective $\iff$ pour toute partie $B$ de $F$, $f(f^{-1}(B))=B$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		(Dans 1), la famille est non vide : $I\neq\varnothing$, pour que l'intersection ait un sens dans $E$.)
+		\begin{enumerate}
+			\item \textbf{($\Rightarrow$)} Supposons $f$ injective. \emph{Inclusion $\subset$ (valable pour toute $f$)} : pour tout $j\in I$, $\bigcap_iA_i\subset A_j$ donc $f(\bigcap_iA_i)\subset f(A_j)$ ; d'où $f(\bigcap_iA_i)\subset\bigcap_jf(A_j)$. \emph{Inclusion $\supset$} : soit $y\in\bigcap_if(A_i)$. Pour chaque $i$, il existe $x_i\in A_i$ avec $f(x_i)=y$. Fixons $i_0\in I$. Pour tout $i$, $f(x_i)=y=f(x_{i_0})$ donc $x_i=x_{i_0}$ par injectivité. Ainsi $x_{i_0}\in A_i$ pour tout $i$, donc $x_{i_0}\in\bigcap A_i$ et $y=f(x_{i_0})\in f(\bigcap A_i)$.
 			
-			\begin{enumerate*}%[label=\arabic*), itemjoin=\hspace{1.5em}]
-				\item
-				{\small $
-				f^{-1}\left(\bigcup_{i\in I}B_i\right)
-				=\bigcup_{i\in I}f^{-1}(B_i).
-			    $}
-				
-				\item
-				{\small $
-				f^{-1}\left(\bigcap_{i\in I}B_i\right)
-				=\bigcap_{i\in I}f^{-1}(B_i).
-				$}\\
-				
-				\item
-				{\small $
-				f\left(\bigcup_{i\in I}A_i\right)
-				=\bigcup_{i\in I}f(A_i).
-				$}
-				
-				\item
-				{\small $
-				f\left(\bigcap_{i\in I}A_i\right)
-				\subseteq\bigcap_{i\in I}f(A_i).
-				$}
-			\end{enumerate*}
-		\end{exercice}
-		
-
-		\begin{exercice}
-			Soit $f$ une application de $E$ dans $F$.
-			Pour $A\subseteq E$ et $B\subseteq F$, montrer que :
+			\textbf{($\Leftarrow$)} Supposons l'égalité pour toute famille. Soient $a,b\in E$ avec $f(a)=f(b)$. Prenons $I=\{1,2\}$, $A_1=\{a\}$, $A_2=\{b\}$. Alors $f(A_1)\cap f(A_2)=\{f(a)\}\cap\{f(b)\}=\{f(a)\}\neq\varnothing$. Par hypothèse $f(A_1\cap A_2)=f(A_1)\cap f(A_2)\neq\varnothing$, donc $A_1\cap A_2\neq\varnothing$, i.e.\ $\{a\}\cap\{b\}\neq\varnothing$, donc $a=b$. Donc $f$ est injective.
+			\item \textbf{($\Rightarrow$)} Supposons $f$ surjective et soit $B\subset F$. \emph{$\subset$ (toute $f$)} : si $y\in f(f^{-1}(B))$, $y=f(x)$ avec $f(x)\in B$, donc $y\in B$. \emph{$\supset$} : si $y\in B$, par surjectivité il existe $x\in E$ tel que $f(x)=y$ ; alors $f(x)\in B$, donc $x\in f^{-1}(B)$ et $y=f(x)\in f(f^{-1}(B))$.
 			
-			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
-				\item
-				$
-				f\bigl(f^{-1}(B)\bigr)\subseteq B.
-				$
-				
-				\item
-				$
-				f^{-1}\bigl(f(A)\bigr)\supseteq A.
-				$
-				
-				\item Montrer que :
-				
-				$f\text{ est injective}
-				\iff
-				\forall A\in\mathcal{P}(E),\quad
-				A=f^{-1}\bigl(f(A)\bigr).
-				$\\
-				
-				\item Montrer que :
-				{\small $
-				f\text{ est surjective}
-				\iff
-				\forall B\in\mathcal{P}(F),\,
-				B=f\bigl(f^{-1}(B)\bigr).
-				$}\\
-			\end{enumerate*}
-		\end{exercice}
+			\textbf{($\Leftarrow$)} Prenons $B=F$ : $F=f(f^{-1}(F))=f(E)$ car $f^{-1}(F)=E$. Donc $f$ est surjective.
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~23} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Soient $f:E\to F$ une application, $(A_i)_{i\in I}$ et
+		$(B_i)_{i\in I}$ des familles de parties de $E$ et $F$
+		respectivement. Montrer que :
 		
-
-		\begin{exercice}
-			Soit $(A_{ij})_{(i,j)\in I\times J}$ une famille de parties
-			d'un ensemble $E$.
+		\begin{enumerate}
+			\item
+			$
+			f^{-1}\left(\bigcup_{i\in I}B_i\right)
+			=\bigcup_{i\in I}f^{-1}(B_i).
+			$
 			
-			\begin{enumerate*}[label=\arabic*), itemjoin=\hspace{1.5em}]
-				\item Montrer que
-				$
-				\bigcup_{j\in J}\bigcap_{i\in I} A_{ij}
-				\subset
-				\bigcap_{i\in I}\bigcup_{j\in J} A_{ij}.
-				$\\
-				Montrer que l'inclusion peut être stricte.\\
-				
-				\item Montrer que
-				
+			\item
+			$
+			f^{-1}\left(\bigcap_{i\in I}B_i\right)
+			=\bigcap_{i\in I}f^{-1}(B_i).
+			$
+			\item
+			$
+			f\left(\bigcup_{i\in I}A_i\right)
+			=\bigcup_{i\in I}f(A_i).
+			$
+			
+			\item
+			$
+			f\left(\bigcap_{i\in I}A_i\right)
+			\subseteq\bigcap_{i\in I}f(A_i).
+			$
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item $x\in f^{-1}(\bigcup_iB_i)\iff f(x)\in\bigcup_iB_i\iff\exists i,\ f(x)\in B_i\iff\exists i,\ x\in f^{-1}(B_i)\iff x\in\bigcup_if^{-1}(B_i)$.
+			\item $x\in f^{-1}(\bigcap_iB_i)\iff f(x)\in\bigcap_iB_i\iff\forall i,\ f(x)\in B_i\iff\forall i,\ x\in f^{-1}(B_i)\iff x\in\bigcap_if^{-1}(B_i)$.
+			\item $y\in f(\bigcup_iA_i)\iff\exists x\in\bigcup_iA_i,\ y=f(x)\iff\exists i,\ \exists x\in A_i,\ y=f(x)\iff\exists i,\ y\in f(A_i)\iff y\in\bigcup_if(A_i)$.
+			\item Soit $y\in f(\bigcap_iA_i)$ : $y=f(x)$ avec $x\in A_i$ pour \emph{tout} $i$. Donc pour tout $i$, $y=f(x)\in f(A_i)$, d'où $y\in\bigcap_if(A_i)$.
+		\end{enumerate}
+		\rem{L'inclusion en 4) peut être stricte : pour $f(x)=x^2$ sur $\R$, $A_1=\{-1\}$, $A_2=\{1\}$ : $f(A_1\cap A_2)=f(\varnothing)=\varnothing$ alors que $f(A_1)\cap f(A_2)=\{1\}$. Elle est une égalité si $f$ est injective (exercice~22).}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~24} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Soit $f$ une application de $E$ dans $F$.
+		Pour $A\subseteq E$ et $B\subseteq F$, montrer que :
+		
+		\begin{enumerate}
+			\item
+			$
+			f\bigl(f^{-1}(B)\bigr)\subseteq B.
+			$
+			
+			\item
+			$
+			f^{-1}\bigl(f(A)\bigr)\supseteq A.
+			$
+			
+			\item Montrer que :
+			
+			$f\text{ est injective}
+			\iff
+			\forall A\in\mathcal{P}(E),\quad
+			A=f^{-1}\bigl(f(A)\bigr).
+			$
+			\item Montrer que :
+			$
+			f\text{ est surjective}
+			\iff
+			\forall B\in\mathcal{P}(F),\,
+			B=f\bigl(f^{-1}(B)\bigr).
+			$
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item $f(f^{-1}(B))\subset B$ : si $y\in f(f^{-1}(B))$, alors $y=f(x)$ avec $x\in f^{-1}(B)$, i.e.\ $f(x)\in B$ ; donc $y\in B$.
+			\item $A\subset f^{-1}(f(A))$ : si $x\in A$, alors $f(x)\in f(A)$, donc $x\in f^{-1}(f(A))$.
+			\item \textbf{$f$ injective $\iff\forall A,\ A=f^{-1}(f(A))$.} ($\Rightarrow$) Avec 2) il reste $f^{-1}(f(A))\subset A$ : si $x\in f^{-1}(f(A))$ alors $f(x)\in f(A)$, donc il existe $a\in A$ avec $f(a)=f(x)$ ; par injectivité $x=a\in A$. ($\Leftarrow$) Soient $x,x'$ avec $f(x)=f(x')$. Posons $A=\{x\}$ : par hypothèse $f^{-1}(f(\{x\}))=\{x\}$. Or $f(x')=f(x)\in f(\{x\})$, donc $x'\in f^{-1}(f(\{x\}))=\{x\}$, i.e.\ $x'=x$. Donc $f$ est injective.
+			\item \textbf{$f$ surjective $\iff\forall B,\ B=f(f^{-1}(B))$.} ($\Rightarrow$) Avec 1) il reste $B\subset f(f^{-1}(B))$ : si $y\in B$, par surjectivité $y=f(x)$ pour un $x\in E$ ; alors $f(x)\in B$, donc $x\in f^{-1}(B)$ et $y\in f(f^{-1}(B))$. ($\Leftarrow$) Avec $B=F$ : $F=f(f^{-1}(F))=f(E)$, donc $f$ est surjective.
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~25}\nopagebreak
+	\begin{enonce}
+		Soit $(A_{ij})_{(i,j)\in I\times J}$ une famille de parties
+		d'un ensemble $E$.
+		
+		\begin{enumerate}
+			\item Montrer que
+			$
+			\bigcup_{j\in J}\bigcap_{i\in I} A_{ij}
+			\subset
+			\bigcap_{i\in I}\bigcup_{j\in J} A_{ij}.
+			$\\
+			Montrer que l'inclusion peut être stricte.
+			\item Montrer que
+			
 			$	\bigcap_{i\in I}\bigcup_{j\in J} A_{ij}
-				=
-				\bigcup_{f\in\mathcal{F}(I,J)}
-				\bigcap_{i\in I} A_{i,f(i)},$\\
-				
-				où $\mathcal{F}(I,J)$ désigne l'ensemble des applications
-				de $I$ dans $J$.
-			\end{enumerate*}
-		\end{exercice}
-		\begin{exercice}
-			Soit $f:E\to F$, $A\subset E$ et $B\subset F$. Montrer que :
-			\[
-			f\!\left(A\cap f^{-1}(B)\right)=f(A)\cap B.
-			\]
-		\end{exercice}
-		
-		\begin{exercice}[Polynômes de Tchebychev]
-			Soit $n$ un entier naturel et $\theta$ un réel.
-			\begin{enumerate}
-				\item Montrer que $\cos(n+1)\theta+\cos(n-1)\theta=2\cos\theta\cos(n\theta)$.
-				
-				\item En déduire que, pour tout entier naturel $n$, il existe un polynôme $T_n$ tel que :
-				\[
-				\forall\,\theta\in\mathbb{R},\qquad T_n(\cos\theta)=\cos(n\theta).
-				\]
-				On admet que le polynôme $T_n$ est l'unique polynôme vérifiant cette égalité. $T_n$ est appelé $n$-ième polynôme de Tchebychev (de première espèce). Exprimer $T_{n+1}(x)$ en fonction de $T_n(x)$ et $T_{n-1}(x)$.
-				
-				\item En prenant la partie réelle de $e^{in\theta}$, montrer que :
-				\[
-				T_n(X)=\sum_{0\le 2k\le n}\binom{n}{2k}\left(X^2-1\right)^k X^{n-2k}.
-				\]
-			\end{enumerate}
-		\end{exercice}
-		
-		\begin{exercice}
-			Montrer que les racines communes des équations
-			\[
-			z^m - 1 = 0 \qquad \text{et} \qquad z^n - 1 = 0
-			\]
-			sont les racines de $z^d - 1 = 0$ avec $d = \text{pgcd}(m,n)$.
+			=
+			\bigcup_{f\in\mathcal{F}(I,J)}
+			\bigcap_{i\in I} A_{i,f(i)},$\\
 			
-			\textit{Application : deux polygones réguliers, respectivement à 1445 et 2024 côtés, sont inscrits dans un même cercle. Combien les deux polygones ont-ils de sommets communs ?}
-		\end{exercice}
+			où $\mathcal{F}(I,J)$ désigne l'ensemble des applications
+			de $I$ dans $J$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item \textbf{Inclusion.} Soit $x\in\bigcup_{j\in J}\bigcap_{i\in I}A_{ij}$. Il existe $j_0\in J$ tel que, pour tout $i\in I$, $x\in A_{ij_0}$. Donc pour tout $i\in I$, il existe $j\in J$ (à savoir $j_0$, le même pour tous les $i$) tel que $x\in A_{ij}$ ; ainsi $x\in\bigcap_{i}\bigcup_{j}A_{ij}$.
+			
+			\textbf{Inclusion stricte possible.} Prenons $I=J=\{1,2\}$, $E=\{1,2\}$ et $A_{11}=\{1\}$, $A_{12}=\{2\}$, $A_{21}=\{2\}$, $A_{22}=\{1\}$. Alors $\bigcap_iA_{i1}=A_{11}\cap A_{21}=\varnothing$ et $\bigcap_iA_{i2}=A_{12}\cap A_{22}=\varnothing$, donc $\bigcup_j\bigcap_iA_{ij}=\varnothing$. Mais $\bigcup_jA_{1j}=\{1,2\}$ et $\bigcup_jA_{2j}=\{1,2\}$, donc $\bigcap_i\bigcup_jA_{ij}=\{1,2\}\neq\varnothing$. L'inclusion est stricte. (La différence : dans le second ensemble, $j$ peut dépendre de $i$.)
+			\item \textbf{$\supset$} : soit $x\in\bigcup_{f\in\mathcal F(I,J)}\bigcap_iA_{i,f(i)}$ : il existe $f:I\to J$ avec $x\in A_{i,f(i)}$ pour tout $i$. Donc pour tout $i$, $x\in A_{i,f(i)}\subset\bigcup_jA_{ij}$ : $x\in\bigcap_i\bigcup_jA_{ij}$.
+			
+			\textbf{$\subset$} : soit $x\in\bigcap_i\bigcup_jA_{ij}$. Pour tout $i\in I$, l'ensemble $J_i=\{j\in J:\ x\in A_{ij}\}$ est non vide. On choisit pour chaque $i$ un $f(i)\in J_i$ (sans difficulté si $I$ est fini ; en général c'est l'axiome du choix). Cela définit $f\in\mathcal F(I,J)$ avec $x\in A_{i,f(i)}$ pour tout $i$, donc $x\in\bigcap_iA_{i,f(i)}$ et $x$ est dans la réunion.
+		\end{enumerate}
+		Ce résultat est la ``distributivité généralisée'' de $\cap$ sur $\cup$.
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~26}\nopagebreak
+	\begin{enonce}
+		Soit $f:E\to F$, $A\subset E$ et $B\subset F$. Montrer que :
+		\[
+		f\!\left(A\cap f^{-1}(B)\right)=f(A)\cap B.
+		\]
+	\end{enonce}
+	\begin{corrige}
+		\textbf{$\subset$} : soit $y\in f(A\cap f^{-1}(B))$ ; il existe $x\in A\cap f^{-1}(B)$ avec $y=f(x)$. Comme $x\in A$, $y\in f(A)$ ; comme $x\in f^{-1}(B)$, $y=f(x)\in B$. Donc $y\in f(A)\cap B$.
 		
-		\begin{exercice}
-			Quel est le reste de la division euclidienne de $1789^n$ par 7 en fonction de $n \in \mathbb{N}$ ?
-		\end{exercice}
+		\textbf{$\supset$} : soit $y\in f(A)\cap B$ ; il existe $x\in A$ tel que $y=f(x)$, et $f(x)=y\in B$ donc $x\in f^{-1}(B)$. Ainsi $x\in A\cap f^{-1}(B)$ et $y=f(x)\in f(A\cap f^{-1}(B))$.
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~27}\nopagebreak
+	\begin{enonce}
+		Montrer que pour tout $n\in\mathbb{N}$, $4^{4n+2}-3^{n+3}$ est divisible par $11$.
+	\end{enonce}
+	\begin{corrige}
+		\textbf{Méthode 1 (récurrence).} Posons $u_n=4^{4n+2}-3^{n+3}$. \emph{Initialisation} : $u_0=4^2-3^3=16-27=-11=11\times(-1)$, divisible par $11$. \emph{Hérédité} : supposons $11\mid u_n$. Alors
+		$$u_{n+1}=4^{4n+6}-3^{n+4}=256\cdot4^{4n+2}-3\cdot3^{n+3}=256\bigl(u_n+3^{n+3}\bigr)-3\cdot3^{n+3}=256\,u_n+253\cdot3^{n+3}.$$
+		Or $253=11\times23$, donc $253\cdot3^{n+3}$ est divisible par $11$, et $256u_n$ aussi par hypothèse. Donc $11\mid u_{n+1}$.
 		
-		\begin{exercice}
-			\begin{enumerate}
-				\item Soient $a, b, c$ trois entiers naturels non nuls. Montrer que
-				\[
-				\begin{cases}
-					a^b \equiv 1 \pmod n, \\
-					a^c \equiv 1 \pmod n,
-				\end{cases}
-				\quad \implies \quad
-				a^{b \wedge c} \equiv 1 \pmod n.
-				\]
-				
-				\item Soit $p$ un nombre premier tel que $p \equiv 3 \pmod 4$.
-				\begin{enumerate}
-					\item[(a)] Montrer que l'équation $x^2 \equiv -1 \pmod p$ n'a pas de solutions.
-					\item[(b)] Montrer que : $x^2 + y^2 \equiv 0 \pmod p \quad \implies \quad x \equiv y \equiv 0 \pmod p$.
-				\end{enumerate}
-			\end{enumerate}
-		\end{exercice}
+		\textbf{Méthode 2 (congruences).} $256=23\times11+3$, donc $256\equiv3\ [11]$. Alors $4^{4n+2}=16\cdot256^n\equiv16\cdot3^n\equiv5\cdot3^n\ [11]$ (car $16=11+5$). Et $3^{n+3}=27\cdot3^n\equiv5\cdot3^n\ [11]$ (car $27=22+5$). Donc $4^{4n+2}-3^{n+3}\equiv0\ [11]$.
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~28} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Déterminer tous les couples $(m,n)\in\mathbb{N}^2$ tels que $2^m-3^n=1$.
+	\end{enonce}
+	\begin{corrige}
+		\textbf{Réponse : $(m,n)\in\{(1,0),(2,1)\}$.}
 		
-		\begin{exercice}[(*) (relations)]
-			On considère la relation $\mathcal{R}$ définie sur $\mathbb{R}$ par : pour tous réels $x$ et $y$, $x\mathcal{R}y$ ssi $x+y \le 10$. Cette relation est-elle réflexive ? transitive ? symétrique ? antisymétrique ? totale ? Est-ce une relation d'équivalence ? Est-ce une relation d'ordre ?
-		\end{exercice}
+		\textbf{Petits cas.} $n=0$ : $2^m=2$, $m=1$ (solution $(1,0)$). $n=1$ : $2^m=4$, $m=2$ (solution $(2,1)$).
 		
-		\begin{exercice}[(cours) (équivalence)]
-			Soient $E$ et $F$ des ensembles. Soit $f : E \to F$ une application. Soit $\mathcal{R}$ la relation sur $E$ définie par : pour tous $x$ et $y$ dans $E$, $x\mathcal{R}y$ ssi $f(x)=f(y)$. Montrer que $\mathcal{R}$ est une relation d'équivalence.
-		\end{exercice}
+		\textbf{Cas $n\geq2$.} On suppose $2^m=3^n+1$ avec $n\geq2$ et on cherche une contradiction.
 		
-		\begin{exercice}[(Tous TD) (équivalence)]
-			Montrer que les relations suivantes sont des relations d'équivalence (on pourra utiliser l'exercice précédent). Préciser les classes d'équivalence.
-			\begin{enumerate}
-				\item[a)] sur $\mathbb{R}$, $x\mathcal{R}y \iff \cos x = \cos y$ ;
-				\item[b)] sur $\mathbb{R}$, $x\mathcal{R}y \iff (\cos x = \cos y \text{ et } \sin x = \sin y)$ ;
-				\item[c)] sur $\mathbb{R}$, $x\mathcal{R}y \iff E(x) = E(y)$, où $E(x)$ dénote la partie entière de $x$ ;
-				\item[d)] sur $\mathbf{Z} \times \mathbf{Z}^*$, $(p,q)\mathcal{R}(p',q') \iff pq' = p'q$.
-			\end{enumerate}
-		\end{exercice}
+		\emph{Étape 1 : $6\mid m$.} Comme $9\mid3^n$, $2^m=3^n+1\equiv1\ [9]$. Les puissances de $2$ modulo $9$ sont : $2^0=1$, $2^1=2$, $2^2=4$, $2^3=8$, $2^4=16\equiv7$, $2^5=14\equiv5$, $2^6=10\equiv1$ : la suite est périodique de période $6$, et $2^m\equiv1\ [9]$ ssi $6\mid m$. Donc $m=6k$ avec $k\geq1$ (car $2^m=3^n+1\geq10$ donne $m\geq1$).
 		
-		\begin{exercice}[(*) (relations)]
-			On considère la relation $\mathcal{R}$ définie sur $\mathbb{R}$ par : pour tous réels $x$ et $y$, $x\mathcal{R}y$ ssi $x+y \le 10$. Cette relation est-elle réflexive ? transitive ? symétrique ? antisymétrique ? totale ? Est-ce une relation d'équivalence ? Est-ce une relation d'ordre ?
-		\end{exercice}
+		\emph{Étape 2 : factorisation.} $3^n=2^m-1=2^{6k}-1=\bigl(2^{3k}-1\bigr)\bigl(2^{3k}+1\bigr)$. Les deux facteurs sont des entiers positifs dont le produit est $3^n$ ; chacun divise donc $3^n$, et comme $3$ est premier, chacun est une puissance de $3$ : $2^{3k}-1=3^a$ et $2^{3k}+1=3^b$ avec $a<b$.
 		
-		\begin{exercice}[(cours) (équivalence)]
-			Soient $E$ et $F$ des ensembles. Soit $f : E \to F$ une application. Soit $\mathcal{R}$ la relation sur $E$ définie par : pour tous $x$ et $y$ dans $E$, $x\mathcal{R}y$ ssi $f(x)=f(y)$. Montrer que $\mathcal{R}$ est une relation d'équivalence.
-		\end{exercice}
+		\emph{Étape 3 : contradiction.} En soustrayant : $3^b-3^a=2$, i.e.\ $3^a(3^{b-a}-1)=2$. Comme $3^{b-a}-1\geq2$, on a $3^a\leq1$, d'où $a=0$ et $3^{b-a}-1=2$, i.e.\ $b=1$. Alors $2^{3k}-1=3^0=1$, soit $2^{3k}=2$, impossible car $3k\geq3$ ($2^{3k}\geq8$).
 		
-		\begin{exercice}[(Tous TD) (équivalence)]
-			Montrer que les relations suivantes sont des relations d'équivalence (on pourra utiliser l'exercice précédent). Préciser les classes d'équivalence.
-			\begin{enumerate}
-				\item[a)] sur $\mathbb{R}$, $x\mathcal{R}y \iff \cos x = \cos y$ ;
-				\item[b)] sur $\mathbb{R}$, $x\mathcal{R}y \iff (\cos x = \cos y \text{ et } \sin x = \sin y)$ ;
-				\item[c)] sur $\mathbb{R}$, $x\mathcal{R}y \iff E(x) = E(y)$, où $E(x)$ dénote la partie entière de $x$ ;
-				\item[d)] sur $\mathbf{Z} \times \mathbf{Z}^*$, $(p,q)\mathcal{R}(p',q') \iff pq' = p'q$.
-			\end{enumerate}
-		\end{exercice}
+		Il n'y a donc pas de solution avec $n\geq2$, et les seules solutions sont $(1,0)$ et $(2,1)$. (Vérification numérique : $2-1=1$, $4-3=1$.)
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~29}\nopagebreak
+	\begin{enonce}
+		Soit $a,b\in\mathbb{Z}$ tels que $7$ divise $a^2+b^2$. Montrer que $7$ divise $a$ et $b$.
+	\end{enonce}
+	\begin{corrige}
+		Calculons les carrés modulo $7$ :
+		\begin{center}
+			\begin{tabular}{c|ccccccc}
+				$a\bmod7$&0&1&2&3&4&5&6\\\hline
+				$a^2\bmod7$&0&1&4&2&2&4&1
+			\end{tabular}
+		\end{center}
+		Donc $a^2$ et $b^2$ sont congrus à des éléments de $\{0,1,2,4\}$ modulo $7$. On veut $a^2+b^2\equiv0\ [7]$. Examinons les sommes possibles $r+s$ avec $r,s\in\{0,1,2,4\}$ : $0+0=0$ ; $0+1=1$ ; $0+2=2$ ; $0+4=4$ ; $1+1=2$ ; $1+2=3$ ; $1+4=5$ ; $2+2=4$ ; $2+4=6$ ; $4+4=8\equiv1$. La seule somme congrue à $0$ modulo $7$ est $0+0$. Donc $a^2\equiv0$ et $b^2\equiv0\ [7]$, i.e.\ $7\mid a^2$ et $7\mid b^2$. Comme $7$ est premier, le lemme d'Euclide donne $7\mid a$ et $7\mid b$.
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~30}\nopagebreak
+	\begin{enonce}
+		\begin{enumerate}
+			\item Montrer que $(n+1)$ divise $\dbinom{2n}{n}$.
+			\item Si $p$ est premier, montrer que $p$ divise $\dbinom{p}{k}$ pour $1\leq k\leq p-1$.
+			\item En déduire le petit théorème de Fermat : $n^p\equiv n\pmod{p}$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item \textbf{$(n+1)\mid\binom{2n}n$.} Pour $n=0$ : $\binom00=1$, divisible par $1$. Pour $n\geq1$ :
+			$$\binom{2n}n-\binom{2n}{n+1}=\frac{(2n)!}{n!\,n!}-\frac{(2n)!}{(n+1)!\,(n-1)!}=\frac{(2n)!}{n!\,(n+1)!}\bigl[(n+1)-n\bigr]=\frac{(2n)!}{n!\,(n+1)!}=\frac1{n+1}\binom{2n}n.$$
+			Donc $\dfrac1{n+1}\dbinom{2n}n=\dbinom{2n}n-\dbinom{2n}{n+1}$ est un entier : $(n+1)$ divise $\dbinom{2n}n$. (Ce sont les nombres de Catalan : $1,2,5,14,42,\dots$.)
+			\item \textbf{$p\mid\binom pk$ pour $1\leq k\leq p-1$.} On a $k\binom pk=k\dfrac{p!}{k!(p-k)!}=p\dfrac{(p-1)!}{(k-1)!(p-k)!}=p\binom{p-1}{k-1}$. Donc $p\mid k\binom pk$. Or $p$ est premier et $0<k<p$ donc $p\nmid k$ ; par le lemme de Gauss (ou d'Euclide), $p\mid\binom pk$.
+			\item \textbf{Petit théorème de Fermat : $\forall n\in\Z,\ n^p\equiv n\ [p]$.} \emph{Pour $n\in\N$, par récurrence sur $n$.} $n=0$ : $0^p=0$. Hérédité : par la formule du binôme, $(n+1)^p=\sum_{k=0}^p\binom pkn^k=n^p+1+\sum_{k=1}^{p-1}\binom pkn^k$. Par 2), la somme est divisible par $p$ ; donc $(n+1)^p\equiv n^p+1\ [p]$, et par hypothèse de récurrence $n^p\equiv n$, d'où $(n+1)^p\equiv n+1\ [p]$. \emph{Pour $n<0$} : soit $r\in\{0,\dots,p-1\}$ avec $n\equiv r\ [p]$ ; alors $n^p\equiv r^p\equiv r\equiv n\ [p]$ par le cas précédent.
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~31} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		\begin{enumerate}
+			\item Calculer le reste de $2024^{2025}$ modulo $7$.
+			\item Calculer le reste de $2025^{2025^{2025}}$ modulo $17$.
+			\item Résoudre $442x\equiv 314\pmod{495}$.
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item \textbf{$2024^{2025}$ modulo $7$.} $2024=7\times289+1$ ($7\times289=2023$), donc $2024\equiv1\ [7]$ et $2024^{2025}\equiv1^{2025}=1\ [7]$. \textbf{Le reste est $1$.}
+			\item \textbf{$2025^{2025^{2025}}$ modulo $17$.} Posons $N=2025^{2025}$. $2025=17\times119+2$ ($17\times119=2023$), donc $2025\equiv2\ [17]$ et $2025^N\equiv2^N\ [17]$. Ordre de $2$ modulo $17$ : $2^4=16\equiv-1$, donc $2^8\equiv1\ [17]$ ; ainsi $2^N\equiv2^{N\bmod8}\ [17]$. Calcul de $N\bmod8$ : $2025=8\times253+1$ ($8\times253=2024$), donc $2025\equiv1\ [8]$ et $N=2025^{2025}\equiv1\ [8]$. Donc $N=8q+1$ et $2^N=(2^8)^q\cdot2\equiv2\ [17]$. \textbf{Le reste est $2$.}
+			\item \textbf{$442x\equiv314\ [495]$.} \emph{Algorithme d'Euclide} : $495=1\cdot442+53$ ; $442=8\cdot53+18$ ; $53=2\cdot18+17$ ; $18=1\cdot17+1$. Donc $\pgcd(442,495)=1$ : $442$ est inversible modulo $495$ et la congruence a une unique solution modulo $495$. \emph{Relation de Bézout (en remontant)} : $1=18-17=18-(53-2\cdot18)=3\cdot18-53=3(442-8\cdot53)-53=3\cdot442-25\cdot53=3\cdot442-25(495-442)=28\cdot442-25\cdot495$. Donc $28\cdot442\equiv1\ [495]$ (vérif. : $28\times442=12376=25\times495+1$). En multipliant la congruence par $28$ : $x\equiv28\times314=8792\ [495]$, et $8792=17\times495+377$ ($17\times495=8415$). Donc $x\equiv377\ [495]$. \emph{Vérification} : $442\times377=166634=336\times495+314$ ($336\times495=166320$). \textbf{Solutions : $x\in377+495\Z$.}
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~32}\nopagebreak
+	\begin{enonce}
+		Résoudre dans $\mathbb{Z}/97\mathbb{Z}$ l’équation $x^2+2x=3$.
+	\end{enonce}
+	\begin{corrige}
+		Comme $97$ est premier, $\Z/97\Z$ est un corps : un produit y est nul ssi l'un des facteurs est nul. On écrit $x^2+2x-3=(x-1)(x+3)$ (car $(x-1)(x+3)=x^2+3x-x-3=x^2+2x-3$). Donc l'équation équivaut à $(x-1)(x+3)=0$, soit $x=1$ ou $x=-3=94$. \emph{Vérification} : $x=1$ : $1+2=3$ ; $x=94\equiv-3$ : $9-6=3$. \textbf{Solutions : $\{1,94\}$.}
 		
-		\begin{exercice}
-			Soient $p$ et $q$ deux propositions données. En utilisant la table de vérité, montrer que
+		(Variante par forme canonique : $x^2+2x=3\iff(x+1)^2=4\iff(x+1-2)(x+1+2)=0$.)
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~33}\nopagebreak
+	\begin{enonce}
+		Résoudre dans $\mathbb{Z}^2$ l’équation $2520x+3960y=6480$.
+	\end{enonce}
+	\begin{corrige}
+		\emph{PGCD.} $3960=1\cdot2520+1440$ ; $2520=1\cdot1440+1080$ ; $1440=1\cdot1080+360$ ; $1080=3\cdot360$. Donc $\pgcd(2520,3960)=360$. Comme $6480=18\times360$, le pgcd divise le second membre : l'équation a des solutions. En divisant par $360$ ($2520=7\times360$, $3960=11\times360$) elle est équivalente à $7x+11y=18$.
+		
+		\emph{Solution particulière.} $(x_0,y_0)=(1,1)$ : $7+11=18$.
+		
+		\emph{Solution générale.} Si $7x+11y=18$, alors en soustrayant $7\cdot1+11\cdot1=18$ : $7(x-1)=-11(y-1)$. Donc $11\mid7(x-1)$ ; comme $\pgcd(7,11)=1$, le lemme de Gauss donne $11\mid x-1$ : $x=1+11k$, $k\in\Z$. Alors $77k=-11(y-1)$, i.e.\ $y=1-7k$. Réciproquement $7(1+11k)+11(1-7k)=18$. \textbf{Solutions : $\{(1+11k,\ 1-7k):\ k\in\Z\}$.}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~34}\nopagebreak
+	\begin{enonce}
+		Quel est le reste de la division euclidienne de $1789^n$ par 7 en fonction de $n \in \mathbb{N}$ ?
+	\end{enonce}
+	\begin{corrige}
+		$1789=7\times255+4$ ($7\times255=1785$), donc $1789\equiv4\ [7]$ et $1789^n\equiv4^n\ [7]$. Puissances de $4$ : $4^0=1$, $4^1=4$, $4^2=16\equiv2$, $4^3=64\equiv1\ [7]$ ($64=63+1$). La suite est périodique de période $3$. Écrivons $n=3q+r$ avec $r\in\{0,1,2\}$ : $4^n=(4^3)^q4^r\equiv4^r$. \textbf{Conclusion} : le reste vaut $1$ si $n\equiv0\ [3]$, $4$ si $n\equiv1\ [3]$, $2$ si $n\equiv2\ [3]$.
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~35}\nopagebreak
+	\begin{enonce}
+		\begin{enumerate}
+			\item Soient $a, b, c$ trois entiers naturels non nuls. Montrer que
 			\[
-			\overline{(p \Rightarrow q)} \Leftrightarrow (p \wedge \overline{q}) \quad \text{et} \quad (p \Rightarrow q) \Leftrightarrow (\overline{q} \Rightarrow \overline{p}).
+			\begin{cases}
+				a^b \equiv 1 \pmod n, \\
+				a^c \equiv 1 \pmod n,
+			\end{cases}
+			\quad \implies \quad
+			a^{b \wedge c} \equiv 1 \pmod n.
 			\]
-		\end{exercice}
-		
-		\begin{exercice}
-			On définit dans l'ensemble $\mathbb{Q} \setminus \{-\frac{1}{2}\}$, la loi $\star$ comme suit :
-			\[
-			\forall a,b \in \mathbb{Q} \setminus \{-\frac{1}{2}\} : a \star b = a + b + 2ab.
-			\]
-			Montrer que $(\mathbb{Q} \setminus \{-\frac{1}{2}\}, \star)$ est un groupe abélien.
-		\end{exercice}
-		
-		\begin{exercice}
-			Soit $(G, .)$ un groupe. On appelle le centre de $G$ l'ensemble
-			\[
-			C = \{c \in G / x.c = c.x, \forall x \in G\}.
-			\]
-			Montrer que $C$ est un sous-groupe de $G$.
-		\end{exercice}
-		
-		\begin{exercice}
-			Dans $\mathbb{N}^*$, on définit la relation $\mathfrak{R}$ par : $x \mathfrak{R} y \Leftrightarrow \exists k \in \mathbb{N}^*$ tel que $y=kx$.
+			
+			\item Soit $p$ un nombre premier tel que $p \equiv 3 \pmod 4$.
 			\begin{enumerate}
-				\item Montrer que $\mathfrak{R}$ est une relation d'ordre partiel sur $\mathbb{N}^*$.
-				\item On considère que l'ensemble $\mathbb{N}^*$ est ordonné par la relation $\mathfrak{R}$.
-				\begin{itemize}
-					\item L'ensemble $\mathbb{N}^*$ possède-t-il un plus grand élément ? un plus petit élément ?.
-				\end{itemize}
-				\item Soit $A = \{4, 5, 6, 7, 8, 9, 10\}$.
-				\begin{itemize}
-					\item L'ensemble $A$ possède-t-il un plus grand élément ? un plus petit élément ?.
-				\end{itemize}
+				\item[(a)] Montrer que l'équation $x^2 \equiv -1 \pmod p$ n'a pas de solutions.
+				\item[(b)] Montrer que : $x^2 + y^2 \equiv 0 \pmod p \quad \implies \quad x \equiv y \equiv 0 \pmod p$.
 			\end{enumerate}
-		\end{exercice}
-		
-		\begin{exercice}
-			Soit $E$ un ensemble et soit $A$ une partie de $E$.
-			On définit dans $P(E)$ la relation d'équivalence $\mathfrak{R}$ par :
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item \emph{Soit $d=b\wedge c$. Montrer que $a^b\equiv1$ et $a^c\equiv1\ [n]$ impliquent $a^d\equiv1\ [n]$.}
+			
+			Si $n=1$ c'est trivial ; supposons $n\geq2$. Comme $a\cdot a^{b-1}=a^b\equiv1\ [n]$ ($b\geq1$), $a$ est inversible modulo $n$ : on note $\bar a^{-1}$ son inverse dans $\Z/n\Z$ et l'on travaille dans le groupe $(\Z/n\Z)^\times$, où les exposants entiers négatifs ont un sens. Par le théorème de Bézout il existe $u,v\in\Z$ avec $d=bu+cv$. Alors, dans $\Z/n\Z$ :
+			$$\bar a^{\,d}=\bar a^{\,bu+cv}=(\bar a^{\,b})^u(\bar a^{\,c})^v=\bar1^u\cdot\bar1^v=\bar1,$$
+			c'est-à-dire $a^d\equiv1\ [n]$.
+			
+			(\emph{Variante sans exposants négatifs} : si $b>c$, de $a^b\equiv1$ et $a^c\equiv1$ on tire $a^{b-c}\equiv a^{b-c}a^c=a^b\equiv1$ ; on répète la soustraction (algorithme d'Euclide) jusqu'à atteindre $\pgcd(b,c)$.)
+			\item Soit $p$ premier avec $p\equiv3\ [4]$ ; donc $p$ est impair et $p-1\equiv2\ [4]$.
+			\begin{enumerate}
+				\item \emph{$x^2\equiv-1\ [p]$ n'a pas de solution.} Supposons qu'il existe $x$ avec $x^2\equiv-1\ [p]$. Alors $x^4\equiv1\ [p]$. Comme $x^2\equiv-1\not\equiv0$, $p\nmid x$, et le petit théorème de Fermat donne $x^{p-1}\equiv1\ [p]$. Par 1) avec $a=x$, $b=4$, $c=p-1$ : $x^{\pgcd(4,p-1)}\equiv1\ [p]$. Or $p-1\equiv2\ [4]$ signifie $p-1=4k+2=2(2k+1)$ avec $2k+1$ impair, donc $\pgcd(4,p-1)=2$. Ainsi $x^2\equiv1\ [p]$. Mais $x^2\equiv-1$, d'où $1\equiv-1\ [p]$, i.e.\ $p\mid2$, soit $p=2$ : contradiction avec $p$ impair.
+				\item \emph{$x^2+y^2\equiv0\ [p]\Rightarrow x\equiv y\equiv0\ [p]$.} Supposons $y\not\equiv0\ [p]$. Comme $p$ est premier, $y$ est inversible modulo $p$ : soit $y'$ tel que $yy'\equiv1\ [p]$. Posons $z=xy'$. Alors $z^2+1\equiv(xy')^2+(yy')^2=y'^2(x^2+y^2)\equiv0\ [p]$, i.e.\ $z^2\equiv-1\ [p]$, ce qui contredit a). Donc $y\equiv0\ [p]$. Alors $x^2\equiv-y^2\equiv0\ [p]$, donc $p\mid x^2$ et $p\mid x$ ($p$ premier) : $x\equiv0\ [p]$.
+			\end{enumerate}
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~36} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Soit $n$ un entier naturel et $\theta$ un réel.
+		\begin{enumerate}
+			\item Montrer que $\cos(n+1)\theta+\cos(n-1)\theta=2\cos\theta\cos(n\theta)$.
+			
+			\item En déduire que, pour tout entier naturel $n$, il existe un polynôme $T_n$ tel que :
 			\[
-			\text{pour tout couple } (X,Y) \text{ de partie de } E, \quad X \mathfrak{R} Y \Longleftrightarrow A \cap X = A \cap Y
+			\forall\,\theta\in\mathbb{R},\qquad T_n(\cos\theta)=\cos(n\theta).
 			\]
-			\begin{enumerate}
-				\item[1)] Expliciter les classes $\dot{\varnothing}$, $\dot{E}$, $\dot{A}$ et $\dot{\complement}_E A$.
-				\item[2)] Montrer que si $B = A \cap X$, alors $B$ est l'unique représentant de $\dot{X}$ contenu dans $A$.
-			\end{enumerate}
-		\end{exercice}
-		
-		\begin{exercice}
-			Sur $\mathbb{R}^2$, on considère la relation $\mathfrak{R}$ définie par
+			On admet que le polynôme $T_n$ est l'unique polynôme vérifiant cette égalité. $T_n$ est appelé $n$-ième polynôme de Tchebychev (de première espèce). Exprimer $T_{n+1}(x)$ en fonction de $T_n(x)$ et $T_{n-1}(x)$.
+			
+			\item En prenant la partie réelle de $e^{in\theta}$, montrer que :
 			\[
-			(x,y)\mathfrak{R}(x',y') \Longleftrightarrow x^2 + y^2 = (x')^2 + (y')^2
+			T_n(X)=\sum_{0\le 2k\le n}\binom{n}{2k}\left(X^2-1\right)^k X^{n-2k}.
 			\]
-			\begin{enumerate}
-				\item Montrer que $\mathfrak{R}$ est une relation d'équivalence.
-				\item Déterminer la classe d'équivalence d'un élément de $\mathbb{R}^2$.
-				\item En déduire l'ensemble quotient de $\mathbb{R}^2$ par $\mathfrak{R}$.
-			\end{enumerate}
-		\end{exercice}
+		\end{enumerate}
+	\end{enonce}
+	\begin{corrige}
+		\begin{enumerate}
+			\item Formule de Simpson $\cos a+\cos b=2\cos\frac{a+b}2\cos\frac{a-b}2$ avec $a=(n+1)\theta$, $b=(n-1)\theta$ : $\frac{a+b}2=n\theta$ et $\frac{a-b}2=\theta$, d'où $\cos(n+1)\theta+\cos(n-1)\theta=2\cos\theta\cos n\theta$. (Ou : $\cos(n\theta\pm\theta)=\cos n\theta\cos\theta\mp\sin n\theta\sin\theta$ ; on additionne : les termes en $\sin$ se compensent.)
+			\item \textbf{Existence.} Montrons par récurrence double que, pour tout $n\in\N$, il existe un polynôme $T_n$ tel que $T_n(\cos\theta)=\cos n\theta$ pour tout $\theta\in\R$. \emph{Initialisation} : $T_0=1$ ($\cos0=1$) et $T_1=X$ ($\cos\theta=\cos\theta$). \emph{Hérédité} : soit $n\geq1$ et supposons $T_{n-1}$ et $T_n$ construits. Par 1), pour tout $\theta$ :
+			$$\cos(n+1)\theta=2\cos\theta\,\cos n\theta-\cos(n-1)\theta=2\cos\theta\,T_n(\cos\theta)-T_{n-1}(\cos\theta)=\bigl(2XT_n-T_{n-1}\bigr)(\cos\theta).$$
+			Donc $T_{n+1}=2XT_n-T_{n-1}$ convient. \textbf{Relation de récurrence} : pour $n\geq1$,
+			$$T_{n+1}(x)=2x\,T_n(x)-T_{n-1}(x).$$
+			(Exemples : $T_2=2X^2-1$, $T_3=4X^3-3X$.)
+			\item \emph{Formule de Moivre.} $\cos n\theta=\operatorname{Re}\bigl(e^{in\theta}\bigr)=\operatorname{Re}\bigl((\cos\theta+i\sin\theta)^n\bigr)$. Par la formule du binôme,
+			$$(\cos\theta+i\sin\theta)^n=\sum_{k=0}^n\binom nk\cos^{n-k}\theta\,(i\sin\theta)^k.$$
+			Pour $k=2j$ pair, $(i\sin\theta)^{2j}=(-1)^j\sin^{2j}\theta$ est réel ; pour $k$ impair, $(i\sin\theta)^k=i\times(\text{réel})$ est imaginaire pur. Donc la partie réelle est la somme sur $k=2j$ :
+			$$\cos n\theta=\sum_{0\leq2j\leq n}\binom n{2j}\cos^{n-2j}\theta\,(-\sin^2\theta)^j=\sum_{0\leq2j\leq n}\binom n{2j}(\cos^2\theta-1)^j\cos^{n-2j}\theta,$$
+			car $-\sin^2\theta=\cos^2\theta-1$. Soit $Q=\sum_{0\leq2j\leq n}\binom n{2j}(X^2-1)^jX^{n-2j}$ : on a $Q(\cos\theta)=\cos n\theta=T_n(\cos\theta)$ pour tout $\theta$, donc $Q-T_n$ s'annule en tout point de $[-1,1]$ (infini) ; donc $Q=T_n$ (c'est l'unicité admise). D'où
+			$$T_n(X)=\sum_{0\leq2k\leq n}\binom n{2k}(X^2-1)^kX^{n-2k}.$$
+		\end{enumerate}
+	\end{corrige}
+	
+	\medskip\noindent\textbf{\Large\color{bleu}Exercice~37} \textnormal{(\,$\bigstar$\,)}\nopagebreak
+	\begin{enonce}
+		Montrer que les racines communes des équations
+		\[
+		z^m - 1 = 0 \qquad \text{et} \qquad z^n - 1 = 0
+		\]
+		sont les racines de $z^d - 1 = 0$ avec $d = \text{pgcd}(m,n)$.
 		
-		\begin{exercice}
-			Soit $f : \mathbb{R} \longrightarrow \mathbb{R}$ une application. On définit la relation $\mathfrak{R}$ sur $\mathbb{R}$ par
-			\[
-			x \mathfrak{R} y \Leftrightarrow f(x) = f(y)
-			\]
-			\begin{enumerate}
-				\item Montrer que $\mathfrak{R}$ est une relation d'équivalence.
-				\item Décrire la classe $C_x, \quad x \in \mathbb{R}$.
-				\item Discuter suivant la valeur de $x$ le nombre d'éléments contenus dans la classe de $x$ dans le cas où $f(x) = x^3 - 3x + 2$ et $f(x) = \frac{x}{e^x}$.
-			\end{enumerate}
-		\end{exercice}
+		\textit{Application : deux polygones réguliers, respectivement à 1445 et 2024 côtés, sont inscrits dans un même cercle. Combien les deux polygones ont-ils de sommets communs ?}
+	\end{enonce}
+	\begin{corrige}
+		Notons $\U_k=\{z\in\C:\ z^k=1\}$ l'ensemble des racines $k$-ièmes de l'unité. On montre $\U_m\cap\U_n=\U_d$.
 		
-		\begin{exercice}
-			\begin{enumerate}
-				\item Soit $\mathfrak{R}$ une relation définie sur $\mathbb{Z}$ par
-				\[
-				x \mathfrak{R} y \Longleftrightarrow (\exists m \in \mathbb{Z} \text{ telque } x - y = 3m).
-				\]
-				\begin{enumerate}
-					\item[a)] Etablir que $\mathfrak{R}$ est une relation d'équivalence.
-					\item[b)] Quelles sont les classes d'équivalence ?
-					\item[c)] Déterminer l'ensemble quotient.
-				\end{enumerate}
-				
-				\item Soit $\mathfrak{R}$ une relation définie sur $\mathbb{C}^*$ par : $z \mathfrak{R} z' \Longleftrightarrow \frac{z}{z'} \in \mathbb{R}_+^*$.
-				\begin{enumerate}
-					\item[a)] Montrer que $\mathfrak{R}$ est une relation d'équivalence.
-					\item[b)] Quelles sont les classes d'équivalence ?
-					\item[c)] Déterminer l'ensemble quotient.
-				\end{enumerate}
-			\end{enumerate}
-		\end{exercice}
-	\end{multicols}
-		\hrule
-		\vspace{4pt}
-		{\footnotesize\centering Fiche d'exercices -- Calcul Numérique, Licence 3 Physique, ULBO, 2026/2027. \par}
+		\textbf{$\subset$} : soit $z\in\U_m\cap\U_n$. On a $z\neq0$. Par Bézout, il existe $u,v\in\Z$ avec $d=um+vn$. Alors $z^d=(z^m)^u(z^n)^v=1^u1^v=1$ (les exposants négatifs sont licites car $z\neq0$). Donc $z\in\U_d$.
 		
-	\end{document}
+		\textbf{$\supset$} : soit $z\in\U_d$. Comme $d\mid m$ et $d\mid n$, écrivons $m=dm'$, $n=dn'$ : $z^m=(z^d)^{m'}=1$ et $z^n=(z^d)^{n'}=1$. Donc $z\in\U_m\cap\U_n$.
+		
+		Ainsi les racines communes sont exactement les racines de $z^d-1=0$, et il y en a $d$ (les $e^{2ik\pi/d}$, $0\leq k\leq d-1$).
+		
+		\textbf{Application.} Deux polygones réguliers à $m=1445$ et $n=2024$ côtés, inscrits dans le même cercle, que l'on suppose avoir un sommet commun, placé en $1$ (cercle unité) : leurs sommets sont $\U_{1445}$ et $\U_{2024}$. On a $1445=5\times17^2$ et $2024=2^3\times11\times23$ : ces entiers n'ont aucun facteur premier commun, donc $d=\pgcd(1445,2024)=1$. L'ensemble des sommets communs est $\U_1=\{1\}$ : \textbf{les deux polygones n'ont qu'un seul sommet commun}.
+	\end{corrige}
+	
+\end{document}

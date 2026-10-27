@@ -195,7 +195,7 @@ function BlockNode({ node }: { node: Extract<Node, { type: "block" }> }) {
     : "";
   return (
     <section className={cn("my-6 rounded-md px-5 py-4 break-inside-avoid-page", BLOCK_STYLES[node.kind])}>
-      {(heading || node.optTitle) && (
+      {(heading || node.optTitle || node.titleNodes) && (
         <div className="mb-2 flex flex-wrap items-baseline gap-2">
           {heading && (
             <span
@@ -206,6 +206,16 @@ function BlockNode({ node }: { node: Extract<Node, { type: "block" }> }) {
               )}
             >
               {heading}
+            </span>
+          )}
+          {node.titleNodes && (
+            <span
+              className={cn(
+                "font-serif font-bold",
+                node.kind === "exercise" ? "text-lg text-accent" : node.kind === "method" ? "text-emerald-800" : "text-primary",
+              )}
+            >
+              <InlineList nodes={node.titleNodes} />
             </span>
           )}
           {node.optTitle && (

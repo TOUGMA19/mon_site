@@ -577,3 +577,4 @@ const LatexDocument = ({ doc, showAll = false }: { doc: LatexDoc; showAll?: bool
 };
 
 export default LatexDocument;
+

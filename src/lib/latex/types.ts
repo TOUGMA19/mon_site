@@ -56,6 +56,8 @@ export type Node =
       label: string;
       number?: string;
       optTitle?: Node[];
+      /** Titre principal riche (formules comprises) quand il est fourni par l'utilisateur. */
+      titleNodes?: Node[];
       children: Node[];
     }
   | { type: "correction"; label: string; children: Node[] }

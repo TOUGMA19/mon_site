@@ -1,0 +1,69 @@
+%% titre: Méthodes — Nombres complexes
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 6
+%% description: Forme trigonométrique, racines n-ièmes, linéarisation.
+
+\section{Forme trigonométrique et exponentielle}
+
+\begin{methode}[Mettre $z=a+ib$ sous forme exponentielle]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Calculer le module $r=|z|=\sqrt{a^2+b^2}$.
+  \item Factoriser : $z=r\left(\dfrac ar+i\dfrac br\right)$.
+  \item Chercher $\theta$ tel que $\cos\theta=\dfrac ar$ et $\sin\theta=\dfrac br$ (\emph{les deux} conditions).
+  \item Conclure : $z=re^{i\theta}$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Soit $z=1+i\sqrt3$. On a $r=2$, $\cos\theta=\frac12$ et $\sin\theta=\frac{\sqrt3}2$, donc $\theta=\frac\pi3$ et $z=2e^{i\pi/3}$. On en déduit
+\[
+  z^6=2^6e^{2i\pi}=64 .
+\]
+\end{exemple}
+
+\begin{attention}
+Ne pas se contenter de $\tan\theta=\frac ba$ : il donne $\theta$ à $\pi$ près. Vérifier le signe de $\cos\theta$ et de $\sin\theta$.
+\end{attention}
+
+\section{Racines $n$-ièmes}
+
+\begin{methode}[Résoudre $z^n=w$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Écrire $w=\rho e^{i\varphi}$.
+  \item Les solutions sont $z_k=\rho^{1/n}\,e^{i(\varphi+2k\pi)/n}$ pour $k=0,1,\dots,n-1$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Résoudre $z^3=8i$. On a $8i=8e^{i\pi/2}$, donc $z_k=2e^{i(\pi/6+2k\pi/3)}$ :
+\[
+  z_0=2e^{i\pi/6}=\sqrt3+i,\quad z_1=2e^{5i\pi/6}=-\sqrt3+i,\quad z_2=2e^{3i\pi/2}=-2i .
+\]
+\end{exemple}
+
+\section{Linéarisation}
+
+\begin{methode}[Linéariser $\cos^p\theta\,\sin^q\theta$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Remplacer $\cos\theta=\dfrac{e^{i\theta}+e^{-i\theta}}2$ et $\sin\theta=\dfrac{e^{i\theta}-e^{-i\theta}}{2i}$.
+  \item Développer avec la formule du binôme.
+  \item Regrouper les termes $e^{ik\theta}$ et $e^{-ik\theta}$ pour reconnaître $2\cos k\theta$ ou $2i\sin k\theta$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+\[
+  \cos^3\theta=\frac{(e^{i\theta}+e^{-i\theta})^3}{8}
+  =\frac{e^{3i\theta}+3e^{i\theta}+3e^{-i\theta}+e^{-3i\theta}}{8}
+  =\frac{\cos3\theta+3\cos\theta}{4}.
+\]
+\end{exemple}
+
+\begin{exercice}[Application]
+Linéariser $\sin^2\theta$.
+\begin{correction}
+$\sin^2\theta=\left(\dfrac{e^{i\theta}-e^{-i\theta}}{2i}\right)^2=\dfrac{e^{2i\theta}-2+e^{-2i\theta}}{-4}=\dfrac{2-2\cos2\theta}{4}=\dfrac{1-\cos2\theta}{2}$.
+\end{correction}
+\end{exercice}

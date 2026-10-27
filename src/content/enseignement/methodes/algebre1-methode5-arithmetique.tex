@@ -1,0 +1,87 @@
+%% titre: Méthodes — Arithmétique dans Z
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 5
+%% description: Euclide, Bézout, équations diophantiennes, inverse modulo n, puissances modulo n.
+
+\section{PGCD et relation de Bézout}
+
+\begin{methode}[Algorithme d'Euclide]
+Pour $a>b>0$ :
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Diviser : $a=bq_1+r_1$ avec $0\le r_1<b$.
+  \item Recommencer avec $(b,r_1)$, puis $(r_1,r_2)$, etc., jusqu'à un reste nul.
+  \item Le \textbf{dernier reste non nul} est $\operatorname{PGCD}(a,b)$.
+\end{enumerate}
+\end{methode}
+
+\begin{methode}[Trouver une relation de Bézout]
+Remonter l'algorithme d'Euclide : exprimer chaque reste en fonction des deux précédents, en partant du PGCD, jusqu'à obtenir $au+bv=\operatorname{PGCD}(a,b)$.
+\end{methode}
+
+\begin{exemple}
+Pour $252$ et $198$ :
+\[
+  252=198\times1+54,\quad 198=54\times3+36,\quad 54=36\times1+18,\quad 36=18\times2+0.
+\]
+Donc $\operatorname{PGCD}(252,198)=18$. En remontant :
+\begin{align*}
+18&=54-36=54-(198-3\times54)=4\times54-198\\
+&=4(252-198)-198=4\times252-5\times198 .
+\end{align*}
+Vérification : $4\times252-5\times198=1008-990=18$.
+\end{exemple}
+
+\section{Équations $ax+by=c$}
+
+\begin{methode}[Résolution dans $\Z^2$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Calculer $d=\operatorname{PGCD}(a,b)$. Si $d\nmid c$ : aucune solution.
+  \item Sinon, diviser par $d$ pour obtenir $a'x+b'y=c'$ avec $a'\wedge b'=1$.
+  \item Trouver une solution particulière $(x_0,y_0)$ (Bézout).
+  \item Solutions générales : $x=x_0+b'k$, $y=y_0-a'k$, $k\in\Z$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Résoudre $252x+198y=36$. Ici $d=18$ divise $36$ ; en divisant : $14x+11y=2$. Avec $4\times252-5\times198=18$, on obtient $(x_0,y_0)=(8,-10)$ (vérifier : $14\times8-11\times10=2$). Les solutions sont
+\[
+  (x,y)=(8+11k,\,-10-14k),\qquad k\in\Z .
+\]
+\end{exemple}
+
+\section{Calculs modulo $n$}
+
+\begin{methode}[Inverse modulo $n$]
+Si $a\wedge n=1$, une relation de Bézout $au+nv=1$ donne $a\cdot u\equiv1\pmod n$ : l'inverse de $a$ est $u$ (à réduire modulo $n$).
+\end{methode}
+
+\begin{exemple}
+Inverse de $7$ modulo $26$. On a $26=3\times7+5$, $7=1\times5+2$, $5=2\times2+1$, d'où
+\[
+  1=5-2\times2=5-2(7-5)=3\times5-2\times7=3(26-3\times7)-2\times7=3\times26-11\times7 .
+\]
+Donc $7\times(-11)\equiv1\pmod{26}$ : l'inverse de $7$ est $-11\equiv15$.
+\end{exemple}
+
+\begin{methode}[Puissances modulo $n$]
+Calculer les premières puissances de $a$ modulo $n$ jusqu'à retrouver $1$ (ou un cycle), puis réduire l'exposant modulo la période.
+\end{methode}
+
+\begin{exemple}
+$3^6=729\equiv1\pmod7$. Comme $100=6\times16+4$, $3^{100}\equiv3^4=81\equiv4\pmod7$.
+\end{exemple}
+
+\begin{attention}
+Une congruence $ax\equiv b\pmod n$ n'a de solution que si $\operatorname{PGCD}(a,n)$ divise $b$, et dans ce cas on simplifie d'abord par ce PGCD (modulo $n/d$).
+\end{attention}
+
+\begin{exercice}[Application]
+Résoudre $15x\equiv6\pmod{21}$.
+\begin{correction}
+$\operatorname{PGCD}(15,21)=3$ divise $6$. On simplifie : $5x\equiv2\pmod7$. Comme $5\times3=15\equiv1\pmod 7$, l'inverse de $5$ est $3$, donc $x\equiv3\times2=6\pmod7$.
+
+Modulo $21$, les solutions sont $x\equiv6$, $13$ ou $20\pmod{21}$. Vérification : $15\times6=90=4\times21+6$.
+\end{correction}
+\end{exercice}

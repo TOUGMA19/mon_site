@@ -1,0 +1,71 @@
+%% titre: Méthodes — Polynômes et fractions rationnelles
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 7
+%% description: Division euclidienne, factorisation sur C et R, décomposition en éléments simples.
+
+\section{Division euclidienne}
+
+\begin{methode}[Poser la division de $A$ par $B$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Ordonner $A$ et $B$ par degrés décroissants (écrire les coefficients nuls).
+  \item Diviser le terme de plus haut degré du reste courant par celui de $B$ : c'est le terme suivant du quotient.
+  \item Soustraire (terme du quotient)$\times B$ du reste courant.
+  \item S'arrêter quand le degré du reste est strictement inférieur à $\deg B$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Divisons $A=X^4+X^3-2X+1$ par $B=X^2+1$.
+\begin{itemize}
+  \item $X^2\times B=X^4+X^2$ ; reste : $X^3-X^2-2X+1$.
+  \item $X\times B=X^3+X$ ; reste : $-X^2-3X+1$.
+  \item $-1\times B=-X^2-1$ ; reste : $-3X+2$.
+\end{itemize}
+Donc $A=(X^2+X-1)\,B+(-3X+2)$, avec $\deg(-3X+2)=1<2$.
+\end{exemple}
+
+\section{Factoriser}
+
+\begin{methode}[Factorisation dans $\C[X]$ puis $\R[X]$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Chercher une racine évidente $a$ ($0,\pm1,\pm2,\dots$) ; diviser par $X-a$.
+  \item Recommencer sur le quotient jusqu'à trouver tous les facteurs de degré $1$ dans $\C[X]$.
+  \item Dans $\R[X]$, regrouper les racines complexes conjuguées $z,\bar z$ : $(X-z)(X-\bar z)$ est un trinôme réel de discriminant $<0$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+$X^3-1=(X-1)(X^2+X+1)$. Dans $\R[X]$ c'est la factorisation complète, car $X^2+X+1$ a pour discriminant $-3<0$. Dans $\C[X]$ : $X^2+X+1=(X-j)(X-\bar j)$ avec $j=e^{2i\pi/3}$.
+\end{exemple}
+
+\section{Éléments simples}
+
+\begin{methode}[Décomposer une fraction rationnelle $\dfrac AB$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Si $\deg A\ge\deg B$ : faire la division euclidienne, $\dfrac AB=E+\dfrac RB$ (partie entière $E$).
+  \item Factoriser $B$.
+  \item Écrire la forme de la décomposition : un terme $\dfrac{\alpha}{X-a}$ par racine simple (et $\dfrac{\alpha_1}{X-a}+\dfrac{\alpha_2}{(X-a)^2}$ pour une racine double, etc.).
+  \item Déterminer les coefficients : pour une racine simple $a$, multiplier par $X-a$ puis évaluer en $a$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Décomposons $\dfrac{3X+5}{(X-1)(X+2)}$ (degré $1<2$, pas de partie entière) :
+\[
+  \frac{3X+5}{(X-1)(X+2)}=\frac{a}{X-1}+\frac{b}{X+2},\quad
+  a=\frac{3+5}{1+2}=\frac83,\quad b=\frac{-6+5}{-2-1}=\frac13 .
+\]
+Vérification : $\frac83(X+2)+\frac13(X-1)=3X+5$.
+\end{exemple}
+
+\begin{exercice}[Application]
+Décomposer en éléments simples la fraction $\dfrac{X^3}{X^2-1}$.
+\begin{correction}
+Division : $X^3=X(X^2-1)+X$, donc $\dfrac{X^3}{X^2-1}=X+\dfrac{X}{(X-1)(X+1)}$. On pose $\dfrac{X}{(X-1)(X+1)}=\dfrac{a}{X-1}+\dfrac{b}{X+1}$ avec $a=\dfrac{1}{2}$ (évaluer $\frac{X}{X+1}$ en $1$) et $b=\dfrac{-1}{-2}=\dfrac12$. Ainsi
+\[
+  \frac{X^3}{X^2-1}=X+\frac{1/2}{X-1}+\frac{1/2}{X+1}.
+\]
+\end{correction}
+\end{exercice}

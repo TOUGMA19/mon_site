@@ -1,0 +1,68 @@
+%% titre: Méthodes — Groupes, sous-groupes et morphismes
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 4
+%% description: Montrer qu'un ensemble est un groupe, qu'une partie est un sous-groupe, qu'une application est un morphisme.
+
+\section{Montrer qu'on a un groupe}
+
+\begin{methode}[Vérifier qu'un couple $(G,*)$ est un groupe]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item \textbf{Loi interne} : pour $x,y\in G$, vérifier $x*y\in G$.
+  \item \textbf{Associativité} : $(x*y)*z=x*(y*z)$.
+  \item \textbf{Élément neutre} : trouver $e\in G$ tel que $x*e=e*x=x$ (en résolvant l'équation d'inconnue $e$).
+  \item \textbf{Symétrique} : pour $x\in G$, résoudre $x*x'=e$ et vérifier $x'\in G$.
+  \item Éventuellement \textbf{commutativité} : $x*y=y*x$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Sur $G=\R\setminus\{1\}$, on pose $x*y=x+y-xy$. On remarque que $1-x*y=(1-x)(1-y)$.
+
+\emph{Loi interne} : si $x\ne1$ et $y\ne1$, alors $(1-x)(1-y)\ne0$, donc $x*y\ne1$.
+
+\emph{Associativité} : $1-(x*y)*z=(1-x*y)(1-z)=(1-x)(1-y)(1-z)$, expression symétrique en $x,y,z$, donc $(x*y)*z=x*(y*z)$.
+
+\emph{Neutre} : $x*0=x+0-0=x$ ; le neutre est $0\in G$.
+
+\emph{Symétrique} : $x*x'=0\iff(1-x)(1-x')=1\iff x'=\dfrac{x}{x-1}$, et $x'\neq1$. Le groupe est commutatif car la formule est symétrique en $x$ et $y$.
+\end{exemple}
+
+\section{Montrer qu'une partie est un sous-groupe}
+
+\begin{methode}[Caractérisation pratique]
+Pour $H\subset G$ :
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Vérifier $H\subset G$.
+  \item Vérifier $e\in H$.
+  \item Pour $x,y\in H$, vérifier $x*y^{-1}\in H$ (en notation additive : $x-y\in H$).
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+$\mathbb U=\{z\in\C\mid |z|=1\}$ est un sous-groupe de $(\C^*,\times)$ : $1\in\mathbb U$ et, si $z,w\in\mathbb U$, alors $|zw^{-1}|=\dfrac{|z|}{|w|}=1$.
+
+De même $n\Z$ est un sous-groupe de $(\Z,+)$ : $0\in n\Z$ et $na-nb=n(a-b)\in n\Z$.
+\end{exemple}
+
+\section{Montrer qu'une application est un morphisme}
+
+\begin{methode}[Morphisme de groupes]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Pour $x,y\in G$, vérifier $f(x*y)=f(x)\perp f(y)$.
+  \item Calculer le noyau $\Ker f=\{x\in G\mid f(x)=e'\}$ : $f$ est injective si et seulement si $\Ker f=\{e\}$.
+  \item Calculer l'image $\Im f$ : $f$ est surjective si $\Im f=G'$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+$f:(\R,+)\to(\C^*,\times)$, $f(t)=e^{it}$. On a $f(s+t)=e^{is}e^{it}=f(s)f(t)$ : c'est un morphisme. Son noyau est $\{t\mid e^{it}=1\}=2\pi\Z\ne\{0\}$ : $f$ n'est pas injective. Son image est $\mathbb U$.
+\end{exemple}
+
+\begin{exercice}[Application]
+Montrer que $H=\{a+b\sqrt2\mid a,b\in\Z\}$ est un sous-groupe de $(\R,+)$.
+\begin{correction}
+$H\subset\R$ et $0=0+0\sqrt2\in H$. Pour $x=a+b\sqrt2$ et $y=c+d\sqrt2$ dans $H$, on a $x-y=(a-c)+(b-d)\sqrt2$ avec $a-c,b-d\in\Z$, donc $x-y\in H$. Par la caractérisation pratique, $H$ est un sous-groupe de $(\R,+)$.
+\end{correction}
+\end{exercice}

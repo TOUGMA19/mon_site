@@ -1,0 +1,51 @@
+%% titre: Méthodes — Applications
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 3
+%% description: Prouver ou réfuter l'injectivité, la surjectivité et la bijectivité ; calculer une réciproque.
+
+\section{Injectivité et surjectivité}
+
+\begin{methode}[Montrer qu'une application est injective]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Soient $x,x'\in E$ tels que $f(x)=f(x')$.
+  \item Déduire $x=x'$.
+\end{enumerate}
+Pour \emph{réfuter} l'injectivité : exhiber $x\ne x'$ avec $f(x)=f(x')$.
+\end{methode}
+
+\begin{methode}[Montrer qu'une application est surjective]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Soit $y\in F$ quelconque.
+  \item Résoudre $f(x)=y$ d'inconnue $x$ et vérifier que la solution est bien dans $E$.
+\end{enumerate}
+Pour \emph{réfuter} la surjectivité : exhiber un $y\in F$ sans antécédent.
+\end{methode}
+
+\begin{methode}[Bijection et application réciproque]
+Résoudre $f(x)=y$ d'inconnue $x\in E$, pour $y\in F$ donné. S'il y a \emph{exactement une} solution $x=g(y)$ pour tout $y$, alors $f$ est bijective et $f^{-1}=g$.
+\end{methode}
+
+\begin{exemple}
+Soit $f:\R\setminus\{1\}\to\R\setminus\{2\}$ définie par $f(x)=\dfrac{2x+1}{x-1}$.
+
+Soit $y\neq2$. Alors
+\[
+  f(x)=y \iff 2x+1=y(x-1) \iff x(2-y)=-y-1 \iff x=\frac{y+1}{y-2}.
+\]
+Cette solution est unique, et elle est différente de $1$ (sinon $y+1=y-2$, absurde). Donc $f$ est bijective et $f^{-1}(y)=\dfrac{y+1}{y-2}$.
+\end{exemple}
+
+\begin{attention}
+L'ensemble de départ et l'ensemble d'arrivée comptent : $x\mapsto x^2$ n'est ni injective ni surjective de $\R$ dans $\R$, mais elle est bijective de $[0,+\infty[$ dans $[0,+\infty[$.
+\end{attention}
+
+\begin{exercice}[Application]
+Soit $f:\R\to\R$, $f(x)=x^2-2x$. Étudier l'injectivité et la surjectivité de $f$, puis trouver un intervalle de départ et d'arrivée sur lesquels $f$ est bijective, avec sa réciproque.
+\begin{correction}
+$f(0)=f(2)=0$ : $f$ n'est pas injective. Comme $f(x)=(x-1)^2-1\ge-1$, le réel $-2$ n'a pas d'antécédent : $f$ n'est pas surjective.
+
+Sur $[1,+\infty[$, résolvons $f(x)=y$ : $(x-1)^2=y+1$, soit $x=1+\sqrt{y+1}$ (car $x-1\ge0$), possible si et seulement si $y\ge-1$. Donc $f:[1,+\infty[\to[-1,+\infty[$ est bijective, et $f^{-1}(y)=1+\sqrt{y+1}$.
+\end{correction}
+\end{exercice}

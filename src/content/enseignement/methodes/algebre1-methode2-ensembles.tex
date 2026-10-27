@@ -1,0 +1,62 @@
+%% titre: Méthodes — Ensembles et relations
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 2
+%% description: Prouver une égalité d'ensembles, montrer qu'une relation est d'équivalence, trouver les classes.
+
+\section{Prouver une égalité d'ensembles}
+
+\begin{methode}[Double inclusion]
+Pour montrer $A=B$ :
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Prouver $A\subset B$ : soit $x\in A$ ; montrer $x\in B$.
+  \item Prouver $B\subset A$ : soit $x\in B$ ; montrer $x\in A$.
+\end{enumerate}
+Si chaque étape se fait par équivalences, on peut raisonner en une seule fois.
+\end{methode}
+
+\begin{exemple}
+Montrer que $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$.
+
+Pour tout $x$ :
+\begin{align*}
+x\in A\cap(B\cup C)
+&\iff x\in A\ \text{et}\ (x\in B\ \text{ou}\ x\in C)\\
+&\iff (x\in A\ \text{et}\ x\in B)\ \text{ou}\ (x\in A\ \text{et}\ x\in C)\\
+&\iff x\in(A\cap B)\cup(A\cap C).
+\end{align*}
+\end{exemple}
+
+\section{Montrer qu'une relation est d'équivalence}
+
+\begin{methode}[Relation d'équivalence]
+Pour une relation $\mathcal R$ sur un ensemble $E$, vérifier :
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item \textbf{Réflexivité} : $\forall x\in E,\ x\mathcal Rx$.
+  \item \textbf{Symétrie} : $x\mathcal Ry\Rightarrow y\mathcal Rx$.
+  \item \textbf{Transitivité} : $(x\mathcal Ry\ \text{et}\ y\mathcal Rz)\Rightarrow x\mathcal Rz$.
+  \item \textbf{Classes} : pour $x\in E$, résoudre $y\mathcal Rx$ d'inconnue $y$ pour décrire la classe $\overline{x}$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Sur $\R$, on pose $x\mathcal Ry\iff x^2-x=y^2-y$.
+
+La relation s'écrit $f(x)=f(y)$ avec $f(t)=t^2-t$ : elle est réflexive, symétrique et transitive (ce sont des propriétés de l'égalité). C'est donc une relation d'équivalence.
+
+Classes : $x\mathcal Ry\iff x^2-y^2-(x-y)=0\iff(x-y)(x+y-1)=0\iff y=x\ \text{ou}\ y=1-x$. Donc $\overline{x}=\{x,\,1-x\}$.
+\end{exemple}
+
+\begin{remarque}
+Pour une relation d'ordre, on remplace la symétrie par l'\emph{antisymétrie} : $(x\mathcal Ry\ \text{et}\ y\mathcal Rx)\Rightarrow x=y$.
+\end{remarque}
+
+\begin{exercice}[Application]
+Sur $\Z$, on pose $x\mathcal Ry\iff x-y\in3\Z$. Montrer que $\mathcal R$ est une relation d'équivalence et décrire ses classes.
+\begin{correction}
+\emph{Réflexivité} : $x-x=0\in3\Z$. \emph{Symétrie} : si $x-y=3k$, alors $y-x=3(-k)$. \emph{Transitivité} : si $x-y=3k$ et $y-z=3l$, alors $x-z=3(k+l)$.
+
+Classes : $x\mathcal Ry$ signifie que $x$ et $y$ ont le même reste dans la division par $3$. Il y a donc $3$ classes, $\overline0=3\Z$, $\overline1=3\Z+1$ et $\overline2=3\Z+2$.
+\end{correction}
+\end{exercice}

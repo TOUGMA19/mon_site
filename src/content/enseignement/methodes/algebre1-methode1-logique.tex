@@ -1,0 +1,81 @@
+%% titre: Méthodes — Logique et raisonnements
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 1
+%% description: Nier une proposition quantifiée, choisir un raisonnement, rédiger une récurrence.
+
+\section{Nier une proposition quantifiée}
+
+\begin{methode}[Négation d'une proposition quantifiée]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Lire la proposition de gauche à droite en repérant chaque quantificateur.
+  \item Remplacer chaque $\forall$ par $\exists$ et chaque $\exists$ par $\forall$, \emph{sans changer l'ordre}.
+  \item Nier le prédicat final : $\overline{P\wedge Q}=\overline P\vee\overline Q$, $\overline{P\vee Q}=\overline P\wedge\overline Q$, $\overline{P\Rightarrow Q}=P\wedge\overline Q$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Nier « la suite $(u_n)$ converge vers $0$ » :
+\[
+  \forall\varepsilon>0,\ \exists N\in\N,\ \forall n\ge N,\ |u_n|<\varepsilon .
+\]
+La négation est
+\[
+  \exists\varepsilon>0,\ \forall N\in\N,\ \exists n\ge N,\ |u_n|\ge\varepsilon .
+\]
+\end{exemple}
+
+\begin{attention}
+Ne pas changer l'ordre des quantificateurs : $\forall x\,\exists y$ et $\exists y\,\forall x$ n'ont pas le même sens.
+\end{attention}
+
+\section{Choisir un raisonnement}
+
+\begin{methode}[Quel raisonnement utiliser ?]
+\begin{itemize}
+  \item \textbf{Direct} : on part des hypothèses et on enchaîne des implications.
+  \item \textbf{Contraposée} : pour $P\Rightarrow Q$, on prouve $\overline Q\Rightarrow\overline P$ (utile quand la négation de $Q$ donne une information exploitable).
+  \item \textbf{Absurde} : on suppose la négation de ce qu'on veut prouver et on cherche une contradiction.
+  \item \textbf{Disjonction de cas} : on découpe en cas qui couvrent toutes les possibilités.
+  \item \textbf{Récurrence} : propriété indexée par un entier, avec un lien entre $n$ et $n+1$.
+\end{itemize}
+\end{methode}
+
+\begin{exemple}[Contraposée]
+Montrer que, pour $n\in\Z$, si $n^2$ est pair alors $n$ est pair.
+
+Contraposée : si $n$ est impair, alors $n^2$ est impair. Écrivons $n=2k+1$ ; alors $n^2=4k^2+4k+1=2(2k^2+2k)+1$ est impair. $\blacksquare$
+\end{exemple}
+
+\section{Rédiger une récurrence}
+
+\begin{methode}[Récurrence simple]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item \textbf{Énoncer} $\mathcal P(n)$ et préciser pour quels entiers $n\ge n_0$ on la veut.
+  \item \textbf{Initialisation} : vérifier $\mathcal P(n_0)$.
+  \item \textbf{Hérédité} : soit $n\ge n_0$ \emph{fixé} tel que $\mathcal P(n)$ est vraie ; montrer $\mathcal P(n+1)$ en utilisant $\mathcal P(n)$.
+  \item \textbf{Conclure} : $\mathcal P(n)$ est vraie pour tout $n\ge n_0$.
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+On ne suppose jamais $\mathcal P(n)$ pour tous les $n$ : c'est ce qu'on veut démontrer.
+\end{attention}
+
+\begin{exercice}[Application]
+Montrer que, pour tout $n\ge1$, $\displaystyle\sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+1)}{6}$.
+\begin{correction}
+\textbf{Initialisation} : pour $n=1$, $1=\frac{1\times2\times3}{6}$.
+
+\textbf{Hérédité} : supposons la formule vraie pour un $n\ge1$. Alors
+\begin{align*}
+\sum_{k=1}^{n+1}k^2 &= \frac{n(n+1)(2n+1)}{6}+(n+1)^2\\
+&= \frac{(n+1)\big(n(2n+1)+6(n+1)\big)}{6}\\
+&= \frac{(n+1)(2n^2+7n+6)}{6}=\frac{(n+1)(n+2)(2n+3)}{6},
+\end{align*}
+ce qui est la formule au rang $n+1$.
+
+\textbf{Conclusion} : elle est vraie pour tout $n\ge1$.
+\end{correction}
+\end{exercice}

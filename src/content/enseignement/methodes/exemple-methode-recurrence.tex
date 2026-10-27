@@ -1,0 +1,49 @@
+%% titre: Méthode — Démontrer par récurrence
+%% niveau: Licence 1
+%% matiere: Raisonnement
+%% annee: 2025-2026
+%% ordre: 1
+%% description: Exemple de fiche méthode (à remplacer) : les étapes d'une récurrence simple.
+
+\section{Quand l'utiliser ?}
+
+Pour démontrer une propriété $\mathcal{P}(n)$ valable pour tout entier $n\ge n_0$, notamment quand $\mathcal{P}(n+1)$ se déduit facilement de $\mathcal{P}(n)$ (sommes, suites définies par récurrence, divisibilité).
+
+\section{La méthode}
+
+\begin{methode}[Récurrence simple]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item \textbf{Énoncer} clairement $\mathcal{P}(n)$, en précisant pour quels $n$ elle est visée.
+  \item \textbf{Initialisation :} vérifier $\mathcal{P}(n_0)$.
+  \item \textbf{Hérédité :} soit $n\ge n_0$ fixé tel que $\mathcal{P}(n)$ est vraie ; montrer $\mathcal{P}(n+1)$ en utilisant l'hypothèse de récurrence.
+  \item \textbf{Conclure} : $\mathcal{P}(n)$ est vraie pour tout $n\ge n_0$.
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+Ne jamais écrire « supposons que $\mathcal{P}(n)$ est vraie pour tout $n$ » : on la suppose pour \emph{un} $n$ fixé.
+\end{attention}
+
+\section{Exemple traité}
+
+\begin{exemple}
+Montrer que, pour tout $n\in\N$, $\displaystyle\sum_{k=0}^{n}k=\frac{n(n+1)}{2}$.
+
+\textbf{Initialisation.} Pour $n=0$ : $0=\frac{0\times 1}{2}$.
+
+\textbf{Hérédité.} Si la formule est vraie au rang $n$, alors
+\begin{align*}
+\sum_{k=0}^{n+1}k &= \frac{n(n+1)}{2}+(n+1)\\
+&= \frac{(n+1)(n+2)}{2},
+\end{align*}
+c'est la formule au rang $n+1$.
+
+\textbf{Conclusion.} La formule est vraie pour tout $n\in\N$.
+\end{exemple}
+
+\begin{exercice}[À vous]
+Montrer que $2^n\ge n+1$ pour tout $n\in\N$.
+\begin{correction}
+Pour $n=0$ : $1\ge 1$. Si $2^n\ge n+1$, alors $2^{n+1}\ge 2n+2\ge n+2$.
+\end{correction}
+\end{exercice}

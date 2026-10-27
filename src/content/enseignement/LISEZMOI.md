@@ -5,6 +5,7 @@ Un document = **un fichier `.tex`** placé dans le bon dossier :
 | Dossier   | Onglet           |
 |-----------|------------------|
 | `cours/`  | Cours            |
+| `methodes/` | Méthodes (fiches méthodes) |
 | `td/`     | TD               |
 | `devoirs/`| Anciens devoirs  |
 | `quiz/`   | Quiz (QCM corrigés automatiquement) |
@@ -60,3 +61,6 @@ Pourquoi c'est la bonne réponse.
 - Une seule `\bonne` : choix unique (boutons ronds). Plusieurs : cases à cocher (toutes les bonnes doivent être cochées).
 - Le visiteur clique « Valider mes réponses » : correction en couleur, explications et score.
 - Attention : les bonnes réponses sont dans le code de la page (visibles par un curieux) ; ce n'est pas adapté à un examen noté.
+
+## Fiches méthodes
+Fichier `.tex` dans `methodes/`. L'environnement `methode` crée un encadré vert numéroté (« Méthode 1 », titre facultatif entre crochets) ; combinez-le avec `exemple`, `attention`, `remarque` et `exercice`.

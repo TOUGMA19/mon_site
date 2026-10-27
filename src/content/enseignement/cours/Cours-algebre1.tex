@@ -152,48 +152,6 @@
 \newtheorem{remarque}[definition]{Remarque}
 \newtheorem{exemple}[definition]{Exemple}
 
-% ---- boîtes colorées ----
-\newtcolorbox{boxdef}[1][]{
-  colback=grisClair, colframe=bleuUniv, boxrule=0.8pt,
-  arc=2pt, breakable, title={\textbf{Définition}~#1}, fonttitle=\bfseries\color{white},
-  colbacktitle=bleuUniv
-}
-\newtcolorbox{boxthm}[1][]{
-  colback=white, colframe=rougeUniv, boxrule=0.9pt,
-  arc=2pt, breakable, title={\textbf{Théorème}~#1}, fonttitle=\bfseries\color{white},
-  colbacktitle=rougeUniv
-}
-\newtcolorbox{boxprop}[1][]{
-  colback=white, colframe=vertUniv, boxrule=0.8pt,
-  arc=2pt, breakable, title={\textbf{Propriété}~#1}, fonttitle=\bfseries\color{white},
-  colbacktitle=vertUniv
-}
-\newtcolorbox{boxex}[1][]{
-  colback=grisClair, colframe=orangeUniv!80!black, boxrule=0.7pt,
-  arc=2pt, breakable, title={\textbf{Exemple}~#1}, fonttitle=\bfseries\color{white},
-  colbacktitle=orangeUniv!80!black
-}
-\newtcolorbox{boxrem}[1][Remarque]{
-  colback=blue!4, colframe=bleuUniv!60!black, boxrule=0.6pt,
-  arc=2pt, breakable, title={#1}, fonttitle=\bfseries\color{white},
-  colbacktitle=bleuUniv!60!black
-}
-\newtcolorbox{boxappli}[1][Application]{
-  colback=green!5, colframe=vertUniv, boxrule=0.7pt,
-  arc=2pt, breakable, title={#1}, fonttitle=\bfseries\color{white},
-  colbacktitle=vertUniv
-}
-\newtcolorbox{boxresume}[1][Résumé du chapitre]{
-  colback=grisClair, colframe=bleuUniv, boxrule=1pt,
-  arc=2pt, breakable, title={\Large #1}, fonttitle=\bfseries\color{white},
-  colbacktitle=bleuUniv
-}
-\newtcolorbox{boxfiche}[1][Fiche de révision]{
-  colback=yellow!6, colframe=black, boxrule=1pt,
-  arc=2pt, breakable, title={\Large #1}, fonttitle=\bfseries\color{white},
-  colbacktitle=black
-}
-
 % Environnement corrigé
 \newenvironment{corrige}
   {\begin{tcolorbox}[colback=green!4,colframe=vertUniv,boxrule=0.6pt,arc=2pt,breakable,

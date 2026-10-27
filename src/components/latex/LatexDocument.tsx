@@ -1,7 +1,7 @@
 import { createContext, memo, useContext, useMemo, useState, type ReactNode } from "react";
 import katex from "katex";
 import "katex/dist/katex.min.css";
-import { ChevronDown, Eye, EyeOff } from "lucide-react";
+import { CheckCircle2, ChevronDown, Eye, EyeOff, RotateCcw, XCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { LatexDoc, Node } from "@/lib/latex/types";
 
@@ -10,6 +10,16 @@ interface RenderCtx {
   labels: Record<string, string>;
   showAll: boolean;
 }
+interface QuizState {
+  answers: Record<number, number[]>;
+  submitted: boolean;
+  toggle: (qid: number, index: number, multiple: boolean) => void;
+}
+const QuizCtx = createContext<QuizState>({ answers: {}, submitted: false, toggle: () => {} });
+
+const sameSet = (a: number[], b: number[]) =>
+  a.length === b.length && a.every((x) => b.includes(x));
+
 const Ctx = createContext<RenderCtx>({ macros: {}, labels: {}, showAll: false });
 
 /* ------------------------------------------------------------------------ */
@@ -262,6 +272,97 @@ function TableNode({ node }: { node: Extract<Node, { type: "table" }> }) {
   );
 }
 
+function QuestionNode({ node }: { node: Extract<Node, { type: "question" }> }) {
+  const { answers, submitted, toggle } = useContext(QuizCtx);
+  const selected = answers[node.id] ?? [];
+  const correctIdx = node.choices.flatMap((c, i) => (c.correct ? [i] : []));
+  const multiple = correctIdx.length > 1;
+  const ok = sameSet(selected, correctIdx);
+
+  return (
+    <section className="my-6 rounded-lg border border-border bg-card px-5 py-4 shadow-sm break-inside-avoid-page">
+      <div className="mb-2 flex flex-wrap items-baseline gap-3">
+        <span className="font-serif text-lg font-bold text-accent">Question {node.id}</span>
+        {multiple && <span className="text-xs text-muted-foreground">plusieurs réponses possibles</span>}
+      </div>
+      <Blocks nodes={node.statement} tight />
+      <div className="mt-3 space-y-2" role={multiple ? "group" : "radiogroup"}>
+        {node.choices.map((c, i) => {
+          const isSel = selected.includes(i);
+          const state = !submitted
+            ? isSel ? "border-primary bg-primary/10" : "border-border hover:bg-muted"
+            : c.correct
+              ? "border-emerald-500 bg-emerald-50 text-emerald-950"
+              : isSel ? "border-red-500 bg-red-50 text-red-950" : "border-border opacity-70";
+          return (
+            <button
+              key={i}
+              type="button"
+              disabled={submitted}
+              role={multiple ? "checkbox" : "radio"}
+              aria-checked={isSel}
+              onClick={() => toggle(node.id, i, multiple)}
+              className={cn("flex w-full items-start gap-3 rounded-md border px-3 py-2 text-left transition-colors", state)}
+            >
+              <span
+                className={cn(
+                  "mt-1 flex h-4 w-4 shrink-0 items-center justify-center border text-[10px]",
+                  multiple ? "rounded-sm" : "rounded-full",
+                  isSel ? "border-primary bg-primary text-primary-foreground" : "border-muted-foreground/60",
+                )}
+              >
+                {isSel && "✓"}
+              </span>
+              <span className="min-w-0 flex-1"><Blocks nodes={c.children} tight /></span>
+              {submitted && c.correct && <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />}
+              {submitted && !c.correct && isSel && <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />}
+            </button>
+          );
+        })}
+      </div>
+      {submitted && (
+        <div className="mt-3 text-sm">
+          <p className={cn("font-semibold", ok ? "text-emerald-700" : "text-red-700")}>
+            {ok ? "Bonne réponse." : selected.length === 0 ? "Pas de réponse." : "Réponse incorrecte."}
+          </p>
+          {node.explanation && (
+            <div className="mt-2 rounded-md bg-muted/60 px-3 py-2">
+              <Blocks nodes={node.explanation} tight />
+            </div>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function QuizBar({ doc, state, onSubmit, onReset }: {
+  doc: LatexDoc; state: QuizState; onSubmit: () => void; onReset: () => void;
+}) {
+  const total = doc.questions.length;
+  const answered = doc.questions.filter((q) => (state.answers[q.id] ?? []).length > 0).length;
+  const score = doc.questions.filter((q) => sameSet(state.answers[q.id] ?? [], q.correct)).length;
+  return (
+    <div className="sticky bottom-4 z-10 mt-8 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-card/95 px-5 py-3 shadow-lg backdrop-blur print:hidden">
+      {state.submitted ? (
+        <>
+          <p className="font-serif text-lg font-bold text-primary">Score : {score} / {total}</p>
+          <button type="button" onClick={onReset} className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm font-medium text-primary hover:bg-muted">
+            <RotateCcw className="h-4 w-4" /> Recommencer
+          </button>
+        </>
+      ) : (
+        <>
+          <p className="text-sm text-muted-foreground">{answered} / {total} question{total > 1 ? "s" : ""} répondue{answered > 1 ? "s" : ""}</p>
+          <button type="button" onClick={onSubmit} className="rounded-md bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90">
+            Valider mes réponses
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
+
 function BlockOne({ node }: { node: Node }): ReactNode {
   switch (node.type) {
     case "math": return <MathView tex={node.value} display />;
@@ -281,6 +382,7 @@ function BlockOne({ node }: { node: Node }): ReactNode {
         return <h4 id={node.id} className="mb-2 mt-6 scroll-mt-24 font-serif text-lg font-semibold text-primary">{inner}</h4>;
       return <h5 id={node.id} className="mb-1 mt-4 scroll-mt-24 font-semibold text-primary">{inner}</h5>;
     }
+    case "question": return <QuestionNode node={node} />;
     case "list": return <ListNode node={node} />;
     case "block": return <BlockNode node={node} />;
     case "correction": return <Correction label={node.label} children={node.children} />;
@@ -415,24 +517,52 @@ export function CorrectionsToggle({ showAll, onChange }: { showAll: boolean; onC
   );
 }
 
-const LatexDocument = ({ doc, showAll = false }: { doc: LatexDoc; showAll?: boolean }) => (
-  <Ctx.Provider value={{ macros: doc.macros, labels: doc.labels, showAll }}>
-    <div className="latex-doc text-[1.05rem] text-foreground">
-      <Blocks nodes={doc.nodes} />
-      {doc.footnotes.length > 0 && (
-        <footer className="mt-12 border-t border-border pt-4 text-sm text-muted-foreground">
-          <ol className="space-y-1">
-            {doc.footnotes.map((f, i) => (
-              <li key={i} id={`fn-${i + 1}`}>
-                <sup>{i + 1}</sup> <InlineList nodes={f.filter((n) => !isBlock(n))} />{" "}
-                <a href={`#fnref-${i + 1}`} className="no-underline hover:underline">↩</a>
-              </li>
-            ))}
-          </ol>
-        </footer>
-      )}
-    </div>
-  </Ctx.Provider>
-);
+const LatexDocument = ({ doc, showAll = false }: { doc: LatexDoc; showAll?: boolean }) => {
+  const [answers, setAnswers] = useState<Record<number, number[]>>({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const quiz: QuizState = {
+    answers,
+    submitted,
+    toggle: (qid, index, multiple) =>
+      setAnswers((prev) => {
+        const cur = prev[qid] ?? [];
+        const next = multiple
+          ? cur.includes(index) ? cur.filter((x) => x !== index) : [...cur, index]
+          : [index];
+        return { ...prev, [qid]: next };
+      }),
+  };
+
+  return (
+    <Ctx.Provider value={{ macros: doc.macros, labels: doc.labels, showAll }}>
+      <QuizCtx.Provider value={quiz}>
+        <div className="latex-doc text-[1.05rem] text-foreground">
+          <Blocks nodes={doc.nodes} />
+          {doc.questions.length > 0 && (
+            <QuizBar
+              doc={doc}
+              state={quiz}
+              onSubmit={() => setSubmitted(true)}
+              onReset={() => { setAnswers({}); setSubmitted(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            />
+          )}
+          {doc.footnotes.length > 0 && (
+            <footer className="mt-12 border-t border-border pt-4 text-sm text-muted-foreground">
+              <ol className="space-y-1">
+                {doc.footnotes.map((f, i) => (
+                  <li key={i} id={`fn-${i + 1}`}>
+                    <sup>{i + 1}</sup> <InlineList nodes={f.filter((n) => !isBlock(n))} />{" "}
+                    <a href={`#fnref-${i + 1}`} className="no-underline hover:underline">↩</a>
+                  </li>
+                ))}
+              </ol>
+            </footer>
+          )}
+        </div>
+      </QuizCtx.Provider>
+    </Ctx.Provider>
+  );
+};
 
 export default LatexDocument;

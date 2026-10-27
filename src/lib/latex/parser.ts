@@ -885,7 +885,9 @@ class Parser {
           const px = { cm: 37.8, mm: 3.78, pt: 1.333, in: 96, px: 1 }[wcm[2] as "cm"] * v;
           width = `${Math.round(px)}px`;
         }
-        const src = /^(https?:)?\//.test(file) ? file : `/enseignement/figures/${file}`;
+        let f = file.replace(/^\.\//, "").replace(/^figures\//, "");
+        if (!/\.[a-zA-Z0-9]{2,4}$/.test(f)) f += ".png"; // LaTeX permet d'omettre l'extension
+        const src = /^(https?:)?\//.test(file) ? file : `/enseignement/figures/${f}`;
         return [{ type: "image", src, width }];
       }
       case "caption": {

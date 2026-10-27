@@ -71,7 +71,7 @@ reg(["remark", "rem", "remarque", "remarques"], "Remarque", "remark", false);
 reg(["example", "exemple", "exemples", "ex"], "Exemple", "remark", false);
 reg(["rappel"], "Rappel", "remark", false);
 reg(["attention"], "Attention", "remark", false);
-reg(["methode", "méthode"], "Méthode", "remark", false);
+reg(["methode", "méthode", "method"], "Méthode", "method", true);
 reg(["exercise", "exercice", "exo"], "Exercice", "exercise", true);
 reg(["problem", "probleme", "problème"], "Problème", "exercise", true);
 

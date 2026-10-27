@@ -14,7 +14,7 @@ export type StyleName =
   | "color"
   | "plain";
 
-export type BlockKind = "theorem" | "definition" | "remark" | "exercise" | "box";
+export type BlockKind = "theorem" | "definition" | "remark" | "exercise" | "box" | "method";
 
 export interface ListItem {
   /** Étiquette affichée (numéro, puce, ou terme pour `description`). */

@@ -75,14 +75,14 @@ vocabulaire et les techniques introduits ici. On ne peut pas comprendre une
 démonstration de théorème si l'on ne maîtrise pas le sens exact d'une
 implication ou d'un \og pour tout \fg{}.
 
-\begin{boxappli}
+\begin{application}
 La logique n'est pas qu'un outil de mathématicien : elle est à la base de la
 \textbf{conception des circuits électroniques} (portes logiques ET, OU, NON),
 de la \textbf{programmation informatique} (conditions \texttt{if}, boucles,
 expressions booléennes), des \textbf{bases de données} (requêtes SQL avec
 \texttt{AND}, \texttt{OR}, \texttt{NOT}) et de l'\textbf{intelligence
 artificielle} (systèmes experts, logique des prédicats en IA symbolique).
-\end{boxappli}
+\end{application}
 
 \section{Prérequis}
 
@@ -96,15 +96,15 @@ introduit progressivement et défini avant d'être utilisé.
 \subsection{Notion de proposition}
 
 
-\begin{boxdef}[1.1.1]
+\begin{definition}
 On appelle \textbf{proposition} tout énoncé qui est soit vrai, soit faux (et
 jamais les deux à la fois).
-\end{boxdef}
+\end{definition}
 
 Les propositions sont en général notées par des lettres majuscules : $P$, $Q$,
 $R$, $P_0$, etc. Lorsqu'une proposition $P$ est vraie, on dit \og on a $P$ \fg.
 
-\begin{boxex}[1.1]
+\begin{exemple}
 \begin{enumerate}
   \item \og $3+5=8$ \fg{} est une proposition : elle est vraie.
   \item \og $2\times 3 = 5$ \fg{} est une proposition : elle est fausse.
@@ -116,7 +116,7 @@ $R$, $P_0$, etc. Lorsqu'une proposition $P$ est vraie, on dit \og on a $P$ \fg.
   lorsqu'on remplace $a$ par un entier précis : \og $4$ divise $2$ \fg{} est
   une proposition (fausse), \og $1$ divise $2$ \fg{} en est une autre (vraie).
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
 
 À partir d'une ou plusieurs propositions, on construit de nouvelles
@@ -127,19 +127,19 @@ l'implication et l'équivalence.
 \subsection{La négation}
 
 
-\begin{boxdef}[1.1.2]
+\begin{definition}
 La \textbf{négation} d'une proposition $P$ est la proposition, notée $\overline{P}$
 (ou $\lnot P$), qui est vraie si $P$ est fausse, et fausse si $P$ est vraie.
 $\overline{P}$ se lit \og non $P$ \fg.
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[1.2]
+\begin{exemple}
 Soit $P$ : \og Je suis étudiant \fg. Alors $\overline{P}$ : \og Je ne suis pas
 étudiant \fg.
 
 Soit $Q$ : \og ce tableau est rouge \fg. Alors $\overline{Q}$ : \og ce tableau
 n'est pas rouge \fg.
-\end{boxex}
+\end{exemple}
 
 
 On peut résumer cette définition par un tableau, appelé \textbf{table de
@@ -159,12 +159,12 @@ $P$ & $\overline{P}$ \\
 
 \subsection{La conjonction}
 
-\begin{boxdef}[1.1.3]
+\begin{definition}
 La \textbf{conjonction} de deux propositions $P$ et $Q$ est la proposition,
 notée $P\wedge Q$, qui est vraie lorsque $P$ et $Q$ sont \emph{simultanément}
 vraies, et fausse dans tous les autres cas. $P\wedge Q$ se lit \og $P$ et
 $Q$ \fg.
-\end{boxdef}
+\end{definition}
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -179,20 +179,20 @@ $P$ & $Q$ & $P\wedge Q$ \\
 \end{tabular}
 \end{center}
 
-\begin{boxex}[1.3]
+\begin{exemple}
 Soit $P$ : \og $6$ est pair \fg{} (vraie) et $Q$ : \og $6$ est un multiple de
 $5$ \fg{} (fausse). Alors $P\wedge Q$ : \og $6$ est pair \emph{et} $6$ est un
 multiple de $5$ \fg{} est \textbf{fausse}, car $Q$ est fausse.
-\end{boxex}
+\end{exemple}
 
 \subsection{La disjonction}
 
-\begin{boxdef}[1.1.4]
+\begin{definition}[
 La \textbf{disjonction} de deux propositions $P$ et $Q$ est la proposition,
 notée $P\vee Q$, qui est fausse lorsque $P$ et $Q$ sont \emph{simultanément}
 fausses, et vraie dans tous les autres cas. $P\vee Q$ se lit \og $P$ ou
 $Q$ \fg.
-\end{boxdef}
+\end{definition}
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -208,21 +208,21 @@ $P$ & $Q$ & $P\vee Q$ \\
 \end{center}
 
 
-\begin{boxex}[1.4]
+\begin{exemple}[1.4]
 Soit $P$ : \og $7$ est premier \fg{} (vraie) et $Q$ : \og $7$ est pair \fg{}
 (fausse). Alors $P\vee Q$ est \textbf{vraie}, car il suffit que l'une des deux
 propositions soit vraie.
-\end{boxex}
+\end{exemple}
 
 \subsection{L'implication}
 
 
-\begin{boxdef}[1.1.5]
+\begin{definition}
 L'\textbf{implication} de deux propositions $P$ et $Q$ (dans cet ordre) est la
 proposition, notée $P\Rightarrow Q$, qui est \textbf{fausse} uniquement lorsque
 $P$ est vraie et $Q$ est fausse, et \textbf{vraie} dans tous les autres cas.
 $P\Rightarrow Q$ se lit \og $P$ implique $Q$ \fg{} ou \og si $P$ alors $Q$ \fg.
-\end{boxdef}
+\end{definition}
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -237,7 +237,7 @@ $P$ & $Q$ & $P\Rightarrow Q$ \\
 \end{tabular}
 \end{center}
 
-\begin{boxrem}[Pourquoi $P\Rightarrow Q$ est-elle vraie quand $P$ est fausse ?]
+\begin{remarque}[Pourquoi $P\Rightarrow Q$ est-elle vraie quand $P$ est fausse ?]
 C'est le point le plus délicat pour un débutant. Intuitivement, une implication
 \og Si $P$ alors $Q$ \fg{} promet seulement quelque chose \emph{au cas où} $P$
 serait vraie ; elle ne dit rien sur ce qui se passe si $P$ ne se réalise pas.
@@ -245,9 +245,9 @@ Une promesse non testée ne peut pas être prise en défaut : on considère donc
 qu'elle est vraie par défaut. Par exemple, la phrase \og S'il pleut, alors je
 prends un parapluie \fg{} n'est jamais mise en défaut les jours où il ne pleut
 pas, quel que soit mon comportement.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[1.5]
+\begin{exemple}
 Soit $P$ : \og $3=7-4$ \fg{} (vraie) et $Q$ : \og $7=4-3$ \fg{} (fausse).
 \begin{enumerate}
   \item $P\Rightarrow Q$ : \og $3=7-4$ implique $7=4-3$ \fg{} est
@@ -255,25 +255,25 @@ Soit $P$ : \og $3=7-4$ \fg{} (vraie) et $Q$ : \og $7=4-3$ \fg{} (fausse).
   \item $Q\Rightarrow P$ : \og $7=4-3$ implique $3=7-4$ \fg{} est
   \textbf{vraie} (car $Q$ fausse : troisième ou quatrième ligne de la table).
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
-\begin{boxex}[1.6]
+\begin{exemple}
 La proposition \og Si $2=3$, alors $1=0$ \fg{} est \textbf{vraie}, bien que ni
 \og $2=3$ \fg{} ni \og $1=0$ \fg{} ne soient vraies individuellement. En effet,
 l'hypothèse \og $2=3$ \fg{} est fausse, donc l'implication est automatiquement
 vraie, d'après la définition.
-\end{boxex}
+\end{exemple}
 
 
 \subsection{L'équivalence}
 
-\begin{boxdef}[1.1.6]
+\begin{definition}
 L'\textbf{équivalence} de deux propositions $P$ et $Q$ est la proposition,
 notée $P\Leftrightarrow Q$, qui est vraie lorsque $P$ et $Q$ ont la
 \emph{même} valeur de vérité (toutes deux vraies, ou toutes deux fausses), et
 fausse sinon. $P\Leftrightarrow Q$ se lit \og $P$ équivaut à $Q$ \fg{} ou
 \og $P$ si et seulement si $Q$ \fg.
-\end{boxdef}
+\end{definition}
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -288,11 +288,11 @@ $P$ & $Q$ & $P\Leftrightarrow Q$ \\
 \end{tabular}
 \end{center}
 
-\begin{boxex}[1.7]
+\begin{exemple}
 Soit $P$ : \og $x=2$ \fg{} et $Q$ : \og $x^2=4$ et $x>0$ \fg. Pour tout réel
 $x$, $P\Leftrightarrow Q$ est vraie : dès que $x=2$, on a bien $x^2=4$ et
 $x>0$ ; et réciproquement, si $x^2=4$ et $x>0$, alors nécessairement $x=2$.
-\end{boxex}
+\end{exemple}
 
 \subsection{Tableau récapitulatif}
 
@@ -317,14 +317,14 @@ $P$ & $Q$ & $\overline{P}$ & $P\wedge Q$ & $P\vee Q$ & $P\Rightarrow Q$ & $P\Lef
 \subsection{Notion de prédicat}
 
 
-\begin{boxdef}[1.2.1]
+\begin{definition}
 On appelle \textbf{prédicat} tout énoncé contenant une ou plusieurs variables,
 qui devient une proposition dès que l'on remplace les variables par des objets
 concrets (précis). Les prédicats sont souvent notés $P(x)$, $Q(x,y)$, $R(z)$,
 etc.
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[1.8]
+\begin{exemple}
 \begin{enumerate}
   \item $P(x)$ : \og l'entier $x$ divise $2$ \fg{} est un prédicat. On a par
   exemple $P(1)$ vraie et $P(3)$ fausse.
@@ -332,7 +332,7 @@ etc.
   \item $R(n,m)$ : \og la différence des entiers $n$ et $m$ est un multiple de
   $3$ \fg{} est un prédicat à deux variables.
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
 On peut combiner des prédicats avec les connecteurs logiques déjà vus, exactement
 comme pour des propositions : $P(x)\wedge Q(x)$, $P(x)\Rightarrow Q(x)$, etc.
@@ -341,7 +341,7 @@ sont encore des prédicats.
 \subsection{Les quantificateurs}
 
 
-\begin{boxdef}[1.2.2]
+\begin{definition}
 Soit $P(x)$ un prédicat et $E$ un ensemble non vide.
 \begin{enumerate}
   \item L'expression \og pour tout élément $x$ de $E$, $P(x)$ est vraie \fg{}
@@ -351,9 +351,9 @@ Soit $P(x)$ un prédicat et $E$ un ensemble non vide.
   $P(x)$ soit vraie \fg{} s'écrit en abrégé : $\exists x \in E,\ P(x)$. Le
   symbole $\exists$ s'appelle le \textbf{quantificateur existentiel}.
 \end{enumerate}
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[1.9]
+\begin{exemple}
 \begin{enumerate}
   \item \og $\forall x \in \mathbb{Z},\ x = x^3$ \fg{} signifie \og pour tout
   entier $x$, on a $x=x^3$ \fg{}. Cette proposition est \textbf{fausse} : par
@@ -366,19 +366,19 @@ Soit $P(x)$ un prédicat et $E$ un ensemble non vide.
   \item \og $\forall a \in \mathbb{N},\ 1 \text{ divise } a$ \fg{} est
   \textbf{vraie} : tout entier naturel est divisible par $1$.
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
-\begin{boxrem}
+\begin{remarque}
 \og $\forall x \in E,\ P(x)$ \fg{} se lit aussi \og quel que soit $x$ de
 $E$, $P(x)$ \fg.
-\end{boxrem}
+\end{remarque}
 
 \paragraph{Prédicats à deux variables et deux quantificateurs.}
 Lorsqu'un prédicat $P(x,y)$ dépend de deux variables $x\in E$ et $y\in F$, on
 peut le quantifier successivement. \textbf{L'ordre des quantificateurs a une
 importance capitale} lorsqu'ils ne sont pas de même nature.
 
-\begin{boxdef}[1.2.3]
+\begin{definition}
 Soient $E$ et $F$ deux ensembles et $P(x,y)$ un prédicat à deux variables.
 \begin{itemize}
   \item $\forall x \in E,\ \forall y \in F,\ P(x,y)$ signifie que pour
@@ -393,10 +393,10 @@ Soient $E$ et $F$ deux ensembles et $P(x,y)$ un prédicat à deux variables.
   \emph{même} $y$ de $F$, \textbf{indépendant de $x$}, qui convient pour
   \emph{tous} les $x$ de $E$.
 \end{itemize}
-\end{boxdef}
+\end{definition}
 
 
-\begin{boxex}[1.10]
+\begin{exemple}
 \begin{enumerate}
   \item \og $\forall x \in \mathbb{N},\ \exists y \in \mathbb{R},\ x \leq y$
   \fg{} est \textbf{vraie} : pour chaque entier $x$, on peut choisir $y=x$
@@ -405,11 +405,11 @@ Soient $E$ et $F$ deux ensembles et $P(x,y)$ un prédicat à deux variables.
   \fg{} est \textbf{fausse} : il n'existe pas d'entier $x$ qui soit inférieur
   ou égal à \emph{tous} les réels $y$ (en particulier aux réels négatifs).
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
 \subsection{Négation des propositions quantifiées}
 
-\begin{boxprop}[1.2.1]
+\begin{proposition}
 Soit $P(x)$ un prédicat sur un ensemble $E$. On a les règles de négation
 suivantes :
 \[
@@ -419,16 +419,16 @@ suivantes :
 \]
 Autrement dit, pour nier une phrase quantifiée, on \textbf{échange
 $\forall$ et $\exists$}, et on nie le prédicat final.
-\end{boxprop}
+\end{proposition}
 
-\begin{boxrem}[Intuition]
+\begin{remarque}[Intuition]
 Dire que \og tous les éléments vérifient $P$ \fg{} est faux revient exactement
 à dire qu'\og il en existe au moins un qui ne vérifie pas $P$ \fg. De même, dire
 qu'\og il en existe un qui vérifie $P$ \fg{} est faux revient à dire
 qu'\og aucun ne le vérifie \fg, c'est-à-dire que \og tous ne le vérifient pas \fg.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[1.11]
+\begin{exemple}
 \begin{enumerate}
   \item La négation de \og $\forall x \in \mathbb{Z},\ x=x^3$ \fg{} est
   \og $\exists x \in \mathbb{Z},\ x \neq x^3$ \fg{} (proposition vraie, car
@@ -440,7 +440,7 @@ qu'\og aucun ne le vérifie \fg, c'est-à-dire que \og tous ne le vérifient pas
   \mathbb{R},\ x<y$ \fg{} est \og $\exists y \in \mathbb{Z},\ \forall x \in
   \mathbb{R},\ x \geq y$ \fg.
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
 \section{Propriétés fondamentales du calcul propositionnel}
 
@@ -449,7 +449,7 @@ Toutes les propriétés suivantes se démontrent en construisant la table de
 vérité des deux membres et en vérifiant qu'ils coïncident ligne par ligne
 (cette méthode est appelée \textbf{preuve par table de vérité}).
 
-\begin{boxthm}[1.1 -- Lois logiques fondamentales]
+\begin{theoreme}[Lois logiques fondamentales]
 Soient $P$, $Q$, $R$ des propositions (ou des prédicats, les mêmes lois
 s'appliquant point par point). On a les équivalences suivantes.
 \begin{enumerate}[label=(\arabic*)]
@@ -477,7 +477,7 @@ s'appliquant point par point). On a les équivalences suivantes.
   \item \textbf{Caractérisation de l'équivalence :}
   $(P\Leftrightarrow Q) \iff \big[(P\Rightarrow Q)\wedge(Q\Rightarrow P)\big]$.
 \end{enumerate}
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}[Démonstration (exemples détaillés)]
 Nous détaillons deux des lois les plus utilisées ; les autres se traitent de
@@ -538,13 +538,13 @@ prennent toujours la même valeur : ils sont équivalents par définition même 
 l'équivalence logique.
 \end{proof}
 
-\begin{boxrem}
+\begin{remarque}
 La loi (7), $(P\Rightarrow Q)\iff(\overline{P}\vee Q)$, est extrêmement utile :
 elle permet de \emph{transformer} toute implication en une disjonction, ce qui
 explique aussi pourquoi $P\Rightarrow Q$ est automatiquement vraie dès que $P$
 est fausse (car alors $\overline{P}$ est vraie, donc $\overline{P}\vee Q$ l'est
 aussi, quelle que soit la valeur de $Q$).
-\end{boxrem}
+\end{remarque}
 
 
 \section{Les grands types de raisonnement}
@@ -552,11 +552,11 @@ aussi, quelle que soit la valeur de $Q$).
 
 \subsection{Le raisonnement déductif}
 
-\begin{boxprop}[1.2 -- Principe]
+\begin{proposition}[Principe]
 Pour montrer qu'une proposition $Q$ est vraie, il suffit de montrer que les
 deux propositions $P\Rightarrow Q$ et $P$ sont vraies (pour une proposition
 $P$ bien choisie).
-\end{boxprop}
+\end{proposition}
 
 Ce raisonnement repose sur le fait que $\big[P \wedge (P\Rightarrow
 Q)\big] \Rightarrow Q$ est \textbf{toujours vraie}, comme le montre sa table
@@ -579,7 +579,7 @@ La dernière colonne ne contient que des $1$ : la proposition est une
 \textbf{tautologie} (toujours vraie, quelles que soient les valeurs de $P$ et
 $Q$).
 
-\begin{boxex}[1.12]
+\begin{exemple}
 Montrons que l'équation $x^2-x+3=0$ n'a pas de solution réelle.
 
 On sait ($P$) que pour une équation du second degré $ax^2+bx+c=0$ ($a\neq0$)
@@ -589,21 +589,21 @@ l'équation n'a pas de solution réelle \fg{} ($Q$ dépend ici de $\Delta$).
 Ici $a=1$, $b=-1$, $c=3$, donc $\Delta = b^2-4ac = 1-12=-11<0$. La proposition
 $P$ (\og $\Delta<0$ \fg) est donc vraie. Par raisonnement déductif, on conclut
 que $Q$ est vraie : l'équation n'a pas de solution réelle.
-\end{boxex}
+\end{exemple}
 
 \subsection{Le raisonnement par contraposée}
 
-\begin{boxprop}[1.3 -- Principe]
+\begin{proposition}[Principe]
 Pour montrer que $P\Rightarrow Q$ est vraie, il suffit de montrer que sa
 contraposée $\overline{Q}\Rightarrow \overline{P}$ est vraie.
-\end{boxprop}
+\end{proposition}
 
 Ce raisonnement est justifié par la loi (9) du Théorème~1.1 : $P\Rightarrow Q$
 et $\overline{Q}\Rightarrow\overline{P}$ sont toujours équivalentes. On
 utilise ce mode de raisonnement quand il est plus facile de manipuler
 $\overline{Q}$ (l'hypothèse) que $P$ directement.
 
-\begin{boxex}[1.13]
+\begin{exemple}
 Montrons que, pour tout entier $a$ : (\og $a^2$ est pair \fg) $\Rightarrow$
 (\og $a$ est pair \fg).
 
@@ -619,18 +619,18 @@ a^2 = (2n+1)^2 = 4n^2+4n+1 = 2(2n^2+2n)+1.
 En posant $k=2n^2+2n\in\mathbb{Z}$, on obtient $a^2=2k+1$, qui est bien un
 nombre impair. La contraposée est donc démontrée, ce qui prouve, par la loi de
 contraposée, l'implication initiale.
-\end{boxex}
+\end{exemple}
 
 \subsection{Le raisonnement par l'absurde}
 
-\begin{boxprop}[1.4 -- Principe]
+\begin{proposition}[Principe]
 Pour montrer qu'une proposition $Q$ est vraie, on suppose que sa négation
 $\overline{Q}$ est vraie, et on montre que cette supposition conduit à une
 contradiction (une proposition fausse, ou deux propositions contradictoires).
 On en déduit que $\overline{Q}$ est fausse, donc que $Q$ est vraie.
-\end{boxprop}
+\end{proposition}
 
-\begin{boxex}[1.14]
+\begin{exemple}
 Montrons que $\sqrt{2}$ est irrationnel (c'est-à-dire $\sqrt2 \notin
 \mathbb{Q}$).
 
@@ -651,19 +651,19 @@ $1$) : \textbf{contradiction}.
 
 Cette contradiction montre que l'hypothèse de départ (\og $\sqrt2$ est
 rationnel \fg) est fausse. Donc $\sqrt2$ est irrationnel.
-\end{boxex}
+\end{exemple}
 
 \subsection{Le raisonnement par disjonction de cas}
 
-\begin{boxprop}[1.5 -- Principe]
+\begin{proposition}[Principe]
 Pour montrer qu'une proposition $Q$ est vraie, il suffit de trouver une
 proposition $P$ telle que les deux implications $P\Rightarrow Q$ et
 $\overline{P}\Rightarrow Q$ soient vraies. On étudie ainsi \emph{tous les cas
 possibles} (le cas où $P$ est vraie, et le cas où $P$ est fausse), qui
 couvrent toutes les situations.
-\end{boxprop}
+\end{proposition}
 
-\begin{boxex}[1.15]
+\begin{exemple}
 Montrons que, pour tout entier $n$, le produit $n(n+1)$ est pair.
 
 \textbf{1\up{er} cas :} $n$ est pair. Alors il existe $k\in\mathbb{Z}$ tel que
@@ -674,12 +674,12 @@ $n=2k+1$. On a $n(n+1) = (2k+1)(2k+2) = 2(2k+1)(k+1)$, qui est bien pair.
 
 Dans les deux cas (qui couvrent toutes les possibilités pour un entier $n$),
 $n(n+1)$ est pair. La proposition est donc démontrée pour tout entier $n$.
-\end{boxex}
+\end{exemple}
 
 \subsection{Le raisonnement par récurrence}
 
 
-\begin{boxprop}[1.6 -- Principe de récurrence]
+\begin{proposition}[Principe de récurrence]
 Soit $P(n)$ un prédicat défini pour tout entier naturel $n \geq n_0$. Si
 \begin{enumerate}
   \item (\textbf{Initialisation}) $P(n_0)$ est vraie, et
@@ -687,17 +687,17 @@ Soit $P(n)$ un prédicat défini pour tout entier naturel $n \geq n_0$. Si
   est vraie,
 \end{enumerate}
 alors $P(n)$ est vraie pour tout entier $n\geq n_0$.
-\end{boxprop}
+\end{proposition}
 
-\begin{boxrem}[Intuition : l'effet domino]
+\begin{remarque}[Intuition : l'effet domino]
 On peut se représenter ce principe comme une rangée infinie de dominos
 numérotés $n_0, n_0+1, n_0+2,\dots$ L'hérédité garantit que si un domino tombe,
 il fait tomber le suivant. L'initialisation garantit que le premier domino
 tombe effectivement. La conclusion : \emph{tous} les dominos tombent, l'un
 après l'autre, sans exception.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[1.16]
+\begin{exemple}
 Montrons par récurrence que pour tout entier $n\geq 1$ :
 \[
 1+2+\cdots+n = \frac{n(n+1)}{2}.
@@ -729,7 +729,7 @@ est donc démontrée.
 \textbf{Conclusion :} $P(1)$ est vraie et pour tout $n\geq1$, $P(n)\Rightarrow
 P(n+1)$. D'après le principe de récurrence, $P(n)$ est vraie pour tout entier
 $n\geq 1$.
-\end{boxex}
+\end{exemple}
 
 
 \section{Illustration synthétique}
@@ -756,34 +756,34 @@ Propositions vraies établies & Raisonnement (déductif, contraposée, absurde, 
 
 %\section{Applications}
 %
-%\begin{boxappli}[Informatique -- programmation]
+%\begin{application}[Informatique -- programmation]
 %Les connecteurs $\wedge$, $\vee$, $\lnot$ correspondent exactement aux
 %opérateurs \texttt{\&\&}, \texttt{||}, \texttt{!} de la plupart des langages de
 %programmation (C, Java, Python). Une condition \texttt{if (x > 0 \&\& x < 10)}
 %traduit directement le prédicat $0<x\wedge x<10$.
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Électronique -- circuits logiques]
+%\begin{application}[Électronique -- circuits logiques]
 %Les portes logiques \textbf{ET}, \textbf{OU}, \textbf{NON} des circuits
 %numériques réalisent physiquement les tables de vérité de $\wedge$, $\vee$,
 %$\overline{\ \cdot\ }$. Toute l'architecture d'un processeur repose sur des
 %combinaisons de ces portes.
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Bases de données]
+%\begin{application}[Bases de données]
 %Une requête SQL telle que \texttt{SELECT * FROM Etudiants WHERE age > 18 AND
 %(filiere = 'Info' OR filiere = 'Maths')} traduit directement un prédicat
 %composé à l'aide de $\wedge$ et $\vee$ sur les lignes de la table.
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Preuve de programmes et intelligence artificielle]
+%\begin{application}[Preuve de programmes et intelligence artificielle]
 %La récurrence est le principe qui justifie la \textbf{correction des boucles
 %et des algorithmes récursifs} en informatique (invariant de boucle). La
 %logique des prédicats est également au c\oe ur des systèmes experts et de
 %certaines approches d'intelligence artificielle symbolique, où l'on encode des
 %connaissances sous forme de règles logiques ($\forall$, $\exists$,
 %$\Rightarrow$).
-%\end{boxappli}
+%\end{application}
 %
 %\section{Résumé du chapitre}
 %
@@ -1408,14 +1408,14 @@ opérations ensemblistes et les propriétés des relations. Il prépare le
 Chapitre 3, consacré aux applications (fonctions), qui sont un cas particulier
 de relations.
 
-\begin{boxappli}
+\begin{application}
 La théorie des ensembles est le langage universel des mathématiques : elle
 sert de fondation à l'algèbre, à l'analyse, à la géométrie et aux
 probabilités. En \textbf{informatique}, les ensembles modélisent les types
 \texttt{set} des langages de programmation ; les relations d'équivalence
 sont à la base du \textbf{partitionnement de données} (clustering) et les
 relations d'ordre gouvernent tous les \textbf{algorithmes de tri}.
-\end{boxappli}
+\end{application}
 
 \section{Prérequis}
 
@@ -1429,7 +1429,7 @@ d'aborder la section sur les relations d'ordre.
 
 \subsection{Notion d'ensemble}
 
-\begin{boxdef}[2.1]
+\begin{definition}
 Un \textbf{ensemble} est une collection d'objets, appelés \textbf{éléments}
 de cet ensemble. Si un ensemble est noté $A$ :
 \begin{itemize}
@@ -1437,23 +1437,23 @@ de cet ensemble. Si un ensemble est noté $A$ :
   appartient à $A$ \fg) ;
   \item on écrit $x \notin A$ pour dire que $x$ n'est pas un élément de $A$.
 \end{itemize}
-\end{boxdef}
+\end{definition}
 
 Un ensemble peut être décrit de deux façons :
 
-\begin{boxdef}[2.2 -- Description en extension]
+\begin{definition}[Description en extension]
 On décrit un ensemble $A$ \textbf{en extension} en donnant la liste complète
 de ses éléments : $A = \{a_1, a_2, \dots, a_n\}$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxdef}[2.3 -- Description en compréhension]
+\begin{definition}[Description en compréhension]
 On décrit un ensemble $A$ \textbf{en compréhension} en caractérisant ses
 éléments parmi ceux d'un ensemble $E$ déjà connu, au moyen d'un prédicat
 $P(x)$ : $A = \{x \in E : P(x)\}$ (on lit : \og l'ensemble des $x$ de $E$
 tels que $P(x)$ \fg).
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[2.1]
+\begin{exemple}
 \begin{enumerate}
   \item $F = \{0,1,2,3,4,5,6,7,8,9\}$ : ensemble des chiffres du système
   décimal (description en extension).
@@ -1464,38 +1464,38 @@ tels que $P(x)$ \fg).
   \item On a $3 \in F$, $7 \notin 2\mathbb{N}$, $18 \in 2\mathbb{N}$,
   $-4 \notin \mathbb{R}^+$.
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
-\begin{boxdef}[2.4 -- Ensemble vide]
+\begin{definition}[2.4 -- Ensemble vide]
 L'ensemble qui ne contient aucun élément est appelé \textbf{ensemble vide},
 noté $\varnothing$.
-\end{boxdef}
+\end{definition}
 
 \subsection{Inclusion et parties d'un ensemble}
 
 
-\begin{boxdef}[2.5 -- Inclusion]
+\begin{definition}[2.5 -- Inclusion]
 Soient $A$ et $B$ deux ensembles. On dit que $B$ est un \textbf{sous-ensemble}
 (ou une \textbf{partie}) de $A$ si tout élément de $B$ est un élément de $A$ :
 \[
 B \subset A \quad \Longleftrightarrow \quad \forall x,\ (x \in B \Rightarrow x \in A).
 \]
 Dans le cas contraire, on écrit $B \not\subset A$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxrem}
+\begin{remarque}
 Par convention, $\varnothing \subset E$ pour tout ensemble $E$ : cette
 affirmation est \emph{vraie} car son hypothèse (\og $x \in \varnothing$ \fg)
 est toujours fausse, et une implication à hypothèse fausse est vraie (voir
 Chapitre 1, section 1.3.5).
-\end{boxrem}
+\end{remarque}
 
 
-\begin{boxdef}[2.6 -- Ensemble des parties]
+\begin{definition}[Ensemble des parties]
 L'ensemble de toutes les parties d'un ensemble $A$ est noté $\mathcal{P}(A)$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[2.2]
+\begin{exemple}
 Soit $A=\{0,1,2\}$. Alors
 \[
 \mathcal{P}(A) = \big\{\varnothing,\ \{0\},\ \{1\},\ \{2\},\ \{0,1\},\ \{0,2\},\ \{1,2\},\ A\big\}.
@@ -1504,12 +1504,12 @@ On remarque que $\mathcal{P}(A)$ possède $8=2^3$ éléments : c'est un fait
 général, si $A$ possède $n$ éléments, $\mathcal{P}(A)$ en possède $2^n$
 (chaque élément de $A$ pouvant être \og inclus \fg{} ou \og exclu \fg{} d'une
 partie, indépendamment des autres).
-\end{boxex}
+\end{exemple}
 
 \subsection{Opérations sur les ensembles}
 
 
-\begin{boxdef}[2.7]
+\begin{definition}
 Soient $E$, $A$ et $B$ des ensembles.
 \begin{enumerate}
   \item La \textbf{différence} de $A$ et $B$ est
@@ -1521,9 +1521,9 @@ Soient $E$, $A$ et $B$ des ensembles.
   \item L'\textbf{union} (ou réunion) de $A$ et $B$ est
   $A \cup B = \{x : x \in A \text{ ou } x \in B\}$.
 \end{enumerate}
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[2.3]
+\begin{exemple}
 Soit $F=\{0,1,2,3,4,5,6,7,8,9\}$.
 \begin{enumerate}
   \item $F \subset \mathbb{N}$ mais $F \not\subset 2\mathbb{N}$ (car, par
@@ -1535,7 +1535,7 @@ Soit $F=\{0,1,2,3,4,5,6,7,8,9\}$.
   \item $F \cap 2\mathbb{N} = \{0,2,4,6,8\}$ (les chiffres pairs).
   \item $\{0,2,4,6,8\} \cup \{1,2,4\} = \{0,1,2,4,6,8\}$.
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
 \subsubsection*{Illustration : diagrammes de Venn}
 
@@ -1574,7 +1574,7 @@ du dessin.
 \end{tikzpicture}
 \end{center}
 
-\begin{boxprop}[2.1 -- Propriétés des opérations ensemblistes]
+\begin{proposition}[Propriétés des opérations ensemblistes]
 Soient $A$, $B$, $C$ des parties d'un ensemble $E$. On a :
 \begin{enumerate}[label=(\arabic*)]
   \item $A \cap A = A$ et $A \cup A = A$ (idempotence) ;
@@ -1586,7 +1586,7 @@ Soient $A$, $B$, $C$ des parties d'un ensemble $E$. On a :
   \item Si $A,B \subset E$ : $C_E(A \cap B) = (C_E A) \cup (C_E B)$ et
   $C_E(A \cup B) = (C_E A) \cap (C_E B)$ (lois de De Morgan ensemblistes).
 \end{enumerate}
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 Ces propriétés se démontrent en traduisant les opérations ensemblistes en
@@ -1613,17 +1613,17 @@ se démontre de façon analogue en utilisant l'autre loi de De Morgan
 logique.
 \end{proof}
 
-\begin{boxrem}
+\begin{remarque}
 Cette démonstration illustre un principe fondamental : \textbf{toute
 propriété ensembliste se ramène, via les descriptions en compréhension, à une
 propriété logique déjà connue}. C'est pourquoi le Chapitre 1 était un
 prérequis indispensable.
-\end{boxrem}
+\end{remarque}
 
 \subsection{Partition d'un ensemble}
 
 
-\begin{boxdef}[2.8]
+\begin{definition}
 On appelle \textbf{partition} d'un ensemble $E$ toute famille $\mathcal{F}$ de
 parties \textbf{non vides} de $E$ telle que :
 \begin{enumerate}
@@ -1632,9 +1632,9 @@ parties \textbf{non vides} de $E$ telle que :
   \item $\mathcal{F}$ \textbf{recouvre} $E$ : $\displaystyle\bigcup_{A \in
   \mathcal{F}} A = E$.
 \end{enumerate}
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[2.4]
+\begin{exemple}
 Soit $B=\{0,1,2,3,4\}$. La famille $\mathcal{F} = \big\{\{0,2\}, \{1,4\},
 \{3\}\big\}$ est une partition de $B$ : les trois parties sont non vides,
 deux à deux disjointes, et leur réunion $\{0,2\}\cup\{1,4\}\cup\{3\}=B$.
@@ -1643,27 +1643,27 @@ En revanche, $\mathcal{F}' = \big\{\{0,1\}, \{3,4\}, \{1,2\}\big\}$
 disjoints (elles partagent l'élément $1$), et $0$ n'apparaît nulle part ne
 pose pas problème ici mais la non-disjonction suffit à invalider la
 partition.
-\end{boxex}
+\end{exemple}
 
 \section{Produit cartésien}
 
 
-\begin{boxdef}[2.9]
+\begin{definition}
 Le \textbf{produit cartésien} de deux ensembles $A$ et $B$, noté $A \times
 B$, est l'ensemble des \textbf{couples} $(a,b)$ tels que $a \in A$ et
 $b \in B$ :
 \[
 A \times B = \{(a,b) : a \in A \text{ et } b \in B\}.
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxrem}
+\begin{remarque}
 Un couple $(a,b)$ est un objet \textbf{ordonné} : $(a,b) \neq (b,a)$ dès que
 $a \neq b$. C'est ce qui le distingue d'un ensemble $\{a,b\}$, où l'ordre
 d'écriture n'a pas d'importance ($\{a,b\}=\{b,a\}$).
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[2.5]
+\begin{exemple}
 Soit $A=\{0,2,4\}$ et $B=\{1,2\}$. Alors
 \[
 A \times B = \big\{(0,1),(0,2),(2,1),(2,2),(4,1),(4,2)\big\},
@@ -1675,32 +1675,32 @@ B \times A = \big\{(1,0),(2,0),(1,2),(2,2),(1,4),(2,4)\big\}.
 On constate que $A \times B \neq B \times A$ en général (par exemple
 $(0,1) \in A\times B$ mais $(0,1) \notin B\times A$) : le produit cartésien
 \textbf{n'est pas commutatif}.
-\end{boxex}
+\end{exemple}
 
 
-\begin{boxappli}
+\begin{application}
 Le produit cartésien $\mathbb{R} \times \mathbb{R} = \mathbb{R}^2$ est
 précisément l'ensemble des coordonnées $(x,y)$ du plan géométrique : c'est le
 pont entre l'algèbre et la géométrie (géométrie analytique de Descartes, d'où
 le nom \og cartésien \fg). En informatique, le produit cartésien de deux
 tables est une opération fondamentale des bases de données relationnelles
 (\texttt{CROSS JOIN} en SQL).
-\end{boxappli}
+\end{application}
 
 \section{Relations binaires sur un ensemble}
 
 \subsection{Notion de relation binaire}
 
 
-\begin{boxdef}[2.10]
+\begin{definition}
 On appelle \textbf{relation} d'un ensemble $A$ vers un ensemble $B$ toute
 correspondance $\mathcal{R}$ qui lie certains éléments de $A$ à certains
 éléments de $B$. Si $x$ est lié à $y$ par $\mathcal{R}$, on écrit
 $x\mathcal{R}y$ (sinon $x\cancel{\mathcal{R}}y$). Une relation de $A$ vers
 $A$ est dite \textbf{relation sur $A$}.
-\end{boxdef}
+\end{definition}
 
-\begin{boxdef}[2.11 -- Graphe d'une relation]
+\begin{definition}[Graphe d'une relation]
 Le \textbf{graphe} de la relation $\mathcal{R}$ (de $A$ vers $B$) est
 l'ensemble
 \[
@@ -1708,21 +1708,21 @@ G_{\mathcal{R}} = \{(x,y) \in A\times B : x\,\mathcal{R}\,y\}.
 \]
 Une relation est entièrement déterminée par son graphe : on identifie souvent
 $\mathcal{R}$ à une partie de $A \times B$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[2.6]
+\begin{exemple}[2.6]
 La relation de \textbf{divisibilité} $\mathcal{R}_d$ sur $\mathbb{Z}$, définie
 par $x\,\mathcal{R}_d\,y \iff x$ divise $y$, vérifie par exemple
 $1\,\mathcal{R}_d\,x$ et $x\,\mathcal{R}_d\,0$ pour tout $x \in \mathbb{Z}$
 (car $1$ divise tout entier, et tout entier divise $0$). On a
 $3 \,\mathcal{R}_d\, (-21)$ (car $-21=3\times(-7)$), mais
 $3\,\cancel{\mathcal{R}_d}\,20$.
-\end{boxex}
+\end{exemple}
 
 \subsection{Propriétés d'une relation binaire}
 
 
-\begin{boxdef}[2.12]
+\begin{definition}
 Soit $\mathcal{R}$ une relation sur un ensemble $A$.
 \begin{enumerate}
   \item $\mathcal{R}$ est \textbf{réflexive} si $\forall x \in A,\ x\mathcal{R}x$.
@@ -1733,10 +1733,10 @@ Soit $\mathcal{R}$ une relation sur un ensemble $A$.
   \item $\mathcal{R}$ est \textbf{transitive} si $\forall x,y,z \in A,\
   (x\mathcal{R}y \wedge y\mathcal{R}z) \Rightarrow x\mathcal{R}z$.
 \end{enumerate}
-\end{boxdef}
+\end{definition}
 
 
-\begin{boxex}[2.7]
+\begin{exemple}
 Étudions la relation de divisibilité $\mathcal{R}_d$ sur $\mathbb{Z}$ :
 $x\,\mathcal{R}_d\,y \iff x \text{ divise } y$.
 
@@ -1754,18 +1754,18 @@ entier ; nous verrons en section 2.6 qu'elle le devient si l'on se restreint
 \textbf{Transitivité :} si $x$ divise $y$ et $y$ divise $z$, alors il existe
 $k,k'\in\mathbb{Z}$ tels que $y=kx$ et $z=k'y=k'kx$, donc $x$ divise $z$.
 $\mathcal{R}_d$ est transitive.
-\end{boxex}
+\end{exemple}
 
 \section{Relation d'équivalence, classes d'équivalence et ensemble quotient}
 
 
-\begin{boxdef}[2.13]
+\begin{definition}
 Une relation $\mathcal{R}$ sur un ensemble $A$ est une \textbf{relation
 d'équivalence} si elle est \textbf{réflexive}, \textbf{symétrique} et
 \textbf{transitive}.
-\end{boxdef}
+\end{definition}
 
-\begin{boxdef}[2.14 -- Classe d'équivalence, ensemble quotient]
+\begin{definition}[Classe d'équivalence, ensemble quotient]
 Soit $\mathcal{R}$ une relation d'équivalence sur $A$.
 \begin{enumerate}
   \item Pour $a \in A$, la \textbf{classe d'équivalence} de $a$ modulo
@@ -1773,12 +1773,12 @@ Soit $\mathcal{R}$ une relation d'équivalence sur $A$.
   \item L'ensemble $A/\mathcal{R} = \{\dot{a} : a \in A\}$ est appelé
   \textbf{ensemble quotient} de $A$ par $\mathcal{R}$.
 \end{enumerate}
-\end{boxdef}
+\end{definition}
 
-\begin{boxthm}[2.1 -- Les classes d'équivalence forment une partition]
+\begin{theoreme}[Les classes d'équivalence forment une partition]
 Si $\mathcal{R}$ est une relation d'équivalence sur $A$, l'ensemble des
 classes d'équivalence distinctes forme une \textbf{partition} de $A$.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 Il faut vérifier les deux conditions de la Définition 2.8.
@@ -1806,15 +1806,15 @@ Ainsi, deux classes qui se rencontrent sont en fait égales : des classes
 conditions d'une partition sont vérifiées.
 \end{proof}
 
-\begin{boxrem}[Pourquoi chaque hypothèse est nécessaire]
+\begin{remarque}[Pourquoi chaque hypothèse est nécessaire]
 La réflexivité garantit que chaque élément appartient bien à \emph{une}
 classe (recouvrement). La symétrie et la transitivité sont toutes deux
 utilisées pour montrer que deux classes qui se rencontrent sont confondues :
 sans l'une ou l'autre, on pourrait avoir des classes qui se chevauchent
 partiellement sans être égales, ce qui romprait la structure de partition.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[2.8]
+\begin{exemple}
 Soit $\mathcal{R}_e$ la relation de \textbf{congruence modulo $n$}
 (où $n \in \mathbb{N}^*$ est fixé) sur $\mathbb{Z}$, définie par
 \[
@@ -1850,27 +1850,27 @@ en a exactement $n$ distinctes :
 Cet ensemble quotient est noté $\mathbb{Z}/n\mathbb{Z}$ : il joue un rôle
 central dans toute la suite du cours d'algèbre (structures de groupe,
 d'anneau, de corps).
-\end{boxex}
+\end{exemple}
 
-\begin{boxappli}
+\begin{application}
 La congruence modulo $n$ est utilisée en \textbf{cryptographie}
 (algorithme RSA), dans le calcul des \textbf{clés de contrôle} (numéro de
 sécurité sociale, IBAN), et dans la conception des \textbf{tables de
 hachage} en informatique, où l'on regroupe des données selon le reste modulo
 la taille de la table.
-\end{boxappli}
+\end{application}
 
 \section{Relation d'ordre et ensembles ordonnés}
 
 
-\begin{boxdef}[2.15]
+\begin{definition}
 Une relation $\mathcal{R}$ sur un ensemble $A$ est une \textbf{relation
 d'ordre} si elle est \textbf{réflexive}, \textbf{antisymétrique} et
 \textbf{transitive}. On note alors souvent $\leq_{\mathcal{R}}$ au lieu de
 $\mathcal{R}$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxdef}[2.16 -- Ordre total, ordre partiel]
+\begin{definition}[ Ordre total, ordre partiel]
 Soit $\leq_{\mathcal{R}}$ une relation d'ordre sur $A$.
 \begin{itemize}
   \item L'ordre est \textbf{total} si $\forall x,y \in A,\ (x
@@ -1882,9 +1882,9 @@ Soit $\leq_{\mathcal{R}}$ une relation d'ordre sur $A$.
 \end{itemize}
 Deux éléments $x$ et $y$ sont dits \textbf{comparables} par
 $\leq_{\mathcal{R}}$ si $x\leq_{\mathcal{R}} y$ ou $y\leq_{\mathcal{R}} x$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[2.9]
+\begin{exemple}
 \begin{enumerate}
   \item La relation usuelle $\leq$ sur $\mathbb{R}$ est un \textbf{ordre
   total} : deux réels quelconques sont toujours comparables.
@@ -1899,12 +1899,12 @@ $\leq_{\mathcal{R}}$ si $x\leq_{\mathcal{R}} y$ ou $y\leq_{\mathcal{R}} x$.
   partiel} : si $E=\{1,2\}$, les parties $\{1\}$ et $\{2\}$ ne sont pas
   comparables par $\subset$.
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
-\begin{boxthm}[2.2]
+\begin{theoreme}
 La relation de divisibilité, restreinte à $\mathbb{N}$, est une relation
 d'ordre (partiel) sur $\mathbb{N}$.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 La réflexivité et la transitivité ont déjà été établies dans l'Exemple 2.7
@@ -1929,7 +1929,7 @@ sur $\mathbb{N}$, donc c'est une relation d'ordre. Cet ordre n'est pas total
 (exemple 2.9), c'est donc un ordre partiel.
 \end{proof}
 
-\begin{boxrem}[Pourquoi la restriction à $\mathbb{N}$ est nécessaire]
+\begin{remarque}[Pourquoi la restriction à $\mathbb{N}$ est nécessaire]
 La démonstration précédente échoue sur $\mathbb{Z}$ : l'équation $qq'=1$ avec
 $q,q'\in\mathbb{Z}$ admet \emph{deux} solutions, $(q,q')=(1,1)$ mais aussi
 $(q,q')=(-1,-1)$, qui correspond au cas $a=-b$ avec $a\neq b$ dès que $a\neq
@@ -1937,24 +1937,24 @@ $(q,q')=(-1,-1)$, qui correspond au cas $a=-b$ avec $a\neq b$ dès que $a\neq
 -1$, de l'exemple 2.7). C'est exactement pourquoi une hypothèse
 (\og $\mathbb{N}$ \fg{} plutôt que \og $\mathbb{Z}$ \fg) est indispensable
 pour ce théorème.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[2.10]
+\begin{exemple}[2.10]
 La façon dont les mots sont rangés dans un dictionnaire définit une relation
 d'\textbf{ordre total} sur l'ensemble des mots, appelée \textbf{ordre
 lexicographique}, noté $\leq_{\text{lex}}$. On a par exemple
 $\text{alg\`ebre} \leq_{\text{lex}} \text{analyse}$ (les deux mots partagent
 le préfixe \og a \fg, puis \og l \fg{} précède \og n \fg{} dans l'alphabet).
-\end{boxex}
+\end{exemple}
 
-%\begin{boxappli}
+%\begin{application}
 %L'ordre lexicographique est utilisé pour trier des mots dans un dictionnaire,
 %des noms dans un annuaire, ou des chaînes de caractères en informatique
 %(fonction \texttt{sort} appliquée à des chaînes). Les relations d'ordre
 %partiel modélisent, par exemple, les \textbf{dépendances entre tâches} dans
 %la gestion de projet (une tâche \og précède \fg{} une autre) ou les relations
 %d'\textbf{héritage} entre classes en programmation orientée objet.
-%\end{boxappli}
+%\end{application}
 %
 \section{Résumé du chapitre}
 
@@ -2565,7 +2565,7 @@ Ce chapitre a pour objectifs :
   d'équivalence vue au Chapitre 2.
 \end{itemize}
 
-\begin{boxappli}
+\begin{application}
 Les applications sont omniprésentes : en \textbf{informatique}, une fonction
 de programmation est une application (à condition d'être bien définie pour
 toute entrée valide) ; en \textbf{cryptographie}, le chiffrement doit être une
@@ -2573,7 +2573,7 @@ toute entrée valide) ; en \textbf{cryptographie}, le chiffrement doit être une
 déchiffrement) ; en \textbf{apprentissage automatique}, un modèle de
 classification est une application de l'espace des données vers un ensemble
 fini d'étiquettes, rarement injective.
-\end{boxappli}
+\end{application}
 
 \section{Prérequis}
 
@@ -2589,7 +2589,7 @@ Ce chapitre utilise abondamment :
 
 \section{Notion d'application}
 
-\begin{boxdef}[3.1]
+\begin{definition}
 On appelle \textbf{application} d'un ensemble $A$ dans un ensemble $B$ toute
 correspondance $f$ qui associe, à \textbf{chaque} élément $x$ de $A$, \textbf{un
 et un seul} élément $y$ de $B$. On dit que $A$ est l'\textbf{ensemble de
@@ -2600,15 +2600,15 @@ de $x$ par $f$, notée $f(x)$ (donc $y=f(x)$). On note :
 f : A \longrightarrow B, \qquad x \longmapsto y=f(x).
 \]
 Si $y=f(x)$, on dit que $x$ est un \textbf{antécédent} de $y$ par $f$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxrem}
+\begin{remarque}
 Une image $y$ peut avoir \textbf{plusieurs} antécédents, mais un antécédent
 $x$ ne peut jamais avoir \textbf{deux images distinctes} : c'est exactement
 la condition \og un et un seul \fg{} de la définition.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[3.1]
+\begin{exemple}[3.1]
 \begin{enumerate}
   \item La correspondance $f$ qui associe à l'entier relatif $n$ l'entier
   naturel $n^2$ est une application de $\mathbb{Z}$ dans $\mathbb{N}$ :
@@ -2625,9 +2625,9 @@ la condition \og un et un seul \fg{} de la définition.
   A$, associe à chaque élément $x$ l'élément $x$ lui-même :
   $\mathrm{Id}_A(x)=x$.
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
-\begin{boxdef}[3.2 -- Graphe, image directe, image réciproque]
+\begin{definition}[3.2 -- Graphe, image directe, image réciproque]
 Soit $f : A \to B$ une application.
 \begin{enumerate}
   \item Le \textbf{graphe} de $f$ est $G_f = \{(x,f(x)) : x \in A\} \subset
@@ -2638,10 +2638,10 @@ Soit $f : A \to B$ une application.
   \item Si $B' \subset B$, l'\textbf{image réciproque} de $B'$ par $f$ est
   $f^{-1}(B') = \{x \in A : f(x) \in B'\}$.
 \end{enumerate}
-\end{boxdef}
+\end{definition}
 
 
-\begin{boxex}[3.2]
+\begin{exemple}[3.2]
 Soit $f : \mathbb{Z} \to \mathbb{N}$, $f(n) = n^2$.
 \begin{enumerate}
   \item $f(\{-3,-1,0,3,5\}) = \{9,1,0,9,25\} = \{0,1,9,25\}$ (on ne répète
@@ -2651,9 +2651,9 @@ Soit $f : \mathbb{Z} \to \mathbb{N}$, $f(n) = n^2$.
   des solutions entières, $n=2$ ou $n=-2$. Donc $f^{-1}(\{4,5,6\}) =
   \{-2,2\}$.
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
-\begin{boxprop}[3.1 -- Propriétés des images directes et réciproques]
+\begin{proposition}[3.1 -- Propriétés des images directes et réciproques]
 Soit $f : A \to B$ une application, $A_1,A_2 \subset A$ et $B_1,B_2\subset B$.
 On a :
 \begin{enumerate}[label=(\arabic*)]
@@ -2663,7 +2663,7 @@ On a :
   \item $f^{-1}(B_1 \cup B_2) = f^{-1}(B_1) \cup f^{-1}(B_2)$ ;
   \item $f^{-1}(B_1 \cap B_2) = f^{-1}(B_1) \cap f^{-1}(B_2)$.
 \end{enumerate}
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}[Démonstration de (2) et contre-exemple pour l'égalité]
 Montrons $f(A_1\cap A_2) \subset f(A_1)\cap f(A_2)$. Soit $y \in f(A_1\cap
@@ -2679,7 +2679,7 @@ est donc bien stricte dans cet exemple : $f(A_1\cap A_2) \subsetneq
 f(A_1)\cap f(A_2)$.
 \end{proof}
 
-\begin{boxrem}[Pourquoi l'image réciproque se comporte mieux que l'image directe]
+\begin{remarque}[Pourquoi l'image réciproque se comporte mieux que l'image directe]
 Les égalités (3) et (4) pour l'image réciproque, contrairement à
 l'inclusion simple (2) pour l'image directe, s'expliquent ainsi : dire
 \og $x \in f^{-1}(B_1\cap B_2)$ \fg{} équivaut exactement à
@@ -2688,32 +2688,32 @@ conditions \emph{sur le même $x$}. Pour l'image directe, en revanche, un
 élément de $f(A_1)\cap f(A_2)$ peut provenir d'un antécédent \emph{dans
 $A_1$} et d'un \emph{autre} antécédent \emph{dans $A_2$} : c'est cette
 possible \og dissociation des antécédents \fg{} qui casse l'égalité.
-\end{boxrem}
+\end{remarque}
 
 \section{Opérations sur les applications}
 
 \subsection{Égalité de deux applications}
 
-\begin{boxdef}[3.3]
+\begin{definition}[3.3]
 Deux applications $f_1 : A_1 \to B_1$ et $f_2 : A_2 \to B_2$ sont
 \textbf{égales} si $A_1=A_2$, $B_1=B_2$, et $\forall x \in A_1,\ f_1(x) =
 f_2(x)$. On note alors $f_1=f_2$.
-\end{boxdef}
+\end{definition}
 
 
 \subsection{Composition des applications}
 
 
-\begin{boxdef}[3.4]
+\begin{definition}[3.4]
 Soient $f : A \to B$ et $g : B \to C$ deux applications. La \textbf{composée}
 de $f$ suivie de $g$ est l'application notée $g\circ f$, définie par :
 \[
 g \circ f : A \longrightarrow C, \qquad \forall x \in A,\ (g\circ f)(x) = g(f(x)).
 \]
-\end{boxdef}
+\end{definition}
 
 
-\begin{boxex}[3.3]
+\begin{exemple}[3.3]
 Soient $f : \mathbb{R} \to \mathbb{R}$, $f(x)=x+1$, et $g : \mathbb{R} \to
 \mathbb{R}$, $g(x)=2x$. Calculons les deux composées :
 \[
@@ -2725,15 +2725,15 @@ Soient $f : \mathbb{R} \to \mathbb{R}$, $f(x)=x+1$, et $g : \mathbb{R} \to
 On constate que $g\circ f \neq f \circ g$ (par exemple, en $x=0$ :
 $(g\circ f)(0)=2$ alors que $(f\circ g)(0)=1$) : \textbf{la composition
 n'est pas commutative} en général.
-\end{boxex}
+\end{exemple}
 
-\begin{boxprop}[3.2]
+\begin{proposition}[3.2]
 Soient $f:A\to B$, $g:B\to C$, $h:C\to D$ trois applications. Alors :
 \begin{enumerate}
   \item (\textbf{Associativité}) $(h\circ g)\circ f = h \circ (g\circ f)$.
   \item $f \circ \mathrm{Id}_A = f = \mathrm{Id}_B \circ f$.
 \end{enumerate}
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 (1) Pour tout $x\in A$ :
@@ -2755,16 +2755,16 @@ $\mathrm{Id}_B\circ f = f$.
 \section{Applications injectives, surjectives, bijectives}
 
 
-\begin{boxdef}[3.5 -- Injectivité]
+\begin{definition}[3.5 -- Injectivité]
 Une application $f : A \to B$ est \textbf{injective} si elle n'associe
 jamais la même image à deux éléments \textbf{distincts} :
 \[
 f \text{ est injective} \iff \forall (x,x') \in A\times A,\ \big(f(x)=f(x')
 \Rightarrow x=x'\big).
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxrem}[Reformulation utile par contraposée]
+\begin{remarque}[Reformulation utile par contraposée]
 D'après la loi de contraposée (Théorème 1.1), la définition équivaut à :
 \[
 f \text{ est injective} \iff \forall (x,x')\in A\times A,\ \big(x\neq x'
@@ -2774,23 +2774,23 @@ c'est-à-dire : des éléments distincts ont toujours des images distinctes.
 C'est souvent \emph{cette} formulation qu'on utilise pour \emph{montrer
 qu'une application n'est pas injective} : il suffit d'exhiber $x\neq x'$
 avec $f(x)=f(x')$.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxdef}[3.6 -- Surjectivité]
+\begin{definition}[3.6 -- Surjectivité]
 Une application $f : A \to B$ est \textbf{surjective} si tout élément de
 $B$ possède au moins un antécédent dans $A$ :
 \[
 f \text{ est surjective} \iff \forall y \in B,\ \exists x \in A,\ y=f(x)
 \iff \mathrm{Im}\,f = B.
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxdef}[3.7 -- Bijectivité]
+\begin{definition}[3.7 -- Bijectivité]
 Une application $f : A \to B$ est \textbf{bijective} si elle est à la fois
 injective et surjective.
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[3.4]
+\begin{exemple}[3.4]
 Soit $h : \mathbb{R} \to \mathbb{R}$, $h(x)=3x-1$.
 
 \textbf{Injectivité :} soient $x,x' \in \mathbb{R}$ tels que $h(x)=h(x')$ :
@@ -2808,9 +2808,9 @@ Pour tout $y\in\mathbb{R}$, $x=\dfrac{y+1}{3}$ est bien un réel et vérifie
 $h(x)=y$. Donc $h$ est surjective.
 
 $h$ est donc \textbf{bijective}.
-\end{boxex}
+\end{exemple}
 
-\begin{boxex}[3.5]
+\begin{exemple}[3.5]
 Soit $g : \mathbb{Z} \to \mathbb{N}$, $g(n)=n^2$.
 
 \textbf{$g$ n'est pas injective} : $g(2)=4=g(-2)$, mais $2\neq -2$.
@@ -2819,9 +2819,9 @@ Soit $g : \mathbb{Z} \to \mathbb{N}$, $g(n)=n^2$.
 faudrait $n^2=5$ avec $n\in\mathbb{Z}$, ce qui est impossible ($2^2=4<5<9=3^2$,
 aucun entier n'a pour carré $5$). Donc $5 \notin \mathrm{Im}\,g$ : $g$ n'est
 pas surjective.
-\end{boxex}
+\end{exemple}
 
-\begin{boxprop}[3.3 -- Composition et injectivité/surjectivité]
+\begin{proposition}[3.3 -- Composition et injectivité/surjectivité]
 Soient $f : A \to B$ et $g : B \to C$ deux applications.
 \begin{enumerate}
   \item Si $f$ et $g$ sont injectives, alors $g\circ f$ est injective.
@@ -2829,7 +2829,7 @@ Soient $f : A \to B$ et $g : B \to C$ deux applications.
   \item Si $g\circ f$ est injective, alors $f$ est injective.
   \item Si $g\circ f$ est surjective, alors $g$ est surjective.
 \end{enumerate}
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 (1) Supposons $f$ et $g$ injectives. Soient $x,x'\in A$ tels que $(g\circ
@@ -2856,22 +2856,22 @@ $g$ est surjective.
 \section{Application réciproque d'une bijection}
 
 
-\begin{boxdef}[3.8]
+\begin{definition}[3.8]
 Soit $f : A \to B$ une application bijective. On appelle \textbf{application
 réciproque} de $f$ l'application, notée $f^{-1}$, définie par
 \[
 f^{-1} : B \longrightarrow A, \qquad f^{-1}(y) = x \quad \text{où } x
 \text{ est l'unique antécédent de } y \text{ par } f \text{ (i.e. } f(x)=y).
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxthm}[3.1]
+\begin{theoreme}[3.1]
 Si $f : A \to B$ est bijective, alors $f^{-1}$ est également bijective,
 $(f^{-1})^{-1} = f$, et
 \[
 f \circ f^{-1} = \mathrm{Id}_B, \qquad f^{-1}\circ f = \mathrm{Id}_A.
 \]
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 \textbf{Les deux égalités de composition.} Soit $y\in B$. Par définition,
@@ -2899,19 +2899,19 @@ définition (l'unique antécédent de $x$ par $f^{-1}$ est précisément
 $f(x)$).
 \end{proof}
 
-\begin{boxex}[3.6]
+\begin{exemple}[3.6]
 Reprenons $h : \mathbb{R} \to \mathbb{R}$, $h(x)=3x-1$, bijective (Exemple
 3.4). D'après le calcul effectué (résolution de $y=h(x)$), son application
 réciproque est
 \[
 h^{-1} : \mathbb{R}\to\mathbb{R}, \qquad h^{-1}(y) = \frac{y+1}{3}.
 \]
-\end{boxex}
+\end{exemple}
 
-\begin{boxprop}[3.4]
+\begin{proposition}[3.4]
 Si $f:A\to B$ et $g:B\to C$ sont deux bijections, alors $g\circ f$ est une
 bijection et $(g\circ f)^{-1} = f^{-1}\circ g^{-1}$.
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 La bijectivité de $g\circ f$ découle immédiatement de la Proposition 3.3
@@ -2930,23 +2930,23 @@ Théorème 3.1. De même, on vérifie $(f^{-1}\circ g^{-1})\circ(g\circ f) =
 \section{Décomposition canonique d'une application}
 
 
-\begin{boxdef}[3.9 -- Injection canonique]
+\begin{definition}[3.9 -- Injection canonique]
 Si $A' \subset A$, l'\textbf{injection canonique} de $A'$ dans $A$ est
 l'application $i : A' \to A$, $i(x)=x$ (elle est bien injective, puisque
 $i(x)=i(x') \Rightarrow x=x'$ trivialement).
-\end{boxdef}
+\end{definition}
 
-\begin{boxdef}[3.10 -- Relation associée à une application]
+\begin{definition}[3.10 -- Relation associée à une application]
 Soit $f : E \to F$ une application. On définit la relation $\mathcal{R}_f$
 sur $E$ par :
 \[
 \forall x,y \in E,\quad x\,\mathcal{R}_f\,y \iff f(x)=f(y).
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxprop}[3.5]
+\begin{proposition}[3.5]
 $\mathcal{R}_f$ est une relation d'équivalence sur $E$.
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 Il suffit de traduire les propriétés de l'égalité dans $F$ (voir Exercice
@@ -2966,7 +2966,7 @@ D'après le Théorème 2.1 (Chapitre 2), les classes d'équivalence de
 $\mathcal{R}_f$ forment donc une partition de $E$. On peut noter $E/f$
 l'ensemble quotient $E/\mathcal{R}_f$.
 
-\begin{boxthm}[3.2 -- Théorème de décomposition canonique]
+\begin{theoreme}[3.2 -- Théorème de décomposition canonique]
 Soit $f : E \to F$ une application. Il existe :
 \begin{itemize}
   \item une application \textbf{surjective} $s : E \to E/\mathcal{R}_f$,
@@ -2982,7 +2982,7 @@ E \xrightarrow{\ f\ } F \qquad = \qquad
 E \xrightarrow{\ s\ } E/\mathcal{R}_f \xrightarrow{\ \bar f\ } \mathrm{Im}\,f
 \xrightarrow{\ i\ } F.
 \]
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 \textbf{$s$ est bien définie et surjective.} $s(x)=\dot x$ associe à $x$ sa
@@ -3020,16 +3020,16 @@ Ceci vaut pour tout $x \in E$ : les deux applications $f$ et $i\circ \bar f
 \circ s$ sont égales.
 \end{proof}
 
-\begin{boxrem}[Interprétation]
+\begin{remarque}[Interprétation]
 Ce théorème dit, en substance : \textbf{toute application se décompose en
 une surjection suivie d'une bijection suivie d'une injection}. C'est un
 résultat fondamental de \og classification \fg : $\bar f$ réalise, en
 quelque sorte, la \og vraie \fg{} correspondance bijective cachée derrière
 $f$, une fois qu'on a \og recollé \fg{} entre eux les éléments ayant la même
 image.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[3.7]
+\begin{exemple}[3.7]
 Soit $f : \mathbb{R} \to \mathbb{R}$, $f(x)=x^2$.
 
 La relation $\mathcal{R}_f$ associée est $x\,\mathcal{R}_f\,y \iff x^2=y^2
@@ -3049,32 +3049,32 @@ l'injection canonique.
 On retrouve ainsi, de façon très concrète, pourquoi $f(x)=x^2$
 \og devient bijective \fg{} dès qu'on la restreint aux réels positifs : c'est
 exactement le contenu du théorème de décomposition canonique.
-\end{boxex}
+\end{exemple}
 
 %\section{Applications (au sens \og utilisations \fg)}
 %
-%\begin{boxappli}[Informatique -- structures de données]
+%\begin{application}[Informatique -- structures de données]
 %Les \textbf{fonctions de hachage} sont des applications d'un grand ensemble
 %(les clés) vers un petit ensemble (les indices d'une table) : elles ne sont
 %jamais injectives lorsque le domaine est plus grand que l'arrivée
 %(principe des tiroirs). La \textbf{décomposition canonique} explique
 %précisément comment gérer les \og collisions \fg{} (éléments de même
 %image).
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Cryptographie]
+%\begin{application}[Cryptographie]
 %Un algorithme de chiffrement doit être une \textbf{bijection} de l'ensemble
 %des messages clairs vers l'ensemble des messages chiffrés : c'est ce qui
 %garantit l'existence d'un déchiffrement, qui n'est autre que l'application
 %\textbf{réciproque}.
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Bases de données]
+%\begin{application}[Bases de données]
 %Une \textbf{clé primaire} d'une table de base de données définit une
 %application \textbf{injective} de l'ensemble des enregistrements vers
 %l'ensemble des valeurs de la clé (deux enregistrements distincts ne peuvent
 %pas partager la même clé primaire).
-%\end{boxappli}
+%\end{application}
 %
 %\section{Résumé du chapitre}
 %
@@ -3668,7 +3668,7 @@ Ce chapitre a pour objectifs :
   qui combinent deux lois de composition interne.
 \end{itemize}
 
-\begin{boxappli}
+\begin{application}
 Les structures algébriques sont au c\oe ur de la \textbf{cryptographie
 moderne} (groupes de points sur une courbe elliptique, corps finis
 $\mathbb{Z}/p\mathbb{Z}$ utilisés dans RSA), de la \textbf{théorie des codes
@@ -3676,7 +3676,7 @@ correcteurs d'erreurs} (transmission de données), de la \textbf{physique
 théorique} (les groupes de symétrie décrivent les lois de conservation), et
 de l'\textbf{informatique graphique} (groupes de rotations et de
 symétries).
-\end{boxappli}
+\end{application}
 
 \section{Prérequis}
 
@@ -3689,7 +3689,7 @@ pour définir les homomorphismes.
 \section{Loi de composition interne}
 
 
-\begin{boxdef}[4.1]
+\begin{definition}[4.1]
 On appelle \textbf{loi de composition interne} (LCI), ou \textbf{opération
 binaire}, sur un ensemble non vide $E$, toute application $*$ de $E\times E$
 dans $E$. L'image $*(x,y)$ est notée $x*y$. Autrement dit :
@@ -3701,9 +3701,9 @@ dans $E$. L'image $*(x,y)$ est notée $x*y$. Autrement dit :
 \text{(compatibilité)}
 \end{cases}
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxrem}
+\begin{remarque}
 La deuxième condition (\textbf{compatibilité}) est souvent oubliée, car elle
 paraît évidente : elle garantit simplement que le résultat $x*y$ ne dépend
 que \emph{des valeurs} de $x$ et $y$, pas de la façon dont on les a
@@ -3712,9 +3712,9 @@ opérations sur un \textbf{ensemble quotient} (Chapitre 2) : par exemple,
 l'addition $\dot a + \dot b := \dot{(a+b)}$ sur $\mathbb{Z}/n\mathbb{Z}$
 n'est légitime que parce qu'elle ne dépend pas du représentant $a$ (ou $b$)
 choisi dans chaque classe -- nous y reviendrons en exemple.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[4.1]
+\begin{exemple}[4.1]
 \begin{enumerate}
   \item L'addition $+$ et la multiplication $\cdot$ usuelles sont des LCI
   sur $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$.
@@ -3727,9 +3727,9 @@ choisi dans chaque classe -- nous y reviendrons en exemple.
   \item L'intersection $\cap$ est une LCI sur $\mathcal{P}(E)$, l'ensemble
   des parties de $E$ (Chapitre 2).
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
-\begin{boxex}[4.2 -- Une opération bien définie sur un ensemble quotient]
+\begin{exemple}[4.2 -- Une opération bien définie sur un ensemble quotient]
 Reprenons la relation de congruence modulo $n$ sur $\mathbb{Z}$ (Chapitre 2,
 Exemple 2.8) et son ensemble quotient $\mathbb{Z}/n\mathbb{Z}$. On souhaite
 définir une addition $\dot a \oplus \dot b := \dot{(a+b)}$. Pour que ce soit
@@ -3743,12 +3743,12 @@ signifie $n$ divise $b-b'$. En additionnant, $n$ divise
 $(a-a')+(b-b') = (a+b)-(a'+b')$, donc $\dot{(a+b)} = \dot{(a'+b')}$. La
 définition est donc cohérente : $\oplus$ est bien une LCI sur
 $\mathbb{Z}/n\mathbb{Z}$.
-\end{boxex}
+\end{exemple}
 
 \section{Propriétés d'une loi de composition interne}
 
 
-\begin{boxdef}[4.2]
+\begin{definition}[4.2]
 Soit $*$ une LCI sur un ensemble non vide $E$.
 \begin{enumerate}
   \item $*$ est \textbf{associative} si
@@ -3761,18 +3761,18 @@ Soit $*$ une LCI sur un ensemble non vide $E$.
   \textbf{inverse} (ou \textbf{symétrique}) de $x$, noté $x^{-1}$.
   \item $*$ est \textbf{commutative} si $\forall x,y\in E,\ x*y=y*x$.
 \end{enumerate}
-\end{boxdef}
+\end{definition}
 
-\begin{boxrem}[Pourquoi la parenthèse compte]
+\begin{remarque}[Pourquoi la parenthèse compte]
 Sans associativité, une expression comme $x*y*z$ n'aurait \textbf{aucun
 sens} : il faudrait toujours préciser si l'on calcule $(x*y)*z$ ou
 $x*(y*z)$, qui pourraient différer. L'associativité est ce qui permet
 d'omettre les parenthèses en toute sécurité.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxthm}[4.1 -- Unicité de l'élément neutre]
+\begin{theoreme}[4.1 -- Unicité de l'élément neutre]
 Si une LCI $*$ sur $E$ admet un élément neutre, celui-ci est \textbf{unique}.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 Supposons que $e$ et $e'$ soient deux éléments neutres de $*$. Comme $e$
@@ -3782,10 +3782,10 @@ neutre, en particulier appliqué à $e$ : $e*e' = e$. En comparant les deux
 unique.
 \end{proof}
 
-\begin{boxthm}[4.2 -- Unicité de l'inverse (loi associative)]
+\begin{theoreme}[4.2 -- Unicité de l'inverse (loi associative)]
 Soit $*$ une LCI \textbf{associative} sur $E$, admettant un élément neutre
 $e$. Si $x\in E$ est inversible, son inverse est \textbf{unique}.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 Supposons que $x'$ et $x''$ soient deux inverses de $x$ : $x*x'=x'*x=e$ et
@@ -3800,7 +3800,7 @@ d'appliquer l'associativité).
 \end{proof}
 
 
-\begin{boxex}[4.3]
+\begin{exemple}[4.3]
 Étudions la loi $*$ définie sur $\mathbb{R}$ par $x*y = x+y-1$.
 
 \textbf{Associativité :} $(x*y)*z = (x+y-1)*z = (x+y-1)+z-1 = x+y+z-2$.
@@ -3817,12 +3817,12 @@ $x*x'=1$ : $x+x'-1=1 \Rightarrow x'=2-x$. Tout réel $x$ admet donc un
 inverse, $x^{-1}=2-x$.
 
 \textbf{Commutativité :} $x*y=x+y-1=y+x-1=y*x$ : $*$ est commutative.
-\end{boxex}
+\end{exemple}
 
 \section{Structure de groupe}
 
 
-\begin{boxdef}[4.3]
+\begin{definition}[4.3]
 Soit $*$ une LCI sur un ensemble non vide $G$. On dit que $(G,*)$ est un
 \textbf{groupe} si :
 \begin{enumerate}
@@ -3833,9 +3833,9 @@ Soit $*$ une LCI sur un ensemble non vide $G$. On dit que $(G,*)$ est un
 \end{enumerate}
 Si de plus $*$ est \textbf{commutative}, on dit que le groupe est
 \textbf{commutatif} (ou \textbf{abélien}).
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[4.4]
+\begin{exemple}[4.4]
 \begin{enumerate}
   \item $(\mathbb{Z},+)$, $(\mathbb{Q},+)$, $(\mathbb{R},+)$,
   $(\mathbb{C},+)$ sont des groupes commutatifs (élément neutre $0$,
@@ -3855,19 +3855,19 @@ Si de plus $*$ est \textbf{commutative}, on dit que le groupe est
   d'élément neutre $\dot 0$ : c'est une conséquence directe des propriétés
   de l'addition dans $\mathbb{Z}$, transportées au quotient.
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
 
 \section{Sous-groupes}
 
 
-\begin{boxdef}[4.4]
+\begin{definition}[4.4]
 Soit $(G,*)$ un groupe et $H$ une partie de $G$. On dit que $(H,*)$ est un
 \textbf{sous-groupe} de $(G,*)$ si $(H,*)$ est lui-même un groupe pour la
 loi $*$ restreinte à $H$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxthm}[4.3 -- Caractérisation pratique des sous-groupes]
+\begin{theoreme}[4.3 -- Caractérisation pratique des sous-groupes]
 Soit $(G,*)$ un groupe d'élément neutre $e$, et $H$ une partie de $G$.
 Alors :
 \[
@@ -3877,7 +3877,7 @@ e \in H \\
 \forall x,y \in H,\ x*y^{-1} \in H.
 \end{cases}
 \]
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 \textbf{Sens direct.} Supposons $(H,*)$ sous-groupe de $(G,*)$. Comme
@@ -3916,7 +3916,7 @@ Toutes les conditions d'un groupe sont donc vérifiées pour $(H,*)$ : c'est
 un sous-groupe de $(G,*)$.
 \end{proof}
 
-\begin{boxex}[4.5]
+\begin{exemple}[4.5]
 \begin{enumerate}
   \item $\mathbb{Z}$ est une partie de $\mathbb{Q}$, et $(\mathbb{Q},+)$
   est un groupe. On a $0\in\mathbb{Z}$, et pour tous $x,y\in\mathbb{Z}$,
@@ -3930,20 +3930,20 @@ un sous-groupe de $(G,*)$.
   \mathbb{R}^{*+}$, $x\cdot y^{-1} = \dfrac{x}{y} > 0$ (quotient de deux
   réels strictement positifs).
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
 \section{Homomorphismes de groupes}
 
 
-\begin{boxdef}[4.5]
+\begin{definition}[4.5]
 Soient $(G,*)$ et $(G',*')$ deux groupes. On appelle \textbf{homomorphisme}
 de $(G,*)$ dans $(G',*')$ toute application $f : G \to G'$ telle que
 \[
 \forall x,y \in G,\quad f(x*y) = f(x) *' f(y).
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[4.6]
+\begin{exemple}[4.6]
 L'application $h : \mathbb{R} \to \mathbb{R}^{*+}$, $h(x)=e^x$, est un
 homomorphisme du groupe $(\mathbb{R},+)$ dans le groupe
 $(\mathbb{R}^{*+},\cdot)$. En effet, pour $x,y\in\mathbb{R}$ :
@@ -3954,16 +3954,16 @@ De même, l'application module $f:\mathbb{C}^*\to\mathbb{R}^*$,
 $f(z)=|z|$, est un homomorphisme de $(\mathbb{C}^*,\cdot)$ dans
 $(\mathbb{R}^*,\cdot)$, car $|z\cdot z'| = |z|\cdot|z'|$ pour tous
 $z,z'\in\mathbb{C}^*$.
-\end{boxex}
+\end{exemple}
 
-\begin{boxthm}[4.4]
+\begin{theoreme}[4.4]
 Soit $f : G \to G'$ un homomorphisme du groupe $(G,*)$ dans le groupe
 $(G',*')$, d'éléments neutres respectifs $e$ et $e'$. Alors :
 \begin{enumerate}
   \item $f(e) = e'$.
   \item Pour tout $x\in G$, $f(x^{-1}) = \big(f(x)\big)^{-1}$.
 \end{enumerate}
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 (1) Calculons $f(e)*'f(e)$ de deux façons. D'une part, comme $f$ est un
@@ -3996,7 +3996,7 @@ $f(x^{-1}) = \big(f(x)\big)^{-1}$.
 \section{Structure d'anneau}
 
 
-\begin{boxdef}[4.6]
+\begin{definition}[4.6]
 Soit $A$ un ensemble non vide muni de deux LCI $*_1$ et $*_2$. On dit que
 $(A,*_1,*_2)$ est un \textbf{anneau} si :
 \begin{enumerate}
@@ -4012,30 +4012,30 @@ $(A,*_1,*_2)$ est un \textbf{anneau} si :
 Si $*_2$ admet un élément neutre, on l'appelle \textbf{unité} et on dit que
 l'anneau est \textbf{unitaire}. Si $*_2$ est commutative, l'anneau est dit
 \textbf{commutatif}.
-\end{boxdef}
+\end{definition}
 
-\begin{boxrem}
+\begin{remarque}
 On note en général les deux lois d'un anneau $+_A$ et $\cdot_A$ (au lieu de
 $*_1,*_2$), l'élément neutre de $+_A$ par $0_A$, et (s'il existe)
 l'élément neutre de $\cdot_A$ par $1_A$.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[4.7]
+\begin{exemple}[4.7]
 $(\mathbb{Z},+,\cdot)$, $(\mathbb{Q},+,\cdot)$, $(\mathbb{R},+,\cdot)$,
 $(\mathbb{C},+,\cdot)$ sont tous des anneaux commutatifs et unitaires
 (unité $1$). Nous verrons au Chapitre 6 que $(K[X],+,\cdot)$, l'ensemble
 des polynômes à coefficients dans un corps $K$, est également un anneau
 commutatif et unitaire.
-\end{boxex}
+\end{exemple}
 
-\begin{boxthm}[4.5 -- Règles de calcul dans un anneau]
+\begin{theoreme}[4.5 -- Règles de calcul dans un anneau]
 Soit $(A,+_A,\cdot_A)$ un anneau d'élément neutre $0_A$ pour $+_A$. Alors :
 \begin{enumerate}
   \item $\forall x\in A,\ x\cdot_A 0_A = 0_A = 0_A \cdot_A x$.
   \item $\forall x,y\in A,\ (-x)\cdot_A y = -(x\cdot_A y) = x\cdot_A(-y)$.
   \item $\forall x,y\in A,\ (-x)\cdot_A(-y) = x\cdot_A y$.
 \end{enumerate}
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 (1) Soit $x\in A$. On a, en utilisant la distributivité et le fait que
@@ -4067,17 +4067,17 @@ la dernière égalité provenant du fait que l'opposé de l'opposé d'un
 élément redonne cet élément (propriété générale des groupes).
 \end{proof}
 
-\begin{boxrem}
+\begin{remarque}
 Ce théorème redémontre, dans le cadre abstrait des anneaux, la règle
 scolaire \og moins par moins donne plus \fg{} : elle n'est pas un axiome
 séparé, mais une \textbf{conséquence logique} des axiomes d'anneau
 (distributivité, notamment).
-\end{boxrem}
+\end{remarque}
 
 \subsection{Anneau intègre}
 
 
-\begin{boxdef}[4.7]
+\begin{definition}[4.7]
 Un anneau $(A,+_A,\cdot_A)$ est dit \textbf{intègre} si
 \[
 \forall x,y\in A,\quad \big(x\cdot_A y = 0_A\big) \Rightarrow
@@ -4085,9 +4085,9 @@ Un anneau $(A,+_A,\cdot_A)$ est dit \textbf{intègre} si
 \]
 Un élément $x\neq0_A$ tel qu'il existe $y\neq0_A$ avec $x\cdot_Ay=0_A$ est
 appelé \textbf{diviseur de zéro}.
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[4.8]
+\begin{exemple}[4.8]
 $(\mathbb{Z},+,\cdot)$, $(\mathbb{Q},+,\cdot)$, $(\mathbb{R},+,\cdot)$,
 $(\mathbb{C},+,\cdot)$ sont des anneaux intègres.
 
@@ -4097,12 +4097,12 @@ $\dot 2 \neq \dot 0$ et $\dot 3 \neq \dot 0$, mais $\dot 2 \odot \dot 3 =
 \dot 6 = \dot 0$ (puisque $6$ est congru à $0$ modulo $6$). Les classes
 $\dot 2$ et $\dot 3$ sont des diviseurs de zéro dans
 $\mathbb{Z}/6\mathbb{Z}$.
-\end{boxex}
+\end{exemple}
 
 \section{Structure de corps}
 
 
-\begin{boxdef}[4.8]
+\begin{definition}[4.8]
 Soit $(K,+_K,\cdot_K)$ un anneau unitaire. On dit que $(K,+_K,\cdot_K)$ est
 un \textbf{corps} si :
 \begin{enumerate}
@@ -4110,16 +4110,16 @@ un \textbf{corps} si :
   \item tout élément de $K\setminus\{0_K\}$ est inversible pour $\cdot_K$.
 \end{enumerate}
 Le corps est dit \textbf{commutatif} si $\cdot_K$ est commutative.
-\end{boxdef}
+\end{definition}
 
-\begin{boxrem}
+\begin{remarque}
 Si $(K,+_K,\cdot_K)$ est un corps, alors $(K^*,\cdot_K)$, avec
 $K^*=K\setminus\{0_K\}$, est un \textbf{groupe} (c'est exactement la
 condition 2 de la définition, combinée à l'associativité et à l'existence
 de l'unité héritées de la structure d'anneau).
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[4.9]
+\begin{exemple}[4.9]
 $(\mathbb{Q},+,\cdot)$, $(\mathbb{R},+,\cdot)$, $(\mathbb{C},+,\cdot)$ sont
 des corps commutatifs. Nous verrons au Chapitre 5 que $(\mathbb{R},+,\cdot)$
 et $(\mathbb{C},+,\cdot)$ sont les deux corps centraux de ce cours.
@@ -4128,11 +4128,11 @@ $(\mathbb{Z},+,\cdot)$ \textbf{n'est pas} un corps : les seuls éléments de
 $\mathbb{Z}^*$ inversibles pour la multiplication usuelle sont $1$ et
 $-1$ (par exemple, $2$ n'a pas d'inverse entier, $\frac12\notin
 \mathbb{Z}$).
-\end{boxex}
+\end{exemple}
 
-\begin{boxthm}[4.6 -- Tout corps est un anneau intègre]
+\begin{theoreme}[4.6 -- Tout corps est un anneau intègre]
 Si $(K,+_K,\cdot_K)$ est un corps, alors c'est un anneau intègre.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 Soient $a,b\in K$ tels que $a\cdot_K b = 0_K$. Montrons que $a=0_K$ ou
@@ -4153,37 +4153,37 @@ a^{-1}\cdot_K(a\cdot_Kb) = a^{-1}\cdot_K 0_K
 Dans les deux cas, $a=0_K$ ou $b=0_K$ : $(K,+_K,\cdot_K)$ est intègre.
 \end{proof}
 
-\begin{boxrem}[Pourquoi la réciproque est fausse]
+\begin{remarque}[Pourquoi la réciproque est fausse]
 Un anneau intègre n'est pas nécessairement un corps : $(\mathbb{Z},+,\cdot)$
 est intègre (Exemple 4.8) mais n'est pas un corps (Exemple 4.9), car $2$
 n'a pas d'inverse entier. L'intégrité est donc une condition
 \textbf{nécessaire mais pas suffisante} pour être un corps.
-\end{boxrem}
+\end{remarque}
 
 %\section{Applications}
 %
-%\begin{boxappli}[Cryptographie]
+%\begin{application}[Cryptographie]
 %Le chiffrement \textbf{RSA} repose sur la structure de groupe de
 %$\big((\mathbb{Z}/n\mathbb{Z})^*,\odot\big)$ où $n=pq$ est un produit de
 %deux grands nombres premiers. Les courbes elliptiques utilisées en
 %cryptographie moderne (Bitcoin, TLS) forment également un \textbf{groupe}
 %sous une opération d'addition géométrique.
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Informatique -- arithmétique modulaire]
+%\begin{application}[Informatique -- arithmétique modulaire]
 %Les calculs sur les entiers en machine (\texttt{int} sur 32 ou 64 bits)
 %s'effectuent en réalité dans un anneau $\mathbb{Z}/2^{32}\mathbb{Z}$ ou
 %$\mathbb{Z}/2^{64}\mathbb{Z}$ : c'est ce qui explique le phénomène de
 %\og débordement \fg{} (overflow) quand un calcul dépasse la capacité
 %représentable.
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Physique et chimie]
+%\begin{application}[Physique et chimie]
 %Les \textbf{groupes de symétrie} classifient les cristaux en cristallographie
 %et les molécules en chimie (groupes ponctuels) ; en physique des
 %particules, les groupes de Lie (structures continues de groupes)
 %gouvernent les lois de conservation, via le théorème de Noether.
-%\end{boxappli}
+%\end{application}
 %
 %\section{Résumé du chapitre}
 %
@@ -4810,7 +4810,7 @@ Ce chapitre a pour objectifs :
   inversibles.
 \end{itemize}
 
-\begin{boxappli}
+\begin{application}
 L'arithmétique de $\mathbb{Z}$ est le fondement de la \textbf{cryptographie
 à clé publique} (RSA repose entièrement sur l'arithmétique modulaire et le
 théorème de Bézout), des \textbf{codes correcteurs d'erreurs}, du calcul
@@ -4818,7 +4818,7 @@ des \textbf{clés de contrôle} (IBAN, numéro de sécurité sociale), et de
 nombreux \textbf{algorithmes informatiques} (l'algorithme d'Euclide est
 l'un des plus anciens algorithmes connus, et reste l'un des plus efficaces
 pour calculer un PGCD).
-\end{boxappli}
+\end{application}
 
 \section{Prérequis}
 
@@ -4830,13 +4830,13 @@ d'un anneau.
 
 \section{Divisibilité dans \texorpdfstring{$\mathbb{Z}$}{Z}}
 
-\begin{boxdef}[5.1]
+\begin{definition}[5.1]
 Soient $a,b\in\mathbb{Z}$. On dit que $a$ \textbf{divise} $b$ (ou que $b$
 est un \textbf{multiple} de $a$), noté $a\mid b$, s'il existe
 $k\in\mathbb{Z}$ tel que $b=ka$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxprop}[5.1]
+\begin{proposition}[5.1]
 Pour tous $a,b,c\in\mathbb{Z}$ :
 \begin{enumerate}
   \item $a\mid a$ (réflexivité) ; $1\mid a$ ; $a \mid 0$.
@@ -4845,7 +4845,7 @@ Pour tous $a,b,c\in\mathbb{Z}$ :
   $a \mid (\lambda b + \mu c)$ pour tous $\lambda,\mu\in\mathbb{Z}$.
   \item Si $a\mid b$ et $b\mid a$, alors $a=b$ ou $a=-b$ (i.e. $|a|=|b|$).
 \end{enumerate}
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}[Démonstration de (4)]
 Supposons $a\mid b$ et $b\mid a$, avec $a,b$ non nuls (le cas où l'un des
@@ -4858,18 +4858,18 @@ $(k,k')=(1,1)$ ou $(k,k')=(-1,-1)$ (ce sont les seuls diviseurs entiers de
 $1$). Dans le premier cas, $b=a$ ; dans le second, $b=-a$.
 \end{proof}
 
-\begin{boxrem}
+\begin{remarque}
 On retrouve ici exactement le même type d'argument que pour l'antisymétrie
 de la divisibilité sur $\mathbb{N}$ (Chapitre 2, Théorème 2.2) : sur
 $\mathbb{Z}$, la divisibilité n'est \textbf{pas} antisymétrique
 (elle donne $|a|=|b|$, pas $a=b$), ce qui confirme qu'elle n'est pas une
 relation d'ordre sur $\mathbb{Z}$ tout entier.
-\end{boxrem}
+\end{remarque}
 
 \section{Division euclidienne}
 
 
-\begin{boxthm}[5.1 -- Division euclidienne]
+\begin{theoreme}[5.1 -- Division euclidienne]
 Soient $a\in\mathbb{Z}$ et $b\in\mathbb{N}^*$. Il existe un \textbf{unique}
 couple $(q,r)\in\mathbb{Z}\times\mathbb{N}$ tel que
 \[
@@ -4877,7 +4877,7 @@ a = bq+r \qquad \text{et} \qquad 0\leq r < b.
 \]
 L'entier $q$ est appelé \textbf{quotient} et $r$ le \textbf{reste} de la
 division euclidienne de $a$ par $b$.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 \textbf{Existence.} Considérons l'ensemble
@@ -4904,7 +4904,7 @@ puis $r=r'$.
 \end{proof}
 
 
-\begin{boxex}[5.1]
+\begin{exemple}[5.1]
 \begin{enumerate}
   \item Division de $47$ par $6$ : $47 = 6\times7+5$ (avec $0\leq5<6$).
   Quotient $q=7$, reste $r=5$.
@@ -4913,29 +4913,29 @@ puis $r=r'$.
   \emph{On ne prend pas $q=-3$ (qui donnerait $-17=5\times(-3)-2$), car
   $-2$ n'est pas dans $[0,5[$.}
 \end{enumerate}
-\end{boxex}
+\end{exemple}
 
 \section{PGCD et algorithme d'Euclide}
 
 
-\begin{boxdef}[5.2]
+\begin{definition}[5.2]
 Soient $a,b\in\mathbb{Z}$, non tous deux nuls. Le \textbf{plus grand
 commun diviseur} de $a$ et $b$, noté $\mathrm{pgcd}(a,b)$ (ou $a\wedge b$),
 est le plus grand entier naturel qui divise à la fois $a$ et $b$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxdef}[5.3]
+\begin{definition}[5.3]
 Deux entiers $a,b$ sont dits \textbf{premiers entre eux} si
 $\mathrm{pgcd}(a,b)=1$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxprop}[5.2 -- Principe de l'algorithme d'Euclide]
+\begin{proposition}[5.2 -- Principe de l'algorithme d'Euclide]
 Soient $a\in\mathbb{Z}$, $b\in\mathbb{N}^*$, et $r$ le reste de la
 division euclidienne de $a$ par $b$. Alors
 \[
 \mathrm{pgcd}(a,b) = \mathrm{pgcd}(b,r).
 \]
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 Écrivons $a=bq+r$. Montrons que $a$ et $b$ ont exactement les mêmes
@@ -4953,7 +4953,7 @@ mêmes ensembles ; en particulier, leurs plus grands éléments coïncident :
 $\mathrm{pgcd}(a,b)=\mathrm{pgcd}(b,r)$.
 \end{proof}
 
-\begin{boxthm}[5.2 -- Algorithme d'Euclide]
+\begin{theoreme}[5.2 -- Algorithme d'Euclide]
 Soient $a,b\in\mathbb{N}^*$. On construit une suite de divisions
 euclidiennes successives :
 \[
@@ -4964,7 +4964,7 @@ jusqu'à obtenir un reste nul. Cette suite de restes $(r_1,r_2,r_3,\dots)$
 est \textbf{strictement décroissante} dans $\mathbb{N}$, donc devient nulle
 en un nombre fini d'étapes. Le \textbf{dernier reste non nul} est
 $\mathrm{pgcd}(a,b)$.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 La suite $(r_1,r_2,\dots)$ est une suite d'entiers naturels strictement
@@ -4982,25 +4982,25 @@ de $x$ lui-même). Ainsi $\mathrm{pgcd}(a,b)$ est le dernier reste non nul
 $r_{n-1}$.
 \end{proof}
 
-\begin{boxex}[5.2]
+\begin{exemple}[5.2]
 Calculons $\mathrm{pgcd}(126,35)$ par l'algorithme d'Euclide :
 \[
 126 = 3\times35+21, \qquad 35=1\times21+14, \qquad 21=1\times14+7, \qquad
 14=2\times7+0.
 \]
 Le dernier reste non nul est $7$ : $\mathrm{pgcd}(126,35)=7$.
-\end{boxex}
+\end{exemple}
 
 \section{Théorème de Bézout}
 
 
-\begin{boxthm}[5.3 -- Théorème de Bézout]
+\begin{theoreme}[5.3 -- Théorème de Bézout]
 Soient $a,b\in\mathbb{Z}$, non tous deux nuls, et $d=\mathrm{pgcd}(a,b)$.
 Il existe $u,v\in\mathbb{Z}$ tels que
 \[
 au+bv = d.
 \]
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 Considérons l'ensemble $S=\{au+bv : u,v\in\mathbb{Z}\} \cap \mathbb{N}^*$
@@ -5034,14 +5034,14 @@ En combinant $\delta\leq d$ et $d\leq\delta$, on obtient $\delta=d$. Ainsi
 $d = au_0+bv_0$ : le couple $(u,v)=(u_0,v_0)$ convient.
 \end{proof}
 
-\begin{boxrem}[Comment trouver $u,v$ en pratique]
+\begin{remarque}[Comment trouver $u,v$ en pratique]
 La démonstration ci-dessus prouve l'\emph{existence} de $u,v$, mais ne
 donne pas de méthode de calcul directe. En pratique, on retrouve $u,v$
 en \textbf{remontant} les étapes de l'algorithme d'Euclide, en exprimant
 à chaque étape le reste en fonction des deux précédents.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[5.3]
+\begin{exemple}[5.3]
 Trouvons $u,v\in\mathbb{Z}$ tels que $126u+35v=7=\mathrm{pgcd}(126,35)$
 (voir Exemple 5.2 pour les divisions). On \textbf{remonte} les calculs, en
 partant de l'avant-dernière ligne :
@@ -5059,12 +5059,12 @@ On remplace $21$ par son expression $21=126-3\times35$ :
 \]
 On obtient $126\times2 + 35\times(-7) = 252-245=7$ : on vérifie que
 $u=2$, $v=-7$ conviennent.
-\end{boxex}
+\end{exemple}
 
-\begin{boxthm}[5.4 -- Corollaire : caractérisation des nombres premiers entre eux]
+\begin{theoreme}[5.4 -- Corollaire : caractérisation des nombres premiers entre eux]
 Deux entiers $a,b\in\mathbb{Z}$ sont premiers entre eux si et seulement si
 il existe $u,v\in\mathbb{Z}$ tels que $au+bv=1$.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 \textbf{Sens direct.} Si $\mathrm{pgcd}(a,b)=1$, le Théorème 5.3 (appliqué
@@ -5077,10 +5077,10 @@ $au+bv=1$ (Propriété 5.1(3)). Un entier naturel qui divise $1$ ne peut
 $a$ et $b$ sont premiers entre eux.
 \end{proof}
 
-\begin{boxthm}[5.5 -- Théorème de Gauss]
+\begin{theoreme}[5.5 -- Théorème de Gauss]
 Soient $a,b,c\in\mathbb{Z}$. Si $a\mid bc$ et $\mathrm{pgcd}(a,b)=1$, alors
 $a\mid c$.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 Comme $\mathrm{pgcd}(a,b)=1$, le Théorème 5.4 donne $u,v\in\mathbb{Z}$
@@ -5099,19 +5099,19 @@ divise $auc+bvc=c$.
 \section{Congruences et structure de \texorpdfstring{$\mathbb{Z}/n\mathbb{Z}$}{Z/nZ}}
 
 
-\begin{boxrem}[Rappel]
+\begin{remarque}[Rappel]
 La relation de congruence modulo $n$ ($n\in\mathbb{N}^*$) sur
 $\mathbb{Z}$ est définie par $x\equiv y \pmod n \iff n \mid (x-y)$
 (Chapitre 2, Exemple 2.8) ; c'est une relation d'équivalence, et l'ensemble
 quotient $\mathbb{Z}/n\mathbb{Z}$, muni des opérations $\oplus$ et
 $\odot$ induites, est un anneau commutatif unitaire (Chapitre 4).
-\end{boxrem}
+\end{remarque}
 
-\begin{boxthm}[5.6 -- Éléments inversibles de \texorpdfstring{$\mathbb{Z}/n\mathbb{Z}$}{Z/nZ}]
+\begin{theoreme}[5.6 -- Éléments inversibles de \texorpdfstring{$\mathbb{Z}/n\mathbb{Z}$}{Z/nZ}]
 Soit $n\in\mathbb{N}$, $n\geq2$, et $a\in\mathbb{Z}$. La classe
 $\dot a \in \mathbb{Z}/n\mathbb{Z}$ est inversible pour $\odot$ si et
 seulement si $a$ et $n$ sont premiers entre eux.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 \textbf{Sens direct.} Supposons $\dot a$ inversible : il existe
@@ -5130,7 +5130,7 @@ $\dot a \odot \dot u = \dot 1$ : $\dot a$ est inversible, d'inverse
 $\dot u$.
 \end{proof}
 
-\begin{boxex}[5.4]
+\begin{exemple}[5.4]
 Déterminons l'inverse de $17$ dans $\mathbb{Z}/40\mathbb{Z}$. Par
 l'algorithme d'Euclide étendu (calcul analogue à l'Exemple 5.3), on
 trouve $3\times40 - 7\times17 = 1$, c'est-à-dire $17\times(-7) + 40\times3
@@ -5140,13 +5140,13 @@ $\mathbb{Z}/40\mathbb{Z}$ : l'inverse de $\dot{17}$ est $\dot{(-7)} =
 
 Vérification : $17\times33 = 561 = 14\times40+1$, donc $561 \equiv 1
 \pmod{40}$. Correct.
-\end{boxex}
+\end{exemple}
 
-\begin{boxthm}[5.7 -- Corollaire : caractérisation des corps \texorpdfstring{$\mathbb{Z}/n\mathbb{Z}$}{Z/nZ}]
+\begin{theoreme}[5.7 -- Corollaire : caractérisation des corps \texorpdfstring{$\mathbb{Z}/n\mathbb{Z}$}{Z/nZ}]
 Soit $n\in\mathbb{N}$, $n\geq2$. L'anneau $(\mathbb{Z}/n\mathbb{Z},
 \oplus,\odot)$ est un \textbf{corps} si et seulement si $n$ est
 \textbf{premier}.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 \textbf{Si $n$ est premier.} Pour tout $a\in\{1,\dots,n-1\}$, comme $n$
@@ -5165,40 +5165,40 @@ l'anneau n'est pas intègre, donc (Théorème 4.6, par contraposée) ce n'est
 pas un corps.
 \end{proof}
 
-\begin{boxrem}
+\begin{remarque}
 Ce théorème boucle élégamment la boucle ouverte au Chapitre 4 : nous avions
 vérifié \og à la main \fg{} que $\mathbb{Z}/5\mathbb{Z}\setminus\{\dot0\}$
 est un groupe multiplicatif (car $5$ est premier), et que
 $\mathbb{Z}/6\mathbb{Z}$ n'est pas intègre (car $6=2\times3$ n'est pas
 premier). Le Théorème 5.7 généralise ces observations ponctuelles en un
 critère complet et définitif.
-\end{boxrem}
+\end{remarque}
 
 %\section{Applications}
 %
-%\begin{boxappli}[Cryptographie -- RSA]
+%\begin{application}[Cryptographie -- RSA]
 %L'algorithme RSA choisit un module $n=pq$ (produit de deux grands nombres
 %premiers) et exploite le fait que $(\mathbb{Z}/n\mathbb{Z})^*$
 %(les éléments inversibles) forme un groupe : le chiffrement et le
 %déchiffrement reposent sur le calcul d'inverses modulaires, obtenus grâce
 %à l'algorithme d'Euclide étendu, exactement comme à l'Exemple 5.4.
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Informatique -- fractions et affichage]
+%\begin{application}[Informatique -- fractions et affichage]
 %L'algorithme d'Euclide sert à \textbf{simplifier des fractions}
 %(diviser numérateur et dénominateur par leur PGCD), à
 %\textbf{synchroniser des animations} périodiques (calcul de PPCM, lié au
 %PGCD par $\mathrm{pgcd}(a,b)\times\mathrm{ppcm}(a,b)=ab$), et intervient
 %dans de nombreux algorithmes de théorie des nombres utilisés en
 %informatique (tests de primalité, génération de clés).
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Calendrier et horlogerie]
+%\begin{application}[Calendrier et horlogerie]
 %Les congruences modélisent naturellement les phénomènes
 %\textbf{périodiques} : l'heure (modulo 12 ou 24), les jours de la semaine
 %(modulo 7), ou les calculs de calendrier perpétuel (détermination du jour
 %de la semaine d'une date donnée).
-%\end{boxappli}
+%\end{application}
 %
 %\section{Résumé du chapitre}
 %
@@ -5701,14 +5701,14 @@ Ce chapitre a pour objectifs :
   analyse.
 \end{itemize}
 
-\begin{boxappli}
+\begin{application}
 Les nombres complexes sont essentiels en \textbf{électronique} (analyse
 des circuits en courant alternatif, impédances complexes), en
 \textbf{traitement du signal} (transformée de Fourier), en
 \textbf{mécanique quantique} (fonction d'onde), et en \textbf{infographie}
 (rotations et transformations du plan représentées par la multiplication
 complexe).
-\end{boxappli}
+\end{application}
 
 \section{Prérequis}
 
@@ -5719,19 +5719,19 @@ d'un repère orthonormé.
 
 \section{Construction du corps des nombres complexes}
 
-\begin{boxdef}[6.1]
+\begin{definition}[6.1]
 On définit sur $\mathbb{R}^2$ l'addition $+$ et la multiplication $\cdot$
 par :
 \[
 (a_1,b_1) + (a_2,b_2) = (a_1+a_2,\ b_1+b_2), \qquad
 (a_1,b_1) \cdot (a_2,b_2) = (a_1a_2-b_1b_2,\ a_1b_2+a_2b_1).
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxthm}[6.1]
+\begin{theoreme}[6.1]
 $(\mathbb{R}^2,+,\cdot)$ est un \textbf{corps commutatif}, appelé
 \textbf{corps des nombres complexes} et noté $(\mathbb{C},+,\cdot)$.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}[Démonstration (points essentiels)]
 La plupart des axiomes d'anneau commutatif (associativité, commutativité,
@@ -5760,7 +5760,7 @@ groupe, et $1_\mathbb{C}=(1,0)\neq(0,0)_\mathbb{C}$ : $(\mathbb{C},+,\cdot)$
 est bien un corps.
 \end{proof}
 
-\begin{boxdef}[6.2 -- Forme algébrique]
+\begin{definition}[6.2 -- Forme algébrique]
 En identifiant $(a,0)$ à $a$ (ce qui plonge $\mathbb{R}$ dans
 $\mathbb{C}$, $\mathbb{R}\subset\mathbb{C}$) et en notant $i=(0,1)$, on a :
 \[
@@ -5778,26 +5778,26 @@ Cette écriture est la \textbf{forme algébrique} de $z$. Le réel $a$ est la
 \textbf{réel}, pas un complexe !). Si $\mathrm{Im}(z)=0$, $z$ est
 \textbf{réel} ; si $\mathrm{Re}(z)=0$ et $z\neq0$, $z$ est dit
 \textbf{imaginaire pur}.
-\end{boxdef}
+\end{definition}
 
 
-\begin{boxdef}[6.3 -- Conjugué et module]
+\begin{definition}[6.3 -- Conjugué et module]
 Soit $z=a+ib\in\mathbb{C}$ ($a,b\in\mathbb{R}$).
 \begin{itemize}
   \item Le \textbf{conjugué} de $z$ est $\bar z = a-ib$.
   \item Le \textbf{module} de $z$ est $|z| = \sqrt{a^2+b^2} \in
   \mathbb{R}^+$.
 \end{itemize}
-\end{boxdef}
+\end{definition}
 
-\begin{boxprop}[6.1]
+\begin{proposition}[6.1]
 Pour tout $z\in\mathbb{C}$ :
 \[
 z\bar z = |z|^2, \qquad \mathrm{Re}(z) = \frac{z+\bar z}{2}, \qquad
 \mathrm{Im}(z) = \frac{z-\bar z}{2i}.
 \]
 Si $z\neq0$, l'inverse de $z$ est $z^{-1} = \dfrac{\bar z}{|z|^2}$.
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 Écrivons $z=a+ib$. Alors
@@ -5811,19 +5811,19 @@ Enfin, si $z\neq0$, $|z|^2\neq0$, et $z\times\dfrac{\bar z}{|z|^2} =
 d'inversion établie au Théorème 6.1.
 \end{proof}
 
-\begin{boxex}[6.1]
+\begin{exemple}[6.1]
 Mettons sous forme algébrique $z=(3+2i)(1-i)$ :
 \[
 z = 3\times1 + 3\times(-i) + 2i\times1 + 2i\times(-i) = 3-3i+2i-2i^2 =
 3-i+2 = 5-i
 \]
 (en utilisant $i^2=-1$, donc $-2i^2=2$).
-\end{boxex}
+\end{exemple}
 
 \section{Représentation géométrique}
 
 
-\begin{boxdef}[6.4]
+\begin{definition}[6.4]
 Le plan muni d'un repère orthonormé $(O,\vec u,\vec v)$ est appelé
 \textbf{plan complexe}. Au nombre complexe $z=a+ib$, on associe le point
 $M(a,b)$, appelé \textbf{image} de $z$, et $z$ est appelé
@@ -5831,7 +5831,7 @@ l'\textbf{affixe} de $M$. Le module $|z|$ est alors la \textbf{distance}
 $OM$, et l'\textbf{argument} de $z$ (pour $z\neq0$), noté $\arg(z)$, est
 une mesure de l'angle $(\vec u, \overrightarrow{OM})$, définie modulo
 $2\pi$.
-\end{boxdef}
+\end{definition}
 
 \begin{center}
 \begin{tikzpicture}[scale=1.3]
@@ -5851,29 +5851,29 @@ $2\pi$.
 \section{Formes trigonométrique et exponentielle}
 
 
-\begin{boxdef}[6.5]
+\begin{definition}[6.5]
 Pour $z\in\mathbb{C}^*$, de module $r=|z|$ et d'argument $\theta=\arg(z)$,
 on a $z = r(\cos\theta+i\sin\theta)$ : c'est la \textbf{forme
 trigonométrique} de $z$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxdef}[6.6 -- Formule d'Euler, forme exponentielle]
+\begin{definition}[6.6 -- Formule d'Euler, forme exponentielle]
 Pour $\theta\in\mathbb{R}$, on pose, par définition :
 \[
 e^{i\theta} := \cos\theta + i\sin\theta \qquad (\textbf{formule d'Euler}).
 \]
 Tout $z\in\mathbb{C}^*$ s'écrit alors $z=re^{i\theta}$, avec $r=|z|>0$ et
 $\theta=\arg(z)$ : c'est la \textbf{forme exponentielle} de $z$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxthm}[6.2 -- Règles de calcul sur la forme exponentielle]
+\begin{theoreme}[6.2 -- Règles de calcul sur la forme exponentielle]
 Pour tous $\theta,\theta'\in\mathbb{R}$ et $n\in\mathbb{Z}$ :
 \[
 e^{i\theta}\times e^{i\theta'} = e^{i(\theta+\theta')}, \qquad
 \overline{e^{i\theta}} = e^{-i\theta} = \frac{1}{e^{i\theta}}, \qquad
 \big(e^{i\theta}\big)^n = e^{in\theta} \quad \textbf{(formule de Moivre)}.
 \]
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 \textbf{Produit.} En utilisant la Définition 6.6 et les formules
@@ -5906,16 +5906,16 @@ $(e^{i\theta})^{n+1} = (e^{i\theta})^n \times e^{i\theta} = e^{in\theta}
 négatifs grâce à la règle de l'inverse.
 \end{proof}
 
-\begin{boxrem}[Formule de Moivre -- forme trigonométrique]
+\begin{remarque}[Formule de Moivre -- forme trigonométrique]
 En écrivant $e^{i\theta}=\cos\theta+i\sin\theta$, la formule de Moivre
 s'énonce aussi :
 \[
 (\cos\theta+i\sin\theta)^n = \cos(n\theta)+i\sin(n\theta), \qquad
 n\in\mathbb{Z}.
 \]
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[6.2]
+\begin{exemple}[6.2]
 Écrivons $z=1+i$ sous forme trigonométrique. Le module est $|z| =
 \sqrt{1^2+1^2}=\sqrt2$. Pour l'argument : $\cos\theta =
 \dfrac{1}{\sqrt2} = \dfrac{\sqrt2}{2}$ et $\sin\theta=\dfrac{1}{\sqrt2}=
@@ -5924,9 +5924,9 @@ n\in\mathbb{Z}.
 z = \sqrt2\left(\cos\frac{\pi}{4}+i\sin\frac{\pi}{4}\right) = \sqrt2\,
 e^{i\pi/4}.
 \]
-\end{boxex}
+\end{exemple}
 
-\begin{boxex}[6.3]
+\begin{exemple}[6.3]
 Calculons $(1+i)^{10}$ à l'aide de la forme exponentielle (Exemple 6.2) et
 de la formule de Moivre :
 \[
@@ -5936,12 +5936,12 @@ e^{i10\pi/4} = 2^5\, e^{i5\pi/2}.
 Comme $\dfrac{5\pi}{2} = 2\pi+\dfrac{\pi}{2}$, on a $e^{i5\pi/2} =
 e^{i\pi/2} = i$ (l'argument est défini modulo $2\pi$). Donc
 $(1+i)^{10} = 32\times i = 32i$.
-\end{boxex}
+\end{exemple}
 
 \section{Racines \texorpdfstring{$n$}{n}-ièmes d'un nombre complexe}
 
 
-\begin{boxthm}[6.3 -- Racines \texorpdfstring{$n$}{n}-ièmes]
+\begin{theoreme}[6.3 -- Racines \texorpdfstring{$n$}{n}-ièmes]
 Soit $z_0 = r_0 e^{i\theta_0} \in \mathbb{C}^*$ et $n\in\mathbb{N}^*$.
 L'équation $z^n=z_0$ admet exactement $n$ solutions distinctes dans
 $\mathbb{C}$, données par :
@@ -5949,7 +5949,7 @@ $\mathbb{C}$, données par :
 z_k = r_0^{1/n}\, e^{i\left(\frac{\theta_0}{n}+\frac{2k\pi}{n}\right)},
 \qquad k=0,1,\dots,n-1.
 \]
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 Cherchons $z=re^{i\theta}$ (avec $r>0$) tel que $z^n=z_0$. D'après la
@@ -5978,16 +5978,16 @@ ils donnent donc $n$ arguments deux à deux distincts modulo $2\pi$,
 c'est-à-dire $n$ solutions $z_k$ deux à deux distinctes.
 \end{proof}
 
-\begin{boxdef}[6.7 -- Racines \texorpdfstring{$n$}{n}-ièmes de l'unité]
+\begin{definition}[6.7 -- Racines \texorpdfstring{$n$}{n}-ièmes de l'unité]
 Les solutions de $z^n=1$ sont appelées \textbf{racines $n$-ièmes de
 l'unité}. D'après le Théorème 6.3 (avec $r_0=1,\theta_0=0$), ce sont les
 $n$ nombres complexes
 \[
 \omega_k = e^{i2k\pi/n}, \qquad k=0,1,\dots,n-1.
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxex}[6.4]
+\begin{exemple}[6.4]
 Résolvons $z^3=1$ (racines cubiques de l'unité) : $\omega_k =
 e^{i2k\pi/3}$ pour $k=0,1,2$, soit :
 \[
@@ -5996,14 +5996,14 @@ e^{i2k\pi/3}$ pour $k=0,1,2$, soit :
 \]
 Géométriquement, ces trois points forment un triangle équilatéral inscrit
 dans le cercle unité.
-\end{boxex}
+\end{exemple}
 
-\begin{boxprop}[6.2 -- Somme des racines \texorpdfstring{$n$}{n}-ièmes de l'unité]
+\begin{proposition}[6.2 -- Somme des racines \texorpdfstring{$n$}{n}-ièmes de l'unité]
 Pour $n\geq2$, la somme des racines $n$-ièmes de l'unité est nulle :
 \[
 \sum_{k=0}^{n-1} \omega_k = 0.
 \]
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 On reconnaît une somme géométrique de raison $\omega_1 = e^{i2\pi/n}
@@ -6020,13 +6020,13 @@ dénominateur $\omega_1-1\neq0$, toute la fraction est nulle.
 \section{Linéarisation et formule d'Euler}
 
 
-\begin{boxprop}[6.3 -- Formules d'Euler]
+\begin{proposition}[6.3 -- Formules d'Euler]
 Pour $\theta\in\mathbb{R}$ :
 \[
 \cos\theta = \frac{e^{i\theta}+e^{-i\theta}}{2}, \qquad
 \sin\theta = \frac{e^{i\theta}-e^{-i\theta}}{2i}.
 \]
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 D'après la Définition 6.6, $e^{i\theta}=\cos\theta+i\sin\theta$ et
@@ -6036,7 +6036,7 @@ formule. En les soustrayant : $e^{i\theta}-e^{-i\theta} = 2i\sin\theta$,
 d'où la seconde.
 \end{proof}
 
-\begin{boxex}[6.5 -- Linéarisation de \texorpdfstring{$\cos^2\theta$}{cos²θ}]
+\begin{exemple}[6.5 -- Linéarisation de \texorpdfstring{$\cos^2\theta$}{cos²θ}]
 \[
 \cos^2\theta = \left(\frac{e^{i\theta}+e^{-i\theta}}{2}\right)^2 =
 \frac{e^{2i\theta}+2+e^{-2i\theta}}{4} =
@@ -6045,9 +6045,9 @@ d'où la seconde.
 \]
 en reconnaissant $e^{2i\theta}+e^{-2i\theta}=2\cos(2\theta)$ (Propriété
 6.3 appliquée à l'angle $2\theta$).
-\end{boxex}
+\end{exemple}
 
-\begin{boxex}[6.6 -- Linéarisation de \texorpdfstring{$\sin^3\theta$}{sin³θ}]
+\begin{exemple}[6.6 -- Linéarisation de \texorpdfstring{$\sin^3\theta$}{sin³θ}]
 \[
 \sin^3\theta = \left(\frac{e^{i\theta}-e^{-i\theta}}{2i}\right)^3 =
 \frac{(e^{i\theta}-e^{-i\theta})^3}{-8i}.
@@ -6067,9 +6067,9 @@ En reportant :
 \sin^3\theta = \frac{2i\big(\sin(3\theta)-3\sin\theta\big)}{-8i} =
 \frac{3\sin\theta - \sin(3\theta)}{4}.
 \]
-\end{boxex}
+\end{exemple}
 
-\begin{boxrem}[Opération inverse : développer \texorpdfstring{$\cos(n\theta)$}{cos(nθ)}]
+\begin{remarque}[Opération inverse : développer \texorpdfstring{$\cos(n\theta)$}{cos(nθ)}]
 La même formule de Moivre permet aussi l'opération \textbf{inverse} :
 développer $\cos(n\theta)$ en fonction de $\cos\theta$. Par exemple, la
 formule de Moivre à l'ordre $3$ donne $(\cos\theta+i\sin\theta)^3 =
@@ -6083,31 +6083,31 @@ puis, en remplaçant $\sin^2\theta=1-\cos^2\theta$ :
 \cos(3\theta) = \cos^3\theta - 3\cos\theta(1-\cos^2\theta) = 4\cos^3\theta
 - 3\cos\theta.
 \]
-\end{boxrem}
+\end{remarque}
 
 %\section{Applications}
 %
-%\begin{boxappli}[Électronique]
+%\begin{application}[Électronique]
 %En régime sinusoïdal, une tension $u(t)=U_0\cos(\omega t+\varphi)$ est
 %représentée par le nombre complexe $U_0 e^{i\varphi}$ (l'\textbf{amplitude
 %complexe}) : les lois des circuits électriques (loi d'Ohm généralisée aux
 %impédances complexes) deviennent de simples opérations algébriques sur
 %les complexes, au lieu d'équations différentielles.
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Géométrie et transformations du plan]
+%\begin{application}[Géométrie et transformations du plan]
 %La multiplication par $e^{i\theta}$ correspond exactement à une
 %\textbf{rotation} d'angle $\theta$ autour de l'origine dans le plan
 %complexe ; la multiplication par un réel $k>0$ correspond à une
 %\textbf{homothétie} de rapport $k$. Ceci permet de traiter les
 %transformations géométriques du plan par un simple calcul algébrique.
-%\end{boxappli}
+%\end{application}
 %
-%\begin{boxappli}[Traitement du signal]
+%\begin{application}[Traitement du signal]
 %La transformée de Fourier discrète, utilisée dans la compression audio et
 %vidéo (MP3, JPEG), le traitement d'image, et les télécommunications,
 %repose entièrement sur les racines $n$-ièmes de l'unité (Définition 6.7).
-%\end{boxappli}
+%\end{application}
 %
 %\section{Résumé du chapitre}
 %
@@ -6661,7 +6661,7 @@ Ce chapitre a pour objectifs :
   simples}.
 \end{itemize}
 
-\begin{boxappli}
+\begin{application}
 Les polynômes interviennent dans l'\textbf{interpolation numérique}
 (construire une courbe passant par des points donnés), les
 \textbf{codes correcteurs d'erreurs} (codes de Reed-Solomon, utilisés dans
@@ -6669,7 +6669,7 @@ les CD, DVD, QR codes), le \textbf{calcul formel}, et la décomposition en
 éléments simples est l'outil de base du calcul de \textbf{primitives de
 fractions rationnelles} en analyse, ainsi que de la \textbf{transformée en
 $Z$} en traitement du signal.
-\end{boxappli}
+\end{application}
 
 \section{Prérequis}
 
@@ -6680,7 +6680,7 @@ en particulier pour la factorisation des polynômes.
 
 \section{Polynômes à une indéterminée}
 
-\begin{boxdef}[7.1]
+\begin{definition}[7.1]
 Soit $K$ un corps commutatif ($K=\mathbb{R}$ ou $K=\mathbb{C}$ dans ce
 cours). On appelle \textbf{polynôme} à une indéterminée $X$, à
 coefficients dans $K$, toute écriture
@@ -6697,25 +6697,25 @@ $K$ est noté $K[X]$.
   \item Si tous les $a_i$ sont nuls, $P$ est le \textbf{polynôme nul},
   noté $0$ ; par convention $\deg 0 = -\infty$.
 \end{itemize}
-\end{boxdef}
+\end{definition}
 
-\begin{boxdef}[7.2 -- Opérations]
+\begin{definition}[7.2 -- Opérations]
 Soient $P=\sum a_iX^i$ et $Q=\sum b_iX^i$ deux polynômes de $K[X]$. On
 définit :
 \[
 P+Q = \sum_i (a_i+b_i)X^i, \qquad P\cdot Q = \sum_n \left(\sum_{i+j=n}
 a_ib_j\right) X^n.
 \]
-\end{boxdef}
+\end{definition}
 
-\begin{boxthm}[7.1]
+\begin{theoreme}[7.1]
 $(K[X],+,\cdot)$ est un \textbf{anneau commutatif unitaire}. De plus, pour
 tous $P,Q\in K[X]$ :
 \[
 \deg(P+Q) \leq \max(\deg P,\deg Q), \qquad \deg(P\cdot Q) = \deg P + \deg Q.
 \]
 En particulier, $K[X]$ est \textbf{intègre}.
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}[Démonstration (formule du degré du produit)]
 La structure d'anneau se vérifie par un calcul direct sur les formules de
@@ -6747,14 +6747,14 @@ Q=-\infty$ (par convention sur les degrés), c'est-à-dire $P=0$ ou $Q=0$.
 
 \section{Racines d'un polynôme}
 
-\begin{boxdef}[7.3]
+\begin{definition}[7.3]
 Soit $P=a_0+a_1X+\cdots+a_nX^n \in K[X]$. On appelle \textbf{fonction
 polynôme} associée à $P$ la fonction $\widetilde P : K\to K$,
 $\widetilde P(x) = a_0+a_1x+\cdots+a_nx^n$. Un élément $\alpha\in K$ est
 une \textbf{racine} (ou \textbf{zéro}) de $P$ si $\widetilde P(\alpha)=0$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxthm}[7.2]
+\begin{theoreme}[7.2]
 Soit $P\in K[X]$ et $\alpha\in K$. Alors :
 \begin{enumerate}
   \item Le reste de la division euclidienne de $P$ par $X-\alpha$ est
@@ -6763,7 +6763,7 @@ Soit $P\in K[X]$ et $\alpha\in K$. Alors :
   \item $\alpha$ est une racine de $P$ si et seulement si $(X-\alpha)$
   divise $P$.
 \end{enumerate}
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}
 (1) Écrivons $P=(X-\alpha)Q+R$, où $R$ est le reste de la division
@@ -6776,14 +6776,14 @@ Q(\alpha)+c = 0+c = c$. Donc $R = \widetilde P(\alpha)$.
 $\iff \widetilde P(\alpha)=0 \iff R=0 \iff (X-\alpha)$ divise $P$.
 \end{proof}
 
-\begin{boxdef}[7.4 -- Ordre de multiplicité]
+\begin{definition}[7.4 -- Ordre de multiplicité]
 Soit $P\in K[X]\setminus\{0\}$ et $\alpha$ une racine de $P$. L'\textbf{ordre
 de multiplicité} de $\alpha$ est le plus grand entier $m\in\mathbb{N}^*$
 tel que $(X-\alpha)^m$ divise $P$. Si $m=1$, $\alpha$ est dite
 \textbf{racine simple} ; si $m=2$, \textbf{racine double} ; etc.
-\end{boxdef}
+\end{definition}
 
-\begin{boxprop}[7.1 -- Critère de multiplicité par les dérivées]
+\begin{proposition}[7.1 -- Critère de multiplicité par les dérivées]
 Soit $P\in K[X]\setminus\{0\}$ et $\alpha\in K$. Alors $\alpha$ est une
 racine \textbf{simple} de $P$ si et seulement si
 \[
@@ -6791,9 +6791,9 @@ racine \textbf{simple} de $P$ si et seulement si
 \neq 0,
 \]
 où $P'$ désigne le polynôme dérivé de $P$.
-\end{boxprop}
+\end{proposition}
 
-\begin{boxex}[7.1]
+\begin{exemple}[7.1]
 Soit $P = X^3+5X^2+3X-9$. Vérifions que $-3$ est racine, et déterminons
 son ordre de multiplicité.
 
@@ -6809,18 +6809,18 @@ P = (X+3)^2(X-1).
 \]
 $-3$ est donc une racine \textbf{double}, et $1$ est une racine simple
 ($\widetilde P(1) = 1+5+3-9=0$).
-\end{boxex}
+\end{exemple}
 
 \section{Division euclidienne dans \texorpdfstring{$K[X]$}{K[X]}}
 
 
-\begin{boxthm}[7.3 -- Division euclidienne dans \texorpdfstring{$K[X]$}{K[X]}]
+\begin{theoreme}[7.3 -- Division euclidienne dans \texorpdfstring{$K[X]$}{K[X]}]
 Soient $P,B\in K[X]$, $B\neq0$. Il existe un \textbf{unique} couple
 $(Q,R)\in K[X]^2$ tel que
 \[
 P = BQ+R \qquad \text{et} \qquad \deg R < \deg B.
 \]
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}[Démonstration (existence, par récurrence forte sur $\deg P$)]
 Notons $m=\deg B$.
@@ -6855,19 +6855,19 @@ $\deg B + \deg(Q-Q') \geq \deg B$ (car $\deg(Q-Q')\geq0$ si
 $Q\neq Q'$) : contradiction. Donc $Q=Q'$, puis $R=R'$.
 \end{proof}
 
-\begin{boxex}[7.2]
+\begin{exemple}[7.2]
 Divisons $A=X^4+X^3-2X+1$ par $B=X^2+1$ :
 \[
 X^4+X^3-2X+1 = (X^2+1)(X^2+X-1) + (-3X+2).
 \]
 Vérification du degré du reste : $\deg(-3X+2)=1 < 2 = \deg B$ : correct.
 Quotient $Q=X^2+X-1$, reste $R=-3X+2$.
-\end{boxex}
+\end{exemple}
 
 \section{Division suivant les puissances croissantes}
 
 
-\begin{boxthm}[7.4 -- Division suivant les puissances croissantes]
+\begin{theoreme}[7.4 -- Division suivant les puissances croissantes]
 Soient $A,B\in K[X]$ avec $B(0)\neq0$, et $n\in\mathbb{N}$. Il existe un
 \textbf{unique} couple $(Q,R)\in K[X]^2$ tel que
 \[
@@ -6875,16 +6875,16 @@ A = BQ + X^{n+1}R, \qquad \deg Q \leq n.
 \]
 $Q$ est appelé le \textbf{quotient à l'ordre $n$} de la division de $A$
 par $B$ suivant les puissances croissantes.
-\end{boxthm}
+\end{theoreme}
 
-\begin{boxrem}[Méthode pratique]
+\begin{remarque}[Méthode pratique]
 On effectue la division comme la division euclidienne usuelle, mais en
 ordonnant les polynômes suivant les puissances \textbf{croissantes} de
 $X$ (et non décroissantes), et on \textbf{arrête} le processus dès que le
 quotient atteint le degré $n$ souhaité.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[7.3]
+\begin{exemple}[7.3]
 Divisons $A=1+2X$ par $B=1-X+X^2$ suivant les puissances croissantes à
 l'ordre $n=2$.
 
@@ -6919,11 +6919,11 @@ En développant $(1-X+X^2)(1+3X+2X^2) = 1+3X+2X^2-X-3X^2-2X^3+X^2+3X^3+2X^4
 1+2X+X^3+2X^4-X^3-2X^4 = 1+2X = A.
 \]
 L'égalité $A=BQ+X^3R$ est bien vérifiée.
-\end{boxex}
+\end{exemple}
 
 \section{Factorisation dans \texorpdfstring{$\mathbb{C}[X]$}{C[X]} et \texorpdfstring{$\mathbb{R}[X]$}{R[X]}}
 
-\begin{boxthm}[7.5 -- Théorème de d'Alembert-Gauss (admis)]
+\begin{theoreme}[7.5 -- Théorème de d'Alembert-Gauss (admis)]
 Tout polynôme non constant de $\mathbb{C}[X]$ admet au moins une racine
 dans $\mathbb{C}$. Par conséquent, tout polynôme de $\mathbb{C}[X]$ de
 degré $n\geq1$ se factorise entièrement sous la forme
@@ -6932,22 +6932,22 @@ P = a_n \prod_{k=1}^{r} (X-\alpha_k)^{m_k}, \qquad m_1+\cdots+m_r = n,
 \]
 où $\alpha_1,\dots,\alpha_r$ sont les racines distinctes de $P$, d'ordres
 de multiplicité respectifs $m_1,\dots,m_r$.
-\end{boxthm}
+\end{theoreme}
 
-\begin{boxrem}
+\begin{remarque}
 La démonstration de ce théorème dépasse largement le cadre de ce cours de
 première année (elle utilise des outils d'analyse complexe) ; nous
 l'admettons. C'est l'un des résultats les plus importants de toutes les
 mathématiques : il affirme que $\mathbb{C}$ est \textbf{algébriquement
 clos}.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxthm}[7.6 -- Factorisation dans \texorpdfstring{$\mathbb{R}[X]$}{R[X]}]
+\begin{theoreme}[7.6 -- Factorisation dans \texorpdfstring{$\mathbb{R}[X]$}{R[X]}]
 Tout polynôme non constant de $\mathbb{R}[X]$ se factorise en produit de
 facteurs de degré $1$ (de la forme $X-\alpha$, $\alpha\in\mathbb{R}$) et
 de facteurs de degré $2$ à discriminant strictement négatif (irréductibles
 sur $\mathbb{R}$).
-\end{boxthm}
+\end{theoreme}
 
 \begin{proof}[Idée de démonstration]
 Soit $P\in\mathbb{R}[X]\subset\mathbb{C}[X]$. D'après le Théorème 7.5,
@@ -6969,7 +6969,7 @@ En regroupant ainsi toutes les paires de racines conjuguées, on obtient
 la factorisation annoncée.
 \end{proof}
 
-\begin{boxex}[7.4]
+\begin{exemple}[7.4]
 Factorisons $P=X^4+1$ dans $\mathbb{C}[X]$ puis dans $\mathbb{R}[X]$.
 
 Les racines de $P$ sont les $4$ racines $4$-ièmes de $-1$ (Chapitre 6,
@@ -6993,12 +6993,12 @@ X^4+1 = (X^2-\sqrt2\,X+1)(X^2+\sqrt2\,X+1),
 et on vérifie que chacun de ces deux facteurs a un discriminant
 strictement négatif ($\Delta = 2-4=-2<0$ dans les deux cas) : ils sont
 bien irréductibles sur $\mathbb{R}$.
-\end{boxex}
+\end{exemple}
 
 \section{Fractions rationnelles}
 
 
-\begin{boxdef}[7.5]
+\begin{definition}[7.5]
 Une \textbf{fraction rationnelle} à coefficients dans $K$ est un quotient
 $F=\dfrac{P}{Q}$, où $P,Q\in K[X]$, $Q\neq0$ (deux écritures
 $\frac{P}{Q}$ et $\frac{P'}{Q'}$ représentant la même fraction si
@@ -7010,9 +7010,9 @@ par les facteurs communs).
 Les racines de $Q$ (dans l'écriture irréductible) sont appelées
 \textbf{pôles} de $F$ ; l'ordre de multiplicité d'un pôle est celui de la
 racine correspondante de $Q$.
-\end{boxdef}
+\end{definition}
 
-\begin{boxprop}[7.2 -- Partie entière]
+\begin{proposition}[7.2 -- Partie entière]
 Soit $F=\dfrac{P}{Q}\in K(X)$. Il existe un \textbf{unique} couple
 $(E,R)\in K[X]^2$, avec $\deg R < \deg Q$, tel que
 \[
@@ -7020,7 +7020,7 @@ F = E + \frac{R}{Q}.
 \]
 $E$ est appelée la \textbf{partie entière} (ou partie polynomiale) de
 $F$ ; elle est \textbf{non nulle} si et seulement si $\deg P\geq\deg Q$.
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 C'est une conséquence immédiate de la division euclidienne
@@ -7032,7 +7032,7 @@ de celle de la division euclidienne.
 \section{Décomposition en éléments simples}
 
 
-\begin{boxthm}[7.7 -- Décomposition en éléments simples sur \texorpdfstring{$\mathbb{C}$}{C} (admis)]
+\begin{theoreme}[7.7 -- Décomposition en éléments simples sur \texorpdfstring{$\mathbb{C}$}{C} (admis)]
 Soit $F=\dfrac{P}{Q}\in\mathbb{C}(X)$ irréductible, avec
 $Q = \displaystyle\prod_{i=1}^r (X-\alpha_i)^{m_i}$. Alors $F$ s'écrit de
 façon \textbf{unique} :
@@ -7041,9 +7041,9 @@ F = E(X) + \sum_{i=1}^{r} \sum_{k=1}^{m_i} \frac{c_{i,k}}{(X-\alpha_i)^k},
 \qquad c_{i,k}\in\mathbb{C},
 \]
 où $E$ est la partie entière de $F$.
-\end{boxthm}
+\end{theoreme}
 
-\begin{boxprop}[7.3 -- Calcul du coefficient d'un pôle simple]
+\begin{proposition}[7.3 -- Calcul du coefficient d'un pôle simple]
 Si $\alpha$ est un pôle \textbf{simple} de $F=\dfrac{P}{Q}$, le
 coefficient $c$ du terme $\dfrac{c}{X-\alpha}$ dans la décomposition est
 donné par
@@ -7053,7 +7053,7 @@ c = \lim_{x\to\alpha} (x-\alpha)F(x).
 En pratique, si $Q=(X-\alpha)\widetilde Q$ avec $\widetilde
 Q(\alpha)\neq0$, on a simplement $c = \dfrac{P(\alpha)}{\widetilde
 Q(\alpha)}$.
-\end{boxprop}
+\end{proposition}
 
 \begin{proof}
 Écrivons $F = \dfrac{c}{X-\alpha} + G(X)$, où $G$ regroupe tous les
@@ -7068,7 +7068,7 @@ donc $(X-\alpha)G(X) \to 0$ quand $x\to\alpha$. En passant à la limite :
 $\displaystyle\lim_{x\to\alpha}(x-\alpha)F(x) = c$.
 \end{proof}
 
-\begin{boxex}[7.5]
+\begin{exemple}[7.5]
 Décomposons $F = \dfrac{3X-1}{(X-1)(X+2)}$ en éléments simples sur
 $\mathbb{R}$ (les deux pôles $1$ et $-2$ étant réels et simples) :
 \[
@@ -7084,9 +7084,9 @@ Donc $F = \dfrac{2/3}{X-1} + \dfrac{7/3}{X+2}$.
 \emph{Vérification :} $\dfrac{2/3}{X-1}+\dfrac{7/3}{X+2} =
 \dfrac{2(X+2)/3+7(X-1)/3}{(X-1)(X+2)} = \dfrac{(2X+4+7X-7)/3}{(X-1)(X+2)}
 = \dfrac{(9X-3)/3}{(X-1)(X+2)} = \dfrac{3X-1}{(X-1)(X+2)}$ : correct.
-\end{boxex}
+\end{exemple}
 
-\begin{boxrem}[Pôle multiple : coefficient du terme de plus haut ordre]
+\begin{remarque}[Pôle multiple : coefficient du terme de plus haut ordre]
 Pour un pôle $\alpha$ d'ordre $m$, le coefficient $c_{i,m}$ du terme
 $\dfrac{c_{i,m}}{(X-\alpha)^m}$ (plus haute puissance) se calcule de la
 même façon que pour un pôle simple, en multipliant $F$ par $(X-\alpha)^m$
@@ -7094,9 +7094,9 @@ puis en évaluant en $\alpha$. Les coefficients des puissances
 inférieures s'obtiennent ensuite en évaluant l'égalité (après
 multiplication par $(X-\alpha)^m$) en d'autres valeurs bien choisies, ou
 par identification.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[7.6 -- Pôle double]
+\begin{exemple}[7.6 -- Pôle double]
 Décomposons $F = \dfrac{1}{(X-1)^2(X+1)}$ en éléments simples :
 \[
 F = \frac{a}{X-1} + \frac{b}{(X-1)^2} + \frac{c}{X+1}.
@@ -7119,26 +7119,26 @@ F(0) = \frac{1}{(0-1)^2(0+1)} = 1, \qquad \text{et} \qquad
 En égalant : $1 = -a+\dfrac34$, donc $a = \dfrac34-1 = -\dfrac14$.
 
 Ainsi $F = \dfrac{-1/4}{X-1} + \dfrac{1/2}{(X-1)^2} + \dfrac{1/4}{X+1}$.
-\end{boxex}
+\end{exemple}
 
-\begin{boxthm}[7.8 -- Décomposition en éléments simples sur \texorpdfstring{$\mathbb{R}$}{R} (admis)]
+\begin{theoreme}[7.8 -- Décomposition en éléments simples sur \texorpdfstring{$\mathbb{R}$}{R} (admis)]
 Soit $F=\dfrac{P}{Q}\in\mathbb{R}(X)$ irréductible, avec $Q$ factorisé
 dans $\mathbb{R}[X]$ (Théorème 7.6) en facteurs $(X-\alpha_i)^{m_i}$ et
 $(X^2+p_jX+q_j)^{n_j}$ (facteurs irréductibles). Alors $F$ s'écrit de
 façon unique comme somme de sa partie entière, de termes
 $\dfrac{c}{(X-\alpha_i)^k}$ ($c\in\mathbb{R}$), et de termes
 $\dfrac{aX+b}{(X^2+p_jX+q_j)^k}$ ($a,b\in\mathbb{R}$).
-\end{boxthm}
+\end{theoreme}
 
-\begin{boxrem}[Méthode pratique sur $\mathbb{R}$]
+\begin{remarque}[Méthode pratique sur $\mathbb{R}$]
 Une méthode efficace consiste à décomposer $F$ sur $\mathbb{C}$
 (Théorème 7.7), où tous les pôles sont linéaires, puis à \textbf{regrouper}
 les termes associés à des pôles complexes conjugués : la somme de deux
 tels termes redonne automatiquement un terme réel de la forme
 $\dfrac{aX+b}{X^2+pX+q}$.
-\end{boxrem}
+\end{remarque}
 
-\begin{boxex}[7.7]
+\begin{exemple}[7.7]
 Décomposons $F=\dfrac{1}{X^2+1}$ sur $\mathbb{C}$ puis sur $\mathbb{R}$.
 
 \textbf{Sur $\mathbb{C}$ :} $X^2+1=(X-i)(X+i)$, pôles simples $i,-i$.
@@ -7156,9 +7156,9 @@ simple sur $\mathbb{R}$ : sa décomposition réelle est $F$ elle-même,
 $F = \dfrac{0\times X+1}{X^2+1}$. Ceci illustre que la décomposition sur
 $\mathbb{R}$ peut être \og plus grossière \fg{} que sur $\mathbb{C}$,
 précisément à cause des pôles non réels qui se regroupent.
-\end{boxex}
+\end{exemple}
 
-\begin{boxex}[7.8]
+\begin{exemple}[7.8]
 Décomposons $F=\dfrac{1}{X(X^2+1)}$ sur $\mathbb{R}$ :
 \[
 F = \frac{a}{X} + \frac{bX+c}{X^2+1}.
@@ -7174,32 +7174,32 @@ F - \frac{1}{X} = \frac{1-(X^2+1)}{X(X^2+1)} = \frac{-X^2}{X(X^2+1)} =
 Donc $\dfrac{bX+c}{X^2+1} = \dfrac{-X}{X^2+1}$, d'où $b=-1$, $c=0$.
 
 Ainsi $F = \dfrac1X - \dfrac{X}{X^2+1}$.
-\end{boxex}
+\end{exemple}
 
 \section{Applications}
 
-\begin{boxappli}[Calcul de primitives]
+\begin{application}[Calcul de primitives]
 La décomposition en éléments simples est la méthode \textbf{universelle}
 pour calculer la primitive d'une fraction rationnelle : chaque terme
 $\dfrac{c}{(X-\alpha)^k}$ se primitive immédiatement (logarithme si
 $k=1$, puissance sinon), et chaque terme quadratique se ramène à un
 arctangente après complétion du carré.
-\end{boxappli}
+\end{application}
 
-\begin{boxappli}[Automatique et traitement du signal]
+\begin{application}[Automatique et traitement du signal]
 En automatique, la \textbf{fonction de transfert} d'un système linéaire
 est une fraction rationnelle en la variable de Laplace $p$ ; sa
 décomposition en éléments simples permet de calculer explicitement la
 réponse temporelle du système (chaque pôle correspond à un mode
 exponentiel ou oscillant).
-\end{boxappli}
+\end{application}
 
-\begin{boxappli}[Codes correcteurs et calcul formel]
+\begin{application}[Codes correcteurs et calcul formel]
 L'arithmétique de $K[X]$ (division euclidienne, factorisation) est à la
 base des \textbf{codes de Reed-Solomon} (utilisés dans les CD, DVD,
 codes-barres QR) et de tous les logiciels de \textbf{calcul formel}
 (manipulation exacte de polynômes et fractions rationnelles).
-\end{boxappli}
+\end{application}
 
 \section{Résumé du chapitre}
 

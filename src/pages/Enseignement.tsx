@@ -121,7 +121,7 @@ const Enseignement = () => {
 
         <section className="container mx-auto px-6 py-12">
           <Tabs value={current.id} onValueChange={(v) => navigate(`/enseignement/${v}`)}>
-            <TabsList className="mb-8 mx-auto grid h-auto w-full max-w-2xl grid-cols-2 sm:grid-cols-4">
+            <TabsList className="mb-8 mx-auto grid h-auto w-full max-w-3xl grid-cols-2 sm:grid-cols-5">
               {CATEGORIES.map((c) => (
                 <TabsTrigger key={c.id} value={c.id} className="gap-2 py-2.5">
                   <c.icon className="h-4 w-4" />

@@ -1,0 +1,97 @@
+%% titre: Quiz 1 — Notions de logique
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 1
+%% description: Négations, implication, quantificateurs et modes de raisonnement.
+
+\begin{question}
+Quelle est la négation de $\forall x\in\R,\ \exists y\in\R,\ y>x$ ?
+\begin{reponses}
+  \mauvaise $\forall x\in\R,\ \exists y\in\R,\ y\le x$
+  \bonne $\exists x\in\R,\ \forall y\in\R,\ y\le x$
+  \mauvaise $\exists x\in\R,\ \exists y\in\R,\ y\le x$
+  \mauvaise $\exists x\in\R,\ \forall y\in\R,\ y<x$
+\end{reponses}
+\begin{explication}
+On échange chaque $\forall$ en $\exists$ (et inversement) en gardant l'ordre, puis on nie le prédicat : la négation de $y>x$ est $y\le x$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Quelles propositions sont équivalentes à $P\Rightarrow Q$ ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $\overline{P}\vee Q$
+  \bonne $\overline{Q}\Rightarrow\overline{P}$
+  \mauvaise $Q\Rightarrow P$
+  \mauvaise $P\wedge\overline{Q}$
+\end{reponses}
+\begin{explication}
+$P\Rightarrow Q$ équivaut à $\overline P\vee Q$ et à sa contraposée $\overline Q\Rightarrow\overline P$. La proposition $Q\Rightarrow P$ est la réciproque, et $P\wedge\overline Q$ est la \emph{négation} de $P\Rightarrow Q$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Si $P$ est fausse, la proposition $P\Rightarrow Q$ est :
+\begin{reponses}
+  \mauvaise fausse
+  \bonne vraie, quelle que soit la valeur de vérité de $Q$
+  \mauvaise vraie seulement si $Q$ est vraie
+  \mauvaise sans valeur de vérité
+\end{reponses}
+\begin{explication}
+$P\Rightarrow Q$ n'est fausse que dans le cas $P$ vraie et $Q$ fausse.
+\end{explication}
+\end{question}
+
+\begin{question}
+La négation de $P\wedge Q$ est :
+\begin{reponses}
+  \bonne $\overline{P}\vee\overline{Q}$
+  \mauvaise $\overline{P}\wedge\overline{Q}$
+  \mauvaise $P\vee Q$
+  \mauvaise $\overline{P}\Rightarrow\overline{Q}$
+\end{reponses}
+\begin{explication}
+C'est une loi de De Morgan : on nie chaque proposition et on échange $\wedge$ et $\vee$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Laquelle de ces propositions est vraie ?
+\begin{reponses}
+  \mauvaise $\forall x\in\R,\ x^2>0$
+  \mauvaise $\exists x\in\R,\ x^2=-1$
+  \bonne $\forall x\in\R,\ \exists y\in\R,\ y>x$
+  \mauvaise $\exists y\in\R,\ \forall x\in\R,\ y>x$
+\end{reponses}
+\begin{explication}
+Pour tout réel $x$, le réel $y=x+1$ convient. En revanche aucun réel n'est strictement supérieur à tous les réels (y compris lui-même), et $0^2=0$ n'est pas $>0$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Pour démontrer une proposition $P$ par l'absurde, on :
+\begin{reponses}
+  \bonne suppose que $P$ est fausse et on aboutit à une contradiction
+  \mauvaise suppose que $P$ est vraie et on vérifie quelques exemples
+  \mauvaise démontre la réciproque de $P$
+  \mauvaise démontre $\overline{Q}\Rightarrow\overline{P}$
+\end{reponses}
+\begin{explication}
+La dernière proposition décrit le raisonnement par contraposée, qui est différent.
+\end{explication}
+\end{question}
+
+\begin{question}
+Dans une démonstration par récurrence, l'étape d'hérédité consiste à :
+\begin{reponses}
+  \mauvaise vérifier que $\mathcal{P}(n_0)$ est vraie
+  \bonne montrer que, pour tout $n\ge n_0$, $\mathcal{P}(n)\Rightarrow\mathcal{P}(n+1)$
+  \mauvaise supposer $\mathcal{P}(n)$ vraie pour \emph{tout} entier $n$
+  \mauvaise démontrer $\mathcal{P}(n+1)$ sans utiliser $\mathcal{P}(n)$
+\end{reponses}
+\begin{explication}
+La première réponse décrit l'initialisation. On suppose $\mathcal P(n)$ pour un entier $n$ \emph{fixé}, pas pour tous.
+\end{explication}
+\end{question}

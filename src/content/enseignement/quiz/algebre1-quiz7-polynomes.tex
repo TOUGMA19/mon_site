@@ -1,0 +1,104 @@
+%% titre: Quiz 7 — Polynômes et fractions rationnelles
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 7
+%% description: Degré, racines, division euclidienne, factorisation, éléments simples.
+
+\begin{question}
+Si $P$ et $Q$ sont deux polynômes non nuls, $\deg(PQ)$ vaut :
+\begin{reponses}
+  \mauvaise $\max(\deg P,\deg Q)$
+  \bonne $\deg P+\deg Q$
+  \mauvaise $\deg P\times\deg Q$
+  \mauvaise $\min(\deg P,\deg Q)$
+\end{reponses}
+\end{question}
+
+\begin{question}
+Pour deux polynômes $P$ et $Q$, on a toujours :
+\begin{reponses}
+  \bonne $\deg(P+Q)\le\max(\deg P,\deg Q)$
+  \mauvaise $\deg(P+Q)=\max(\deg P,\deg Q)$
+  \mauvaise $\deg(P+Q)=\deg P+\deg Q$
+  \mauvaise $\deg(P+Q)\ge\min(\deg P,\deg Q)$
+\end{reponses}
+\begin{explication}
+Il peut y avoir simplification : $(X^2+X)+(-X^2)=X$ est de degré $1<2$. Et avec $Q=-P$, la somme est nulle.
+\end{explication}
+\end{question}
+
+\begin{question}
+Un scalaire $a$ est racine de $P$ si et seulement si :
+\begin{reponses}
+  \bonne $(X-a)$ divise $P$
+  \mauvaise $P'(a)=0$
+  \mauvaise $P(X)=a$
+  \mauvaise $(X-a)$ divise $P'$
+\end{reponses}
+\end{question}
+
+\begin{question}
+Le reste de la division euclidienne de $P$ par $X-a$ est :
+\begin{reponses}
+  \mauvaise $P(0)$
+  \mauvaise $P'(a)$
+  \bonne $P(a)$
+  \mauvaise $a$
+\end{reponses}
+\begin{explication}
+On écrit $P=(X-a)Q+r$ avec $r$ constant, puis on évalue en $a$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Quel est le reste de la division euclidienne de $X^3+2X+1$ par $X^2+1$ ?
+\begin{reponses}
+  \bonne $X+1$
+  \mauvaise $2X+1$
+  \mauvaise $X-1$
+  \mauvaise $1$
+\end{reponses}
+\begin{explication}
+$X^3+2X+1=X(X^2+1)+(X+1)$, avec $\deg(X+1)<\deg(X^2+1)$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Dans $\R[X]$, un polynôme irréductible est :
+\begin{reponses}
+  \mauvaise toujours de degré $1$
+  \mauvaise toujours de degré $2$
+  \bonne de degré $1$, ou de degré $2$ à discriminant strictement négatif
+  \mauvaise de degré quelconque
+\end{reponses}
+\begin{explication}
+Tout polynôme de $\R[X]$ se factorise en produit de facteurs de degré $1$ et de degré $2$ sans racine réelle.
+\end{explication}
+\end{question}
+
+\begin{question}
+Un polynôme de $\C[X]$ de degré $n\ge1$ a, comptées avec multiplicité, exactement :
+\begin{reponses}
+  \mauvaise $n-1$ racines
+  \bonne $n$ racines
+  \mauvaise $2n$ racines
+  \mauvaise $1$ racine
+\end{reponses}
+\begin{explication}
+C'est le théorème de d'Alembert–Gauss : $\C[X]$ est scindé.
+\end{explication}
+\end{question}
+
+\begin{question}
+La décomposition en éléments simples de $\dfrac{1}{X(X+1)}$ est :
+\begin{reponses}
+  \mauvaise $\dfrac1X+\dfrac1{X+1}$
+  \bonne $\dfrac1X-\dfrac1{X+1}$
+  \mauvaise $\dfrac1X-\dfrac1{X-1}$
+  \mauvaise $\dfrac2X-\dfrac1{X+1}$
+\end{reponses}
+\begin{explication}
+$\dfrac1X-\dfrac1{X+1}=\dfrac{(X+1)-X}{X(X+1)}=\dfrac1{X(X+1)}$.
+\end{explication}
+\end{question}

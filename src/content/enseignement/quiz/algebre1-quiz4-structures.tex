@@ -1,0 +1,94 @@
+%% titre: Quiz 4 — Groupes, anneaux et corps
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 4
+%% description: Lois de composition, groupes, sous-groupes, morphismes, anneaux et corps.
+
+\begin{question}
+Lesquelles de ces structures sont des groupes ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $(\Z,+)$
+  \bonne $(\Q^*,\times)$
+  \mauvaise $(\N,+)$
+  \mauvaise $(\Z,\times)$
+\end{reponses}
+\begin{explication}
+Dans $(\N,+)$ seul $0$ a un opposé ; dans $(\Z,\times)$ seuls $1$ et $-1$ sont inversibles.
+\end{explication}
+\end{question}
+
+\begin{question}
+Soit $(G,*)$ un groupe d'élément neutre $e$ et $H\subset G$. Quelle condition caractérise les sous-groupes ?
+\begin{reponses}
+  \bonne $e\in H$ et $\forall x,y\in H,\ x*y^{-1}\in H$
+  \mauvaise $H\neq\varnothing$ et $\forall x,y\in H,\ x*y\in H$
+  \mauvaise $\forall x,y\in H,\ x*y\in H$
+  \mauvaise $e\in H$ et $\forall x,y\in H,\ x*y\in H$
+\end{reponses}
+\begin{explication}
+La stabilité par $*$ ne suffit pas : $\N$ est stable par $+$ dans $\Z$ mais n'est pas un sous-groupe (pas d'opposés). Il faut la stabilité par $x*y^{-1}$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Lesquelles de ces parties sont des sous-groupes de $(\Z,+)$ ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $2\Z$
+  \bonne $\{0\}$
+  \mauvaise $\N$
+  \mauvaise $\{-1,0,1\}$
+\end{reponses}
+\begin{explication}
+$\N$ n'est pas stable par passage à l'opposé, et $1+1=2\notin\{-1,0,1\}$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Si $f:(G,*)\to(G',\perp)$ est un morphisme de groupes, alors $f(e)$ vaut :
+\begin{reponses}
+  \mauvaise $e$
+  \bonne $e'$, l'élément neutre de $G'$
+  \mauvaise $0$
+  \mauvaise un élément quelconque de $G'$
+\end{reponses}
+\begin{explication}
+$f(e)=f(e*e)=f(e)\perp f(e)$, et l'on simplifie par $f(e)$ dans le groupe $G'$.
+\end{explication}
+\end{question}
+
+\begin{question}
+L'application $\exp:(\R,+)\to(\R_+^*,\times)$ est :
+\begin{reponses}
+  \bonne un isomorphisme de groupes
+  \mauvaise un morphisme non injectif
+  \mauvaise un morphisme non surjectif
+  \mauvaise pas un morphisme
+\end{reponses}
+\begin{explication}
+$\exp(x+y)=\exp x\times\exp y$, et $\exp$ est bijective de $\R$ sur $\R_+^*$.
+\end{explication}
+\end{question}
+
+\begin{question}
+L'anneau $(\Z,+,\times)$ est :
+\begin{reponses}
+  \mauvaise un corps
+  \bonne un anneau intègre qui n'est pas un corps
+  \mauvaise un anneau non intègre
+  \mauvaise un groupe pour la multiplication
+\end{reponses}
+\begin{explication}
+Un produit d'entiers est nul seulement si l'un d'eux est nul (intègre), mais $2$ n'a pas d'inverse dans $\Z$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Lesquels de ces anneaux commutatifs sont des corps ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $\Q$
+  \bonne $\R$
+  \bonne $\C$
+  \mauvaise $\Z$
+\end{reponses}
+\end{question}

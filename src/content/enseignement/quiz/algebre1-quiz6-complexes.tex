@@ -1,0 +1,107 @@
+%% titre: Quiz 6 — Nombres complexes
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 6
+%% description: Module, argument, formes trigonométrique et exponentielle, racines, linéarisation.
+
+\begin{question}
+Que vaut $(1+i)^2$ ?
+\begin{reponses}
+  \mauvaise $2$
+  \bonne $2i$
+  \mauvaise $-2i$
+  \mauvaise $1+2i$
+\end{reponses}
+\begin{explication}
+$(1+i)^2=1+2i+i^2=2i$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Le module de $3-4i$ est :
+\begin{reponses}
+  \mauvaise $1$
+  \mauvaise $7$
+  \bonne $5$
+  \mauvaise $25$
+\end{reponses}
+\begin{explication}
+$|3-4i|=\sqrt{3^2+(-4)^2}=\sqrt{25}=5$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Un argument de $-1+i$ est :
+\begin{reponses}
+  \mauvaise $\dfrac{\pi}{4}$
+  \mauvaise $-\dfrac{\pi}{4}$
+  \bonne $\dfrac{3\pi}{4}$
+  \mauvaise $-\dfrac{3\pi}{4}$
+\end{reponses}
+\begin{explication}
+Le point d'affixe $-1+i$ est dans le deuxième quadrant : $|z|=\sqrt2$, $\cos\theta=-\frac{1}{\sqrt2}$ et $\sin\theta=\frac1{\sqrt2}$, d'où $\theta=\frac{3\pi}{4}\ (2\pi)$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Quelles affirmations sont vraies pour tous $z,z_1,z_2\in\C$ ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $z\bar z=|z|^2$
+  \bonne $|z_1z_2|=|z_1|\,|z_2|$
+  \mauvaise $|z_1+z_2|=|z_1|+|z_2|$
+  \mauvaise $\arg(z_1+z_2)=\arg z_1+\arg z_2$
+\end{reponses}
+\begin{explication}
+Le module est multiplicatif, mais seule l'inégalité triangulaire $|z_1+z_2|\le|z_1|+|z_2|$ est vraie en général. C'est pour le \emph{produit} que les arguments s'additionnent.
+\end{explication}
+\end{question}
+
+\begin{question}
+La formule de Moivre affirme que, pour $n\in\Z$ :
+\begin{reponses}
+  \bonne $(\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta)$
+  \mauvaise $(\cos\theta+i\sin\theta)^n=\cos^n\theta+i\sin^n\theta$
+  \mauvaise $(\cos\theta+i\sin\theta)^n=n\cos\theta+in\sin\theta$
+  \mauvaise $(\cos\theta+i\sin\theta)^n=\cos(\theta^n)+i\sin(\theta^n)$
+\end{reponses}
+\end{question}
+
+\begin{question}
+Les racines quatrièmes de l'unité sont :
+\begin{reponses}
+  \mauvaise $\{1,-1\}$
+  \mauvaise $\{1,i\}$
+  \bonne $\{1,i,-1,-i\}$
+  \mauvaise $\{1,2,3,4\}$
+\end{reponses}
+\begin{explication}
+Ce sont les $e^{2ik\pi/4}=i^k$ pour $k=0,1,2,3$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Pour tout réel $\theta$, $\cos\theta$ est égal à :
+\begin{reponses}
+  \bonne $\dfrac{e^{i\theta}+e^{-i\theta}}{2}$
+  \mauvaise $\dfrac{e^{i\theta}-e^{-i\theta}}{2}$
+  \mauvaise $\dfrac{e^{i\theta}-e^{-i\theta}}{2i}$
+  \mauvaise $\dfrac{e^{i\theta}+e^{-i\theta}}{2i}$
+\end{reponses}
+\begin{explication}
+Formule d'Euler. La troisième expression est $\sin\theta$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Les solutions de $z^3=8i$ sont :
+\begin{reponses}
+  \mauvaise $2i$ seulement
+  \bonne $\sqrt3+i,\ -\sqrt3+i,\ -2i$
+  \mauvaise $2,\ 2j,\ 2j^2$
+  \mauvaise $\sqrt3-i,\ -\sqrt3-i,\ 2i$
+\end{reponses}
+\begin{explication}
+$8i=8e^{i\pi/2}$ donc $z_k=2e^{i(\pi/6+2k\pi/3)}$, $k=0,1,2$ : $2e^{i\pi/6}=\sqrt3+i$, $2e^{5i\pi/6}=-\sqrt3+i$, $2e^{3i\pi/2}=-2i$.
+\end{explication}
+\end{question}

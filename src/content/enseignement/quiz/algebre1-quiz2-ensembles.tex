@@ -1,0 +1,95 @@
+%% titre: Quiz 2 — Ensembles et relations
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 2
+%% description: Opérations sur les ensembles, produit cartésien, relations d'équivalence et d'ordre.
+
+\begin{question}
+Pour trois ensembles $A,B,C$, l'ensemble $A\cap(B\cup C)$ est égal à :
+\begin{reponses}
+  \bonne $(A\cap B)\cup(A\cap C)$
+  \mauvaise $(A\cap B)\cap(A\cap C)$
+  \mauvaise $A\cup(B\cap C)$
+  \mauvaise $(A\cup B)\cap C$
+\end{reponses}
+\begin{explication}
+C'est la distributivité de $\cap$ sur $\cup$ : $x\in A$ et ($x\in B$ ou $x\in C$).
+\end{explication}
+\end{question}
+
+\begin{question}
+Dans un ensemble $E$, le complémentaire de $A\cup B$ est :
+\begin{reponses}
+  \bonne $A^{c}\cap B^{c}$
+  \mauvaise $A^{c}\cup B^{c}$
+  \mauvaise $A^{c}\setminus B^{c}$
+  \mauvaise $A\cap B$
+\end{reponses}
+\begin{explication}
+Loi de De Morgan : $(A\cup B)^c=A^c\cap B^c$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Si $E$ est un ensemble fini à $n$ éléments, l'ensemble $\mathcal{P}(E)$ de ses parties a pour cardinal :
+\begin{reponses}
+  \mauvaise $n^2$
+  \mauvaise $2n$
+  \bonne $2^n$
+  \mauvaise $n!$
+\end{reponses}
+\begin{explication}
+Chaque élément est soit dans la partie, soit en dehors : $2$ choix par élément, donc $2^n$ parties.
+\end{explication}
+\end{question}
+
+\begin{question}
+Quelles propriétés possède la relation $\le$ sur $\R$ ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne réflexive
+  \bonne antisymétrique
+  \bonne transitive
+  \mauvaise symétrique
+\end{reponses}
+\begin{explication}
+Réflexive, antisymétrique et transitive : c'est une relation d'ordre. Elle n'est pas symétrique ($1\le2$ mais $2\not\le1$).
+\end{explication}
+\end{question}
+
+\begin{question}
+Sur $\Z$, on pose $x\,\mathcal{R}\,y \iff x-y\in 3\Z$. Combien cette relation d'équivalence a-t-elle de classes ?
+\begin{reponses}
+  \mauvaise $1$
+  \mauvaise $2$
+  \bonne $3$
+  \mauvaise une infinité
+\end{reponses}
+\begin{explication}
+Deux entiers sont en relation s'ils ont le même reste dans la division par $3$ : les classes sont celles des restes $0$, $1$ et $2$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Quelles familles sont des partitions de $E=\{1,2,3,4\}$ ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $\big\{\{1,2\},\{3,4\}\big\}$
+  \bonne $\big\{\{1\},\{2,3,4\}\big\}$
+  \mauvaise $\big\{\{1,2\},\{2,3\},\{4\}\big\}$
+  \mauvaise $\big\{\{1\},\{2\},\{3\}\big\}$
+  \mauvaise $\big\{\varnothing,\{1,2,3,4\}\big\}$
+\end{reponses}
+\begin{explication}
+Une partition est formée de parties non vides, deux à deux disjointes, dont la réunion est $E$. La troisième famille a des parties qui se chevauchent, la quatrième oublie $4$, la dernière contient $\varnothing$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Si $A$ et $B$ sont finis, le cardinal de $A\times B$ vaut :
+\begin{reponses}
+  \mauvaise $\operatorname{Card}A+\operatorname{Card}B$
+  \bonne $\operatorname{Card}A\times\operatorname{Card}B$
+  \mauvaise $\max(\operatorname{Card}A,\operatorname{Card}B)$
+  \mauvaise $\operatorname{Card}A^{\operatorname{Card}B}$
+\end{reponses}
+\end{question}

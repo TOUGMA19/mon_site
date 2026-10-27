@@ -1,0 +1,110 @@
+%% titre: Quiz 5 — Arithmétique dans Z
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 5
+%% description: Division euclidienne, PGCD, Bézout, congruences et Z/nZ.
+
+\begin{question}
+La division euclidienne de $-17$ par $5$ donne :
+\begin{reponses}
+  \bonne quotient $-4$, reste $3$
+  \mauvaise quotient $-3$, reste $-2$
+  \mauvaise quotient $-4$, reste $-3$
+  \mauvaise quotient $-5$, reste $8$
+\end{reponses}
+\begin{explication}
+On cherche $-17=5q+r$ avec $0\le r<5$ : $-17=5\times(-4)+3$. Les autres écritures sont vraies pour certaines mais le reste n'est pas dans $[0,5[$ (ou l'égalité est fausse).
+\end{explication}
+\end{question}
+
+\begin{question}
+Quel est le PGCD de $84$ et $36$ ?
+\begin{reponses}
+  \mauvaise $4$
+  \mauvaise $6$
+  \bonne $12$
+  \mauvaise $36$
+\end{reponses}
+\begin{explication}
+Algorithme d'Euclide : $84=2\times36+12$ puis $36=3\times12+0$. Le dernier reste non nul est $12$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Si $a$ et $b$ sont premiers entre eux et si $a$ divise $bc$, alors :
+\begin{reponses}
+  \bonne $a$ divise $c$
+  \mauvaise $a$ divise $b$
+  \mauvaise $a=1$
+  \mauvaise $a$ divise $b+c$
+\end{reponses}
+\begin{explication}
+C'est le lemme de Gauss.
+\end{explication}
+\end{question}
+
+\begin{question}
+L'équation $ax+by=c$ (inconnues $x,y\in\Z$) admet au moins une solution si et seulement si :
+\begin{reponses}
+  \mauvaise $a$ et $b$ sont premiers entre eux
+  \bonne $\operatorname{PGCD}(a,b)$ divise $c$
+  \mauvaise $c$ divise $\operatorname{PGCD}(a,b)$
+  \mauvaise $a$ divise $c$ et $b$ divise $c$
+\end{reponses}
+\begin{explication}
+Le théorème de Bézout dit que les valeurs prises par $ax+by$ sont exactement les multiples de $\operatorname{PGCD}(a,b)$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Quelle est la solution de $7x\equiv 1\pmod{26}$ ?
+\begin{reponses}
+  \mauvaise $x\equiv 4\pmod{26}$
+  \mauvaise $x\equiv 3\pmod{26}$
+  \bonne $x\equiv 15\pmod{26}$
+  \mauvaise $x\equiv 19\pmod{26}$
+\end{reponses}
+\begin{explication}
+$7\times15=105=4\times26+1$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Dans $\Z/n\Z$, la classe de $a$ est inversible si et seulement si :
+\begin{reponses}
+  \mauvaise $a$ divise $n$
+  \mauvaise $a$ est un nombre premier
+  \bonne $a$ et $n$ sont premiers entre eux
+  \mauvaise $n$ est un nombre premier
+\end{reponses}
+\begin{explication}
+Si $au+nv=1$ (Bézout), alors $\bar a\,\bar u=\bar 1$. Réciproquement, un inverse donne une relation de Bézout.
+\end{explication}
+\end{question}
+
+\begin{question}
+Quel est le reste de la division euclidienne de $3^{100}$ par $7$ ?
+\begin{reponses}
+  \mauvaise $1$
+  \mauvaise $2$
+  \mauvaise $3$
+  \bonne $4$
+\end{reponses}
+\begin{explication}
+$3^6=729=104\times7+1\equiv1\pmod 7$. Comme $100=6\times16+4$, on a $3^{100}\equiv3^4=81\equiv4\pmod 7$.
+\end{explication}
+\end{question}
+
+\begin{question}
+L'anneau $\Z/n\Z$ est un corps si et seulement si :
+\begin{reponses}
+  \mauvaise $n$ est pair
+  \mauvaise $n$ est impair
+  \bonne $n$ est premier
+  \mauvaise $n$ est quelconque
+\end{reponses}
+\begin{explication}
+Tous les éléments non nuls sont inversibles exactement quand $n$ est premier. Par exemple, dans $\Z/6\Z$, $\bar2\times\bar3=\bar0$ avec $\bar2,\bar3\ne\bar0$.
+\end{explication}
+\end{question}

@@ -1,0 +1,109 @@
+%% titre: Quiz 3 — Applications
+%% niveau: Licence 1
+%% matiere: Algèbre 1
+%% annee: 2026-2027
+%% ordre: 3
+%% description: Injectivité, surjectivité, bijectivité, composition et application réciproque.
+
+\begin{question}
+L'application $f:\R\to\R$, $x\mapsto x^2$ est :
+\begin{reponses}
+  \mauvaise injective et surjective
+  \mauvaise injective mais non surjective
+  \mauvaise surjective mais non injective
+  \bonne ni injective, ni surjective
+\end{reponses}
+\begin{explication}
+$f(-1)=f(1)$ donc $f$ n'est pas injective, et $-1$ n'a pas d'antécédent donc $f$ n'est pas surjective.
+\end{explication}
+\end{question}
+
+\begin{question}
+L'application $f:\R\to[0,+\infty[$, $x\mapsto x^2$ est :
+\begin{reponses}
+  \bonne surjective mais non injective
+  \mauvaise injective mais non surjective
+  \mauvaise bijective
+  \mauvaise ni injective, ni surjective
+\end{reponses}
+\begin{explication}
+Tout $y\ge0$ s'écrit $\sqrt y^{\,2}$ : $f$ est surjective. Mais $f(-1)=f(1)$ : elle n'est pas injective.
+\end{explication}
+\end{question}
+
+\begin{question}
+L'application $f:\Z\to\Z$, $n\mapsto 2n$ est :
+\begin{reponses}
+  \mauvaise bijective
+  \bonne injective mais non surjective
+  \mauvaise surjective mais non injective
+  \mauvaise ni injective, ni surjective
+\end{reponses}
+\begin{explication}
+$2n=2n'\Rightarrow n=n'$ : injective. Mais $1$ n'a pas d'antécédent dans $\Z$ : non surjective.
+\end{explication}
+\end{question}
+
+\begin{question}
+On suppose que $g\circ f$ est injective. On peut en déduire que :
+\begin{reponses}
+  \bonne $f$ est injective
+  \mauvaise $g$ est injective
+  \mauvaise $f$ est surjective
+  \mauvaise $g$ est surjective
+\end{reponses}
+\begin{explication}
+Si $f(x)=f(x')$, alors $g(f(x))=g(f(x'))$, donc $x=x'$ par injectivité de $g\circ f$.
+\end{explication}
+\end{question}
+
+\begin{question}
+On suppose que $g\circ f$ est surjective. On peut en déduire que :
+\begin{reponses}
+  \mauvaise $f$ est surjective
+  \bonne $g$ est surjective
+  \mauvaise $f$ est injective
+  \mauvaise $g$ est injective
+\end{reponses}
+\begin{explication}
+Tout élément $z$ de l'ensemble d'arrivée s'écrit $g(f(x))$, donc $z=g(y)$ avec $y=f(x)$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Soit $f:E\to F$ une bijection. Quelles égalités sont vraies ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $f^{-1}\circ f=\mathrm{id}_E$
+  \bonne $f\circ f^{-1}=\mathrm{id}_F$
+  \mauvaise $f^{-1}\circ f=\mathrm{id}_F$
+  \mauvaise $f^{-1}(x)=\dfrac{1}{f(x)}$
+\end{reponses}
+\begin{explication}
+$f^{-1}\circ f$ agit sur $E$ ; ne pas confondre application réciproque $f^{-1}$ et inverse multiplicatif $1/f$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Quelles égalités sont vraies pour toute application $f:E\to F$ et toutes parties $A,B\subset F$ ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $f^{-1}(A\cap B)=f^{-1}(A)\cap f^{-1}(B)$
+  \bonne $f^{-1}(A\cup B)=f^{-1}(A)\cup f^{-1}(B)$
+  \mauvaise $f(A\cap B)=f(A)\cap f(B)$
+\end{reponses}
+\begin{explication}
+L'image réciproque commute avec $\cap$ et $\cup$. L'égalité pour l'image directe n'est vraie en général que si $f$ est injective (seule l'inclusion $\subset$ est toujours vraie).
+\end{explication}
+\end{question}
+
+\begin{question}
+L'application $f:\R\to\R$, $x\mapsto 2x+1$ est bijective. Sa réciproque est :
+\begin{reponses}
+  \mauvaise $y\mapsto 2y-1$
+  \bonne $y\mapsto \dfrac{y-1}{2}$
+  \mauvaise $y\mapsto \dfrac{y+1}{2}$
+  \mauvaise $y\mapsto \dfrac{1}{2y+1}$
+\end{reponses}
+\begin{explication}
+On résout $y=2x+1$ d'inconnue $x$ : $x=\dfrac{y-1}{2}$.
+\end{explication}
+\end{question}

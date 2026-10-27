@@ -10,9 +10,19 @@
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\norm}[1]{\left\|#1\right\|}
 \newcommand{\ens}[1]{\left\{#1\right\}}
+\newcommand{\grad}{\nabla}
+\newcommand{\hess}{\nabla^2}
+\newcommand{\T}{^T}
 \DeclareMathOperator{\Card}{Card}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Im}{Im}
 \DeclareMathOperator{\rg}{rg}
 \DeclareMathOperator{\Vect}{Vect}
 \DeclareMathOperator{\tr}{tr}
+% Style NB
+\makeatletter
+\newtheoremstyle{nbstyle}
+{\topsep}{\topsep}{}{}{\bfseries}{}{ }{\thmname{#1}}
+\makeatother
+\theoremstyle{nbstyle}
+\newtheorem*{NB}{NB:}

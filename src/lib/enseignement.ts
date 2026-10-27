@@ -1,8 +1,8 @@
-import { BookOpen, ClipboardList, PenLine, type LucideIcon } from "lucide-react";
+import { BookOpen, ClipboardList, ListChecks, PenLine, type LucideIcon } from "lucide-react";
 import { parseMeta } from "@/lib/latex/parser";
 import type { DocMeta } from "@/lib/latex/types";
 
-export type CategoryId = "cours" | "td" | "devoirs";
+export type CategoryId = "cours" | "td" | "devoirs" | "quiz";
 
 export interface Category {
   id: CategoryId;
@@ -15,6 +15,7 @@ export const CATEGORIES: Category[] = [
   { id: "cours", label: "Cours", description: "Polycopiés et notes de cours", icon: BookOpen },
   { id: "td", label: "TD", description: "Feuilles d'exercices de travaux dirigés", icon: PenLine },
   { id: "devoirs", label: "Anciens devoirs", description: "Sujets de devoirs et d'examens des années précédentes", icon: ClipboardList },
+  { id: "quiz", label: "Quiz", description: "QCM d'entraînement corrigés automatiquement", icon: ListChecks },
 ];
 
 export interface TeachingDoc {

@@ -22,6 +22,11 @@ export interface ListItem {
   children: Node[];
 }
 
+export interface Choice {
+  correct: boolean;
+  children: Node[];
+}
+
 export interface TableCell {
   children: Node[];
   colSpan: number;
@@ -72,7 +77,16 @@ export type Node =
   | { type: "ref"; key: string; paren: boolean }
   | { type: "image"; src: string; width?: string }
   | { type: "placeholder"; message: string }
-  | { type: "rule" };
+  | { type: "rule" }
+  | { type: "choices"; choices: Choice[] }
+  | { type: "explanation"; children: Node[] }
+  | {
+      type: "question";
+      id: number;
+      statement: Node[];
+      choices: Choice[];
+      explanation?: Node[];
+    };
 
 export interface TocEntry {
   id: string;
@@ -102,4 +116,6 @@ export interface LatexDoc {
   macros: Record<string, string>;
   meta: DocMeta;
   hasCorrections: boolean;
+  /** Questions de QCM (identifiant + indices des bonnes réponses). */
+  questions: { id: number; correct: number[] }[];
 }

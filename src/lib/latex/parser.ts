@@ -1,5 +1,6 @@
 import type {
   BlockKind,
+  Choice,
   DocMeta,
   LatexDoc,
   ListItem,
@@ -35,6 +36,7 @@ interface Ctx {
   usedIds: Set<string>;
   hasChapter: boolean;
   hasCorrections: boolean;
+  questions: { id: number; correct: number[] }[];
   expansions: number;
   enumDepth: number;
   itemDepth: number;
@@ -791,6 +793,14 @@ class Parser {
         return [];
       }
 
+      case "bonne":
+      case "mauvaise":
+        if (stop.item) {
+          this.pos = start;
+          return STOP_ITEM;
+        }
+        return [];
+
       case "item":
         if (stop.item) {
           this.pos = start;
@@ -1091,6 +1101,19 @@ class Parser {
     /* ---- listes ---- */
     if (name === "enumerate" || name === "itemize" || name === "description") return this.list(name);
 
+    /* ---- QCM ---- */
+    if (name === "reponses" || name === "choix" || name === "answers") {
+      this.readOpt();
+      return [this.answersEnv(name)];
+    }
+    if (name === "explication" || name === "explanation") {
+      return [{ type: "explanation", children: this.parseNodes({ env: name }) }];
+    }
+    if ((name === "question" || name === "qcm") && !ctx.theorems[name]) {
+      this.readOpt();
+      return this.questionEnv(name);
+    }
+
     /* ---- preuves ---- */
     if (PROOF_ENVS.has(name)) {
       const opt = this.readOpt();
@@ -1161,6 +1184,44 @@ class Parser {
       default:
         return this.parseNodes({ env: name });
     }
+  }
+
+  /* ----------------------------- QCM -------------------------------------- */
+
+  private answersEnv(name: string): Node {
+    const choices: Choice[] = [];
+    this.parseNodes({ env: name, item: true }); // texte avant la première réponse (ignoré)
+    let reason = this.lastStop;
+    while (reason === "item") {
+      let correct = false;
+      let adv = "\\item".length;
+      if (this.src.startsWith("\\bonne", this.pos)) { correct = true; adv = "\\bonne".length; }
+      else if (this.src.startsWith("\\mauvaise", this.pos)) adv = "\\mauvaise".length;
+      this.pos += adv;
+      const children = this.parseNodes({ env: name, item: true });
+      reason = this.lastStop;
+      choices.push({ correct, children });
+    }
+    return { type: "choices", choices };
+  }
+
+  private questionEnv(name: string): Node[] {
+    const ctx = this.ctx;
+    const kids = this.parseNodes({ env: name });
+    const ch = kids.find((k) => k.type === "choices") as Extract<Node, { type: "choices" }> | undefined;
+    const ex = kids.find((k) => k.type === "explanation") as Extract<Node, { type: "explanation" }> | undefined;
+    const statement = kids.filter((k) => k.type !== "choices" && k.type !== "explanation");
+    if (!ch || ch.choices.length === 0) {
+      return [{ type: "block", kind: "box", env: name, label: "Question", children: statement }];
+    }
+    ctx.counters["__question"] = (ctx.counters["__question"] ?? 0) + 1;
+    const id = ctx.counters["__question"];
+    ctx.lastNumber = String(id);
+    ctx.questions.push({
+      id,
+      correct: ch.choices.flatMap((c, i) => (c.correct ? [i] : [])),
+    });
+    return [{ type: "question", id, statement, choices: ch.choices, explanation: ex?.children }];
   }
 
   /* ----------------------------- listes ----------------------------------- */
@@ -1345,6 +1406,7 @@ function newCtx(): Ctx {
     usedIds: new Set(),
     hasChapter: false,
     hasCorrections: false,
+    questions: [],
     expansions: 0,
     enumDepth: 0,
     itemDepth: 0,
@@ -1409,5 +1471,6 @@ export function parseLatex(source: string, opts: { sharedMacros?: string } = {})
     macros: ctx.macros,
     meta: { ...ctx.meta, ...header },
     hasCorrections: ctx.hasCorrections,
+    questions: ctx.questions,
   };
 }

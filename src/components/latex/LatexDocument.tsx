@@ -186,6 +186,7 @@ const BLOCK_STYLES: Record<string, string> = {
   remark: "border-l-4 border-muted-foreground/40 bg-muted/50",
   exercise: "border border-border border-l-4 border-l-accent bg-card shadow-sm",
   box: "border border-border bg-muted/40",
+  method: "border-l-4 border-emerald-600 bg-emerald-50 text-emerald-950",
 };
 
 function BlockNode({ node }: { node: Extract<Node, { type: "block" }> }) {
@@ -200,7 +201,7 @@ function BlockNode({ node }: { node: Extract<Node, { type: "block" }> }) {
             <span
               className={cn(
                 "font-serif font-bold",
-                node.kind === "exercise" ? "text-lg text-accent" : "text-primary",
+                node.kind === "exercise" ? "text-lg text-accent" : node.kind === "method" ? "text-emerald-800" : "text-primary",
                 node.kind === "remark" && "italic",
               )}
             >

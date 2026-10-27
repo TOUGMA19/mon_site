@@ -26,6 +26,8 @@ interface Ctx {
   macros: Record<string, string>;
   macroDefs: Record<string, { n: number; body: string }>;
   theorems: Record<string, TheoremSpec>;
+  boxes: Record<string, { title: string; def?: string }>;
+  envDefs: Record<string, { n: number; begin: string; end: string }>;
   counters: Record<string, number>;
   sec: number[];
   labels: Record<string, string>;
@@ -506,8 +508,22 @@ function skipBraces(s: string, i: number): number {
   return s.length;
 }
 
+/** Extrait la valeur de `title=...` dans les options d'une tcolorbox. */
+function extractTitle(opts: string): string {
+  const m = /(^|[\s,])title\s*=\s*/.exec(opts);
+  if (!m) return "";
+  let i = m.index + m[0].length;
+  if (opts[i] === "{") {
+    const end = skipBraces(opts, i);
+    return opts.slice(i + 1, end);
+  }
+  const comma = opts.indexOf(",", i);
+  return opts.slice(i, comma < 0 ? undefined : comma);
+}
+
 function guessKind(name: string, label: string): BlockKind {
   const s = `${name} ${label}`.toLowerCase();
+  if (/r[ée]sum|fiche|appli/.test(s)) return "box";
   if (/exercic|probl[eè]m|exercise|question/.test(s)) return "exercise";
   if (/d[ée]finition|notation|d[ée]f\b|defn/.test(s)) return "definition";
   if (/remarque|exemple|rappel|attention|note|m[ée]thode|astuce|example|remark/.test(s)) return "remark";
@@ -926,10 +942,31 @@ class Parser {
       case "newtheorem":
         this.defineTheorem();
         return [];
-      case "newenvironment": case "renewenvironment":
+      case "newtcolorbox": case "NewTColorBox": case "DeclareTColorBox": {
         this.skipStar();
-        this.readArg(); this.readOpt(); this.readArg(); this.readArg();
+        const nm = (this.readArg() ?? "").trim();
+        this.readOpt(); // nombre d'arguments
+        const def = this.readOpt(); // valeur par défaut de #1
+        const opts = this.readArg() ?? "";
+        if (nm) ctx.boxes[nm] = { title: extractTitle(opts), def: def ?? undefined };
         return [];
+      }
+      case "texorpdfstring": {
+        const a = this.readArg() ?? "";
+        this.readArg();
+        return this.fragment(a);
+      }
+      case "newenvironment": case "renewenvironment": {
+        this.skipStar();
+        const nm = (this.readArg() ?? "").trim();
+        const nOpt = this.readOpt();
+        this.readOpt(); // argument optionnel par défaut : non supporté
+        const begin = this.readArg() ?? "";
+        const end = this.readArg() ?? "";
+        const n = nOpt && /^\d$/.test(nOpt.trim()) ? Number(nOpt.trim()) : 0;
+        if (nm) ctx.envDefs[nm] = { n, begin, end };
+        return [];
+      }
     }
 
     if (STYLE_CMDS[name]) {
@@ -1131,6 +1168,27 @@ class Parser {
       return [{ type: "correction", label: CORRECTION_LABELS[name], children: kids }];
     }
 
+    /* ---- boîtes définies avec \\newtcolorbox ---- */
+    const box = ctx.boxes[name];
+    if (box) {
+      const opt = this.readOpt();
+      const rest = plainText(box.title.replace(/#1/g, ""));
+      let label: string;
+      let optTitle: Node[] | undefined;
+      let titleNodes: Node[] | undefined;
+      if (rest) {
+        label = rest;
+        optTitle = opt ? this.fragment(opt) : undefined;
+      } else if (opt) {
+        label = plainText(opt);
+        titleNodes = this.fragment(opt);
+      } else {
+        label = plainText(box.def ?? "");
+      }
+      const kids = this.parseNodes({ env: name });
+      return [{ type: "block", kind: guessKind(name, label), env: name, label: titleNodes ? "" : label, optTitle, titleNodes, children: kids }];
+    }
+
     /* ---- théorèmes, définitions, exercices… ---- */
     const bare = name.replace(/\*$/, "");
     const spec = ctx.theorems[bare] ?? THEOREM_BUILTINS[bare];
@@ -1147,6 +1205,18 @@ class Parser {
       return [{ type: "block", kind: spec.kind, env: bare, label: spec.label, number, optTitle, children: kids }];
     }
 
+    /* ---- environnements définis par l'utilisateur (\\newenvironment) ---- */
+    const envDef = ctx.envDefs[name];
+    if (envDef) {
+      const args: string[] = [];
+      for (let i = 0; i < envDef.n; i++) args.push(this.readArg() ?? "");
+      const { bodyEnd, after } = this.findEnvEnd(name, this.pos);
+      const body = this.src.slice(this.pos, bodyEnd);
+      this.pos = after;
+      const begin = envDef.begin.replace(/#(\d)/g, (_, d) => args[Number(d) - 1] ?? "");
+      return this.fragment(begin + body + envDef.end);
+    }
+
     /* ---- mise en forme ---- */
     switch (name) {
       case "center": case "centering":
@@ -1160,8 +1230,9 @@ class Parser {
       case "abstract":
         return [{ type: "block", kind: "box", env: name, label: "Résumé", children: this.parseNodes({ env: name }) }];
       case "tcolorbox": case "mdframed": case "framed": {
-        this.readOpt();
-        return [{ type: "block", kind: "box", env: name, label: "", children: this.parseNodes({ env: name }) }];
+        const opts = this.readOpt();
+        const label = opts ? plainText(extractTitle(opts)) : "";
+        return [{ type: "block", kind: "box", env: name, label, children: this.parseNodes({ env: name }) }];
       }
       case "table": case "figure": case "table*": case "figure*": {
         this.readOpt();
@@ -1398,6 +1469,8 @@ function newCtx(): Ctx {
     macros: { ...DEFAULT_KATEX_MACROS },
     macroDefs: {},
     theorems: {},
+    boxes: {},
+    envDefs: {},
     counters: {},
     sec: [0, 0, 0, 0, 0, 0],
     labels: {},

@@ -1495,7 +1495,7 @@ export function parseMeta(source: string): DocMeta {
     titre: "titre", title: "titre",
     niveau: "niveau", level: "niveau",
     annee: "annee", année: "annee", year: "annee",
-    matiere: "matiere", matière: "matiere", module: "matiere",
+    matiere: "matiere", matière: "matiere", module: "matiere", cours: "matiere", course: "matiere",
     description: "description", resume: "description", résumé: "description",
     pdf: "pdf",
     ordre: "ordre", order: "ordre",

@@ -1,5 +1,17 @@
 # Onglet « Enseignement » — mode d'emploi
 
+## Organisation par cours
+Le site regroupe automatiquement les documents **par cours**. Le cours d'un document est donné par la ligne d'en-tête
+`%% matiere: Algèbre 1` (alias : `%% cours:`). Tous les fichiers (cours, méthodes, TD, quiz, devoirs) qui portent
+le même nom de cours sont rangés ensemble :
+
+- `/enseignement` : une carte par cours, classées par niveau (Licence 1, Licence 2…) avec le nombre de documents ;
+- `/enseignement/matiere/algebre-1` : la page du cours, avec les onglets Cours · Méthodes · TD · Quiz · Anciens devoirs.
+
+Pour ajouter un nouveau cours (ex. Analyse 1), il suffit d'écrire `%% matiere: Analyse 1` dans ses fichiers : la carte apparaît toute seule.
+Respectez la même orthographe dans tous les fichiers (les accents et majuscules sont ignorés pour le regroupement).
+Un fichier sans `matiere` est classé dans « Autres documents ».
+
 Un document = **un fichier `.tex`** placé dans le bon dossier :
 
 | Dossier   | Onglet           |

@@ -1,9 +1,9 @@
-import { createContext, memo, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, memo, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import katex from "katex";
 import "katex/dist/katex.min.css";
-import { CheckCircle2, ChevronDown, Eye, EyeOff, RotateCcw, XCircle } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronRight, Eye, EyeOff, RotateCcw, XCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { LatexDoc, Node } from "@/lib/latex/types";
+import type { LatexDoc, Node, TocEntry } from "@/lib/latex/types";
 
 interface RenderCtx {
   macros: Record<string, string>;
@@ -494,24 +494,126 @@ function Blocks({ nodes, tight = false }: { nodes: Node[]; tight?: boolean }) {
 /*  Composants publics                                                      */
 /* ------------------------------------------------------------------------ */
 
-export function LatexToc({ doc, className }: { doc: LatexDoc; className?: string }) {
-  if (doc.toc.length < 2) return null;
+export function LatexToc({ doc, className, compact = false }: { doc: LatexDoc; className?: string; compact?: boolean }) {
+  const toc = doc.toc;
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [manual, setManual] = useState<Record<string, boolean>>({});
+  const navRef = useRef<HTMLElement>(null);
+
+  // Section en cours de lecture : le dernier titre déjà passé en haut de l'écran.
+  useEffect(() => {
+    if (toc.length < 2) return;
+    let raf = 0;
+    const compute = () => {
+      raf = 0;
+      let current: string | null = null;
+      for (const t of toc) {
+        const el = document.getElementById(t.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= 120) current = t.id;
+        else break;
+      }
+      setActiveId(current);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(compute);
+    };
+    compute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [toc]);
+
+  // Garde l'entrée active visible dans le sommaire (qui défile lui aussi).
+  useEffect(() => {
+    const box = navRef.current;
+    if (!box || !activeId || box.scrollHeight <= box.clientHeight) return;
+    const el = box.querySelector<HTMLElement>(`[data-toc="${activeId}"]`);
+    if (!el) return;
+    if (el.offsetTop < box.scrollTop + 40 || el.offsetTop + el.offsetHeight > box.scrollTop + box.clientHeight - 20) {
+      box.scrollTo({ top: Math.max(0, el.offsetTop - box.clientHeight / 3), behavior: "smooth" });
+    }
+  }, [activeId]);
+
+  if (toc.length < 2) return null;
+
+  // Regroupement par chapitre (niveau 1) quand le sommaire est long.
+  const grouped = toc.length > 12 && toc.some((t) => t.level === 1) && toc.some((t) => t.level > 1);
+  const groups: { head: TocEntry | null; items: TocEntry[] }[] = [];
+  if (grouped) {
+    for (const t of toc) {
+      if (t.level === 1) groups.push({ head: t, items: [] });
+      else {
+        if (groups.length === 0) groups.push({ head: null, items: [] });
+        groups[groups.length - 1].items.push(t);
+      }
+    }
+  }
+
+  const link = (t: TocEntry, indent: number) => (
+    <a
+      href={`#${t.id}`}
+      data-toc={t.id}
+      aria-current={activeId === t.id ? "true" : undefined}
+      className={cn(
+        "-ml-px block border-l-2 py-1 transition-colors",
+        activeId === t.id
+          ? "border-accent font-semibold text-accent"
+          : "border-transparent text-muted-foreground hover:text-accent",
+      )}
+      style={{ paddingLeft: indent }}
+    >
+      {t.number && <span className="mr-1.5">{t.number}</span>}
+      <InlineList nodes={t.title} />
+    </a>
+  );
+
   return (
-    <nav className={className} aria-label="Sommaire">
-      <p className="mb-3 font-serif text-sm font-bold uppercase tracking-wider text-primary">Sommaire</p>
-      <ul className="space-y-1.5 border-l border-border text-sm">
-        {doc.toc.map((t) => (
-          <li key={t.id} style={{ paddingLeft: t.level === 1 ? 12 : 26 }}>
-            <a href={`#${t.id}`} className="text-muted-foreground transition-colors hover:text-accent">
-              {t.number && <span className="mr-1.5">{t.number}</span>}
-              <Ctx.Provider value={{ macros: doc.macros, labels: doc.labels, showAll: false }}>
-                <InlineList nodes={t.title} />
-              </Ctx.Provider>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <Ctx.Provider value={{ macros: doc.macros, labels: doc.labels, showAll: false }}>
+      <nav ref={navRef} className={cn("relative", className)} aria-label="Sommaire">
+        {!compact && (
+          <p className="mb-3 font-serif text-sm font-bold uppercase tracking-wider text-primary">Sommaire</p>
+        )}
+        <ul className="space-y-0.5 border-l border-border text-sm">
+          {grouped
+            ? groups.map((g, gi) => {
+                const holdsActive = !!activeId && (g.head?.id === activeId || g.items.some((i) => i.id === activeId));
+                const key = g.head?.id ?? `g${gi}`;
+                const open = manual[key] ?? holdsActive;
+                return (
+                  <li key={key}>
+                    <div className="flex items-start">
+                      <div className="min-w-0 flex-1">{g.head && link(g.head, 12)}</div>
+                      {g.items.length > 0 && (
+                        <button
+                          type="button"
+                          aria-label={open ? "Replier le chapitre" : "Déplier le chapitre"}
+                          aria-expanded={open}
+                          onClick={() => setManual((m) => ({ ...m, [key]: !open }))}
+                          className="mt-1 shrink-0 rounded p-0.5 text-muted-foreground hover:text-accent"
+                        >
+                          <ChevronRight className={cn("h-4 w-4 transition-transform", open && "rotate-90")} />
+                        </button>
+                      )}
+                    </div>
+                    {open && g.items.length > 0 && (
+                      <ul className="mb-1">
+                        {g.items.map((t) => (
+                          <li key={t.id}>{link(t, 26)}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })
+            : toc.map((t) => <li key={t.id}>{link(t, t.level === 1 ? 12 : 26)}</li>)}
+        </ul>
+      </nav>
+    </Ctx.Provider>
   );
 }
 

@@ -1,45 +1,1380 @@
-%% titre: TD 1 — Espaces vectoriels
-%% niveau: Licence 1
-%% matiere: Algèbre linéaire
+%% titre: TD d'Optimisation
+%% matiere: Optimisation
+%% niveau: Licence 3
 %% annee: 2025-2026
 %% ordre: 1
-%% description: Exemple de feuille de TD (à remplacer) avec exercices et corrections.
+%% description: TD d'optimisation licence 3 2025-2026.
+
+\begin{center}
+	\textbf{{\large Convexité}}
+\end{center}
+\begin{multicols}{2}
 
 \begin{exercice}
-Dans $\R^3$, les ensembles suivants sont-ils des sous-espaces vectoriels ?
-\begin{enumerate}
-  \item $E_1=\{(x,y,z)\in\R^3 \mid x+y+z=0\}$ ;
-  \item $E_2=\{(x,y,z)\in\R^3 \mid x+y+z=1\}$ ;
-  \item $E_3=\{(x,y,z)\in\R^3 \mid xy=0\}$.
-\end{enumerate}
-\begin{correction}
-\begin{enumerate}
-  \item Oui : c'est le noyau de la forme linéaire $(x,y,z)\mapsto x+y+z$.
-  \item Non : le vecteur nul n'appartient pas à $E_2$.
-  \item Non : $(1,0,0)$ et $(0,1,0)$ sont dans $E_3$ mais leur somme $(1,1,0)$ n'y est pas.
-\end{enumerate}
-\end{correction}
-\end{exercice}
-
-\begin{exercice}[$\bigstar$]
-Soit $f:\R^2\to\R^2$ définie par $f(x,y)=(x+2y,\,2x+4y)$.
-\begin{enumerate}[label=\alph*)]
-  \item Montrer que $f$ est linéaire.
-  \item Déterminer $\Ker f$ et $\Im f$.
-  \item $f$ est-elle injective ? surjective ?
-\end{enumerate}
-\begin{correction}
-La matrice de $f$ dans la base canonique est $A=\begin{pmatrix}1&2\\2&4\end{pmatrix}$, de rang $1$.
-Donc $\Ker f=\Vect\{(-2,1)\}$ et $\Im f=\Vect\{(1,2)\}$. Comme $\Ker f\neq\{0\}$, $f$ n'est pas injective ; comme $\rg f=1<2$, elle n'est pas surjective.
-\end{correction}
+	Les fonctions suivantes sont-elles convexes ? Concaves ?
+	\begin{enumerate}
+		\item \( f(x_1, x_2, x_3) := -x_1 - x_2 - x_2x_3 - x_1x_3 \)
+		\item \( f_a(x_1, x_2) := x_1^2 + a x_2^2 + x_1x_2 + x_1, \quad a \in \mathbb{R} \)
+		\item \( f(x_1, x_2) = -x_1 - 2x_2 - 2x_1x_2 + \frac{x_1^2}{2} + \frac{x_2^2}{2} \)
+	\end{enumerate}
 \end{exercice}
 
 \begin{exercice}
-Soit $A\in\mathcal{M}_n(\R)$ telle que $A^2=A$. Montrer que
-\[
-  \R^n=\Ker A\oplus\Im A .
-\]
-\begin{correction}
-Pour $x\in\R^n$, on écrit $x=(x-Ax)+Ax$ avec $x-Ax\in\Ker A$ car $A(x-Ax)=Ax-A^2x=0$. Si $y\in\Ker A\cap\Im A$, alors $y=Az$ et $0=Ay=A^2z=Az=y$. La somme est donc directe.
-\end{correction}
+	Lesquels parmi les ensembles ci-dessous sont convexes?
+	\begin{enumerate}[label=\arabic*.]
+		\item \( S = \{(x, y) \in \mathbb{R}^2; \ x = 0 \ \text{et} \ y \in [0; 1]\} \)
+		\item \( S = \{(x, y, z) \in \mathbb{R}^3; \ y \geq 0, z \geq 0\} \)
+		\item \( S = \{(x, y) \in \mathbb{R}^2; \ x + y = 3 \ \text{et} \ 1 \leq x \leq 2\} \)
+		\item \( S = \{(x, y) \in \mathbb{R}^2; \ y - x^2 \geq 0\} \)
+		\item \( S = \{(x, y) \in \mathbb{R}^2; \ x \geq 0, y \geq 0, x + y \leq 1\} \)
+		\item \( S = \{(x, y) \in \mathbb{R}^2; \ (x^2 - 1)^2 + y^2 \leq 4\} \)
+		\item \( S = \{x \in \mathbb{R}^n; \ \sum_{i=1}^n x_i^2 = 1\} \)
+		\item \( S = \{(x, y) \in \mathbb{R}^2; \ x_1^2 + x_2^2 \leq 5, \ 3x_1 + x_2 \leq 6\} \)
+		\item \( S = \{y \in \mathbb{R}^3; \ y_1 \geq 1, \ y_2 - 2y_3 = 1\} \)
+	\end{enumerate}
 \end{exercice}
+
+\begin{exercice}
+	Montrer que la fonction $f(x) = \frac{x_{1}^{2}}{x_{2}}$ est convexe pour $x_{2} > 0$.
+\end{exercice}
+
+\begin{exercice}
+	Montrer que $f(x_{1}, x_{2}, \ldots, x_{n}) = \left( \prod_{i=1}^{n} x_{i} \right)^{\frac{1}{n}}$ est concave pour tout $x_{i} > 0$.
+\end{exercice}
+
+\begin{exercice}
+	\begin{enumerate}
+		\item Rappeler la définition d'une fonction convexe sur $\mathbb{R}^{n}$.
+		\item Soit $f : \mathbb{R}^{n} \rightarrow \mathbb{R}$. Montrer que $f$ est convexe sur $\mathbb{R}^{n}$ si et seulement si
+		\[
+		\forall p \geqslant 2, \forall x_{1}, \ldots, x_{p} \in \mathbb{R}^{n}, \forall \theta \in [0,1]^{p}
+		\]
+		\[
+		\text{tel que} \ \sum_{k=1}^{p} \theta_{k} = 1, \quad f\left( \sum_{k=1}^{p} \theta_{k} x_{k} \right) \leqslant \sum_{k=1}^{p} \theta_{k} f(x_{k}).
+		\]
+		\item Soit $p \geqslant 2$. Montrer que
+		\[
+		\forall x \in \mathbb{R}^{p}, \forall \theta \in [0,1]^{p}
+		\]
+		\[
+		\text{tel que} \ \sum_{k=1}^{p} \theta_{k} = 1, \quad \langle \theta, x \rangle^{2} \leqslant \sum_{k=1}^{p} \theta_{k} x_{k}^{2}.
+		\]
+	\end{enumerate}
+
+	On fixe maintenant un entier $p \geqslant 2$. On note
+	\[
+	\mathcal{P} = \left\{ q \in ]0,1[^{p} \ \middle| \ \sum_{k=1}^{p} q_{k} = 1 \right\}
+	\]
+	et on fixe un point $q \in \mathcal{P}$. On pose $g : \mathbb{R}^{p} \rightarrow \mathbb{R}$ la fonction définie par
+	\[
+	g(x) = \ln\left( \sum_{k=1}^{p} e^{x_{k}} \right) - \langle q, x \rangle
+	\]
+	et $S : \mathbb{R}^{p} \rightarrow \mathbb{R}^{p}$ la fonction définie par
+	\[
+	(S(x))_{k} = \frac{e^{x_{k}}}{\sum_{j=1}^{p} e^{x_{j}}}, \quad k = 1, 2, \ldots, p.
+	\]
+
+	\begin{enumerate}
+		\setcounter{enumi}{3}
+		\item Montrer que pour tout $x \in \mathbb{R}^{p}$, $S(x) \in \mathcal{P}$.
+		\item Justifier que $g$ est différentiable et donner l'expression de son gradient en fonction de $q$ et $S$.
+		\item Justifier que $g$ est deux fois différentiable et montrer que pour tout $x \in \mathbb{R}^{p}$,
+		\[
+		\nabla^{2} g(x) = \operatorname{diag}(S(x)) - S(x) S(x)^{\top}.
+		\]
+		\item Montrer que $g$ est convexe à l'aide de l'inégalité de la question 3.
+		\item En déduire que l'ensemble des minima globaux de $g$ est la droite affine
+		\[
+		\left\{ x \in \mathbb{R}^{p} \ \middle| \ \exists \lambda \in \mathbb{R}, \ \forall k \in \{1, \ldots, p\}, \ x_{k} = \lambda + \ln q_{k} \right\}
+		\]
+		et préciser la valeur minimale atteinte.
+		\item La fonction $g$ est-elle strictement convexe ? Justifier.
+	\end{enumerate}
+\end{exercice}
+
+\end{multicols}
+\quad\\
+\begin{center}
+	\textbf{{\large Optimisation sans contrainte}}
+\end{center}
+\begin{multicols}{2}
+
+\begin{exercice}
+	Soit $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ continue et bornée inférieurement sur $\mathbb{R}^{n}$. Soit $\varepsilon>0$ et $u$ une solution à $\varepsilon$ près du problème de minimisation de $f$ sur $\mathbb{R}^{n}$, c'est-à-dire vérifiant $f(u) \leqslant \inf _{x \in \mathbb{R}^{n}} f(x)+\varepsilon$. Étant donné $\lambda>0$ on considère
+	\[
+	g: x \in \mathbb{R}^{n} \longmapsto g(x):=f(x)+\frac{\varepsilon}{\lambda}\|x-u\| .
+	\]
+	\begin{enumerate}
+		\item Montrer qu'il existe $v \in \mathbb{R}^{n}$ minimisant $g$ sur $\mathbb{R}^{n}$.\\
+		Montrer que ce point $v$ vérifie les conditions ci-après :
+		\begin{enumerate}
+			\item $\quad f(v) \leqslant f(u)$;
+			\item $\|v-u\| \leqslant \lambda$;
+			\item $\forall x \in \mathbb{R}^{n}, f(v) \leqslant f(x)+\frac{\varepsilon}{\lambda}\|x-v\|$.
+		\end{enumerate}
+		\item Soit $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ différentiable et bornée inférieurement sur $\mathbb{R}^{n}$.
+		Montrer que pour tout $\varepsilon>0$ il existe $x_{\varepsilon}$ tel que $\left\|\nabla f\left(x_{\varepsilon}\right)\right\| \leqslant \varepsilon$.
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	Soit $n \geqslant 2$ et $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ la fonction polynomiale de degré cinq définie par
+	\[
+	x=\left(x_{1}, \ldots, x_{n}\right) \in \mathbb{R}^{n} \longmapsto f(x):=\left(1+x_{n}\right)^{3} \sum_{i=1}^{n-1} x_{i}^{2}+x_{n}^{2}
+	\]
+	Montrer que $0\left(\in \mathbb{R}^{n}\right)$ est le seul point critique de $f$, qu'il est minimum local strict de $f$, mais qu'il n'est pas minimum global de $f$.
+\end{exercice}
+
+\begin{exercice}
+	Soit $D_{1} := \{ A_{1} + t_{1} \vec{v}_{1} \mid t_{1} \in \mathbb{R} \}$ et $D_{2} := \{ A_{2} + t_{2} \vec{v}_{2} \mid t_{2} \in \mathbb{R} \}$ deux droites affines de $\mathbb{R}^{n}$ définies à l'aide des points $A_{i}$ et des vecteurs directeurs non nuls $\vec{v}_{i}$. On cherche les points $M_{1} \in D_{1}$ et $M_{2} \in D_{2}$ minimisant la distance (euclidienne) de $M_{1}$ à $M_{2}$.
+	\begin{enumerate}
+		\item Formaliser le problème ci-dessus comme un problème de minimisation convexe sans contraintes.
+		\item Résoudre le problème posé en précisant : les conditions d'existence et d'unicité des solutions, comment caractériser ces solutions, les propriétés particulières des solutions.
+	\end{enumerate}
+\end{exercice}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{image.png}
+	\label{fig:screenshot001}
+\end{figure}
+
+\begin{exercice}
+	Soit $g : \mathbb{R}^{n} \rightarrow \mathbb{R}$ une fonction convexe et différentiable sur $\mathbb{R}^{n}$, soit $h : \mathbb{R}^{n} \rightarrow \mathbb{R} \cup \{+\infty\}$ une fonction convexe sur $\mathbb{R}^{n}$, finie en au moins un point. On pose $f := g + h$ et on considère le problème de la minimisation de $f$ sur $\mathbb{R}^{n}$.
+	\begin{enumerate}
+		\item Montrer que $\bar{x}$ minimise $f$ sur $\mathbb{R}^{n}$ si et seulement si
+		\[
+		\langle \nabla g(\bar{x}), x - \bar{x} \rangle + h(x) - h(\bar{x}) \geqslant 0 \quad \text{pour tout } x \in \mathbb{R}^{n}.
+		\]
+		\item Vérifier que (1) est équivalente à
+		\[
+		\langle \nabla g(x), x - \bar{x} \rangle + h(x) - h(\bar{x}) \geqslant 0 \quad \text{pour tout } x \in \mathbb{R}^{n}.
+		\]
+	\end{enumerate}
+\end{exercice}
+
+\end{multicols}
+\quad\\
+\begin{center}
+\textbf{{\large Optimisation sous contrainte}}
+\end{center}
+\begin{multicols}{2}
+
+\begin{exercice}
+	Démontrez que, pour un problème d'optimisation de la forme :
+	\[
+	\text{Minimiser } f(x) \quad \text{s.c.} \quad h_i(x) = 0, \, i=1,\dots,p, \quad g_j(x) \leq 0, \quad j=1,\dots,q,
+	\]
+	si \( x^* \) est un minimum local et vérifie la qualification des contraintes de Kuhn-Tucker (QCKT), alors il existe des multiplicateurs \( \lambda^* \in \mathbb{R}^p \) et \( \mu^* \in \mathbb{R}^q \) satisfaisant les conditions de KKT (stationnarité, admissibilité primale, admissibilité duale, complémentarité). \textit{Indice : Utilisez la définition du lagrangien et la linéarité des gradients des contraintes actives.}
+\end{exercice}
+
+\begin{exercice}
+	Montrez que, pour un problème d'optimisation convexe (fonction objectif convexe, contraintes d'inégalité convexes, contraintes d'égalité affines), si un point \( x^* \) et des multiplicateurs \( \lambda^*, \mu^* \) satisfont les conditions de KKT, alors \( x^* \) est un minimum global. \textit{Indice : Utilisez la convexité de \( f \) et des \( g_j \), ainsi que la propriété d'affinité des \( h_i \).}
+\end{exercice}
+
+\begin{exercice}
+	Considérez le problème :
+	\[
+	\text{Minimiser } f(x_1, x_2) = x_1^2 + x_2^2 \quad \text{s.c.} \quad x_1 + x_2 \leq 4, \quad x_1^2 \leq 4.
+	\]
+	Vérifiez si la qualification des contraintes de Kuhn-Tucker (QCKT) est satisfaite pour un point \( x^* = (2, 2) \). Si oui, expliquez pourquoi les gradients des contraintes actives sont linéairement indépendants. Sinon, identifiez le problème.
+\end{exercice}
+
+\begin{exercice}
+	Démontrez que la condition de complémentarité \( \mu_j^* g_j(x^*) = 0 \) implique que seules les contraintes actives (\( g_j(x^*) = 0 \)) peuvent avoir un multiplicateur non nul (\( \mu_j^* > 0 \)). Expliquez l'interprétation géométrique de cette condition dans le contexte d'un problème d'optimisation avec une contrainte d'inégalité.
+\end{exercice}
+
+\begin{exercice}
+	Trouver le minimum de $f(x) = x_{1}^{2} + x_{2}^{2}$ soumis aux contraintes d'inégalité $g_{1}(x) = -2x_{1} - x_{2} + 10 \leqslant 0$ et $g_{2}(x) = -x_{1} \leqslant 0$ sur $\mathbb{R}^{2}$. Prouvez que c'est le minimum global.
+\end{exercice}
+
+\begin{exercice}
+	Minimiser la fonction $f(x) = e^{-(x_{1} + x_{2})}$ soumis aux contraintes $g_{1}(x) = e^{x_{1}} + e^{x_{2}} - 20 \leqslant 0$ et $g_{2}(x) = -x_{1} \leqslant 0$ sur $\mathbb{R}^{2}$.
+\end{exercice}
+
+\begin{exercice}
+	$\min f(x, y) = x^{2} + y^{2}$ sous les contraintes $x \geqslant 0$, $y \geqslant 0$, $x + 2y = 4$.
+\end{exercice}
+
+\begin{exercice}
+	On considère la fonctionnelle quadratique $f : \mathbb{R}^{2} \rightarrow \mathbb{R}$ définie par $f(x_{1}, x_{2}) = x_{1}^{2} + x_{2}$.
+	\begin{enumerate}[label=\arabic*.]
+		\item Étude de $f$ sur $\mathbb{R}^{2}$
+		\begin{enumerate}[label=\alph*.]
+			\item La fonction $f$ est-elle convexe sur $\mathbb{R}^{2}$ ?
+			\item La fonction $f$ est-elle strictement convexe sur $\mathbb{R}^{2}$ ?
+			\item La fonction $f$ atteint-elle une valeur minimale sur $\mathbb{R}^{2}$ ? Avec pour contraintes $Ax = b$.
+		\end{enumerate}
+		On considère maintenant l'ensemble
+		\[
+		U = \left\{ x = (x_{1}, x_{2}) \in \mathbb{R}^{2} \ \middle| \ x_{1}^{2} + x_{2}^{2} \leqslant 13 \ \text{et} \ x_{1} + x_{2} \geqslant -1 \right\}.
+		\]
+		\item Propriétés de l'ensemble $U$
+		\begin{enumerate}[label=\alph*.]
+			\item Représenter graphiquement $U$ et préciser les coordonnées des points d'intersection qui apparaissent naturellement.
+			\item Montrer que $U$ est un ensemble convexe et compact.
+			\item Introduire deux fonctions $g_{1}$ et $g_{2}$ pour décrire $U$ comme un ensemble de contraintes inégalités et vérifier que tous les points de $U$ vérifient la qualification de contraintes de Kuhn-Tucker (QCKT).
+		\end{enumerate}
+		On cherche désormais à résoudre le problème d'optimisation sous contraintes :
+		\[
+		\text{Trouver } x^{*} \text{ tel que } x^{*} \in U \text{ et } f(x^{*}) = \min_{x \in U} f(x).
+		\]
+		\item Justifier que le problème $(\mathcal{P})$ admet au moins une solution.
+		\item Justifier que $x \in U$ est solution de $(\mathcal{P})$ si et seulement si $x$ vérifie les conditions de Karush-Kuhn-Tucker (KKT) que l'on précisera.
+		\item Déterminer toutes les solutions de $(\mathcal{P})$ à l'aide des conditions KKT.
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	On considère le problème d'optimisation suivant dans $\mathbb{R}^{2}$ :
+	\[
+	(\mathcal{P}) \quad
+	\begin{cases}
+	\min \,\, J(x, y) = x + y \\
+	\text{s.c} \,\, g_{1}(x, y) = (x - 1)^{2} + y^{2} - 1 \leqslant 0 \\
+	\,\,\,g_{2}(x, y) = (x + 4)^{2} + (y + 3)^{2} - 25 \leqslant 0
+	\end{cases}
+	\]
+	\begin{enumerate}[label=\arabic*.]
+		\item Montrer que l'ensemble des contraintes $C$ est convexe.
+		\item Interpréter géométriquement l'ensemble $C$ et le dessiner sur une figure.
+		\item Déterminer les points réguliers de $C$ vis-à-vis des conditions de Karush-Kuhn-Tucker.
+		\item Écrire les conditions d'optimalité de Karush-Kuhn-Tucker pour le problème $(\mathcal{P})$, et en déduire la ou les solutions du problème.
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	Pour un problème avec une seule contrainte d'inégalité \( g(x) \leq 0 \), montrez que la condition de stationnarité \( \nabla_x \mathcal{L}(x^*, \mu^*) = \nabla f(x^*) + \mu^* \nabla g(x^*) = 0 \) implique que le gradient de la fonction objectif est une combinaison linéaire des gradients des contraintes actives. Discutez de l'impact si la contrainte est inactive (\( g(x^*) < 0 \)).
+\end{exercice}
+
+\begin{exercice}
+	Considérez le problème :
+	\[
+	\text{Maximiser } f(x_1, x_2) = x_1 + x_2 \quad \text{s.c.} \quad x_1^2 + x_2^2 = 1, \quad x_1 + x_2 \leq 2.
+	\]
+	Vérifiez si la QCKT est satisfaite au point \( x^* = \left( \frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2} \right) \). Si les gradients ne sont pas linéairement indépendants, expliquez les implications pour l'application des conditions KKT.
+\end{exercice}
+
+\begin{exercice}
+	Démontrez que les multiplicateurs de Lagrange \( \lambda_i^* \) et \( \mu_j^* \) dans les conditions KKT mesurent la sensibilité de la fonction objectif optimale aux variations des contraintes \( h_i(x) = 0 \) et \( g_j(x) \leq 0 \). \textit{Indice : Considérez une perturbation des contraintes et analysez l'effet sur le lagrangien.}
+\end{exercice}
+
+\begin{exercice}
+	Montrez que, pour un problème convexe avec une fonction objectif strictement convexe, s'il existe un point \( x^* \) satisfaisant les conditions KKT, alors ce point est l'unique minimum global. \textit{Indice : Utilisez la propriété de stricte convexité pour montrer qu'il ne peut pas exister un autre point optimal.}
+\end{exercice}
+
+\begin{exercice}
+	Considérez le problème :
+	\[
+	\text{Minimiser } f(x_1, x_2) = x_1^2 \quad \text{s.c.} \quad x_1^2 + x_2^2 \leq 0.
+	\]
+	Montrez que la QCKT n'est pas satisfaite à \( x^* = (0, 0) \). Expliquez pourquoi les conditions KKT peuvent échouer à identifier un minimum local dans ce cas.
+\end{exercice}
+
+\begin{exercice}
+	Soit dans \( \mathbb{R}^2 \) le problème de minimisation suivant :
+	\[
+	(P_a) :
+	\left\lbrace \begin{array}{ll}
+	\min & f_a(x_1, x_2) := x_1^2 + a x_2^2 + x_1x_2 + x_1 \\
+	\text{s.c.} & x_1 + x_2 - 1 \leq 0
+	\end{array}\right.
+	\]
+	\begin{enumerate}[label=\arabic*.,leftmargin=*]
+		\item Quand \( (P_a) \) est-il un problème de minimisation convexe ?
+		\item Résoudre \( P_a \) suivant les valeurs de \( a \).
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise maximise son profit \( Z = 3x_1^2 + 5x_2^2 \), où \( x_1 \) et \( x_2 \) sont les quantités de deux produits. Les contraintes sont :
+	\[
+	x_1 + x_2 \leq 4, \quad 2x_1 + x_2 \leq 6, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 3x_1^2 + 5x_2^2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 + x_2 \leq 4 \\
+	2x_1 + x_2 \leq 6 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Appliquez les conditions de KKT pour trouver le point optimal. Vérifiez la complémentarité des contraintes.
+\end{exercice}
+
+\begin{exercice}
+	Maximisez la fonction \( f(x_1, x_2) = x_1 x_2 \) sous les contraintes :
+	\[
+	x_1^2 + x_2^2 \leq 25, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Maximiser } f = x_1 x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1^2 + x_2^2 \leq 25 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Appliquez les conditions de KKT pour trouver les points critiques. Analysez si la solution est un maximum global.
+\end{exercice}
+
+\begin{exercice}
+	Un consommateur maximise son utilité \( U(x_1, x_2) = x_1^{0,5} x_2^{0,5} \) avec un budget :
+	\[
+	2x_1 + 3x_2 \leq 12, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Maximiser } U = x_1^{0,5} x_2^{0,5}
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	2x_1 + 3x_2 \leq 12 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Appliquez les conditions de KKT pour trouver la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Minimisez \( f(x_1, x_2) = x_1^2 + x_2^2 \) sous les contraintes :
+	\[
+	x_1 + x_2 \geq 4, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Minimiser } f = x_1^2 + x_2^2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 + x_2 \geq 4 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Utilisez les conditions de KKT pour trouver le point optimal.
+\end{exercice}
+
+\begin{exercice}
+	Maximisez \( f(x_1, x_2) = \ln(x_1 + 1) + \ln(x_2 + 1) \) sous les contraintes :
+	\[
+	x_1 + x_2 \leq 4, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Maximiser } f = \ln(x_1 + 1) + \ln(x_2 + 1)
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 + x_2 \leq 4 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Appliquez les conditions de KKT pour trouver la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Maximisez \( f(x_1, x_2) = -(x_1 - 2)^2 - (x_2 - 3)^2 \) sous les contraintes :
+	\[
+	x_1^2 + x_2^2 \leq 25, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Maximiser } f = -(x_1 - 2)^2 - (x_2 - 3)^2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1^2 + x_2^2 \leq 25 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Appliquez les conditions de KKT pour trouver le point optimal.
+\end{exercice}
+
+\begin{exercice}
+	Minimisez \( f(x_1, x_2) = x_1^2 + x_2^2 \) sous les contraintes :
+	\[
+	x_1 + 2x_2 \geq 8, \quad x_1 + x_2 \geq 5, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Minimiser } f = x_1^2 + x_2^2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 + 2x_2 \geq 8 \\
+	x_1 + x_2 \geq 5 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Résolvez en utilisant les conditions de KKT et confirmez que la solution est un minimum global.
+\end{exercice}
+
+\begin{exercice}
+	Minimisez \( f(x_1, x_2) = (x_1 - 3)^2 + (x_2 - 4)^2 \) sous les contraintes :
+	\[
+	x_1 + x_2 \leq 6, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Minimiser } f = (x_1 - 3)^2 + (x_2 - 4)^2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 + x_2 \leq 6 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Utilisez les conditions de KKT pour identifier la solution.
+\end{exercice}
+
+\begin{exercice}
+	Maximisez \( f(x_1, x_2) = x_1^2 x_2 \) sous les contraintes :
+	\[
+	x_1 + x_2 \leq 4, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Maximiser } f = x_1^2 x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 + x_2 \leq 4 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Appliquez les conditions de KKT pour trouver la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Minimisez \( f(x_1, x_2) = (x_1 - 2)^2 + 2(x_2 - 1)^2 \) sous les contraintes :
+	\[
+	x_1^2 + x_2^2 \leq 10, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Minimiser } f = (x_1 - 2)^2 + 2(x_2 - 1)^2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1^2 + x_2^2 \leq 10 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Utilisez les conditions de KKT pour identifier la solution.
+\end{exercice}
+
+\begin{exercice}
+	Minimisez \( f(x_1, x_2) = x_1^2 + x_2^2 + 2x_1 x_2 \) sous les contraintes :
+	\[
+	x_1 + x_2 \geq 4, \quad x_1, x_2 \geq 0.
+	\]
+	Modélisation :
+	\[
+	\text{Minimiser } f = x_1^2 + x_2^2 + 2x_1 x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 + x_2 \geq 4 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Résolvez en utilisant les conditions de KKT et confirmez que la solution est un minimum global.
+\end{exercice}
+
+\begin{exercice}
+	On considère le problème d'optimisation suivant :
+	$$
+	(P_1) \quad
+	\begin{array}{ll}
+	\text{Minimiser} & f(x,y) = (x-1)^2 + y^2 \\
+	\text{s.c.} & g(x,y) = x^2 + y^2 - 4 \le 0
+	\end{array}
+	$$
+	\begin{enumerate}[label=\arabic*.]
+		\item La fonction $f$ est-elle convexe ? Le problème $(P_1)$ est-il un problème d'optimisation convexe ?
+		\item Résoudre ce problème géométriquement. À quelle solution vous attendez-vous ?
+		\item Écrire les conditions de Karush-Kuhn-Tucker (KKT) pour ce problème.
+		\item Résoudre le système KKT et retrouver la solution optimale.
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	Dans \( \mathbb{R}^2 \), on considère le problème de minimisation suivant :
+	\[
+	(P_\alpha) :
+	\begin{cases}
+	\min \,f(x) := (x_1 - 1)^2 + x_2 \\
+	\text{s.c.} \, h(x) = -x_1 + \alpha x_2^2 = 0
+	\end{cases}
+	\]
+	\begin{enumerate}[label=\arabic*.,leftmargin=*]
+		\item Observer que \( \bar{x} = (0, 0) \) vérifie les conditions nécessaires d’optimalité du 1er ordre de Lagrange.
+		\item À l’aide des conditions nécessaires de minimalité du 2e ordre, décider en fonction de \( \alpha \) quand \( \bar{x} \) est un minimum local et quand il ne l’est pas.
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	On considère le problème de la minimisation de
+	\[
+	f(x_1, x_2, x_3) := -x_1 - x_2 - x_2x_3 - x_1x_3
+	\]
+	sous la contrainte
+	\[
+	x_1 + x_2 + x_3 - 3 = 0.
+	\]
+	\begin{enumerate}[label=\arabic*.,leftmargin=*]
+		\item Ce problème est-il convexe ?
+		\item Déterminer tous les points vérifiant les conditions nécessaire de minimalité du 1er ordre.
+		\item Parmi ces points quels sont ceux qui vérifient les conditions nécessaires de minimalité du 2e ordre ? ceux qui vérifient les conditions suffisantes de minimalité du 2e ordre ?
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	Déterminer la plus grande valeur que peut prendre la fonction $f : \mathbb{R}^{3} \rightarrow \mathbb{R}$ définie par $f(x, y, z) = xyz$ sur la sphère d'équation $x^{2} + y^{2} + z^{2} = 1$. On précisera en quel(s) point(s) le maximum est atteint. Établir un résultat similaire sur la sphère de $\mathbb{R}^{n}$ d'équation $x_{1}^{2} + x_{2}^{2} + \cdots + x_{n}^{2} = 1$.
+\end{exercice}
+
+\begin{exercice}
+	Inégalité des moyennes arithmétiques et géométriques : Cherchons le maximum de la fonction $f(x_{1}, x_{2}, \ldots, x_{n}) = \sqrt[n]{x_{1} x_{2} \cdots x_{n}}$ sur $\mathbb{R}_{+}^{*}$ sous la contrainte $x_{1} + x_{2} + \cdots + x_{n} = n$.
+\end{exercice}
+
+\begin{exercice}
+	Soit $s \neq 0$ fixé dans $\mathbb{R}^{n}$, $r \in \mathbb{R}$, et $H_{r}$ l'hyperplan de $\mathbb{R}^{n}$ d'équation $\langle s, x \rangle = r$. Étant donné $v \in \mathbb{R}^{n}$ on se propose de déterminer la projection orthogonale $\bar{v}_{r}$ de $v$ sur $H_{r}$.
+	\begin{enumerate}[label=\arabic*.]
+		\item Déterminer $\bar{v}_{r}$ à partir de l'observation suivante : $\bar{v}_{r}$ est la solution du problème de minimisation convexe suivant :
+		\[
+		(\mathcal{P}_{r}) \quad
+		\begin{cases}
+		\text{Minimiser} \, \frac{1}{2} \|x - v\|^{2} \\
+		\,\, x \in H_{r}
+		\end{cases}
+		\]
+		\item Posons $d(r) := \frac{1}{2} \|\bar{v}_{r} - v\|^{2}$. Vérifier que $d$ est une fonction dérivable de $r$ et que sa dérivée $d'(r)$ est, au signe près, le multiplicateur de Lagrange dans le problème $(\mathcal{P}_{r})$.
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	Étant donné $Q \in \mathcal{S}_{n}(\mathbb{R})$ définie positive, $c \in \mathbb{R}^{n}$, $A \in \mathcal{M}_{m, n}(\mathbb{R})$ de rang $m$ ($m \leqslant n$) et $b \in \mathbb{R}^{m}$, on considère le problème de minimisation suivant :
+	\[
+	(\mathcal{P}_{b}) \quad
+	\begin{cases}
+	\min \, f(x) := \frac{1}{2} \langle Qx, x \rangle + \langle c, x \rangle \\
+	\,\, Ax = b
+	\end{cases}
+	\]
+	\begin{enumerate}[label=\arabic*.]
+		\item Indiquer rapidement pourquoi $(\mathcal{P}_{b})$ a toujours une et une seule solution.
+		\item Déterminer explicitement la solution $\bar{x}$ de $(\mathcal{P}_{b})$ ainsi que le vecteur-multiplicateur $\bar{\lambda} \in \mathbb{R}^{m}$ associé.
+		\item Pour $u \in \mathbb{R}^{m}$, on pose
+		\[
+		\varphi(u) := \inf \{ f(x) \mid Ax = b + u \}.
+		\]
+		Quelles sont les propriétés essentielles de la fonction $\varphi$ (convexité, différentiabilité, etc.) ?
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	Soient $\alpha \in \mathbb{R}$ et $f_{\alpha} : \mathbb{R}^{2} \rightarrow \mathbb{R}$ la fonctionnelle définie par
+	\[
+	f_{\alpha}(x_{1}, x_{2}) = x_{1}^{2} + x_{2}^{2} + \alpha x_{1} x_{2} - 3x_{1} - 3x_{2}.
+	\]
+	\begin{enumerate}[label=\arabic*.]
+		\item Montrer que $f$ est une fonctionnelle quadratique et préciser la matrice symétrique $A$, le vecteur $b$ et le réel $c$ pour lesquels
+		\[
+		f_{\alpha}(x) = \frac{1}{2} \langle Ax, x \rangle - \langle b, x \rangle + c.
+		\]
+		\item Pour quelles valeurs de $\alpha$ la fonction $f_{\alpha}$ est-elle
+		\begin{enumerate}
+			\item convexe ?
+			\item strictement convexe ?
+		\end{enumerate}
+		\item Discuter en fonction de la valeur $\alpha$ de l'existence de solutions au problème d'optimisation
+		\[
+		\min_{x \in \mathbb{R}^{2}} f_{\alpha}(x).
+		\]
+		\item Déterminer la valeur de $\alpha$.
+		\item Déterminer le polynôme caractéristique associé à $A$.
+		\item Déterminer les valeurs propres associées à $A$.
+		\item Déterminer $x_{1}$ et $x_{2}$.
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	On considère le problème de la minimisation d’une fonction différentiable \( f : \mathbb{R}^2 \rightarrow \mathbb{R} \) sous la contrainte
+	\[
+	h(x_1, x_2) = x_1^3 - x_2^2 = 0.
+	\]
+	\begin{enumerate}[label=\arabic*.,leftmargin=*]
+		\item Quels sont les points vérifiant les conditions de minimalité du premier ordre ?
+		\item Résoudre le problème avec \( f(x_1, x_2) = x_1 + x_2 \).
+	\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+	On considère la fonction
+	\[
+	f(x,y) = 3x^2 - 2xy + 3y^2 - 22x - 14y
+	\]
+	qu'on souhaite minimiser sur l'ensemble
+	\[
+	D = \left\{ v = (x,y) \in \mathbb{R}^2 \mid \varphi_i(x,y) \geq 0,\ i=1,2 \right\},
+	\]
+	où les fonctions $\varphi_i$ sont définies par
+	\[
+	\varphi_1(x,y) = x + 3y - 1, \qquad \varphi_2(x,y) = x - y - 4.
+	\]
+	\begin{enumerate}[label=\arabic*.]
+		\item Montrer que $D$ est un ensemble convexe.
+		\item Montrer que $f$ est strictement convexe sur $D$.
+		\item Mettre $f$ sous la forme d'une forme quadratique :
+		\[
+		f(x,y) = \frac{1}{2} \langle A v, v \rangle - \langle b, v \rangle + c,
+		\quad \text{où } v = \begin{pmatrix} x \\ y \end{pmatrix}.
+		\]
+		\item
+		\begin{enumerate}
+			\item Montrer que $f$ admet un point de minimum sur $D$.
+			\item Montrer que ce point de minimum est unique.
+		\end{enumerate}
+		\item Justifier que les contraintes sont qualifiées.
+		\item Écrire les relations de KKT associées à ce problème de minimisation.
+		\item Montrer que le point de minimum ne peut pas être situé à l'intérieur de $D$ (on pourra raisonner par l'absurde, calculer alors le point de minimum, et dire s'il vérifie les contraintes).
+		On déduit de la question précédente qu'au moins une des deux contraintes est saturée.
+		\item Montrer que la deuxième contrainte ne peut pas être la seule contrainte saturée (on pourra raisonner par l'absurde).
+		\item Quel est le point de minimum si on suppose que seule la première contrainte est saturée ? Calculer la valeur de $f$ en ce point.
+		\item Quel est le point de minimum si on suppose que les deux contraintes sont saturées ? Calculer la valeur de $f$ en ce point.
+		\item Conclure.
+	\end{enumerate}
+\end{exercice}
+
+\end{multicols}
+\quad\\
+\begin{center}
+\textbf{{\large Programmation linéaire: modélisation}}
+\end{center}
+\begin{multicols}{2}
+
+\begin{exercice}
+	Une usine produit deux types de produits, A et B, avec des profits unitaires de 50 et 70 euros respectivement. Chaque produit nécessite du temps sur deux machines, M1 et M2. Le produit A nécessite 2 heures sur M1 et 3 heures sur M2, tandis que le produit B nécessite 4 heures sur M1 et 2 heures sur M2. M1 est disponible 100 heures par semaine et M2 120 heures. Formulez le problème de programmation linéaire pour maximiser le profit. Résolvez-le graphiquement et identifiez la solution optimale. Analysez la sensibilité des contraintes de temps.
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise de transport doit livrer des marchandises à trois villes (V1, V2, V3) depuis deux entrepôts (E1, E2). Les coûts de transport par unité sont donnés dans le tableau suivant :
+	\begin{center}
+		\begin{tabular}{c|ccc}
+			& V1 & V2 & V3 \\
+			\hline
+			E1 & 5 & 8 & 10 \\
+			E2 & 6 & 4 & 7 \\
+		\end{tabular}
+	\end{center}
+	Les entrepôts E1 et E2 ont des stocks de 200 et 300 unités respectivement. Les villes V1, V2 et V3 ont des demandes de 150, 100 et 250 unités. Formulez le problème pour minimiser les coûts de transport et résolvez-le à l'aide de la méthode du simplexe.
+\end{exercice}
+
+\begin{exercice}
+	Un agriculteur dispose de 100 hectares de terre pour cultiver du blé et du maïs. Le blé rapporte 200 euros par hectare et le maïs 300 euros. Le blé nécessite 2 unités d'eau et 1 unité d'engrais par hectare, tandis que le maïs nécessite 3 unités d'eau et 2 unités d'engrais. Il y a 240 unités d'eau et 180 unités d'engrais disponibles. Formulez le problème pour maximiser le revenu et trouvez la solution optimale. Que se passe-t-il si la disponibilité d'eau augmente de 10 unités ?
+\end{exercice}
+
+\begin{exercice}
+	Une usine fabrique trois types de meubles : chaises, tables et armoires. Chaque chaise rapporte 30 euros, chaque table 100 euros et chaque armoire 150 euros. La production nécessite du bois et de la main-d'œuvre. Les besoins et disponibilités sont :
+	\begin{itemize}
+		\item Bois : 2 m$^{3}$ (chaise), 5 m$^{3}$ (table), 8 m$^{3}$ (armoire), disponibilité : 400 m$^{3}$.
+		\item Main-d'oeuvre : 3 h (chaise), 6 h (table), 10 h (armoire), disponibilité : 600 h.
+	\end{itemize}
+	Formulez le problème pour maximiser le profit. Résolvez-le et discutez l'impact d'une augmentation de 50 heures de main-d'œuvre.
+\end{exercice}
+
+\begin{exercice}
+	Une compagnie aérienne planifie l'affectation de trois avions (A1, A2, A3) à quatre itinéraires (R1, R2, R3, R4). Les profits par itinéraire et par avion sont donnés dans le tableau suivant :
+	\begin{center}
+		\begin{tabular}{c|cccc}
+			& R1 & R2 & R3 & R4 \\
+			\hline
+			A1 & 2000 & 3000 & 2500 & 1800 \\
+			A2 & 2200 & 2800 & 2700 & 2000 \\
+			A3 & 2400 & 2600 & 2300 & 2100 \\
+		\end{tabular}
+	\end{center}
+	Chaque itinéraire doit être desservi exactement une fois, et chaque avion est affecté à un seul itinéraire. Formulez le problème pour maximiser le profit total.
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit deux types de boissons : cola et limonade. Chaque litre de cola nécessite 0,5 kg de sucre et 0,2 litre de concentré, tandis que chaque litre de limonade nécessite 0,3 kg de sucre et 0,4 litre de concentré. Les ressources disponibles sont 100 kg de sucre et 80 litres de concentré. Le profit est de 2 euros par litre de cola et 1,5 euro par litre de limonade. Formulez et résolvez le problème pour maximiser le profit. Analysez l'effet d'une réduction de 10 kg de sucre.
+\end{exercice}
+
+\begin{exercice}
+	Un supermarché planifie ses stocks de trois produits périssables : lait, pain et viande. Les coûts d'achat, de stockage et les demandes maximales sont :
+	\begin{itemize}
+		\item Lait : 1 euro/unité (achat), 0,2 euro/unité (stockage), demande max : 500 unités.
+		\item Pain : 0,5 euro/unité (achat), 0,1 euro/unité (stockage), demande max : 800 unités.
+		\item Viande : 5 euros/unité (achat), 0,5 euro/unité (stockage), demande max : 200 unités.
+	\end{itemize}
+	Le budget total est de 2000 euros et l'espace de stockage est limité à 1000 unités. Minimisez les coûts totaux tout en satisfaisant la demande.
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise doit produire deux produits chimiques, P1 et P2, en utilisant trois matières premières, M1, M2 et M3. Les besoins et disponibilités sont donnés dans le tableau suivant :
+	\begin{center}
+		\begin{tabular}{c|ccc}
+			& M1 & M2 & M3 \\
+			\hline
+			P1 & 3 & 2 & 1 \\
+			P2 & 1 & 4 & 2 \\
+			Disponibilité & 120 & 160 & 100 \\
+		\end{tabular}
+	\end{center}
+	Les profits sont de 40 euros pour P1 et 50 euros pour P2. Formulez et résolvez le problème pour maximiser le profit.
+\end{exercice}
+
+\begin{exercice}
+	Un hôpital doit planifier les horaires de trois équipes d'infirmiers (matin, après-midi, soir) pour couvrir les besoins quotidiens. Les besoins minimums et les coûts sont :
+	\begin{itemize}
+		\item Matin : 10 infirmiers, coût 200 euros/infirmier.
+		\item Après-midi : 12 infirmiers, coût 180 euros/infirmier.
+		\item Soir : 8 infirmiers, coût 220 euros/infirmier.
+	\end{itemize}
+	Chaque infirmier peut travailler dans une seule équipe. Minimisez les coûts totaux tout en respectant les besoins.
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit des vélos et des trottinettes. Chaque vélo nécessite 2 heures de montage et 3 unités de pièces, chaque trottinette 1 heure de montage et 2 unités de pièces. Les disponibilités sont 120 heures de montage et 180 unités de pièces. Les profits sont de 60 euros (vélo) et 40 euros (trottinette). Formulez le problème et identifiez la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise de restauration rapide doit déterminer le mélange optimal de deux menus (M1, M2). M1 nécessite 0,3 kg de viande et 0,2 kg de légumes, M2 nécessite 0,2 kg de viande et 0,4 kg de légumes. Les ressources disponibles sont 60 kg de viande et 80 kg de légumes. Les profits sont de 5 euros pour M1 et 6 euros pour M2. Formulez et résolvez le problème.
+\end{exercice}
+
+\begin{exercice}
+	Une compagnie pétrolière raffine deux types de carburants, C1 et C2, à partir de deux types de pétrole brut, P1 et P2. Les rendements et coûts sont :
+	\begin{center}
+		\begin{tabular}{c|cc}
+			& C1 & C2 \\
+			\hline
+			P1 & 0,6 & 0,3 \\
+			P2 & 0,4 & 0,5 \\
+			Coût & 100 & 120 \\
+		\end{tabular}
+	\end{center}
+	Les disponibilités sont 200 unités de P1 et 300 unités de P2. Maximisez le rendement total.
+\end{exercice}
+
+\begin{exercice}
+	Une usine de jouets produit des poupées et des voitures. Chaque poupée nécessite 1 heure de couture et 2 heures d'assemblage, chaque voiture 2 heures de couture et 1 heure d'assemblage. Les disponibilités sont 80 heures de couture et 100 heures d'assemblage. Les profits sont de 15 euros (poupée) et 10 euros (voiture). Formulez et résolvez.
+\end{exercice}
+
+\begin{exercice}
+	Une librairie doit commander des livres de deux genres : roman et science-fiction. Les coûts et espaces de stockage sont :
+	\begin{itemize}
+		\item Roman : 10 euros/livre, 0,1 m$^{3}$/livre, demande max : 200 livres.
+		\item Science-fiction : 15 euros/livre, 0,15 m$^{3}$/livre, demande max : 150 livres.
+	\end{itemize}
+	Le budget est de 3000 euros et l'espace de stockage de 30 m³. Minimisez les coûts tout en satisfaisant la demande.
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit deux types de verre : plat et trempé. Le verre plat nécessite 3 unités de sable et 2 unités d'énergie, le verre trempé 4 unités de sable et 3 unités d'énergie. Les disponibilités sont 240 unités de sable et 180 unités d'énergie. Les profits sont de 20 euros (plat) et 30 euros (trempé). Formulez et résolvez.
+\end{exercice}
+
+\begin{exercice}
+	Un organisateur d'événements planifie deux types de soirées : gala et concert. Chaque gala nécessite 5 unités de personnel et 10 unités de matériel, chaque concert 3 unités de personnel et 8 unités de matériel. Les disponibilités sont 60 unités de personnel et 120 unités de matériel. Les profits sont de 500 euros (gala) et 300 euros (concert). Formulez et résolvez.
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise de logistique doit attribuer des camions à trois itinéraires. Les coûts et capacités sont :
+	\begin{center}
+		\begin{tabular}{c|ccc}
+			& Itinéraire 1 & Itinéraire 2 & Itinéraire 3 \\
+			\hline
+			Camion A & 50 & 60 & 70 \\
+			Camion B & 55 & 58 & 65 \\
+			Capacité & 100 & 120 & 80 \\
+		\end{tabular}
+	\end{center}
+	Minimisez les coûts totaux tout en respectant les capacités.
+\end{exercice}
+
+\begin{exercice}
+	Une boulangerie produit des baguettes et des croissants. Chaque baguette nécessite 0,5 kg de farine et 0,1 heure de cuisson, chaque croissant 0,2 kg de farine et 0,15 heure de cuisson. Les disponibilités sont 100 kg de farine et 20 heures de cuisson. Les profits sont de 1 euro (baguette) et 0,8 euro (croissant). Formulez et résolvez.
+\end{exercice}
+
+\begin{exercice}
+	Une usine de produits chimiques mélange deux produits, A et B, avec des contraintes de pureté. A nécessite 2 unités de matière X et 1 unité de matière Y, B nécessite 1 unité de X et 3 unités de Y. Les disponibilités sont 80 unités de X et 120 unités de Y. Les profits sont de 25 euros (A) et 30 euros (B). Formulez et résolvez.
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise de construction planifie la production de deux types de bâtiments : résidentiels et commerciaux. Chaque bâtiment résidentiel nécessite 10 unités de béton et 5 unités de main-d'œuvre, chaque bâtiment commercial 15 unités de béton et 8 unités de main-d'œuvre. Les disponibilités sont 200 unités de béton et 100 unités de main-d'œuvre. Les profits sont de 1000 euros (résidentiel) et 1500 euros (commercial). Formulez et résolvez.
+\end{exercice}
+
+\end{multicols}
+\quad\\
+\begin{center}
+\textbf{{\large Programmation linéaire: résolution}}
+\end{center}
+\begin{multicols}{2}
+
+\begin{exercice}
+	Une usine produit des chaises (\(x_1\)) et des tables (\(x_2\)). Le profit est de 30 euros par chaise et 50 euros par table. Les contraintes de bois et de main-d'œuvre sont :
+	\begin{itemize}
+		\item Bois : \(2x_1 + 4x_2 \leq 120\) (m³ disponibles).
+		\item Main-d'œuvre : \(3x_1 + 5x_2 \leq 180\) (heures disponibles).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 30x_1 + 50x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	2x_1 + 4x_2 \leq 120 \\
+	3x_1 + 5x_2 \leq 180 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Quelle est la solution optimale ? Si la disponibilité de bois augmente de 10 m³, comment cela affecte-t-il le profit ?
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise transporte des produits depuis deux entrepôts (\(E_1, E_2\)) vers trois magasins (\(M_1, M_2, M_3\)). Les coûts unitaires sont donnés dans le tableau suivant :
+	\begin{center}
+		\begin{tabular}{c|ccc}
+			& \(M_1\) & \(M_2\) & \(M_3\) \\
+			\hline
+			\(E_1\) & 5 & 8 & 6 \\
+			\(E_2\) & 7 & 4 & 9 \\
+		\end{tabular}
+	\end{center}
+	Variables : \(x_{ij}\) = quantité transportée de \(E_i\) à \(M_j\). Disponibilités : 200 (\(E_1\)), 300 (\(E_2\)). Demandes : 150 (\(M_1\)), 100 (\(M_2\)), 250 (\(M_3\)).
+	Modélisation :
+	\[
+	\text{Minimiser } Z = 5x_{11} + 8x_{12} + 6x_{13} + 7x_{21} + 4x_{22} + 9x_{23}
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_{11} + x_{12} + x_{13} \leq 200 \\
+	x_{21} + x_{22} + x_{23} \leq 300 \\
+	x_{11} + x_{21} = 150 \\
+	x_{12} + x_{22} = 100 \\
+	x_{13} + x_{23} = 250 \\
+	x_{ij} \geq 0 \quad \forall i,j
+	\end{cases}
+	\]
+	Résolvez et identifiez les coûts minimaux.
+\end{exercice}
+
+\begin{exercice}
+	Un agriculteur cultive du blé (\(x_1\)) et du maïs (\(x_2\)) sur 100 hectares. Profits : 200 euros (blé), 300 euros (maïs). Contraintes :
+	\begin{itemize}
+		\item Eau : \(2x_1 + 3x_2 \leq 240\).
+		\item Engrais : \(x_1 + 2x_2 \leq 180\).
+		\item Terre : \(x_1 + x_2 \leq 100\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 200x_1 + 300x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	2x_1 + 3x_2 \leq 240 \\
+	x_1 + 2x_2 \leq 180 \\
+	x_1 + x_2 \leq 100 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Quelle est la solution optimale ? Analysez l'effet d'une augmentation de 20 unités d'eau.
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit du cola (\(x_1\)) et de la limonade (\(x_2\)). Profits : 2 euros/litre (cola), 1,5 euro/litre (limonade). Contraintes :
+	\begin{itemize}
+		\item Sucre : \(0,5x_1 + 0,3x_2 \leq 100\).
+		\item Concentré : \(0,2x_1 + 0,4x_2 \leq 80\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 2x_1 + 1,5x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	0,5x_1 + 0,3x_2 \leq 100 \\
+	0,2x_1 + 0,4x_2 \leq 80 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Trouvez la solution optimale et analysez l'effet d'une réduction de 10 kg de sucre.
+\end{exercice}
+
+\begin{exercice}
+	Une compagnie aérienne affecte trois avions (\(A_1, A_2, A_3\)) à trois itinéraires (\(R_1, R_2, R_3\)). Profits :
+	\begin{center}
+		\begin{tabular}{c|ccc}
+			& \(R_1\) & \(R_2\) & \(R_3\) \\
+			\hline
+			\(A_1\) & 2000 & 3000 & 2500 \\
+			\(A_2\) & 2200 & 2800 & 2700 \\
+			\(A_3\) & 2400 & 2600 & 2300 \\
+		\end{tabular}
+	\end{center}
+	Variables : \(x_{ij} = 1\) si \(A_i\) est affecté à \(R_j\), 0 sinon.
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 2000x_{11} + 3000x_{12} + 2500x_{13} + 2200x_{21} + 2800x_{22} + 2700x_{23} + 2400x_{31} + 2600x_{32} + 2300x_{33}
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_{11} + x_{12} + x_{13} = 1 \\
+	x_{21} + x_{22} + x_{23} = 1 \\
+	x_{31} + x_{32} + x_{33} = 1 \\
+	x_{11} + x_{21} + x_{31} = 1 \\
+	x_{12} + x_{22} + x_{32} = 1 \\
+	x_{13} + x_{23} + x_{33} = 1 \\
+	x_{ij} \in \{0,1\}
+	\end{cases}
+	\]
+	Résolvez pour maximiser le profit.
+\end{exercice}
+
+\begin{exercice}
+	Un supermarché stocke du lait (\(x_1\)), du pain (\(x_2\)) et de la viande (\(x_3\)). Coûts : 1,2 euro (lait), 0,6 euro (pain), 5,5 euro (viande). Contraintes :
+	\begin{itemize}
+		\item Budget : \(x_1 + 0,5x_2 + 5x_3 \leq 2000\).
+		\item Stockage : \(x_1 + x_2 + x_3 \leq 1000\).
+		\item Demande max : \(x_1 \leq 500\), \(x_2 \leq 800\), \(x_3 \leq 200\).
+		\item Non-négativité : \(x_1, x_2, x_3 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Minimiser } Z = 1,2x_1 + 0,6x_2 + 5,5x_3
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 + 0,5x_2 + 5x_3 \leq 2000 \\
+	x_1 + x_2 + x_3 \leq 1000 \\
+	x_1 \leq 500 \\
+	x_2 \leq 800 \\
+	x_3 \leq 200 \\
+	x_1, x_2, x_3 \geq 0
+	\end{cases}
+	\]
+	Trouvez la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit deux produits chimiques (\(x_1, x_2\)) avec des besoins en matières premières :
+	\begin{itemize}
+		\item M1 : \(3x_1 + x_2 \leq 120\).
+		\item M2 : \(2x_1 + 4x_2 \leq 160\).
+		\item M3 : \(x_1 + 2x_2 \leq 100\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Profits : 40 euros (\(x_1\)), 50 euros (\(x_2\)).
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 40x_1 + 50x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	3x_1 + x_2 \leq 120 \\
+	2x_1 + 4x_2 \leq 160 \\
+	x_1 + 2x_2 \leq 100 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Quelle est la solution optimale ?
+\end{exercice}
+
+\begin{exercice}
+	Un hôpital planifie les équipes d'infirmiers : matin (\(x_1\)), après-midi (\(x_2\)), soir (\(x_3\)). Coûts : 200 euros (matin), 180 euros (après-midi), 220 euros (soir). Contraintes :
+	\begin{itemize}
+		\item Besoins : \(x_1 \geq 10\), \(x_2 \geq 12\), \(x_3 \geq 8\).
+		\item Non-négativité : \(x_1, x_2, x_3 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Minimiser } Z = 200x_1 + 180x_2 + 220x_3
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 \geq 10 \\
+	x_2 \geq 12 \\
+	x_3 \geq 8 \\
+	x_1, x_2, x_3 \geq 0
+	\end{cases}
+	\]
+	Trouvez la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit des vélos (\(x_1\)) et des trottinettes (\(x_2\)). Profits : 60 euros (vélo), 40 euros (trottinette). Contraintes :
+	\begin{itemize}
+		\item Montage : \(2x_1 + x_2 \leq 120\).
+		\item Pièces : \(3x_1 + 2x_2 \leq 180\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 60x_1 + 40x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	2x_1 + x_2 \leq 120 \\
+	3x_1 + 2x_2 \leq 180 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Résolvez et analysez l'effet d'une augmentation de 20 heures de montage.
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise produit deux menus : M1 (\(x_1\)), M2 (\(x_2\)). Profits : 5 euros (M1), 6 euros (M2). Contraintes :
+	\begin{itemize}
+		\item Viande : \(0,3x_1 + 0,2x_2 \leq 60\).
+		\item Légumes : \(0,2x_1 + 0,4x_2 \leq 80\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 5x_1 + 6x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	0,3x_1 + 0,2x_2 \leq 60 \\
+	0,2x_1 + 0,4x_2 \leq 80 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Trouvez la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Une raffinerie produit deux carburants (\(x_1, x_2\)) à partir de deux pétroles bruts. Rendements :
+	\begin{itemize}
+		\item P1 : \(0,6x_1 + 0,3x_2 \leq 200\).
+		\item P2 : \(0,4x_1 + 0,5x_2 \leq 300\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = x_1 + x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	0,6x_1 + 0,3x_2 \leq 200 \\
+	0,4x_1 + 0,5x_2 \leq 300 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Quelle est la solution optimale ?
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit des poupées (\(x_1\)) et des voitures (\(x_2\)). Profits : 15 euros (poupée), 10 euros (voiture). Contraintes :
+	\begin{itemize}
+		\item Couture : \(x_1 + 2x_2 \leq 80\).
+		\item Assemblage : \(2x_1 + x_2 \leq 100\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 15x_1 + 10x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_1 + 2x_2 \leq 80 \\
+	2x_1 + x_2 \leq 100 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Résolvez et analysez l'effet d'une augmentation de 10 heures de couture.
+\end{exercice}
+
+\begin{exercice}
+	Une librairie commande des romans (\(x_1\)) et des livres de science-fiction (\(x_2\)). Coûts : 10 euros (roman), 15 euros (science-fiction). Contraintes :
+	\begin{itemize}
+		\item Budget : \(10x_1 + 15x_2 \leq 3000\).
+		\item Stockage : \(0,1x_1 + 0,15x_2 \leq 30\).
+		\item Demande max : \(x_1 \leq 200\), \(x_2 \leq 150\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Minimiser } Z = 10x_1 + 15x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	10x_1 + 15x_2 \leq 3000 \\
+	0,1x_1 + 0,15x_2 \leq 30 \\
+	x_1 \leq 200 \\
+	x_2 \leq 150 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Trouvez la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit du verre plat (\(x_1\)) et trempé (\(x_2\)). Profits : 20 euros (plat), 30 euros (trempé). Contraintes :
+	\begin{itemize}
+		\item Sable : \(3x_1 + 4x_2 \leq 240\).
+		\item Énergie : \(2x_1 + 3x_2 \leq 180\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 20x_1 + 30x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	3x_1 + 4x_2 \leq 240 \\
+	2x_1 + 3x_2 \leq 180 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Résolvez et analysez l'effet d'une augmentation de 20 unités de sable.
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise organise des galas (\(x_1\)) et des concerts (\(x_2\)). Profits : 500 euros (gala), 300 euros (concert). Contraintes :
+	\begin{itemize}
+		\item Personnel : \(5x_1 + 3x_2 \leq 60\).
+		\item Matériel : \(10x_1 + 8x_2 \leq 120\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 500x_1 + 300x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	5x_1 + 3x_2 \leq 60 \\
+	10x_1 + 8x_2 \leq 120 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Trouvez la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise attribue des camions à trois itinéraires. Coûts :
+	\begin{center}
+		\begin{tabular}{c|ccc}
+			& Itinéraire 1 & Itinéraire 2 & Itinéraire 3 \\
+			\hline
+			Camion A & 50 & 60 & 70 \\
+			Camion B & 55 & 58 & 65 \\
+		\end{tabular}
+	\end{center}
+	Variables : \(x_{ij} = 1\) si camion \(i\) est affecté à l'itinéraire \(j\), 0 sinon. Capacités : 100 (Itinéraire 1), 120 (Itinéraire 2), 80 (Itinéraire 3).
+	Modélisation :
+	\[
+	\text{Minimiser } Z = 50x_{A1} + 60x_{A2} + 70x_{A3} + 55x_{B1} + 58x_{B2} + 65x_{B3}
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	x_{A1} + x_{A2} + x_{A3} \leq 1 \\
+	x_{B1} + x_{B2} + x_{B3} \leq 1 \\
+	x_{A1} + x_{B1} \leq 100 \\
+	x_{A2} + x_{B2} \leq 120 \\
+	x_{A3} + x_{B3} \leq 80 \\
+	x_{ij} \in \{0,1\}
+	\end{cases}
+	\]
+	Résolvez pour minimiser les coûts.
+\end{exercice}
+
+\begin{exercice}
+	Une boulangerie produit des baguettes (\(x_1\)) et des croissants (\(x_2\)). Profits : 1 euro (baguette), 0,8 euro (croissant). Contraintes :
+	\begin{itemize}
+		\item Farine : \(0,5x_1 + 0,2x_2 \leq 100\).
+		\item Cuisson : \(0,1x_1 + 0,15x_2 \leq 20\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = x_1 + 0,8x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	0,5x_1 + 0,2x_2 \leq 100 \\
+	0,1x_1 + 0,15x_2 \leq 20 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Trouvez la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit deux produits chimiques (\(x_1, x_2\)). Profits : 25 euros (\(x_1\)), 30 euros (\(x_2\)). Contraintes :
+	\begin{itemize}
+		\item Matière X : \(2x_1 + x_2 \leq 80\).
+		\item Matière Y : \(x_1 + 3x_2 \leq 120\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 25x_1 + 30x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	2x_1 + x_2 \leq 80 \\
+	x_1 + 3x_2 \leq 120 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Résolvez et analysez l'effet d'une augmentation de 10 unités de matière X.
+\end{exercice}
+
+\begin{exercice}
+	Une entreprise construit des bâtiments résidentiels (\(x_1\)) et commerciaux (\(x_2\)). Profits : 1000 euros (résidentiel), 1500 euros (commercial). Contraintes :
+	\begin{itemize}
+		\item Béton : \(10x_1 + 15x_2 \leq 200\).
+		\item Main-d'œuvre : \(5x_1 + 8x_2 \leq 100\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 1000x_1 + 1500x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	10x_1 + 15x_2 \leq 200 \\
+	5x_1 + 8x_2 \leq 100 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Trouvez la solution optimale.
+\end{exercice}
+
+\begin{exercice}
+	Une usine produit des chemises (\(x_1\)) et des pantalons (\(x_2\)). Profits : 12 euros (chemise), 18 euros (pantalon). Contraintes :
+	\begin{itemize}
+		\item Tissu : \(2x_1 + 3x_2 \leq 150\).
+		\item Couture : \(x_1 + 2x_2 \leq 100\).
+		\item Non-négativité : \(x_1, x_2 \geq 0\).
+	\end{itemize}
+	Modélisation :
+	\[
+	\text{Maximiser } Z = 12x_1 + 18x_2
+	\]
+	\[
+	\text{Sous } \begin{cases}
+	2x_1 + 3x_2 \leq 150 \\
+	x_1 + 2x_2 \leq 100 \\
+	x_1, x_2 \geq 0
+	\end{cases}
+	\]
+	Résolvez et analysez l'effet d'une augmentation de 20 unités de tissu.
+\end{exercice}
+
+\end{multicols}
+\quad\\
+\begin{center}
+\textbf{{\large Dualité}}
+\end{center}
+\begin{multicols}{2}
+
+\begin{exercice}
+	Trouvez le dual du programme linéaire suivant :
+	\[
+	\max z = x_{1} + x_{2}
+	\]
+	s.c
+	\[
+	x_{1} - x_{2} + x_{3} \leqslant 10
+	\]
+	\[
+	x_{2} \leqslant 5
+	\]
+	\[
+	2x_{3} \leqslant 6
+	\]
+	et $x_{i} \geqslant 0$.
+\end{exercice}
+
+\begin{exercice}
+	Utilisez l'algorithme dual du simplexe pour résoudre ce programme linéaire :
+	\[
+	\min z = 8x_{1} - 12x_{2}
+	\]
+	s.c
+	\[
+	-3x_{1} - 3x_{2} \geqslant 1
+	\]
+	\[
+	2x_{1} - 4x_{2} \geqslant 1
+	\]
+	et $x_{1}, x_{2} \geqslant 0$.
+\end{exercice}
+
+\begin{exercice}
+	Utilisez l'algorithme dual du simplexe pour résoudre ce programme linéaire :
+	\[
+	\min z = -2x_{1} - x_{2}
+	\]
+	s.c
+	\[
+	4x_{1} + x_{2} \geqslant 8
+	\]
+	\[
+	x_{1} + x_{2} \geqslant 5
+	\]
+	et $x_{1}, x_{2} \geqslant 0$.
+\end{exercice}
+
+\begin{exercice}
+	Trouvez le dual du programme linéaire suivant :
+	\[
+	\min z = x_{1} + x_{2} + x_{3} - x_{4}
+	\]
+	s.c
+	\[
+	x_{1} - x_{2} \leqslant 7
+	\]
+	\[
+	x_{3} - x_{4} \leqslant 9
+	\]
+	\[
+	-x_{1} + x_{3} \leqslant 3
+	\]
+	\[
+	x_{2} + x_{4} \leqslant 5
+	\]
+	et $x_{i}$ sans restriction de signe.
+\end{exercice}
+
+\begin{exercice}
+	Utilisez l'algorithme dual du simplexe pour résoudre ce programme linéaire :
+	\[
+	\min z = 8y_{1} + 6y_{2} + 2y_{3}
+	\]
+	s.c
+	\[
+	y_{1} - 2y_{2} + y_{3} \geqslant 1
+	\]
+	\[
+	y_{1} + 3y_{2} - y_{3} \geqslant 7
+	\]
+	et $y_{1}, y_{2}, y_{3} \geqslant 0$.
+\end{exercice}
+
+\begin{exercice}
+	Utilisez l'algorithme dual du simplexe pour résoudre ce programme linéaire :
+	\[
+	\min z = 4x_{1} + x_{2} + x_{3}
+	\]
+	s.c
+	\[
+	x_{1} + x_{2} \geqslant 8
+	\]
+	\[
+	8x_{1} - x_{2} - 9x_{3} \geqslant 1
+	\]
+	et $x_{1}, x_{2}, x_{3} \geqslant 0$.
+\end{exercice}
+
+\end{multicols}

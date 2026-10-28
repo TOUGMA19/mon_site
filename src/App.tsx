@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const Enseignement = lazy(() => import("./pages/Enseignement"));
+const EnseignementCours = lazy(() => import("./pages/EnseignementCours"));
 const EnseignementDocument = lazy(() => import("./pages/EnseignementDocument"));
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/enseignement" element={<Enseignement />} />
+          <Route path="/enseignement/matiere/:slug" element={<EnseignementCours />} />
           <Route path="/enseignement/:categorie" element={<Enseignement />} />
           <Route path="/enseignement/:categorie/:slug" element={<EnseignementDocument />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

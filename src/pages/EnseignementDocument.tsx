@@ -107,11 +107,18 @@ const EnseignementDocument = () => {
               )}
             </header>
 
+            {doc.toc.length >= 2 && (
+              <details className="mb-8 rounded-lg border border-border bg-card xl:hidden print:hidden">
+                <summary className="cursor-pointer px-4 py-3 font-serif font-bold text-primary">Sommaire</summary>
+                <LatexToc doc={doc} compact className="max-h-72 overflow-y-auto px-4 pb-4" />
+              </details>
+            )}
+
             <LatexDocument doc={doc} showAll={showAll} />
           </article>
 
           <aside className="hidden xl:block print:hidden">
-            <LatexToc doc={doc} className="sticky top-24" />
+            <LatexToc doc={doc} className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2" />
           </aside>
         </div>
       </main>

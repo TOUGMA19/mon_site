@@ -6,7 +6,7 @@ import SiteFooter from "@/components/SiteFooter";
 import { Badge } from "@/components/ui/badge";
 import LatexDocument, { CorrectionsToggle, LatexToc } from "@/components/latex/LatexDocument";
 import { parseLatex } from "@/lib/latex/parser";
-import { CATEGORIES, findDoc, sharedMacros } from "@/lib/enseignement";
+import { CATEGORIES, courseOfDoc, findDoc, sharedMacros } from "@/lib/enseignement";
 
 // true  = les boutons « Afficher les corrections », « Imprimer / PDF » et « Source .tex »
 //         sont visibles par tout le monde.
@@ -32,7 +32,8 @@ const EnseignementDocument = () => {
     if (entry) document.title = `${entry.meta.titre} — Dr. Tougma`;
   }, [entry]);
 
-  const back = `/enseignement/${categorie ?? "cours"}`;
+  const course = entry ? courseOfDoc(entry) : undefined;
+  const back = course ? `/enseignement/matiere/${course.slug}?onglet=${categorie}` : "/enseignement";
 
   if (!entry || !doc) {
     return (
@@ -55,7 +56,7 @@ const EnseignementDocument = () => {
       <div className="print:hidden"><SiteHeader /></div>
       <main className="container mx-auto px-6 py-10">
         <Link to={back} className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-accent print:hidden">
-          <ArrowLeft className="h-4 w-4" /> Retour : {category?.label}
+          <ArrowLeft className="h-4 w-4" /> {course ? `${course.name} › ${category?.label}` : "Enseignement"}
         </Link>
 
         <div className="xl:grid xl:grid-cols-[1fr_16rem] xl:gap-12">

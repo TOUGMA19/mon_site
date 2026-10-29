@@ -1,0 +1,95 @@
+%% titre: Devoir surveillé — Optimisation
+%% niveau: Licence 3
+%% matiere: Optimisation
+%% annee: 2025-2026
+%% description: Devoir d'Optimisation licence 3 mathématique. Durée : 2 h, sans documents.
+
+	\begin{center}
+		\textbf{\sc Examen d'Optimisation}\\
+		Filière : L3S5 Mathématiques\\
+		Durée : 2h00mn\\
+	\end{center}
+\qquad\\
+\textbf{Exercice 1} (04 points):\\
+
+\begin{enumerate}
+	\item Soit $f$ une fonction différentiable sur un ensemble convexe 
+	$C \subset \mathbb{R}^n$.  
+	En utilisant la définition de la convexité et de la dérivée directionnelle, 
+	montrer que si $f$ est convexe alors :
+	\[
+	f(y) \ge f(x) + \langle \nabla f(x), y - x \rangle, \quad \forall x,y \in C.
+	\]
+	
+	\item Déduire que $\nabla f$ est monotone sur $C$, c’est-à-dire :
+	\[
+	\langle \nabla f(y) - \nabla f(x),\, y - x \rangle \ge 0, \quad \forall x,y \in C.
+	\]
+\end{enumerate}
+
+\qquad\\
+\textbf{Exercice 2} (06 points):\\
+
+Soit $\alpha \in \mathbb{R}$.  
+On considère la fonction $f_\alpha : \mathbb{R}^2 \to \mathbb{R}$ définie par :
+\[
+f_\alpha(x,y) = x^2 + y^2 + \alpha xy + x + 2y.
+\]
+
+\begin{enumerate}
+	\item Pour quelles valeurs de $\alpha$ la fonction $f_\alpha$ est-elle convexe ?  
+	Et strictement convexe ?
+	
+	\item Calculer les points critiques de $f_\alpha$ en fonction de $\alpha$ puis
+	résoudre le problème :
+	\[
+	\min_{(x,y)\in\mathbb{R}^2} f_\alpha (x,y)
+	\quad \text{lorsque } \alpha \ne \pm 2.
+	\]
+\end{enumerate}
+
+\qquad\\
+\textbf{Exercice 3} (04 points):\\
+
+Une entreprise veut déménager son matériel composé de 450 machines 
+de trois types : $M_1$, $M_2$, $M_3$.  
+Elle décide de louer des camions.  
+La société de location dispose de trois sortes de véhicules : 
+$V_1$, $V_2$, $V_3$, dont les tarifs sont respectivement de  
+50000, 80000 et 120000 FCFA par voyage.
+
+Les camions $V_1$ peuvent chacun transporter :  
+1 machine $M_1$, 4 machines $M_2$, et 10 machines $M_3$.
+
+Pour des raisons techniques la place d’une machine d’un type donné ne peut pas être utilisée pour une machine d’un autre type.
+
+Chaque camion $V_2$ peut transporter :  
+2 machines $M_1$, 6 machines $M_2$, 20 machines $M_3$.
+
+Alors que les véhicules $V_3$ ont pour capacité maximale :  
+4 machines $M_1$, 20 machines $M_2$, 24 machines $M_3$.
+
+On veut transporter en un seul convoi :  
+30 machines $M_1$, 120 machines $M_2$, et 300 machines $M_3$.
+
+L’entreprise veut déterminer le nombre de véhicules à louer pour minimiser le coût total de transport.  
+Donner le modèle linéaire de ce problème sans le résoudre.
+
+\qquad\\
+\textbf{Exercice 4} (06 points):\\
+
+Résoudre le programme linéaire suivant par la méthode du simplexe :
+
+\[
+\max\; Z = 3x_1 + 5x_2 + 4x_3
+\]
+
+Sous contraintes :
+\[
+\begin{cases}
+2x_1 + x_2 + x_3 \le 10, \\
+x_1 + 3x_2 + 2x_3 \le 11, \\
+x_1 + x_2 + 4x_3 \le 12, \\
+x_1, x_2, x_3 \ge 0.
+\end{cases}
+\]

@@ -1,3 +1,9 @@
+%% titre: Cours d'Optimisation
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 2
+%% description: Cours d'optimisation licence 3 2026-2027.
 \documentclass[a4paper,11pt]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -1152,7 +1158,7 @@
 		$\mu=0$ donne $(2,1)$, non admissible ($g=1>0$). $\mu>0$ : $x+y=2$ et $x-2=y-1$, soit $(x,y)=(\frac32,\frac12)$, $\mu=1\ge0$. Par le théorème~\ref{thm:kktconv}, c'est l'unique minimum global ; $f=\frac12$ (point de tangence de la droite avec un cercle centré en $(2,1)$).
 	\end{exemple}
 	\begin{center}
-		\includegraphics[scale=0.35]{image1.png}
+		\includegraphics[scale=0.35]{Optimage1.png}
 %		\begin{tikzpicture}[scale=1.5]
 %			\fill[blue!15] (-0.3,-0.3)--(2.3,-0.3)--(-0.3,2.3)--cycle;
 %			\draw[->](-.3,0)--(3,0) node[right]{$x$};\draw[->](0,-.3)--(0,2.8) node[above]{$y$};
@@ -1177,7 +1183,7 @@
 		\end{itemize}
 		Le seul point KKT est $(1,3)$, donc le minimum global (théorème~\ref{thm:kktconv}), de valeur $8$.
 		\begin{center}
-			\includegraphics[scale=0.35]{image2.png}
+			\includegraphics[scale=0.35]{Optimage2.png}
 %			\begin{tikzpicture}[scale=0.5]
 %				\clip (-5.2,-4.9) rectangle (7.5,8.2);
 %				\begin{scope}\clip (0,0) circle ({sqrt(20)});\fill[blue!15] (-6,10)--(10,-6)--(-6,-6)--cycle;\end{scope}
@@ -1541,7 +1547,20 @@
 	\end{remarque}
 	
 	\section{Propriétés géométriques}
+	On note
+	\begin{equation}\label{eq:DR}
+		\mathbf{D}_{R}=\left\{x \in \mathbb{R}^{n} \mid A x=b, x \geq 0\right\},
+	\end{equation}
+	l'ensemble des solutions réalisables d'un PL sous forme standard.
 	
+	Commençons par rappeler les notions d'ensemble convexe et de polyèdre. Les deux figures ci-dessous illustrent la différence entre un ensemble convexe et un ensemble non convexe.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{Optimage7.png}
+		\caption{Illustration de la convexité : à gauche, un ensemble convexe (tout segment joignant deux points reste dans l'ensemble) ; à droite, un ensemble non convexe (le segment sort de l'ensemble).}
+		\label{fig:convexite}
+	\end{figure}
 	\begin{definition}\label{def:convexe}
 		Un ensemble $E \subseteq \R^n$ est \textbf{convexe} si, pour tous $x, y \in E$ et tout $\lambda \in [0,1]$, on a $\lambda x + (1-\lambda) y \in E$.
 	\end{definition}
@@ -1589,7 +1608,7 @@
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.35]{image5.png}
+		\includegraphics[scale=0.35]{Optimage5.png}
 %		\begin{tikzpicture}[scale=1.2,
 %			x={(-0.707cm,-0.707cm)}, y={(1cm,0cm)}, z={(0cm,1cm)}]
 %			\coordinate (O) at (0,0,0);
@@ -1961,7 +1980,7 @@
 	\subsection{Vue d'ensemble}
 	
 	\begin{center}
-		\includegraphics[scale=0.35]{image6.png}
+		\includegraphics[scale=0.35]{Optimage6.png}
 %		\begin{tikzpicture}[
 %			node distance=0.9cm and 2.2cm,
 %			box/.style={rectangle, rounded corners, draw=blue!60!black, fill=blue!10, text width=5cm, align=center, minimum height=0.8cm},

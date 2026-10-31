@@ -51,8 +51,8 @@
 \definecolor{linecolor}{RGB}{70,130,180}
 
 % --- titres
-\titleformat{\chapter}[hang]{\Large\bfseries\color{titlecolor}}{Chapitre \thechapter.}{0.6em}{}[\vspace{2pt}\color{linecolor}\titlerule]
-\titlespacing*{\chapter}{0pt}{-10pt}{14pt}
+\titleformat{\}[hang]{\Large\bfseries\color{titlecolor}}{Chapitre \the.}{0.6em}{}[\vspace{2pt}\color{linecolor}\titlerule]
+\titlespacing*{\}{0pt}{-10pt}{14pt}
 \titleformat{\section}{\large\bfseries\color{titlecolor}}{\thesection}{0.6em}{}
 \titlespacing*{\section}{0pt}{10pt}{4pt}
 \titleformat{\subsection}{\normalsize\bfseries\color{titlecolor}}{\thesubsection}{0.6em}{}
@@ -71,7 +71,7 @@
 
 % --- théorèmes
 \theoremstyle{plain}
-\newtheorem{theorem}{Théorème}[chapter]
+\newtheorem{theorem}{Théorème}[]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemme}
 \newtheorem{corollary}[theorem]{Corollaire}
@@ -109,7 +109,7 @@
 \renewcommand{\arraystretch}{1.15}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{3pt}
-\addto\captionsfrench{\renewcommand{\chaptername}{Chapitre}\renewcommand{\contentsname}{Table des matières}}
+\addto\captionsfrench{\renewcommand{\name}{Chapitre}\renewcommand{\contentsname}{Table des matières}}
 
 
 % ============================================================
@@ -161,32 +161,10 @@
 }
 
 \begin{document}
-	\begin{titlepage}
-		\thispagestyle{empty}
-		\centering
-		\vspace*{2cm}
-		{\large\textsc{Université Lédéa Bernard Ouédraogo}\par}
-		\vspace{1.2cm}
-		{\color{linecolor}\rule{0.8\textwidth}{1.2pt}\par}
-		\vspace{1cm}
-		{\Huge\bfseries\color{titlecolor} Optimisation\par}
-		\vspace{0.4cm}
-		{\Large Synthèse de cours et exemples corrigés\par}
-		\vspace{1cm}
-		{\color{linecolor}\rule{0.8\textwidth}{1.2pt}\par}
-		\vspace{2cm}
-		{\Large\textbf{Licence 3 Mathématiques}\par}
-		\vspace{0.3cm}
-		{\large Semestre 5 -- 2025/2026\par}
-		\vspace{0.3cm}
-		{\large Cours magistral 20 h -- Travaux dirigés 6 h\par}
-		\vspace{2.5cm}
-		{\large\textbf{Dr A. Tougma}\par}
-	\end{titlepage}
 	
 	\tableofcontents
 	
-	\chapter*{Introduction}
+	\*{Introduction}
 	\addcontentsline{toc}{chapter}{Introduction}
 	Un \textbf{problème d'optimisation} consiste à chercher, parmi un ensemble $D\subset\R^n$ de points \emph{admissibles}, un point $x^*$ où une fonction \emph{objectif} $f:\R^n\to\R$ atteint sa plus petite (ou plus grande) valeur :
 	\[
@@ -336,7 +314,7 @@
 	\begin{exemple}
 		$f(x,y,z)=x^2+2y^2+3z^2+2xy+2yz=\frac12v\T Av$ avec $A=\begin{pmatrix}2&2&0\\2&4&2\\0&2&6\end{pmatrix}$ : $\Delta_1=2$, $\Delta_2=4$, $\Delta_3=16$, tous $>0$. $A$ est définie positive, $f$ est strictement convexe et son unique minimum global est $(0,0,0)$.
 	\end{exemple}
-	\chapter{Existence, unicité et optimisation sans contrainte}
+	\{Existence, unicité et optimisation sans contrainte}
 	On considère $(P)\ \min_{x\in\R^n}f(x)$. Ce chapitre répond à trois questions : le minimum \emph{existe-t-il} (\S2.1) ? est-il \emph{unique} (\S2.1) ? comment le \emph{caractériser et le calculer} (\S2.2 et 2.3) ?
 	
 	\section{Conditions d'existence et d'unicité d'un minimum}
@@ -705,7 +683,7 @@
 	\begin{exemple}[Quadratique générale]
 		Soit $Q$ symétrique définie positive et $f(x)=\frac12\scal{Qx}{x}-\scal{b}{x}$. \emph{Question 1.} Dans une base orthonormée de vecteurs propres $(v_i)$, $x=\sum\alpha_iv_i$ et $\scal{Qx}{x}=\sum\lambda_i\alpha_i^2\ge\lambda_{\min}\sum\alpha_i^2=\lambda_{\min}\norm x^2$ : on prend $\delta=\lambda_{\min}(Q)>0$ (les valeurs propres d'une matrice symétrique définie positive sont strictement positives). \emph{Question 2.} Alors $f(x)\ge\frac\delta2\norm x^2-\norm b\norm x\to+\infty$ (Cauchy--Schwarz) : $f$ est coercive. Sa hessienne est $Q\succ0$ : $f$ est strictement convexe. Existence (continue + coercive) et unicité (stricte convexité). Le gradient est $Qx-b$ (car $Q=Q\T$), donc le point critique vérifie $Qx=b$ ; $Q$ est inversible (valeurs propres non nulles), d'où l'unique solution $x^*=Q^{-1}b$, avec $f(x^*)=-\frac12\scal{b}{Q^{-1}b}$.
 	\end{exemple}
-	\chapter{Optimisation sous contraintes d'égalité : multiplicateurs de Lagrange}
+	\{Optimisation sous contraintes d'égalité : multiplicateurs de Lagrange}
 	On étudie $(P_E)$ : optimiser $f(x)$ sous $g_i(x)=0$, $i=1,\dots,m$, avec $f:\R^n\to\R$, $g=(g_1,\dots,g_m):\R^n\to\R^m$, $m<n$. L'ensemble admissible est $\mathcal C=\{x\mid g(x)=0\}$.
 	
 	\textbf{Intuition géométrique.} Une seule contrainte : en un optimum, on ne peut ni monter ni descendre en restant sur $\mathcal C$, donc $\grad f(x^*)$ est orthogonal à $\mathcal C$. Or $\mathcal C$ est la ligne de niveau $0$ de $g$, donc $\grad g(x^*)$ lui est aussi orthogonal : les deux gradients sont colinéaires, soit $\grad f(x^*)+\lambda^*\grad g(x^*)=0$.
@@ -867,7 +845,7 @@
 	\begin{retenir}
 		Lagrange : $\grad f+\sum\lambda_i\grad g_i=0$ \emph{si} les $\grad g_i$ sont indépendants. Le test de second ordre se fait \emph{sur l'espace tangent} $\ker D\T$, pas sur tout $\R^n$. Un point critique non régulier doit être traité à part.
 	\end{retenir}
-	\chapter{Conditions de Karush--Kuhn--Tucker}
+	\{Conditions de Karush--Kuhn--Tucker}
 	Cadre : $(P)$ minimiser $f(x)$ sous $h_i(x)=0$ ($i=1,\dots,p$) et $g_j(x)\le0$ ($j=1,\dots,q$), avec $f,h_i,g_j$ de classe $\mathcal C^1$. L'ensemble admissible est $U=\{x\mid h(x)=0,\ g(x)\le0\}$. Pour $x\in U$, $I(x)=\{j\mid g_j(x)=0\}$ est l'ensemble des contraintes d'inégalité \textbf{actives} (saturées) ; les autres sont \emph{inactives}.
 	
 	\section{Conditions nécessaires non qualifiées (Fritz John)}
@@ -1213,7 +1191,7 @@
 	% ============================================================
 	% CHAPITRE 1 — GÉNÉRALITÉS
 	% ============================================================
-	\chapter{Généralités sur la programmation linéaire}
+	\{Généralités sur la programmation linéaire}
 	\label{chap:pl_generalites}
 	
 	\section{Introduction}
@@ -1366,7 +1344,7 @@
 		\end{equation}
 	\end{exemple}
 	
-	\chapter{Résolution graphique}
+	\{Résolution graphique}
 	
 	Dans le cas d'un (PL) à deux variables, on peut envisager une résolution graphique. Les contraintes où apparaissent des inégalités correspondent géométriquement à des demi-plans. L'intersection de ces demi-plans forme l'ensemble des variables satisfaisant à toutes les contraintes.
 	
@@ -1464,7 +1442,7 @@
 	% ============================================================
 	% CHAPITRE 2 — RÉSOLUTION ALGÉBRIQUE
 	% ============================================================
-	\chapter{Résolution algébrique}
+	\{Résolution algébrique}
 	\label{chap:resolution-algebrique}
 	
 	Ce chapitre prépare la méthode du simplexe (chapitre~\ref{chap:simplexe}) en introduisant les variables auxiliaires et les notions de base et de sommet. Il se termine par la marche à suivre de la méthode algébrique, qui sera formalisée algorithmiquement au chapitre suivant.
@@ -1631,7 +1609,7 @@
 	% ============================================================
 	% CHAPITRE 3 — SIMPLEXE
 	% ============================================================
-	\chapter{Méthode du simplexe}
+	\{Méthode du simplexe}
 	\label{chap:simplexe}
 	
 	Ce chapitre formalise l'algorithme qui réalise la démarche du chapitre~\ref{chap:resolution-algebrique} : la \emph{méthode du simplexe} de G. Dantzig (1947). On suppose que le PL est sous forme standard \eqref{eq:standard} et que l'on dispose d'une base réalisable $I$, de matrice de base $A_B$.
@@ -2247,7 +2225,7 @@ x_1 = 5, \quad x_2 = 3, \quad e_{1} = 0, \quad e_{2} = 7, \quad e_{3} = 0, \quad
 % ============================================================
 % CHAPITRE 4 — DEUX PHASES
 % ============================================================
-\chapter{Méthode des deux phases}
+\{Méthode des deux phases}
 \label{chap:deux-phases}
 
 L'algorithme du chapitre~\ref{chap:simplexe} suppose connue une base réalisable initiale. Lorsque les contraintes du problème ne fournissent pas une telle base (contraintes $\geq$ ou $=$), on procède en deux phases : la Phase~I recherche une base réalisable, la Phase~II applique le simplexe à partir de cette base. C'est la \emph{méthode des deux phases}.
@@ -2496,7 +2474,7 @@ x_1 = 0,\quad x_2 = 10,\quad e_2 = 24,\quad s_1 = 0,\quad s_3 = 12,\quad Z^* = 2
 % ============================================================
 % CHAPITRE 5 — DUALITÉ
 % ============================================================
-\chapter{Dualité}
+\{Dualité}
 \label{chap:dualite}
 
 Ce chapitre associe à tout programme linéaire (dit \emph{primal}) un second programme linéaire (dit \emph{dual}), dont les variables sont nouvelles : les variables duales $y_i$. Toutes les autres notations (variables $x_j$, coefficients $a_{ij}, b_i, c_j$, écarts $s_i$, excédents $e_i$, coefficients de tableau $\omega_{ij}$) sont celles des chapitres précédents. Le lien entre les deux problèmes est fourni par le tableau du simplexe du primal (chapitre~\ref{chap:simplexe}).

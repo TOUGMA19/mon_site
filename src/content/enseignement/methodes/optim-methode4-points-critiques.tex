@@ -1,0 +1,57 @@
+%% titre: Méthodes — Trouver et classer les points critiques
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 4
+%% description: Résoudre ∇f=0, étudier la hessienne, conclure (minimum, maximum, selle, cas inconclusif).
+
+\section{Démarche}
+
+\begin{methode}[Classer les points critiques de $f:\R^n\to\R$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item \textbf{Points critiques} : résoudre le système $\nabla f(x)=0$.
+  \item \textbf{Hessienne} : calculer $\nabla^2f$ puis l'évaluer en chaque point critique.
+  \item \textbf{Classer} (par Sylvester ou valeurs propres) :
+    \begin{itemize}
+      \item $\nabla^2f\succ0$ : minimum local strict ;
+      \item $\nabla^2f\prec0$ : maximum local strict ;
+      \item valeurs propres de signes opposés : point selle ;
+      \item semi-définie avec une valeur propre nulle : \emph{inconclusif}, étudier $f$ directement.
+    \end{itemize}
+  \item \textbf{Global ou local ?} Un minimum local n'est global que si $f$ est convexe (ou si l'on compare les valeurs, avec $f$ coercive).
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+\begin{itemize}
+  \item $\nabla f=0$ \emph{ne suffit pas} : $x\mapsto x^3$ en $0$, ou $x^2-y^2$ en $(0,0)$.
+  \item $\nabla^2f\succeq0$ \emph{ne suffit pas} : $x^3$ en $0$ a $f''(0)=0$ sans être un extremum.
+  \item $\nabla^2f\succ0$ n'est \emph{pas nécessaire} : $x^4$ a un minimum en $0$ avec $f''(0)=0$.
+\end{itemize}
+\end{attention}
+
+\begin{exemple}
+Soit $f(x,y)=x^3-3x+y^2$. On a $\nabla f=(3x^2-3,\ 2y)$, qui s'annule en $(1,0)$ et $(-1,0)$. La hessienne est $\nabla^2f=\begin{pmatrix}6x&0\\0&2\end{pmatrix}$.
+\begin{itemize}
+  \item En $(1,0)$ : $\operatorname{diag}(6,2)\succ0$, minimum local strict.
+  \item En $(-1,0)$ : $\operatorname{diag}(-6,2)$, valeurs propres de signes opposés : point selle.
+\end{itemize}
+Le minimum en $(1,0)$ n'est que \emph{local} : $f(x,0)=x^3-3x\to-\infty$ quand $x\to-\infty$, donc $f$ n'a pas de minimum global.
+\end{exemple}
+
+\section{Le cas inconclusif}
+
+\begin{methode}[Étudier $f$ directement]
+Quand la hessienne a une valeur propre nulle, comparer $f(x^*+h)$ et $f(x^*)$ le long de directions bien choisies (axes, droites) pour voir si le signe de $f(x^*+h)-f(x^*)$ est constant.
+\end{methode}
+
+\begin{exercice}[Application]
+Étudier le point critique $(0,0)$ de $f_1(x,y)=x^2+y^4$ et de $f_2(x,y)=x^2+y^3$.
+\begin{correction}
+Dans les deux cas $\nabla f=(2x,\,\cdot)$ s'annule en $(0,0)$ et la hessienne y vaut $\operatorname{diag}(2,0)$ : le test est inconclusif.
+
+Pour $f_1$ : $f_1(x,y)=x^2+y^4\ge0=f_1(0,0)$, donc $(0,0)$ est un minimum global.
+
+Pour $f_2$ : $f_2(0,y)=y^3$ est positif pour $y>0$ et négatif pour $y<0$, donc $f_2$ prend des valeurs de part et d'autre de $f_2(0,0)=0$ : ce n'est ni un minimum ni un maximum (point selle dégénéré).
+\end{correction}
+\end{exercice}

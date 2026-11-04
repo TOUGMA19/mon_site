@@ -1,0 +1,75 @@
+%% titre: Méthodes — Gradient, hessienne et Taylor
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 1
+%% description: Calculer jacobienne, gradient et hessienne ; appliquer la règle de la chaîne ; écrire un développement de Taylor.
+
+\section{Calculer gradient et hessienne}
+
+\begin{methode}[Gradient et hessienne d'une fonction $f:\R^n\to\R$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Calculer les dérivées partielles d'ordre $1$ : $\nabla f=\left(\dfrac{\partial f}{\partial x_1},\dots,\dfrac{\partial f}{\partial x_n}\right)^{\top}$.
+  \item Dériver chaque composante par rapport à chaque variable : $(\nabla^2f)_{ij}=\dfrac{\partial^2f}{\partial x_i\partial x_j}$.
+  \item Vérifier la symétrie de la hessienne (théorème de Schwarz, $f$ de classe $\mathcal C^2$) : c'est un excellent test d'erreur de calcul.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Soit $f(x,y)=x^3-3xy+y^2$. Alors
+\[
+  \nabla f(x,y)=\begin{pmatrix}3x^2-3y\\-3x+2y\end{pmatrix},\qquad
+  \nabla^2f(x,y)=\begin{pmatrix}6x&-3\\-3&2\end{pmatrix}.
+\]
+La hessienne est bien symétrique.
+\end{exemple}
+
+\section{Règle de la chaîne}
+
+\begin{methode}[Dériver une composée]
+Pour $h=f\circ g$ avec $f:\R^m\to\R$ et $g:\R^n\to\R^m$ :
+\[
+  \nabla h(x)=J_g(x)^{\top}\,\nabla f(g(x)).
+\]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Calculer $\nabla f$ puis l'évaluer en $g(x)$.
+  \item Calculer la jacobienne $J_g(x)$ (une ligne par composante de $g$).
+  \item Multiplier : \emph{transposée} de $J_g$ à gauche, gradient à droite.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Soit $f(y_1,y_2)=y_1^2+y_2^3$ et $g(x)=(\sin x,\cos x)^{\top}$, donc $h(x)=\sin^2x+\cos^3x$. On a $\nabla f=(2y_1,3y_2^2)^{\top}$ et $J_g(x)=(\cos x,-\sin x)^{\top}$, d'où
+\[
+  h'(x)=\cos x\cdot2\sin x-\sin x\cdot3\cos^2x=2\sin x\cos x-3\sin x\cos^2x,
+\]
+ce qui coïncide avec la dérivation directe.
+\end{exemple}
+
+\section{Développement de Taylor à l'ordre 2}
+
+\begin{methode}[Écrire un développement de Taylor--Young]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Calculer $f(x)$, $\nabla f(x)$ et $\nabla^2f(x)$ au point $x$ choisi.
+  \item Écrire
+  \[
+    f(x+h)=f(x)+\nabla f(x)^{\top}h+\tfrac12\,h^{\top}\nabla^2f(x)\,h+o(\|h\|^2).
+  \]
+  \item En un point critique, le terme linéaire disparaît : le signe de $h^{\top}\nabla^2f(x)h$ décide.
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+N'oubliez pas le facteur $\frac12$ devant le terme quadratique, ni la transposée dans $\nabla f(x)^{\top}h=\langle\nabla f(x),h\rangle$.
+\end{attention}
+
+\begin{exercice}[Application]
+Écrire le développement de Taylor--Young à l'ordre $2$ de $f(x,y)=x^2+xy+y^2$ en $(1,0)$.
+\begin{correction}
+$f(1,0)=1$, $\nabla f(x,y)=(2x+y,\,x+2y)$ donc $\nabla f(1,0)=(2,1)$, et $\nabla^2f=\begin{pmatrix}2&1\\1&2\end{pmatrix}$. Avec $h=(h_1,h_2)$ :
+\[
+  f(1+h_1,h_2)=1+2h_1+h_2+\tfrac12\left(2h_1^2+2h_1h_2+2h_2^2\right)+o(\|h\|^2)=1+2h_1+h_2+h_1^2+h_1h_2+h_2^2+o(\|h\|^2).
+\]
+(Ici $f$ est polynomiale de degré $2$ : le reste est nul.)
+\end{correction}
+\end{exercice}

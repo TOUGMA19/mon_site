@@ -1,0 +1,55 @@
+%% titre: Méthodes — Montrer l'existence et l'unicité d'un minimum
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 3
+%% description: Continuité, coercivité, stricte convexité ; cas quadratique et forte monotonie.
+
+\section{Démarche générale}
+
+\begin{methode}[Existence et unicité d'un minimiseur sur $\R^n$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item \textbf{Continuité} : $f$ est continue (ou de classe $\mathcal C^1$).
+  \item \textbf{Coercivité} : trouver $g:\R\to\R$ avec $f(x)\ge g(\|x\|)$ et $g(t)\to+\infty$ quand $t\to+\infty$.
+  \item \textbf{Stricte convexité} : $\nabla^2f\succ0$ partout (ou $f$ quadratique avec $A\succ0$).
+  \item \textbf{Conclure} : il existe un unique $x^*$ qui réalise le minimum.
+  \item \textbf{Calculer} $x^*$ en résolvant $\nabla f(x^*)=0$ (condition nécessaire, et suffisante pour $f$ convexe).
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+\begin{itemize}
+  \item Coercive et continue : existence, \emph{pas} unicité.
+  \item Strictement convexe : au plus un minimiseur, \emph{pas} existence (exemple : $e^x$).
+\end{itemize}
+\end{attention}
+
+\begin{exemple}
+Soit $f(x,y)=x^2+xy+y^2-x$.
+
+\emph{Continuité} : $f$ est polynomiale.
+
+\emph{Coercivité} : comme $|xy|\le\frac12(x^2+y^2)$, on a $x^2+xy+y^2\ge\frac12\|(x,y)\|^2$ et $|x|\le\|(x,y)\|$, d'où
+\[
+  f(x,y)\ge\tfrac12\|(x,y)\|^2-\|(x,y)\|\xrightarrow[\|(x,y)\|\to+\infty]{}+\infty .
+\]
+
+\emph{Stricte convexité} : $\nabla^2f=\begin{pmatrix}2&1\\1&2\end{pmatrix}$, avec $\Delta_1=2>0$ et $\Delta_2=3>0$.
+
+\emph{Conclusion} : $f$ a un unique minimum. On résout $\nabla f=(2x+y-1,\ x+2y)=0$ : la seconde équation donne $x=-2y$, puis la première donne $-3y-1=0$, soit $y=-\frac13$ et $x=\frac23$. Le minimum est atteint en $\left(\frac23,-\frac13\right)$ et vaut $-\frac13$.
+\end{exemple}
+
+\section{Cas quadratique}
+
+\begin{methode}[Raccourci pour $f(x)=\tfrac12x^{\top}Ax-b^{\top}x+c$]
+Si $A\succ0$ (Sylvester), alors $\langle\nabla f(x)-\nabla f(y),x-y\rangle=(x-y)^{\top}A(x-y)\ge\lambda_{\min}\|x-y\|^2$ avec $\lambda_{\min}>0$ : $f$ est fortement monotone, donc strictement convexe et coercive. Le minimum existe, est unique et vaut $x^*=A^{-1}b$.
+\end{methode}
+
+\begin{exercice}[Application]
+Montrer que $f(x,y)=x^2+3y^2+2xy-2x$ admet un unique minimum et le calculer.
+\begin{correction}
+On écrit $f=\frac12v^{\top}Av-b^{\top}v$ avec $A=\begin{pmatrix}2&2\\2&6\end{pmatrix}$ et $b=(2,0)^{\top}$. On a $\Delta_1=2>0$ et $\Delta_2=12-4=8>0$ : $A\succ0$. Le minimum existe donc et est unique, et $x^*=A^{-1}b$. On résout $Ax=b$ : $2x+2y=2$ et $2x+6y=0$ donnent $x=-3y$ puis $-6y+2y=2$, soit $y=-\frac12$ et $x=\frac32$.
+
+Le minimum est atteint en $\left(\frac32,-\frac12\right)$ et vaut $f=\frac94+\frac34-\frac32-3=-\frac32$.
+\end{correction}
+\end{exercice}

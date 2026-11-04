@@ -1,0 +1,49 @@
+%% titre: Méthodes — Optimiser sur un convexe ou un sous-espace affine
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 5
+%% description: Condition ⟨∇f(x), y−x⟩ ≥ 0, cas d'un sous-espace affine, vérification d'un minimum.
+
+\section{Condition d'optimalité sur un convexe}
+
+\begin{methode}[Caractériser un minimum sur un convexe $U$]
+Pour $f$ différentiable et $U$ convexe :
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Condition nécessaire : si $x\in U$ est un minimum local, alors $\langle\nabla f(x),y-x\rangle\ge0$ pour tout $y\in U$.
+  \item Si $f$ est \emph{convexe}, cette condition est aussi \emph{suffisante} : $x$ est alors un minimum global sur $U$.
+  \item Interprétation : $-\nabla f(x)$ ne pointe vers aucune direction admissible.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Soit $f(x)=(x+1)^2$ sur $U=[0,1]$. En $x=0$ : $f'(0)=2\ne0$, mais pour tout $y\in[0,1]$, $f'(0)(y-0)=2y\ge0$. La condition est vérifiée et $f$ est convexe : $0$ est le minimum global sur $U$, bien que $f'(0)\neq0$.
+\end{exemple}
+
+\section{Sous-espace affine}
+
+\begin{methode}[Minimum sur $U=x_0+F$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Déterminer la direction $F$ (le sous-espace vectoriel associé à $U$).
+  \item Écrire la condition $\nabla f(x)\in F^{\perp}$, c'est-à-dire $\langle\nabla f(x),h\rangle=0$ pour tout $h\in F$.
+  \item Ajouter l'appartenance $x\in U$ et résoudre le système.
+  \item Si $f$ est convexe, la solution est le minimum global.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Minimiser $f(x,y)=x^2+y^2$ sur $U=\{(x,y)\mid x+y=1\}$. La direction est $F=\operatorname{Vect}\{(1,-1)\}$, donc $F^{\perp}=\operatorname{Vect}\{(1,1)\}$. La condition $\nabla f=(2x,2y)\in F^{\perp}$ donne $x=y$, et $x+y=1$ donne $x=y=\frac12$. Comme $f$ est convexe, le minimum global est atteint en $\left(\frac12,\frac12\right)$ et vaut $\frac12$.
+\end{exemple}
+
+\begin{attention}
+Sur un sous-espace affine, le gradient n'est \emph{pas} nécessairement nul : il est seulement orthogonal aux directions admissibles.
+\end{attention}
+
+\begin{exercice}[Application]
+Minimiser $f(x,y)=(x-1)^2+(y-2)^2$ sur la droite $U=\{(x,y)\mid x+y=0\}$.
+\begin{correction}
+La direction est $F=\operatorname{Vect}\{(1,-1)\}$ et $F^{\perp}=\operatorname{Vect}\{(1,1)\}$. On a $\nabla f=(2(x-1),\,2(y-2))\in F^{\perp}$, soit $x-1=y-2$, c'est-à-dire $x-y=-1$. Avec $x+y=0$ : $x=-\frac12$ et $y=\frac12$.
+
+La fonction $f$ est convexe, donc le minimum global sur $U$ est atteint en $\left(-\frac12,\frac12\right)$ et vaut $f=\frac94+\frac94=\frac92$.
+\end{correction}
+\end{exercice}

@@ -1,0 +1,60 @@
+%% titre: Méthodes — Étudier la convexité
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 2
+%% description: Convexité par la hessienne, critère de Sylvester, fonctionnelles quadratiques.
+
+\section{Convexité d'une fonction de classe $\mathcal C^2$}
+
+\begin{methode}[Par la hessienne]
+Soit $f$ de classe $\mathcal C^2$ sur un ouvert convexe $C$.
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Calculer $\nabla^2f(x)$ pour tout $x\in C$.
+  \item Étudier son signe : $\nabla^2f(x)\succeq0$ pour tout $x$ $\iff$ $f$ convexe.
+  \item Si $\nabla^2f(x)\succ0$ pour tout $x$, alors $f$ est strictement convexe.
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+La réciproque de la dernière implication est fausse : $x\mapsto x^4$ est strictement convexe mais $f''(0)=0$.
+\end{attention}
+
+\section{Signe d'une matrice : Sylvester}
+
+\begin{methode}[Critère de Sylvester]
+Pour $A$ symétrique, calculer les mineurs principaux dominants $\Delta_1,\dots,\Delta_n$ (déterminants des sous-matrices du coin supérieur gauche).
+\begin{itemize}
+  \item $A\succ0$ $\iff$ $\Delta_k>0$ pour tout $k$.
+  \item $A\prec0$ $\iff$ $(-1)^k\Delta_k>0$ pour tout $k$.
+  \item Si certains $\Delta_k$ sont nuls : on ne peut rien conclure pour le caractère \emph{semi}-défini. Calculer les valeurs propres ($A\succeq0\iff$ toutes $\ge0$).
+\end{itemize}
+\end{methode}
+
+\begin{exemple}
+Pour $f(x,y)=x^2+xy+y^2$, $\nabla^2f=\begin{pmatrix}2&1\\1&2\end{pmatrix}$ : $\Delta_1=2>0$ et $\Delta_2=3>0$. La hessienne est définie positive : $f$ est strictement convexe.
+
+Pour $g(x,y)=x^2+4xy+y^2$, $\nabla^2g=\begin{pmatrix}2&4\\4&2\end{pmatrix}$ : $\Delta_2=4-16=-12<0$. La hessienne est indéfinie : $g$ n'est pas convexe.
+\end{exemple}
+
+\section{Fonctionnelle quadratique}
+
+\begin{methode}[$f(x)=\tfrac12x^{\top}Ax-b^{\top}x+c$]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+  \item Symétriser si besoin : remplacer $A$ par $\frac12(A+A^{\top})$.
+  \item Écrire $\nabla f(x)=Ax-b$ et $\nabla^2f(x)=A$ (hessienne \emph{constante}).
+  \item Conclure : $f$ convexe $\iff A\succeq0$ ; strictement convexe $\iff A\succ0$.
+  \item Si $A\succ0$ : l'unique minimum global est $x^*=A^{-1}b$.
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+Soit $f(x,y,z)=x^2+2y^2+3z^2+2xy+2yz=\tfrac12v^{\top}Av$ avec $A=\begin{pmatrix}2&2&0\\2&4&2\\0&2&6\end{pmatrix}$. On a $\Delta_1=2$, $\Delta_2=8-4=4$, $\Delta_3=16$, tous $>0$ : $A\succ0$, $f$ est strictement convexe et son unique minimum global est $(0,0,0)$.
+\end{exemple}
+
+\begin{exercice}[Application]
+Étudier la convexité de $f(x,y)=x^2-2xy+y^2$.
+\begin{correction}
+$\nabla^2f=\begin{pmatrix}2&-2\\-2&2\end{pmatrix}$ avec $\Delta_1=2>0$ mais $\Delta_2=0$ : Sylvester ne permet pas de conclure. Les valeurs propres valent $0$ et $4$, toutes $\ge0$ : $\nabla^2f\succeq0$ et $f$ est convexe, mais pas strictement (on a $f(x,y)=(x-y)^2$, nulle sur toute la droite $y=x$).
+\end{correction}
+\end{exercice}

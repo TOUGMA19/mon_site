@@ -1,0 +1,140 @@
+%% titre: Quiz 4 — Conditions d'optimalité
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 4
+%% description: Conditions nécessaires et suffisantes, points critiques, cas convexe, optimisation sur un convexe.
+
+\begin{question}
+Si $x^*$ est un minimum local d'une fonction $f$ différentiable sur $\R^n$, alors :
+\begin{reponses}
+  \bonne $\nabla f(x^*)=0$
+  \mauvaise $\nabla^2f(x^*)$ est définie positive
+  \mauvaise $f$ est convexe
+  \mauvaise $\nabla f(x^*)\neq0$
+\end{reponses}
+\end{question}
+
+\begin{question}
+Si $f$ est de classe $\mathcal C^2$ et $x^*$ est un minimum local, alors $\nabla^2f(x^*)$ est :
+\begin{reponses}
+  \mauvaise définie positive
+  \bonne semi-définie positive
+  \mauvaise définie négative
+  \mauvaise nulle
+\end{reponses}
+\begin{explication}
+C'est la condition nécessaire d'ordre $2$. Elle est seulement \emph{semi}-définie positive : $x^4$ a un minimum en $0$ avec $f''(0)=0$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Soit $f\in\mathcal C^2$, $\nabla f(x^*)=0$ et $\nabla^2f(x^*)$ définie positive. Alors $x^*$ est :
+\begin{reponses}
+  \mauvaise un maximum local
+  \mauvaise un point selle
+  \bonne un minimum local strict
+  \mauvaise nécessairement un minimum global
+\end{reponses}
+\begin{explication}
+C'est la condition suffisante d'ordre $2$ : elle donne un minimum \emph{local} strict. Pour un minimum global, il faut en plus la convexité.
+\end{explication}
+\end{question}
+
+\begin{question}
+Pour $f(x)=x^3$ en $x=0$ :
+\begin{reponses}
+  \mauvaise $0$ est un minimum local
+  \mauvaise $0$ est un maximum local
+  \mauvaise $0$ n'est pas un point critique
+  \bonne $0$ est un point critique qui n'est ni un minimum ni un maximum local
+\end{reponses}
+\begin{explication}
+$f'(0)=0$ et $f''(0)=0$, mais $f$ change de signe en $0$ : $\nabla f=0$ n'est pas suffisant.
+\end{explication}
+\end{question}
+
+\begin{question}
+Pour $f(x)=x^4$ en $x=0$ :
+\begin{reponses}
+  \mauvaise ce n'est pas un minimum, car $f''(0)=0$
+  \bonne c'est un minimum global bien que $f''(0)=0$
+  \mauvaise c'est un point selle
+  \mauvaise c'est un maximum local
+\end{reponses}
+\begin{explication}
+$x^4\ge0=f(0)$ pour tout $x$. La condition « hessienne définie positive » est suffisante, pas nécessaire.
+\end{explication}
+\end{question}
+
+\begin{question}
+En un point critique $x$, la hessienne a une valeur propre strictement positive et une valeur propre strictement négative. Alors $x$ est :
+\begin{reponses}
+  \mauvaise un minimum local strict
+  \mauvaise un maximum local strict
+  \bonne un point selle (ni minimum, ni maximum)
+  \mauvaise un point où l'on ne peut rien dire
+\end{reponses}
+\end{question}
+
+\begin{question}
+Le point $(0,0)$ pour $f(x,y)=x^2-y^2$ est :
+\begin{reponses}
+  \mauvaise un minimum local
+  \mauvaise un maximum local
+  \mauvaise pas un point critique
+  \bonne un point selle
+\end{reponses}
+\begin{explication}
+$\nabla f=(2x,-2y)$ s'annule en $(0,0)$, et $\nabla^2f=\operatorname{diag}(2,-2)$ a deux valeurs propres de signes opposés.
+\end{explication}
+\end{question}
+
+\begin{question}
+En un point critique, la hessienne est $\begin{pmatrix}2&0\\0&0\end{pmatrix}$. Que conclut-on avec les conditions du second ordre ?
+\begin{reponses}
+  \mauvaise un minimum local strict
+  \mauvaise un point selle
+  \bonne le test est inconclusif : il faut étudier $f$ directement
+  \mauvaise un maximum local
+\end{reponses}
+\begin{explication}
+La hessienne est semi-définie positive avec une valeur propre nulle : par exemple $x^2+y^4$ a un minimum en $(0,0)$ alors que $x^2+y^3$ n'en a pas.
+\end{explication}
+\end{question}
+
+\begin{question}
+Si $f$ est convexe et différentiable sur $\R^n$, alors $x^*$ est un minimum global si et seulement si :
+\begin{reponses}
+  \bonne $\nabla f(x^*)=0$
+  \mauvaise $\nabla^2f(x^*)\succ0$
+  \mauvaise $f(x^*)=0$
+  \mauvaise $\nabla f(x^*)\neq0$
+\end{reponses}
+\end{question}
+
+\begin{question}
+Soit $U$ un convexe et $x\in U$ un minimum local de $f$ différentiable sur $U$. Alors, pour tout $y\in U$ :
+\begin{reponses}
+  \mauvaise $\langle\nabla f(x),y-x\rangle<0$
+  \mauvaise $\langle\nabla f(x),y-x\rangle\le0$
+  \bonne $\langle\nabla f(x),y-x\rangle\ge0$
+  \mauvaise $\langle\nabla f(x),y-x\rangle=0$
+\end{reponses}
+\begin{explication}
+Aucune direction admissible ne fait décroître $f$ : $-\nabla f(x)$ ne pointe vers aucun point de $U$. L'égalité n'a lieu que lorsque $U$ est un sous-espace affine.
+\end{explication}
+\end{question}
+
+\begin{question}
+Soit $U=x+F$ un sous-espace affine et $x$ un minimum local de $f$ sur $U$. Alors :
+\begin{reponses}
+  \mauvaise $\nabla f(x)\in F$
+  \bonne $\nabla f(x)\in F^{\perp}$
+  \mauvaise $\nabla f(x)=0$ nécessairement
+  \mauvaise $\nabla f(x)\notin F^{\perp}$
+\end{reponses}
+\begin{explication}
+On a $\langle\nabla f(x),h\rangle=0$ pour tout $h\in F$. Le gradient n'est pas forcément nul : il est seulement orthogonal aux directions admissibles.
+\end{explication}
+\end{question}

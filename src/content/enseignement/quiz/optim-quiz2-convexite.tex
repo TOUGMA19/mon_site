@@ -1,0 +1,98 @@
+%% titre: Quiz 2 — Convexité et fonctionnelles quadratiques
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 2
+%% description: Ensembles et fonctions convexes, caractérisations différentielles, critère de Sylvester.
+
+\begin{question}
+Une fonction différentiable $f$ est convexe sur un convexe $C$ si et seulement si, pour tous $x,y\in C$ :
+\begin{reponses}
+  \bonne $f(y)\ge f(x)+\nabla f(x)^{\top}(y-x)$
+  \mauvaise $f(y)\le f(x)+\nabla f(x)^{\top}(y-x)$
+  \mauvaise $\nabla f(x)=0$
+  \mauvaise $f(y)\ge f(x)$
+\end{reponses}
+\begin{explication}
+Le graphe de $f$ est au-dessus de chacune de ses tangentes.
+\end{explication}
+\end{question}
+
+\begin{question}
+Lesquelles de ces fonctions sont convexes sur $\R$ ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $x\mapsto x^2$
+  \bonne $x\mapsto x^4$
+  \bonne $x\mapsto e^{x}$
+  \mauvaise $x\mapsto x^3$
+  \mauvaise $x\mapsto\sin x$
+\end{reponses}
+\begin{explication}
+Pour une fonction de classe $\mathcal C^2$ sur $\R$, la convexité équivaut à $f''\ge0$ : $2$, $12x^2$ et $e^x$ sont positifs, alors que $(x^3)''=6x$ et $(\sin x)''=-\sin x$ changent de signe.
+\end{explication}
+\end{question}
+
+\begin{question}
+Laquelle de ces affirmations est vraie ?
+\begin{reponses}
+  \mauvaise Si $f$ est strictement convexe de classe $\mathcal C^2$, alors $\nabla^2f(x)$ est définie positive pour tout $x$.
+  \bonne $x\mapsto x^4$ est strictement convexe bien que sa dérivée seconde s'annule en $0$.
+  \mauvaise Si $f$ est convexe, alors $\nabla^2f(x)$ est définie positive pour tout $x$.
+  \mauvaise Une hessienne semi-définie positive en un seul point suffit pour que $f$ soit convexe.
+\end{reponses}
+\begin{explication}
+Hessienne définie positive partout $\Rightarrow$ strictement convexe, mais la réciproque est fausse : $(x^4)''(0)=0$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Soit $f(x)=\frac12x^{\top}Ax-b^{\top}x+c$ avec $A$ symétrique. Son gradient est :
+\begin{reponses}
+  \mauvaise $Ax+b$
+  \bonne $Ax-b$
+  \mauvaise $\tfrac12Ax-b$
+  \mauvaise $A$
+\end{reponses}
+\begin{explication}
+On dérive composante par composante : $\partial_kf=(Ax)_k-b_k$ grâce à la symétrie de $A$. La hessienne est $A$ (constante).
+\end{explication}
+\end{question}
+
+\begin{question}
+Dans la situation précédente, $f$ est strictement convexe si et seulement si :
+\begin{reponses}
+  \mauvaise $A$ est inversible
+  \mauvaise $\det A>0$
+  \bonne $A$ est définie positive
+  \mauvaise $b=0$
+\end{reponses}
+\begin{explication}
+La hessienne $\nabla^2f=A$ est constante : $f$ est convexe si $A\succeq0$ et strictement convexe si $A\succ0$.
+\end{explication}
+\end{question}
+
+\begin{question}
+D'après le critère de Sylvester, une matrice symétrique $A$ est définie positive si et seulement si :
+\begin{reponses}
+  \mauvaise $\Delta_1>0$ seulement
+  \mauvaise $\det A>0$
+  \mauvaise tous les $\Delta_k\ge0$
+  \bonne tous les mineurs principaux dominants $\Delta_k$ sont $>0$
+\end{reponses}
+\begin{explication}
+$\Delta_k$ est le déterminant de la sous-matrice $k\times k$ du coin supérieur gauche. Avec des $\Delta_k$ nuls, on ne peut pas conclure pour le caractère semi-défini.
+\end{explication}
+\end{question}
+
+\begin{question}
+La matrice $A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$ est :
+\begin{reponses}
+  \mauvaise définie positive
+  \mauvaise définie négative
+  \mauvaise semi-définie positive
+  \bonne ni définie positive, ni définie négative
+\end{reponses}
+\begin{explication}
+$\Delta_1=1>0$ mais $\Delta_2=1-4=-3<0$. Les valeurs propres sont $3$ et $-1$ : la matrice est indéfinie.
+\end{explication}
+\end{question}

@@ -1,0 +1,97 @@
+%% titre: Quiz 1 — Différentielle, gradient, hessienne
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 1
+%% description: Jacobienne, gradient, règle de la chaîne, hessienne et formule de Taylor.
+
+\begin{question}
+Soit $f(x,y)=(x^2+y,\ xy)$. Quelle est la matrice jacobienne de $f$ en $(1,1)$ ?
+\begin{reponses}
+  \bonne $\begin{pmatrix}2&1\\1&1\end{pmatrix}$
+  \mauvaise $\begin{pmatrix}1&2\\1&1\end{pmatrix}$
+  \mauvaise $\begin{pmatrix}2&1\\1&0\end{pmatrix}$
+  \mauvaise $\begin{pmatrix}2&1\\1&2\end{pmatrix}$
+\end{reponses}
+\begin{explication}
+La ligne $k$ contient les dérivées partielles de $f_k$ : $\partial_x(x^2+y)=2x=2$, $\partial_y(x^2+y)=1$, $\partial_x(xy)=y=1$, $\partial_y(xy)=x=1$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Pour $f(x,y)=x^2+2y^2$, que vaut $\nabla f(2,1)$ ?
+\begin{reponses}
+  \mauvaise $(2,1)$
+  \mauvaise $(4,2)$
+  \mauvaise $(2,4)$
+  \bonne $(4,4)$
+\end{reponses}
+\begin{explication}
+$\nabla f(x,y)=(2x,\,4y)$, donc $\nabla f(2,1)=(4,4)$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Le gradient $\nabla f(x)$ (non nul) est :
+\begin{reponses}
+  \bonne orthogonal à la ligne de niveau de $f$ passant par $x$
+  \mauvaise tangent à la ligne de niveau de $f$ passant par $x$
+  \mauvaise dirigé vers la plus forte décroissance de $f$
+  \mauvaise toujours de norme $1$
+\end{reponses}
+\begin{explication}
+$\nabla f(x)$ pointe dans la direction de plus forte \emph{croissance}, avec pente maximale $\|\nabla f(x)\|$, et il est orthogonal à la ligne de niveau.
+\end{explication}
+\end{question}
+
+\begin{question}
+Soit $f:\R^2\to\R$ et $g:\R\to\R^2$ différentiables. La règle de la chaîne donne, pour $h=f\circ g$ :
+\begin{reponses}
+  \bonne $h'(x)=J_g(x)^{\top}\,\nabla f(g(x))$
+  \mauvaise $h'(x)=\nabla f(x)^{\top}\,J_g(g(x))$
+  \mauvaise $h'(x)=\nabla f(g(x))\,\nabla g(x)$
+  \mauvaise $h'(x)=J_f(x)\,J_g(x)$
+\end{reponses}
+\begin{explication}
+On compose les différentielles : $J_{f\circ g}(x)=J_f(g(x))\,J_g(x)$, et pour $p=1$ le gradient s'écrit $J_g(x)^{\top}\nabla f(g(x))$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Si $f$ est de classe $\mathcal C^2$, sa hessienne $\nabla^2f(x)$ est :
+\begin{reponses}
+  \mauvaise antisymétrique
+  \bonne symétrique (théorème de Schwarz)
+  \mauvaise toujours définie positive
+  \mauvaise toujours diagonale
+\end{reponses}
+\begin{explication}
+Les dérivées secondes croisées, supposées continues, coïncident : $\partial_{ij}f=\partial_{ji}f$.
+\end{explication}
+\end{question}
+
+\begin{question}
+La formule de Taylor--Young à l'ordre $2$ s'écrit :
+\begin{reponses}
+  \mauvaise $f(x+h)=f(x)+\nabla f(x)^{\top}h+o(\|h\|)$
+  \bonne $f(x+h)=f(x)+\nabla f(x)^{\top}h+\tfrac12\,h^{\top}\nabla^2f(x)\,h+o(\|h\|^2)$
+  \mauvaise $f(x+h)=f(x)+\nabla f(x)^{\top}h+h^{\top}\nabla^2f(x)\,h+o(\|h\|^2)$
+  \mauvaise $f(x+h)=f(x)+\tfrac12\,\nabla^2f(x)\,h+o(\|h\|^2)$
+\end{reponses}
+\begin{explication}
+Attention au facteur $\frac12$ devant le terme quadratique. La première réponse est la formule d'ordre $1$.
+\end{explication}
+\end{question}
+
+\begin{question}
+Au voisinage d'un point critique $x^*$ (où $\nabla f(x^*)=0$), le comportement de $f$ est gouverné par :
+\begin{reponses}
+  \mauvaise la valeur de $f(x^*)$ seulement
+  \bonne le signe de la forme quadratique $h\mapsto h^{\top}\nabla^2f(x^*)\,h$
+  \mauvaise la norme du gradient
+  \mauvaise la jacobienne de $\nabla f$ transposée
+\end{reponses}
+\begin{explication}
+Comme le terme linéaire disparaît, $f(x^*+h)-f(x^*)\approx\frac12h^{\top}\nabla^2f(x^*)h$.
+\end{explication}
+\end{question}

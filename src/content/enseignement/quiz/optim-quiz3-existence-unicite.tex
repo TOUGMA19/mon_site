@@ -1,0 +1,124 @@
+%% titre: Quiz 3 — Existence et unicité d'un minimum
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 3
+%% description: Compacité, Weierstrass, coercivité, stricte convexité, forte monotonie.
+
+\begin{question}
+Une partie $K\subset\R^n$ est compacte si et seulement si elle est :
+\begin{reponses}
+  \mauvaise ouverte et bornée
+  \bonne fermée et bornée
+  \mauvaise fermée seulement
+  \mauvaise bornée seulement
+\end{reponses}
+\end{question}
+
+\begin{question}
+Si $K\subset\R^n$ est compact non vide et $f:K\to\R$ est continue, alors (Weierstrass) $f$ :
+\begin{reponses}
+  \mauvaise est dérivable sur $K$
+  \mauvaise atteint seulement son minimum
+  \bonne est bornée et atteint son minimum et son maximum sur $K$
+  \mauvaise est convexe sur $K$
+\end{reponses}
+\end{question}
+
+\begin{question}
+Une fonction $f:\R^n\to\R$ est coercive lorsque :
+\begin{reponses}
+  \mauvaise $\displaystyle\lim_{x\to0}f(x)=+\infty$
+  \bonne $\displaystyle\lim_{\|x\|\to+\infty}f(x)=+\infty$
+  \mauvaise $f$ est bornée
+  \mauvaise $f(x)\ge0$ pour tout $x$
+\end{reponses}
+\end{question}
+
+\begin{question}
+Lesquelles de ces fonctions sont coercives sur $\R$ ? (plusieurs réponses possibles)
+\begin{reponses}
+  \bonne $x\mapsto x^2+x$
+  \bonne $x\mapsto|x|$
+  \mauvaise $x\mapsto e^{x}$
+  \mauvaise $x\mapsto\sin x$
+\end{reponses}
+\begin{explication}
+$e^x\to0$ quand $x\to-\infty$ : elle ne tend pas vers $+\infty$ dans les deux directions. $\sin x$ est bornée.
+\end{explication}
+\end{question}
+
+\begin{question}
+Si $f:\R^n\to\R$ est continue et coercive, alors :
+\begin{reponses}
+  \bonne $f$ admet au moins un minimum global
+  \mauvaise le minimum de $f$ est unique
+  \mauvaise $f$ est convexe
+  \mauvaise $f$ est majorée
+\end{reponses}
+\begin{explication}
+L'unicité demande en plus la stricte convexité.
+\end{explication}
+\end{question}
+
+\begin{question}
+Dans la preuve de l'existence, on se ramène à une boule fermée $B_R$ parce que :
+\begin{reponses}
+  \bonne $B_R$ est compacte, et la coercivité garantit que le minimum n'est pas atteint hors de $B_R$
+  \mauvaise $f$ est convexe sur $B_R$
+  \mauvaise $B_R$ est ouverte
+  \mauvaise $f$ est dérivable sur $B_R$
+\end{reponses}
+\begin{explication}
+On choisit $R$ tel que $\|x\|>R\Rightarrow f(x)>f(0)$ ; puis Weierstrass fournit un minimum sur $B_R$, qui est global.
+\end{explication}
+\end{question}
+
+\begin{question}
+Si $f:\R^n\to\R$ est strictement convexe, alors $f$ admet :
+\begin{reponses}
+  \mauvaise toujours un minimum
+  \mauvaise toujours exactement un minimum
+  \bonne au plus un point de minimum
+  \mauvaise aucun minimum
+\end{reponses}
+\begin{explication}
+La fonction $e^x$ est strictement convexe sans minimum, et $x^2$ est strictement convexe avec un minimum : « au plus un » est la bonne formulation.
+\end{explication}
+\end{question}
+
+\begin{question}
+Quelles hypothèses garantissent l'existence \emph{et} l'unicité d'un minimiseur de $f$ sur $\R^n$ ?
+\begin{reponses}
+  \mauvaise $f$ continue et strictement convexe
+  \mauvaise $f$ convexe et coercive
+  \bonne $f$ continue, coercive et strictement convexe
+  \mauvaise $f$ de classe $\mathcal C^1$ seulement
+\end{reponses}
+\begin{explication}
+Continue et coercive pour l'existence, strictement convexe pour l'unicité.
+\end{explication}
+\end{question}
+
+\begin{question}
+On suppose $f$ de classe $\mathcal C^1$ et qu'il existe $\alpha>0$ tel que $\langle\nabla f(x)-\nabla f(y),x-y\rangle\ge\alpha\|x-y\|^2$ pour tous $x,y$. Alors :
+\begin{reponses}
+  \mauvaise $(P)$ n'a pas de solution
+  \mauvaise $f$ est concave
+  \mauvaise $(P)$ a plusieurs solutions
+  \bonne $f$ est strictement convexe et coercive, et $(P)$ admet une unique solution
+\end{reponses}
+\end{question}
+
+\begin{question}
+Soit $f(x)=\frac12x^{\top}Ax-b^{\top}x$ avec $A$ symétrique définie positive. Son unique minimum est atteint en :
+\begin{reponses}
+  \mauvaise $x^*=Ab$
+  \mauvaise $x^*=-A^{-1}b$
+  \bonne $x^*=A^{-1}b$
+  \mauvaise $x^*=0$
+\end{reponses}
+\begin{explication}
+$\nabla f(x^*)=Ax^*-b=0$ donne $x^*=A^{-1}b$, et c'est l'unique minimum global car $A\succ0$.
+\end{explication}
+\end{question}

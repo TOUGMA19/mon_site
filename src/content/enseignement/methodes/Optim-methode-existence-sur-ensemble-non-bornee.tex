@@ -1,0 +1,126 @@
+%% titre: Méthodes — Montrer qu'un ensemble est fermé
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 7
+%% description: Méthodes pour démontrer qu'un ensemble est fermé à l'aide de la continuité, des images réciproques et des suites convergentes.
+
+\section{Démarche}
+
+\begin{methode}[Montrer qu'un ensemble $S\subset\R^n$ est fermé]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+    \item \textbf{Identifier les contraintes} : écrire l'ensemble sous la forme
+    \[
+    S=\{x\in\R^n:g_i(x)\leq 0,\ i=1,\ldots,m\}.
+    \]
+
+    \item \textbf{Vérifier la continuité} : montrer que les fonctions
+    \[
+    g_i:\R^n\to\R
+    \]
+    sont continues.
+
+    \item \textbf{Utiliser l'image réciproque} : puisque $]-\infty,0]$ est fermé et que chaque $g_i$ est continue, on sait que
+    \[
+    g_i^{-1}(]-\infty,0])
+    \]
+    est fermé.
+
+    \item \textbf{Conclure} : une intersection finie d'ensembles fermés étant fermée, on obtient
+    \[
+    \boxed{S\text{ est fermé}.}
+    \]
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+\begin{itemize}
+    \item L'image réciproque d'un fermé par une fonction continue est fermée.
+    \item L'intersection finie d'ensembles fermés est fermée.
+    \item Une réunion finie d'ensembles fermés est également fermée.
+    \item Une inégalité stricte, telle que $g(x)<0$, définit en général un ensemble ouvert et non fermé.
+    \item Un ensemble fermé n'est pas nécessairement borné.
+\end{itemize}
+\end{attention}
+
+\section{Autre méthode : caractérisation séquentielle}
+
+\begin{methode}[Utiliser les suites convergentes]
+Un ensemble $S\subset\R^n$ est fermé si et seulement si toute suite $(x_k)$ d'éléments de $S$ qui converge dans $\R^n$ a sa limite dans $S$.
+
+Pour appliquer cette caractérisation :
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+    \item Considérer une suite arbitraire $(x_k)\subset S$ telle que
+    \[
+    x_k\longrightarrow x\in\R^n.
+    \]
+    \item Utiliser les contraintes vérifiées par chaque $x_k$.
+    \item Passer à la limite en utilisant la continuité des fonctions de contraintes.
+    \item Vérifier que la limite $x$ satisfait encore toutes les contraintes.
+    \item Conclure que $x\in S$, donc que $S$ est fermé.
+\end{enumerate}
+\end{methode}
+
+\section{Applications}
+
+\begin{exemple}[Ensemble défini par des inégalités]
+Considérons
+\[
+S=\left\{(x,y)\in\R^2:
+\begin{array}{l}
+x+y\leq 4,\\
+x+3y\leq 9
+\end{array}\right\}.
+\]
+
+Posons
+\[
+g_1(x,y)=x+y-4,\qquad
+g_2(x,y)=x+3y-9.
+\]
+
+Les fonctions $g_1$ et $g_2$ sont affines, donc continues sur $\R^2$.
+
+Or,
+\[
+S=g_1^{-1}(]-\infty,0])
+\cap g_2^{-1}(]-\infty,0]).
+\]
+
+Puisque $]-\infty,0]$ est fermé, les deux images réciproques sont fermées. Leur intersection étant fermée, on obtient
+\[
+\boxed{S\text{ est fermé dans }\R^2.}
+\]
+\end{exemple}
+
+\begin{exemple}[Ensemble défini par une égalité]
+Considérons
+\[
+S=\{(x,y)\in\R^2:x^2+y^2=1\}.
+\]
+
+Posons
+\[
+g(x,y)=x^2+y^2-1.
+\]
+
+La fonction $g$ est continue et
+\[
+S=g^{-1}(\{0\}).
+\]
+
+Comme $\{0\}$ est un fermé de $\R$, son image réciproque par $g$ est fermée.
+
+Ainsi,
+\[
+\boxed{S\text{ est fermé}.}
+\]
+\end{exemple}
+
+\begin{attention}
+Pour un ensemble défini par des contraintes mixtes
+\[
+S=\{x\in\R^n:g_i(x)\leq0,\ h_j(x)=0\},
+\]
+si toutes les fonctions $g_i$ et $h_j$ sont continues, alors $S$ est fermé.
+\end{attention}

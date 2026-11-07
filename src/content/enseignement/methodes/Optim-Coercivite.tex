@@ -1,0 +1,172 @@
+%% titre: Méthodes — Étudier la coercivité d'une fonction
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 7
+%% description: Vérifier la coercivité ou la non-coercivité d'une fonction par l'étude de sa limite à l'infini.
+
+\section{Démarche}
+
+\begin{methode}[Montrer qu'une fonction $f:\R^n\to\R$ est coercive]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+    \item \textbf{Rappeler la définition} : une fonction $f$ est coercive si
+    \[
+    \lim_{\|x\|\to+\infty}f(x)=+\infty.
+    \]
+
+    \item \textbf{Développer l'expression} : identifier les termes dominants de $f(x)$ lorsque $\|x\|\to+\infty$.
+
+    \item \textbf{Étudier la limite} : montrer que, quelle que soit la direction suivie pour s'éloigner de l'origine,
+    \[
+    f(x)\longrightarrow+\infty.
+    \]
+
+    \item \textbf{Conclure} : si cette limite vaut $+\infty$, alors
+    \[
+    \boxed{f\text{ est coercive}.}
+    \]
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+\begin{itemize}
+    \item Il faut étudier le comportement de $f$ dans toutes les directions lorsque $\|x\|\to+\infty$.
+    \item Il ne suffit pas de vérifier que $f(x)\to+\infty$ le long d'une seule direction.
+    \item Pour montrer que $f$ n'est pas coercive, il suffit de trouver une seule suite $(x_k)$ telle que
+    \[
+    \|x_k\|\to+\infty
+    \quad\text{et}\quad
+    f(x_k)\not\to+\infty.
+    \]
+    \item Une fonction coercive n'est pas nécessairement convexe.
+\end{itemize}
+\end{attention}
+
+\begin{exemple}[Application : montrer la coercivité]
+Considérons la fonction
+\[
+f(x,y)=x^2+2y^2-3x+4y+5.
+\]
+
+On complète les carrés :
+\[
+\begin{aligned}
+f(x,y)
+&=\left(x-\frac32\right)^2
++2(y+1)^2+\frac34.
+\end{aligned}
+\]
+
+Lorsque $\|(x,y)\|\to+\infty$, au moins une des coordonnées $x$ ou $y$ devient non bornée. Les termes quadratiques dominent les termes linéaires.
+
+Plus rigoureusement, en utilisant
+\[
+-3x\geq -\frac12x^2-\frac92,
+\qquad
+4y\geq -y^2-4,
+\]
+on obtient
+\[
+f(x,y)\geq
+\frac12x^2+y^2-\frac{17}{2}.
+\]
+
+Or,
+\[
+\frac12x^2+y^2
+\geq\frac12(x^2+y^2).
+\]
+
+Ainsi,
+\[
+f(x,y)\geq
+\frac12\|(x,y)\|^2-\frac{17}{2}.
+\]
+
+Par conséquent,
+\[
+\lim_{\|(x,y)\|\to+\infty}f(x,y)=+\infty.
+\]
+
+Donc
+\[
+\boxed{f\text{ est coercive}.}
+\]
+\end{exemple}
+
+\section{Le cas de la non-coercivité}
+
+\begin{methode}[Montrer qu'une fonction n'est pas coercive]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+    \item \textbf{Choisir une direction} : construire une suite ou une famille de points $x_t$ telle que
+    \[
+    \|x_t\|\longrightarrow+\infty.
+    \]
+
+    \item \textbf{Calculer les valeurs de la fonction} : déterminer le comportement de
+    \[
+    f(x_t).
+    \]
+
+    \item \textbf{Vérifier la limite} : montrer que
+    \[
+    f(x_t)\not\longrightarrow+\infty.
+    \]
+
+    \item \textbf{Conclure} : l'existence d'une telle famille suffit pour affirmer que
+    \[
+    \boxed{f\text{ n'est pas coercive}.}
+    \]
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}[Application : montrer la non-coercivité]
+Considérons
+\[
+f(x,y)=x^3+y^3-3x-12y+20.
+\]
+
+Choisissons la famille
+\[
+P_t=(-t,0),\qquad t\geq0.
+\]
+
+On a
+\[
+\|P_t\|=t\longrightarrow+\infty.
+\]
+
+D'autre part,
+\[
+\begin{aligned}
+f(-t,0)
+&=(-t)^3+0-3(-t)-0+20\\
+&=-t^3+3t+20.
+\end{aligned}
+\]
+
+Ainsi,
+\[
+\lim_{t\to+\infty}f(-t,0)=-\infty.
+\]
+
+Par conséquent,
+\[
+\boxed{f\text{ n'est pas coercive}.}
+\]
+\end{exemple}
+
+\begin{attention}
+La coercivité est une propriété globale qui concerne toutes les directions de fuite vers l'infini. En revanche, la non-coercivité peut être établie à partir d'une seule direction.
+\end{attention}
+
+\section{Lien avec l'existence d'un minimum global}
+
+\begin{methode}[Théorème d'existence d'un minimum global]
+Soit $f:\R^n\to\R$ une fonction continue et coercive. Alors il existe $x^*\in\R^n$ tel que
+\[
+f(x^*)=\min_{x\in\R^n}f(x).
+\]
+
+La continuité garantit l'existence d'un minimum sur tout compact non vide, tandis que la coercivité permet de ramener la recherche du minimum à un compact suffisamment grand.
+\end{methode}

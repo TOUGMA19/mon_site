@@ -1,0 +1,88 @@
+%% titre: Méthodes — Montrer qu'un ensemble est non borné
+%% matiere: Optimisation
+%% niveau: Licence 3
+%% annee: 2026-2027
+%% ordre: 6
+%% description: Construire une famille de points admissibles dont la norme tend vers l'infini.
+
+\section{Démarche}
+
+\begin{methode}[Montrer qu'un ensemble $S\subset\R^n$ est non borné]
+\begin{enumerate}[label=\textbf{Étape \arabic*.}]
+    \item \textbf{Construire une famille de points} : choisir une famille paramétrée
+    \[
+    P_t=(x_{1,t},\ldots,x_{n,t})\in\R^n,
+    \qquad t\geq 0.
+    \]
+
+    \item \textbf{Vérifier l'admissibilité} : montrer que
+    \[
+    P_t\in S,\qquad \forall t\geq 0.
+    \]
+
+    \item \textbf{Étudier la norme} : calculer
+    \[
+    \|P_t\|=\sqrt{x_{1,t}^2+\cdots+x_{n,t}^2}
+    \]
+    et vérifier que
+    \[
+    \lim_{t\to+\infty}\|P_t\|=+\infty.
+    \]
+
+    \item \textbf{Conclure} : puisque les points de $S$ peuvent s'éloigner arbitrairement de l'origine, on obtient
+    \[
+    \boxed{S\text{ est non borné}.}
+    \]
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+\begin{itemize}
+    \item Il suffit de construire \emph{une seule} famille de points admissibles dont la norme tend vers $+\infty$.
+    \item Il faut impérativement vérifier que les points construits appartiennent à $S$ pour toutes les valeurs du paramètre considérées.
+    \item Il n'est pas nécessaire de déterminer toute la géométrie de l'ensemble $S$.
+    \item Une seule coordonnée qui tend vers l'infini en valeur absolue suffit pour établir la non-bornitude.
+\end{itemize}
+\end{attention}
+
+\begin{exemple}
+Considérons l'ensemble
+\[
+S=\left\{(x,y)\in\R^2:
+\begin{array}{l}
+x+y\leq 4,\\
+x+3y\leq 9
+\end{array}
+\right\}.
+\]
+
+Choisissons la famille de points
+\[
+P_t=(-t,0),\qquad t\geq 0.
+\]
+
+Vérifions les contraintes :
+\[
+-t+0=-t\leq 4,
+\]
+\[
+-t+3(0)=-t\leq 9.
+\]
+
+Ainsi, $P_t\in S$ pour tout $t\geq 0$.
+
+D'autre part,
+\[
+\|P_t\|=\sqrt{(-t)^2+0^2}=t.
+\]
+
+Par conséquent,
+\[
+\lim_{t\to+\infty}\|P_t\|=+\infty.
+\]
+
+On conclut que
+\[
+\boxed{S\text{ est non borné}.}
+\]
+\end{exemple}

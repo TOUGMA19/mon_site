@@ -1,126 +1,170 @@
-%% titre: Méthodes — Montrer qu'un ensemble est fermé
+%% titre: Méthodes — Existence d'un minimum sur un ensemble non borné
 %% matiere: Optimisation
 %% niveau: Licence 3
 %% annee: 2026-2027
-%% ordre: 7
-%% description: Méthodes pour démontrer qu'un ensemble est fermé à l'aide de la continuité, des images réciproques et des suites convergentes.
+%% ordre: 9
+%% description: Garantir l'existence d'un minimum global sur un ensemble fermé non vide, même non borné, grâce à la coercivité.
+
+\section{Théorème d'existence}
+
+\begin{theorem}[Existence d'un minimum global]
+Soit $S\subset\R^n$ un ensemble fermé et non vide, éventuellement non borné. Soit $f:S\to\R$ une fonction continue et coercive sur $S$, c'est-à-dire
+\[
+\lim_{\substack{\|x\|\to+\infty\\x\in S}}f(x)=+\infty.
+\]
+Alors il existe $x^*\in S$ tel que
+\[
+\boxed{f(x^*)=\min_{x\in S}f(x).}
+\]
+\end{theorem}
 
 \section{Démarche}
 
-\begin{methode}[Montrer qu'un ensemble $S\subset\R^n$ est fermé]
+\begin{methode}[Montrer l'existence d'un minimum global sur un ensemble non borné]
 \begin{enumerate}[label=\textbf{Étape \arabic*.}]
-    \item \textbf{Identifier les contraintes} : écrire l'ensemble sous la forme
+    \item \textbf{Admissibilité} : vérifier que $S$ est non vide.
+
+    \item \textbf{Fermeture} : montrer que $S$ est fermé.
+
+    \item \textbf{Continuité} : vérifier que la fonction objectif $f$ est continue sur $S$.
+
+    \item \textbf{Coercivité} : montrer que
     \[
-    S=\{x\in\R^n:g_i(x)\leq 0,\ i=1,\ldots,m\}.
+    \lim_{\substack{\|x\|\to+\infty\\x\in S}}f(x)=+\infty.
     \]
 
-    \item \textbf{Vérifier la continuité} : montrer que les fonctions
-    \[
-    g_i:\R^n\to\R
-    \]
-    sont continues.
-
-    \item \textbf{Utiliser l'image réciproque} : puisque $]-\infty,0]$ est fermé et que chaque $g_i$ est continue, on sait que
-    \[
-    g_i^{-1}(]-\infty,0])
-    \]
-    est fermé.
-
-    \item \textbf{Conclure} : une intersection finie d'ensembles fermés étant fermée, on obtient
-    \[
-    \boxed{S\text{ est fermé}.}
-    \]
+    \item \textbf{Conclure} : d'après le théorème d'existence, il existe au moins un point $x^*\in S$ qui réalise le minimum global de $f$ sur $S$.
 \end{enumerate}
 \end{methode}
 
-\begin{attention}
-\begin{itemize}
-    \item L'image réciproque d'un fermé par une fonction continue est fermée.
-    \item L'intersection finie d'ensembles fermés est fermée.
-    \item Une réunion finie d'ensembles fermés est également fermée.
-    \item Une inégalité stricte, telle que $g(x)<0$, définit en général un ensemble ouvert et non fermé.
-    \item Un ensemble fermé n'est pas nécessairement borné.
-\end{itemize}
-\end{attention}
+\section{Démonstration du théorème}
 
-\section{Autre méthode : caractérisation séquentielle}
-
-\begin{methode}[Utiliser les suites convergentes]
-Un ensemble $S\subset\R^n$ est fermé si et seulement si toute suite $(x_k)$ d'éléments de $S$ qui converge dans $\R^n$ a sa limite dans $S$.
-
-Pour appliquer cette caractérisation :
-\begin{enumerate}[label=\textbf{Étape \arabic*.}]
-    \item Considérer une suite arbitraire $(x_k)\subset S$ telle que
-    \[
-    x_k\longrightarrow x\in\R^n.
-    \]
-    \item Utiliser les contraintes vérifiées par chaque $x_k$.
-    \item Passer à la limite en utilisant la continuité des fonctions de contraintes.
-    \item Vérifier que la limite $x$ satisfait encore toutes les contraintes.
-    \item Conclure que $x\in S$, donc que $S$ est fermé.
-\end{enumerate}
-\end{methode}
-
-\section{Applications}
-
-\begin{exemple}[Ensemble défini par des inégalités]
-Considérons
-\[
-S=\left\{(x,y)\in\R^2:
-\begin{array}{l}
-x+y\leq 4,\\
-x+3y\leq 9
-\end{array}\right\}.
-\]
+\begin{proof}
+Puisque $S$ est non vide, choisissons $x_0\in S$.
 
 Posons
 \[
-g_1(x,y)=x+y-4,\qquad
-g_2(x,y)=x+3y-9.
+\alpha=f(x_0).
 \]
 
-Les fonctions $g_1$ et $g_2$ sont affines, donc continues sur $\R^2$.
-
-Or,
+La coercivité de $f$ garantit l'existence d'un réel $R>0$ suffisamment grand tel que
 \[
-S=g_1^{-1}(]-\infty,0])
-\cap g_2^{-1}(]-\infty,0]).
+x\in S,\quad \|x\|>R
+\quad\Longrightarrow\quad
+f(x)>\alpha.
 \]
 
-Puisque $]-\infty,0]$ est fermé, les deux images réciproques sont fermées. Leur intersection étant fermée, on obtient
+Considérons alors
 \[
-\boxed{S\text{ est fermé dans }\R^2.}
+K=S\cap\overline B(0,R),
 \]
-\end{exemple}
-
-\begin{exemple}[Ensemble défini par une égalité]
-Considérons
+où
 \[
-S=\{(x,y)\in\R^2:x^2+y^2=1\}.
+\overline B(0,R)=\{x\in\R^n:\|x\|\leq R\}.
 \]
 
-Posons
+Puisque $S$ est fermé et que la boule fermée $\overline B(0,R)$ est compacte dans $\R^n$, leur intersection $K$ est compacte.
+
+De plus, $K$ est non vide car on peut choisir $R$ suffisamment grand pour que $x_0\in K$.
+
+La fonction $f$ étant continue sur $K$, le théorème de Weierstrass garantit l'existence de $x^*\in K$ tel que
 \[
-g(x,y)=x^2+y^2-1.
+f(x^*)=\min_{x\in K}f(x).
 \]
 
-La fonction $g$ est continue et
+Or, pour tout $x\in S\setminus K$, on a
 \[
-S=g^{-1}(\{0\}).
+f(x)>\alpha=f(x_0).
 \]
 
-Comme $\{0\}$ est un fermé de $\R$, son image réciproque par $g$ est fermée.
+Comme $x_0\in K$ et que $x^*$ minimise $f$ sur $K$,
+\[
+f(x^*)\leq f(x_0)=\alpha.
+\]
+
+Par conséquent, pour tout $x\in S\setminus K$,
+\[
+f(x)>f(x_0)\geq f(x^*).
+\]
+
+Ainsi, $x^*$ minimise également $f$ sur tout l'ensemble $S$.
+
+Finalement,
+\[
+\boxed{\exists x^*\in S,\quad
+f(x^*)=\min_{x\in S}f(x).}
+\]
+\end{proof}
+
+\section{Exemple d'application}
+
+\begin{exemple}
+Considérons le problème
+\[
+(P)\qquad
+\begin{cases}
+\displaystyle\min_{(x,y)\in\R^2}
+& f(x,y)=x^2+y^2-2x-4y\\
+\text{s.c.}
+& x+y\geq 1.
+\end{cases}
+\]
+
+L'ensemble admissible est
+\[
+S=\{(x,y)\in\R^2:x+y\geq1\}.
+\]
+
+\textbf{1. Ensemble admissible}
+
+On a
+\[
+S=g^{-1}([0,+\infty[),
+\qquad g(x,y)=x+y-1.
+\]
+
+La fonction $g$ est continue et $[0,+\infty[$ est fermé. Donc $S$ est fermé.
+
+De plus, $S$ est non vide et non borné.
+
+\textbf{2. Continuité}
+
+La fonction $f$ est polynomiale, donc continue sur $\R^2$ et en particulier sur $S$.
+
+\textbf{3. Coercivité}
+
+En complétant les carrés,
+\[
+f(x,y)=(x-1)^2+(y-2)^2-5.
+\]
 
 Ainsi,
 \[
-\boxed{S\text{ est fermé}.}
+f(x,y)\geq \frac12(x^2+y^2)-5.
 \]
+
+Par conséquent,
+\[
+\lim_{\|(x,y)\|\to+\infty}f(x,y)=+\infty.
+\]
+
+La fonction $f$ est donc coercive sur $\R^2$, et par restriction, sur $S$.
+
+\textbf{4. Conclusion}
+
+L'ensemble $S$ est fermé et non vide, et la fonction $f$ est continue et coercive sur $S$.
+
+D'après le théorème d'existence, le problème $(P)$ admet au moins une solution optimale globale.
 \end{exemple}
 
+\section{Attention aux hypothèses}
+
 \begin{attention}
-Pour un ensemble défini par des contraintes mixtes
-\[
-S=\{x\in\R^n:g_i(x)\leq0,\ h_j(x)=0\},
-\]
-si toutes les fonctions $g_i$ et $h_j$ sont continues, alors $S$ est fermé.
+\begin{itemize}
+    \item La fermeture de $S$ est essentielle pour garantir que la limite d'une suite admissible reste admissible.
+    \item La coercivité doit être vérifiée uniquement sur $S$ : il n'est pas nécessaire que $f$ soit coercive sur tout $\R^n$.
+    \item La continuité seule ne garantit pas l'existence d'un minimum sur un ensemble non borné.
+    \item La coercivité seule ne suffit pas si $S$ n'est pas fermé.
+    \item Ce théorème garantit l'existence d'au moins un minimum global, mais pas nécessairement son unicité.
+\end{itemize}
 \end{attention}
